@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a  ",
+    "aba",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:cherry_planks"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:cherry_bench",
+    "count": 2
+  }
+}

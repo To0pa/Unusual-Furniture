@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/chair",
+  "textures": {
+    "0": "unusual_furniture:block/oak_stool",
+    "particle": "unusual_furniture:block/carved_oak"
+  }
+}

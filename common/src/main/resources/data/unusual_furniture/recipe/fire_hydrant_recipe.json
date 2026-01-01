@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    },
+    "c": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:fire_hydrant",
+    "count": 1
+  }
+}

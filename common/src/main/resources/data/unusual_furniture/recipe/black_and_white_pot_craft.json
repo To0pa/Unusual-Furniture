@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "b b",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:blackstone"
+    },
+    "b": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:blackstone_pot",
+    "count": 1
+  }
+}

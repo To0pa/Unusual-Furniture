@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "unusual_furniture:block/carved_cherry",
+    "east": "unusual_furniture:block/carved_cherry_top",
+    "north": "unusual_furniture:block/carved_cherry_top",
+    "particle": "unusual_furniture:block/carved_cherry",
+    "south": "unusual_furniture:block/carved_cherry_top",
+    "up": "unusual_furniture:block/carved_cherry",
+    "west": "unusual_furniture:block/carved_cherry_top"
+  }
+}

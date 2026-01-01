@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/bench_middle",
+  "textures": {
+    "0": "unusual_furniture:block/spruce_bench",
+    "particle": "unusual_furniture:block/carved_spruce"
+  }
+}

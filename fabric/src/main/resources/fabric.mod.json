@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${modId}",
+  "version": "${version}",
+  "name": "${modName}",
+  "description": "${modDescription}",
+  "authors": [
+    "${authors}"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "${license}",
+  "icon": "assets/${modId}/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.toopa.unusual_furniture.fabric.UnusualFurnitureFabric"
+    ],
+    "client": [
+      "net.toopa.unusual_furniture.fabric.client.UnusualFurnitureClient"
+    ],
+    "fabric-datagen": [
+      "net.toopa.unusual_furniture.fabric.datagen.UnusualFurnitureDatagen"
+    ]
+  },
+  "mixins": [
+    "${modId}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "minecraft": "${minecraftVersionRange}",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

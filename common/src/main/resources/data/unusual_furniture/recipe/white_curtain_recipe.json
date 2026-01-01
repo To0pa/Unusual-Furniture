@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stick"
+    },
+    "b": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:white_curtain",
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "a",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:brick"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:tall_clay_pot",
+    "count": 1
+  }
+}

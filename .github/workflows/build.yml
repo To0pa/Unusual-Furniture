@@ -1,0 +1,121 @@
+name: Build
+on: [ pull_request, push ] # Changed trigger to run on push and pull_request events
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  mod-build:
+    name: 📦 Build and Zip Mod Artifacts
+    runs-on: macos-14
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4.1.1 # This is effectively git clone
+
+      - name: setup JDK 21
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: 21
+          distribution: 'temurin' # Installs java
+
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew # Execution workaround for unix-based systems
+
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v3 # Speeds up build time by about 5 mins :P
+
+      - name: Execute Gradle build
+        run: ./gradlew build --warning-mode all # Builds the mod into a jar file
+
+      - name: Get BuildConfig values
+        id: get_build_config_values # <--- Step ID for referencing outputs
+        run: |
+          BUILD_CONFIG_FILE="./buildSrc/src/main/kotlin/BuildConfig.kt"
+
+          if [ ! -f "$BUILD_CONFIG_FILE" ]; then
+              echo "Error: BuildConfig.kt not found at '$BUILD_CONFIG_FILE'. Please check the path."
+              exit 1
+          fi
+
+          RAW_MOD_ID=$(grep "val modId: String =" "$BUILD_CONFIG_FILE" | sed -n 's/.*"\(.*\)"/\1/p')
+          RAW_MC_VERSION=$(grep "val minecraftVersion: String =" "$BUILD_CONFIG_FILE" | sed -n 's/.*"\(.*\)"/\1/p')
+          
+          RAW_MOD_VERSION_BASE=$(grep "val modVersion: String =" "$BUILD_CONFIG_FILE" | sed -n 's/.*"\(.*\)" + minecraftVersion/\1/p')
+
+          if [ -z "$RAW_MOD_VERSION_BASE" ]; then
+            MOD_VERSION=$(grep "val modVersion: String =" "$BUILD_CONFIG_FILE" | sed -n 's/.*"\(.*\)"/\1/p')
+          else
+            MOD_VERSION="${RAW_MOD_VERSION_BASE}${RAW_MC_VERSION}"
+          fi
+
+          echo "Detected modId: $RAW_MOD_ID"
+          echo "Detected modVersion: $MOD_VERSION"
+          echo "Detected minecraftVersion: $RAW_MC_VERSION"
+
+          echo "mod_name=$RAW_MOD_ID" >> $GITHUB_OUTPUT # Renamed to mod_name for consistency with previous outputs
+          echo "mod_version=$MOD_VERSION" >> $GITHUB_OUTPUT
+          echo "mc_version=$RAW_MC_VERSION" >> $GITHUB_OUTPUT
+
+      # Create a directory to stage all artifacts before zipping
+      - name: Create combined artifacts directory
+        run: mkdir combined-artifacts
+
+      # Locate and rename the common JAR
+      - name: Copy common artifact
+        run: |
+          MOD_ID="${{ steps.get_build_config_values.outputs.mod_name }}"
+          MOD_VERSION="${{ steps.get_build_config_values.outputs.mod_version }}"
+          MC_VERSION="${{ steps.get_build_config_values.outputs.mc_version }}"
+          PLATFORM="common"
+
+          FILENAME="${MOD_ID}-${MOD_VERSION}-${PLATFORM}.jar"
+          JAR_PATH=$(find $PLATFORM/build/libs -name "$FILENAME" | head -n 1)
+
+          if [ -n "$JAR_PATH" ]; then
+            cp "$JAR_PATH" "combined-artifacts/$FILENAME"
+            echo "Copied $PLATFORM artifact to combined-artifacts/$FILENAME"
+          else
+            echo "Warning: No $PLATFORM JAR found matching $FILENAME in $PLATFORM/build/libs/"
+          fi
+      # Locate and rename the fabric JAR
+      - name: Copy fabric artifact
+        run: |
+          MOD_ID="${{ steps.get_build_config_values.outputs.mod_name }}"
+          MOD_VERSION="${{ steps.get_build_config_values.outputs.mod_version }}"
+          MC_VERSION="${{ steps.get_build_config_values.outputs.mc_version }}"
+          PLATFORM="fabric"
+
+          FILENAME="${MOD_ID}-${MOD_VERSION}-${PLATFORM}.jar"
+          JAR_PATH=$(find $PLATFORM/build/libs -name "$FILENAME" | head -n 1)
+
+          if [ -n "$JAR_PATH" ]; then
+            cp "$JAR_PATH" "combined-artifacts/$FILENAME"
+            echo "Copied $PLATFORM artifact to combined-artifacts/$FILENAME"
+          else
+            echo "Warning: No $PLATFORM JAR found matching $FILENAME in $PLATFORM/build/libs/"
+          fi
+
+      # Locate and rename the neoforge JAR
+      - name: Copy neoforge jar
+        run: |
+          MOD_ID="${{ steps.get_build_config_values.outputs.mod_name }}"
+          MOD_VERSION="${{ steps.get_build_config_values.outputs.mod_version }}"
+          MC_VERSION="${{ steps.get_build_config_values.outputs.mc_version }}"
+          PLATFORM="neoforge"
+
+          FILENAME="${MOD_ID}-${MOD_VERSION}-${PLATFORM}.jar"
+          JAR_PATH=$(find $PLATFORM/build/libs -name "$FILENAME" | head -n 1)
+
+          if [ -n "$JAR_PATH" ]; then
+            cp "$JAR_PATH" "combined-artifacts/$FILENAME"
+            echo "Copied $PLATFORM artifact to combined-artifacts/$FILENAME"
+          else
+            echo "Warning: No $PLATFORM JAR found matching $FILENAME in $PLATFORM/build/libs/"
+          fi
+
+      - name: Upload combined artifacts
+        uses: actions/upload-artifact@v4.3.0
+        with:
+          name: Artifacts
+          path: combined-artifacts/

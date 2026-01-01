@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " ab",
+    "ab "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:crimson_stairs"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:crimson_open_riser_stairs",
+    "count": 2
+  }
+}

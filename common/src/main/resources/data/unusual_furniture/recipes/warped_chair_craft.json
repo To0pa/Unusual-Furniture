@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa",
+    "bb"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:warped_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:warped_chair",
+    "count": 1
+  }
+}

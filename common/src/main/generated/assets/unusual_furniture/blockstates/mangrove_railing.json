@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "axis=x,left=down,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 270
+    },
+    "axis=x,left=down,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing_up_stair",
+      "y": 270
+    },
+    "axis=x,left=down,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing_stair",
+      "y": 270
+    },
+    "axis=x,left=none,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing_up_stair",
+      "y": 90
+    },
+    "axis=x,left=none,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 270
+    },
+    "axis=x,left=none,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing_down_stair",
+      "y": 270
+    },
+    "axis=x,left=up,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing_stair",
+      "y": 90
+    },
+    "axis=x,left=up,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing_down_stair",
+      "y": 90
+    },
+    "axis=x,left=up,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 270
+    },
+    "axis=z,left=down,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 180
+    },
+    "axis=z,left=down,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing_up_stair",
+      "y": 180
+    },
+    "axis=z,left=down,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing_stair",
+      "y": 180
+    },
+    "axis=z,left=none,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing_up_stair",
+      "y": 0
+    },
+    "axis=z,left=none,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 180
+    },
+    "axis=z,left=none,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing_down_stair",
+      "y": 180
+    },
+    "axis=z,left=up,right=down": {
+      "model": "unusual_furniture:block/mangrove_railing_stair",
+      "y": 0
+    },
+    "axis=z,left=up,right=none": {
+      "model": "unusual_furniture:block/mangrove_railing_down_stair",
+      "y": 0
+    },
+    "axis=z,left=up,right=up": {
+      "model": "unusual_furniture:block/mangrove_railing",
+      "y": 180
+    }
+  }
+}

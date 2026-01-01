@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stripped_mangrove_log"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:mangrove_beam",
+    "count": 8
+  }
+}

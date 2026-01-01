@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "unusual_furniture:block/carved_oak",
+    "east": "unusual_furniture:block/carved_oak_top",
+    "north": "unusual_furniture:block/carved_oak_top",
+    "particle": "unusual_furniture:block/carved_oak",
+    "south": "unusual_furniture:block/carved_oak_top",
+    "up": "unusual_furniture:block/carved_oak",
+    "west": "unusual_furniture:block/carved_oak_top"
+  }
+}

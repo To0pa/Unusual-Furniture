@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aaa",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:mangrove_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:mangrove_drawer",
+    "count": 1
+  }
+}

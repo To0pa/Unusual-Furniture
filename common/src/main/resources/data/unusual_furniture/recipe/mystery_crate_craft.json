@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "unusual_furniture:screw"
+    },
+    "b": {
+      "tag": "minecraft:planks"
+    },
+    "c": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:mystery_crate",
+    "count": 1
+  }
+}

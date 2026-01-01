@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stick"
+    },
+    "b": {
+      "item": "minecraft:cyan_wool"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:cyan_curtain",
+    "count": 4
+  }
+}

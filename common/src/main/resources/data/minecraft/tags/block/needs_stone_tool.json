@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "unusual_furniture:industrial_table",
+    "unusual_furniture:iron_beam",
+    "unusual_furniture:decorated_iron_beam",
+    "unusual_furniture:industrial_coffee_table"
+  ]
+}

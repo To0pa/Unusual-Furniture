@@ -1,0 +1,77 @@
+plugins {
+    id 'com.gradleup.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    runs {
+        register("datagen") {
+            client()
+            name = "Data Generation"
+
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.modid=${BuildConfig.modId}")
+            vmArg("-Dfabric-api.datagen.output-dir=${project(":common").file("src/main/generated")}")
+            runDir("build/datagen")
+
+            ideConfigGenerated(true)
+        }
+    }
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${BuildConfig.fabricLoaderVersion}"
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${BuildConfig.fabricApiVersion}"
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+}
+
+processResources {
+    filesMatching('fabric.mod.json') {
+        expand(
+                modId: BuildConfig.modId,
+                version: BuildConfig.modVersion,
+                modName: BuildConfig.modName,
+                modDescription: BuildConfig.modDescription,
+                authors: BuildConfig.modAuthors.join(", "),
+                license: BuildConfig.license,
+                fabricLoaderVersion: BuildConfig.fabricLoaderVersion,
+                minecraftVersionRange: BuildConfig.minecraftVersionRange,
+        )
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    injectAccessWidener = true
+}

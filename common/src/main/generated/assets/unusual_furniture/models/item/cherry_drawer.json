@@ -1,0 +1,6 @@
+{
+  "parent": "unusual_furniture:custom/drawer_item",
+  "textures": {
+    "0": "unusual_furniture:block/cherry_drawer"
+  }
+}

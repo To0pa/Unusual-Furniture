@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/coffee_table",
+  "textures": {
+    "0": "unusual_furniture:block/industrial_table",
+    "particle": "unusual_furniture:block/industrial_table"
+  }
+}

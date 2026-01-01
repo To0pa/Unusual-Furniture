@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "unusual_furniture:decorated_iron_beam"
+  },
+  "result": {
+    "id": "unusual_furniture:floor_lamp_decoration_bat",
+    "count": 1
+  }
+}

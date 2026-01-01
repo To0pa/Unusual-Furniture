@@ -1,0 +1,15 @@
+{
+  "squeak": {
+    "subtitle": "subtitles.squeak",
+    "sounds": [
+      {
+        "name": "unusual_furniture:squeak1",
+        "stream": false
+      },
+      {
+        "name": "unusual_furniture:squeak2",
+        "stream": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "unusual_furniture:spruce_table",
+    "unusual_furniture:industrial_table",
+    "unusual_furniture:oak_table",
+    "unusual_furniture:birch_table",
+    "unusual_furniture:jungle_table",
+    "unusual_furniture:acacia_table",
+    "unusual_furniture:dark_oak_table",
+    "unusual_furniture:mangrove_table",
+    "unusual_furniture:cherry_table",
+    "unusual_furniture:bamboo_table",
+    "unusual_furniture:crimson_table",
+    "unusual_furniture:warped_table"
+  ]
+}

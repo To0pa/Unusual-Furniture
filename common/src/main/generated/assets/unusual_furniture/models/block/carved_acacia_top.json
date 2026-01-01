@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "unusual_furniture:block/carved_acacia",
+    "east": "unusual_furniture:block/carved_acacia_top",
+    "north": "unusual_furniture:block/carved_acacia_top",
+    "particle": "unusual_furniture:block/carved_acacia",
+    "south": "unusual_furniture:block/carved_acacia_top",
+    "up": "unusual_furniture:block/carved_acacia",
+    "west": "unusual_furniture:block/carved_acacia_top"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/up_stair_railing",
+  "textures": {
+    "0": "unusual_furniture:block/birch_railing",
+    "particle": "unusual_furniture:block/carved_birch"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "unusual_furniture:wooden_barrier",
+    "unusual_furniture:danger_barrier",
+    "unusual_furniture:road_works_barrier",
+    "unusual_furniture:warning_barrier",
+    "unusual_furniture:hit_box_guides",
+    "unusual_furniture:sphere_lamp",
+    "unusual_furniture:iron_lamp",
+    "unusual_furniture:floor_lamp_decoration_bat",
+    "unusual_furniture:floor_lamp_decoration_villager",
+    "unusual_furniture:iron_beam",
+    "unusual_furniture:decorated_iron_beam",
+    "unusual_furniture:decorative_toolbox",
+    "unusual_furniture:manhole",
+    "unusual_furniture:emergency_fire_hydrant",
+    "unusual_furniture:fire_hydrant",
+    "unusual_furniture:trash",
+    "unusual_furniture:copper_celling_lamp",
+    "unusual_furniture:industrial_coffee_table",
+    "unusual_furniture:industrial_table"
+  ]
+}

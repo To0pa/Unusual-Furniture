@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/drawer_open",
+  "textures": {
+    "1": "unusual_furniture:block/bamboo_drawer",
+    "particle": "unusual_furniture:block/carved_bamboo"
+  }
+}

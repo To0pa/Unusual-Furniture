@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "facing=east,shape=bottom_closed": {
+      "model": "unusual_furniture:block/black_curtain_bottom_close",
+      "y": 90
+    },
+    "facing=east,shape=left_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_left",
+      "y": 90
+    },
+    "facing=east,shape=left_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_left",
+      "y": 90
+    },
+    "facing=east,shape=left_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_left",
+      "y": 90
+    },
+    "facing=east,shape=middle_closed": {
+      "model": "unusual_furniture:block/black_curtain_middle_close",
+      "y": 90
+    },
+    "facing=east,shape=middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open",
+      "y": 90
+    },
+    "facing=east,shape=right_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_right",
+      "y": 90
+    },
+    "facing=east,shape=right_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_right",
+      "y": 90
+    },
+    "facing=east,shape=right_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_right",
+      "y": 90
+    },
+    "facing=east,shape=single_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close_lonely",
+      "y": 90
+    },
+    "facing=east,shape=top_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close",
+      "y": 90
+    },
+    "facing=east,shape=top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open",
+      "y": 90
+    },
+    "facing=north,shape=bottom_closed": {
+      "model": "unusual_furniture:block/black_curtain_bottom_close"
+    },
+    "facing=north,shape=left_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_left"
+    },
+    "facing=north,shape=left_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_left"
+    },
+    "facing=north,shape=left_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_left"
+    },
+    "facing=north,shape=middle_closed": {
+      "model": "unusual_furniture:block/black_curtain_middle_close"
+    },
+    "facing=north,shape=middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open"
+    },
+    "facing=north,shape=right_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_right"
+    },
+    "facing=north,shape=right_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_right"
+    },
+    "facing=north,shape=right_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_right"
+    },
+    "facing=north,shape=single_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close_lonely"
+    },
+    "facing=north,shape=top_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close"
+    },
+    "facing=north,shape=top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open"
+    },
+    "facing=south,shape=bottom_closed": {
+      "model": "unusual_furniture:block/black_curtain_bottom_close",
+      "y": 180
+    },
+    "facing=south,shape=left_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_left",
+      "y": 180
+    },
+    "facing=south,shape=left_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_left",
+      "y": 180
+    },
+    "facing=south,shape=left_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_left",
+      "y": 180
+    },
+    "facing=south,shape=middle_closed": {
+      "model": "unusual_furniture:block/black_curtain_middle_close",
+      "y": 180
+    },
+    "facing=south,shape=middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open",
+      "y": 180
+    },
+    "facing=south,shape=right_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_right",
+      "y": 180
+    },
+    "facing=south,shape=right_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_right",
+      "y": 180
+    },
+    "facing=south,shape=right_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_right",
+      "y": 180
+    },
+    "facing=south,shape=single_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close_lonely",
+      "y": 180
+    },
+    "facing=south,shape=top_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close",
+      "y": 180
+    },
+    "facing=south,shape=top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open",
+      "y": 180
+    },
+    "facing=west,shape=bottom_closed": {
+      "model": "unusual_furniture:block/black_curtain_bottom_close",
+      "y": 270
+    },
+    "facing=west,shape=left_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_left",
+      "y": 270
+    },
+    "facing=west,shape=left_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_left",
+      "y": 270
+    },
+    "facing=west,shape=left_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_left",
+      "y": 270
+    },
+    "facing=west,shape=middle_closed": {
+      "model": "unusual_furniture:block/black_curtain_middle_close",
+      "y": 270
+    },
+    "facing=west,shape=middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open",
+      "y": 270
+    },
+    "facing=west,shape=right_bottom_open": {
+      "model": "unusual_furniture:block/black_curtain_bottom_open_right",
+      "y": 270
+    },
+    "facing=west,shape=right_middle_open": {
+      "model": "unusual_furniture:block/black_curtain_middle_open_right",
+      "y": 270
+    },
+    "facing=west,shape=right_top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open_right",
+      "y": 270
+    },
+    "facing=west,shape=single_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close_lonely",
+      "y": 270
+    },
+    "facing=west,shape=top_closed": {
+      "model": "unusual_furniture:block/black_curtain_top_close",
+      "y": 270
+    },
+    "facing=west,shape=top_open": {
+      "model": "unusual_furniture:block/black_curtain_top_open",
+      "y": 270
+    }
+  }
+}

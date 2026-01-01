@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:oak_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_oak_log"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:oak_table",
+    "count": 1
+  }
+}

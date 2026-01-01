@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/stairs",
+  "textures": {
+    "0": "unusual_furniture:block/spruce_coffee_table",
+    "particle": "unusual_furniture:block/carved_spruce"
+  }
+}

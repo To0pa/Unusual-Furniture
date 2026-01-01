@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:acacia_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_acacia_log"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:acacia_table",
+    "count": 1
+  }
+}

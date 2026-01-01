@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#unusual_furniture:bench",
+      "required": false
+    },
+    {
+      "id": "#unusual_furniture:stool",
+      "required": false
+    },
+    {
+      "id": "#unusual_furniture:sofa",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "unusual_furniture:block/carved_bamboo",
+    "east": "unusual_furniture:block/carved_bamboo_middle",
+    "north": "unusual_furniture:block/carved_bamboo_middle",
+    "particle": "unusual_furniture:block/carved_bamboo",
+    "south": "unusual_furniture:block/carved_bamboo_middle",
+    "up": "unusual_furniture:block/carved_bamboo",
+    "west": "unusual_furniture:block/carved_bamboo_middle"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/ceiling_lamp",
+  "textures": {
+    "0": "unusual_furniture:block/copper_ceiling_lamp",
+    "particle": "minecraft:block/copper_block"
+  }
+}

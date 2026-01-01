@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "axis=x,shape=bottom": {
+      "model": "unusual_furniture:block/carved_jungle_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,shape=middle": {
+      "model": "unusual_furniture:block/carved_jungle_middle",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,shape=single": {
+      "model": "unusual_furniture:block/carved_jungle_single",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,shape=top": {
+      "model": "unusual_furniture:block/carved_jungle_top",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,shape=bottom": {
+      "model": "unusual_furniture:block/carved_jungle_bottom"
+    },
+    "axis=y,shape=middle": {
+      "model": "unusual_furniture:block/carved_jungle_middle"
+    },
+    "axis=y,shape=single": {
+      "model": "unusual_furniture:block/carved_jungle_single"
+    },
+    "axis=y,shape=top": {
+      "model": "unusual_furniture:block/carved_jungle_top"
+    },
+    "axis=z,shape=bottom": {
+      "model": "unusual_furniture:block/carved_jungle_bottom",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,shape=middle": {
+      "model": "unusual_furniture:block/carved_jungle_middle",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,shape=single": {
+      "model": "unusual_furniture:block/carved_jungle_single",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,shape=top": {
+      "model": "unusual_furniture:block/carved_jungle_top",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

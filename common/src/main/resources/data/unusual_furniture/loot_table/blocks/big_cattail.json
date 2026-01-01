@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "unusual_furniture:blocks/big_cattail",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "unusual_furniture:water_plants",
+          "conditions": [
+            {
+              "block": "unusual_furniture:big_cattail",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

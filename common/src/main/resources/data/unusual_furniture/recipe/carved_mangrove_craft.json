@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:mangrove_slab"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:carved_mangrove",
+    "count": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "unusual_furniture:block/spruce_open_riser_stairs",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "unusual_furniture:block/spruce_open_riser_stairs"
+    },
+    "facing=south": {
+      "model": "unusual_furniture:block/spruce_open_riser_stairs",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "unusual_furniture:block/spruce_open_riser_stairs",
+      "y": 270
+    }
+  }
+}

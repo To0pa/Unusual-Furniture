@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b",
+    "c"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stick"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    },
+    "c": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:broom",
+    "count": 1
+  }
+}

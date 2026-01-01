@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:birch_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_birch_log"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:birch_table",
+    "count": 1
+  }
+}

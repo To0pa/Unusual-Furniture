@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "bcb",
+    " d "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    },
+    "c": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "d": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:sphere_lamp",
+    "count": 2
+  }
+}

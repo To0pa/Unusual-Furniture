@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "unusual_furniture:block/mangrove_coffee_table",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "unusual_furniture:block/mangrove_coffee_table"
+    },
+    "facing=south": {
+      "model": "unusual_furniture:block/mangrove_coffee_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "unusual_furniture:block/mangrove_coffee_table",
+      "y": 270
+    }
+  }
+}

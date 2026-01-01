@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "unusual_furniture:block/carved_mangrove",
+    "east": "unusual_furniture:block/carved_mangrove_bottom",
+    "north": "unusual_furniture:block/carved_mangrove_bottom",
+    "particle": "unusual_furniture:block/carved_mangrove",
+    "south": "unusual_furniture:block/carved_mangrove_bottom",
+    "up": "unusual_furniture:block/carved_mangrove",
+    "west": "unusual_furniture:block/carved_mangrove_bottom"
+  }
+}

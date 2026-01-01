@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:bamboo_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_bamboo_block"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:bamboo_table",
+    "count": 1
+  }
+}

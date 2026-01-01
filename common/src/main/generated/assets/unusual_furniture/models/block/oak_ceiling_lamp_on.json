@@ -1,0 +1,8 @@
+{
+  "parent": "unusual_furniture:custom/ceiling_lamp_on",
+  "textures": {
+    "0": "unusual_furniture:block/oak_ceiling_lamp",
+    "1": "unusual_furniture:block/light",
+    "particle": "unusual_furniture:block/carved_oak"
+  }
+}

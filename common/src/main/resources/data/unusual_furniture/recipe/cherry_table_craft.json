@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:cherry_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_cherry_log"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:cherry_table",
+    "count": 1
+  }
+}

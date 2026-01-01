@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:crimson_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_crimson_stem"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:crimson_table",
+    "count": 1
+  }
+}

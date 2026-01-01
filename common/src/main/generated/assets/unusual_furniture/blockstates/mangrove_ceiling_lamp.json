@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "unusual_furniture:block/mangrove_ceiling_lamp"
+    },
+    "lit=true": {
+      "model": "unusual_furniture:block/mangrove_ceiling_lamp_on"
+    }
+  }
+}

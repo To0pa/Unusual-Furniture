@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/ceiling_lamp",
+  "textures": {
+    "0": "unusual_furniture:block/warped_ceiling_lamp",
+    "particle": "unusual_furniture:block/carved_warped"
+  }
+}

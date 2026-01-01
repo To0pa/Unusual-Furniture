@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/sofa_outer_corner",
+  "textures": {
+    "1": "unusual_furniture:block/green_sofa",
+    "particle": "minecraft:block/green_wool"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:spruce_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_spruce_log"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:spruce_table",
+    "count": 1
+  }
+}

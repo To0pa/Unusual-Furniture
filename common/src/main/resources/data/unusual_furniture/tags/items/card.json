@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "create_furniture:blank_ticket",
+    "create_furniture:blank_card"
+  ]
+}

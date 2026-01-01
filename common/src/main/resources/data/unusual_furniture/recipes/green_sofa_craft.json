@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a  ",
+    "aaa",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:green_wool"
+    },
+    "b": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:green_sofa",
+    "count": 4
+  }
+}

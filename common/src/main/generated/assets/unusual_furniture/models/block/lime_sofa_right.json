@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/sofa_right",
+  "textures": {
+    "0": "unusual_furniture:block/lime_sofa",
+    "particle": "minecraft:block/lime_wool"
+  }
+}

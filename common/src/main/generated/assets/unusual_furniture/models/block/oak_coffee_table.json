@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/small_table",
+  "textures": {
+    "1": "unusual_furniture:block/oak_coffee_table",
+    "particle": "unusual_furniture:block/carved_oak"
+  }
+}

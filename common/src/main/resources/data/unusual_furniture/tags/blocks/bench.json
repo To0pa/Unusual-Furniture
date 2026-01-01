@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "unusual_furniture:industrial_bench",
+    "unusual_furniture:oak_bench",
+    "unusual_furniture:birch_bench",
+    "unusual_furniture:jungle_bench",
+    "unusual_furniture:acacia_bench",
+    "unusual_furniture:dark_oak_bench",
+    "unusual_furniture:mangrove_bench",
+    "unusual_furniture:cherry_bench",
+    "unusual_furniture:bamboo_bench",
+    "unusual_furniture:crimson_bench",
+    "unusual_furniture:warped_bench"
+  ]
+}

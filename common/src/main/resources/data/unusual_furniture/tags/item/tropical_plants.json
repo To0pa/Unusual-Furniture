@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:small_dripleaf",
+    "minecraft:spore_blossom",
+    "minecraft:big_dripleaf",
+    "minecraft:jungle_sapling"
+  ]
+}

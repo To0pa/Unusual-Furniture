@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "unusual_furniture:warped_coffee_table",
+    "unusual_furniture:crimson_coffee_table",
+    "unusual_furniture:bamboo_coffee_table",
+    "unusual_furniture:cherry_coffee_table",
+    "unusual_furniture:mangrove_coffee_table",
+    "unusual_furniture:dark_oak_coffee_table",
+    "unusual_furniture:acacia_coffee_table",
+    "unusual_furniture:jungle_coffee_table",
+    "unusual_furniture:birch_coffee_table",
+    "unusual_furniture:spruce_coffee_table",
+    "unusual_furniture:oak_coffee_table",
+    "unusual_furniture:warped_table",
+    "unusual_furniture:crimson_table",
+    "unusual_furniture:bamboo_table",
+    "unusual_furniture:cherry_table",
+    "unusual_furniture:mangrove_table",
+    "unusual_furniture:dark_oak_table",
+    "unusual_furniture:acacia_table",
+    "unusual_furniture:jungle_table",
+    "unusual_furniture:birch_table",
+    "unusual_furniture:oak_table",
+    "unusual_furniture:spruce_table",
+    "unusual_furniture:industrial_coffee_table",
+    "unusual_furniture:industrial_table"
+  ]
+}

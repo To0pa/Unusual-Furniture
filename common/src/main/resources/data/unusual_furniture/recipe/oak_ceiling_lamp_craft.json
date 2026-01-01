@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:oak_planks"
+    },
+    "b": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "id": "unusual_furniture:oak_celling_lamp",
+    "count": 1
+  }
+}

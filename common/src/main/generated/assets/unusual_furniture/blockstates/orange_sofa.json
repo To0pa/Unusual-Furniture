@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,shape=inner_left": {
+      "model": "unusual_furniture:block/orange_sofa_corner2",
+      "y": 90
+    },
+    "facing=east,shape=inner_right": {
+      "model": "unusual_furniture:block/orange_sofa_corner",
+      "y": 90
+    },
+    "facing=east,shape=left": {
+      "model": "unusual_furniture:block/orange_sofa_right",
+      "y": 90
+    },
+    "facing=east,shape=middle": {
+      "model": "unusual_furniture:block/orange_sofa_middle",
+      "y": 90
+    },
+    "facing=east,shape=outer_left": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner",
+      "y": 90
+    },
+    "facing=east,shape=outer_right": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner2",
+      "y": 90
+    },
+    "facing=east,shape=right": {
+      "model": "unusual_furniture:block/orange_sofa_left",
+      "y": 90
+    },
+    "facing=east,shape=single": {
+      "model": "unusual_furniture:block/orange_sofa",
+      "y": 90
+    },
+    "facing=north,shape=inner_left": {
+      "model": "unusual_furniture:block/orange_sofa_corner2"
+    },
+    "facing=north,shape=inner_right": {
+      "model": "unusual_furniture:block/orange_sofa_corner"
+    },
+    "facing=north,shape=left": {
+      "model": "unusual_furniture:block/orange_sofa_right"
+    },
+    "facing=north,shape=middle": {
+      "model": "unusual_furniture:block/orange_sofa_middle"
+    },
+    "facing=north,shape=outer_left": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner"
+    },
+    "facing=north,shape=outer_right": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner2"
+    },
+    "facing=north,shape=right": {
+      "model": "unusual_furniture:block/orange_sofa_left"
+    },
+    "facing=north,shape=single": {
+      "model": "unusual_furniture:block/orange_sofa"
+    },
+    "facing=south,shape=inner_left": {
+      "model": "unusual_furniture:block/orange_sofa_corner2",
+      "y": 180
+    },
+    "facing=south,shape=inner_right": {
+      "model": "unusual_furniture:block/orange_sofa_corner",
+      "y": 180
+    },
+    "facing=south,shape=left": {
+      "model": "unusual_furniture:block/orange_sofa_right",
+      "y": 180
+    },
+    "facing=south,shape=middle": {
+      "model": "unusual_furniture:block/orange_sofa_middle",
+      "y": 180
+    },
+    "facing=south,shape=outer_left": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner",
+      "y": 180
+    },
+    "facing=south,shape=outer_right": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner2",
+      "y": 180
+    },
+    "facing=south,shape=right": {
+      "model": "unusual_furniture:block/orange_sofa_left",
+      "y": 180
+    },
+    "facing=south,shape=single": {
+      "model": "unusual_furniture:block/orange_sofa",
+      "y": 180
+    },
+    "facing=west,shape=inner_left": {
+      "model": "unusual_furniture:block/orange_sofa_corner2",
+      "y": 270
+    },
+    "facing=west,shape=inner_right": {
+      "model": "unusual_furniture:block/orange_sofa_corner",
+      "y": 270
+    },
+    "facing=west,shape=left": {
+      "model": "unusual_furniture:block/orange_sofa_right",
+      "y": 270
+    },
+    "facing=west,shape=middle": {
+      "model": "unusual_furniture:block/orange_sofa_middle",
+      "y": 270
+    },
+    "facing=west,shape=outer_left": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner",
+      "y": 270
+    },
+    "facing=west,shape=outer_right": {
+      "model": "unusual_furniture:block/orange_sofa_outer_corner2",
+      "y": 270
+    },
+    "facing=west,shape=right": {
+      "model": "unusual_furniture:block/orange_sofa_left",
+      "y": 270
+    },
+    "facing=west,shape=single": {
+      "model": "unusual_furniture:block/orange_sofa",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:birch_planks"
+    },
+    "b": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "unusual_furniture:birch_celling_lamp",
+    "count": 1
+  }
+}
