@@ -312,39 +312,26 @@ public interface UFObjects {
 		);
 	}
 
-	private static TableBlock registerTable(String n, Block b) {return simple(n, TableBlock::new, b, TABLE_BLOCKS, TABLE_ITEMS);}
+	// @formatter:off
+	private static TableBlock registerTable(String n, Block b) { return simple(n, TableBlock::new, b, TABLE_BLOCKS, TABLE_ITEMS); }
+	private static CoffeeTableBlock registerCoffeeTable(String n, Block b) { return simple(n, CoffeeTableBlock::new, b, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS); }
+	private static ChairBlock registerChair(String n, Block b) { return simple(n, ChairBlock::new, b, CHAIR_BLOCKS, CHAIR_ITEMS); }
+	private static StoolBlock registerStool(String n, Block b) { return simple(n, StoolBlock::new, b, STOOL_BLOCKS, STOOL_ITEMS); }
+	private static SofaBlock registerSofa(String n, Block b) { return simple(n, SofaBlock::new, b, SOFA_BLOCKS, SOFA_ITEMS); }
+	private static CurtainBlock registerCurtain(String n, Block b) { return simple(n, CurtainBlock::new, b, CURTAIN_BLOCKS, CURTAIN_ITEMS); }
+	private static CeilingLampBlock registerCeilingLamp(String n, Block b) { return simple(n, CeilingLampBlock::new, b, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static DrawerBlock registerDrawer(String n, Block b) { return simple(n, DrawerBlock::new, b, DRAWER_BLOCKS, DRAWER_ITEMS); }
+	private static BenchBlock registerBench(String n, Block b) { return simple(n, BenchBlock::new, b, BENCH_BLOCKS, BENCH_ITEMS); }
+	private static ShelfBlock registerShelf(String n, Block b) { return simple(n, ShelfBlock::new, b, SHELF_BLOCKS, SHELF_ITEMS); }
+	private static CarvedPlanksBlock registerCarvedPlanks(String n, Block b) { return simple(n, CarvedPlanksBlock::new, b, CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS); }
+	private static OpenRiserStairBlock registerOpenRiserStair(String n, Block b) { return registerWithItem(n, OpenRiserStairBlock::new, BlockBehaviour.Properties.ofFullCopy(b).mapColor(b.defaultMapColor()), OpenRiserStairBlockItem::new, OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS); }
+	private static RailingBlock registerRailing(String n, Block b) { return simple(n, RailingBlock::new, b, RAILING_BLOCKS, RAILING_ITEMS); }
+	private static BeamBlock registerBeam(String n, Block b) { return simple(n, BeamBlock::new, b, BEAM_BLOCKS, BEAM_ITEMS); }
 
-	private static CoffeeTableBlock registerCoffeeTable(String n, Block b) {return simple(n, CoffeeTableBlock::new, b, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS);}
-
-	private static ChairBlock registerChair(String n, Block b) {return simple(n, ChairBlock::new, b, CHAIR_BLOCKS, CHAIR_ITEMS);}
-
-	private static StoolBlock registerStool(String n, Block b) {return simple(n, StoolBlock::new, b, STOOL_BLOCKS, STOOL_ITEMS);}
-
-	private static SofaBlock registerSofa(String n, Block b) {return simple(n, SofaBlock::new, b, SOFA_BLOCKS, SOFA_ITEMS);}
-
-	private static CurtainBlock registerCurtain(String n, Block b) {return simple(n, CurtainBlock::new, b, CURTAIN_BLOCKS, CURTAIN_ITEMS);}
-
-	private static CeilingLampBlock registerCeilingLamp(String n, Block b) {return simple(n, CeilingLampBlock::new, b, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS);}
-
-	private static DrawerBlock registerDrawer(String n, Block b) {return simple(n, DrawerBlock::new, b, DRAWER_BLOCKS, DRAWER_ITEMS);}
-
-	private static BenchBlock registerBench(String n, Block b) {return simple(n, BenchBlock::new, b, BENCH_BLOCKS, BENCH_ITEMS);}
-
-	private static ShelfBlock registerShelf(String n, Block b) {return simple(n, ShelfBlock::new, b, SHELF_BLOCKS, SHELF_ITEMS);}
-
-	private static CarvedPlanksBlock registerCarvedPlanks(String n, Block b) {return simple(n, CarvedPlanksBlock::new, b, CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS);}
-
-	private static OpenRiserStairBlock registerOpenRiserStair(String n, Block b) {return registerWithItem(n, OpenRiserStairBlock::new, BlockBehaviour.Properties.ofFullCopy(b).mapColor(b.defaultMapColor()), OpenRiserStairBlockItem::new, OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);}
-
-	private static RailingBlock registerRailing(String n, Block b) {return simple(n, RailingBlock::new, b, RAILING_BLOCKS, RAILING_ITEMS);}
-
-	private static BeamBlock registerBeam(String n, Block b) {return simple(n, BeamBlock::new, b, BEAM_BLOCKS, BEAM_ITEMS);}
-
-	private static IndustrialTableBlock registerIndustrialTable(String n) {return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);}
-
-	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) {return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS);}
-
-	private static CeilingLampBlock registerCopperLamp(String n) {return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS);}
+	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
+	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
+	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
 		map.put(item, UnusualFurniture.id(name));

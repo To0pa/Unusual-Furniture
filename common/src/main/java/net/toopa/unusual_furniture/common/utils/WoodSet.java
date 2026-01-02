@@ -30,7 +30,7 @@ public record WoodSet(
 		CarvedPlanksBlock carved_planks,
 		OpenRiserStairBlock open_riser_stairs,
 		Block railing,
-		@Nullable Block beam //TODO: make them not nullable
+		Block beam
 ) {
 	public Stream<? extends Block> stream() {
 		return Stream.of(
