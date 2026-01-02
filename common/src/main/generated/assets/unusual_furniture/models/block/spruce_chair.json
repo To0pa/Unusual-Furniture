@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/chair",
   "textures": {
     "0": "unusual_furniture:block/spruce_stool",
-    "particle": "unusual_furniture:block/carved_spruce"
+    "particle": "minecraft:block/spruce_planks"
   }
 }

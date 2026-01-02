@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "unusual_furniture:block/warped_beam",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "unusual_furniture:block/warped_beam"
+    },
+    "axis=z": {
+      "model": "unusual_furniture:block/warped_beam",
+      "x": 90
+    }
+  }
+}

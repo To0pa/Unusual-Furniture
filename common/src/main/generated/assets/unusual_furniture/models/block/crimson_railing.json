@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/railing",
   "textures": {
     "0": "unusual_furniture:block/crimson_railing",
-    "particle": "unusual_furniture:block/carved_crimson"
+    "particle": "minecraft:block/crimson_planks"
   }
 }

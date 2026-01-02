@@ -20,7 +20,6 @@ public class PlatformUtilsImpl {
 
 	public static void registerRenderType(RenderType renderType, Block... blocks) {
 		BlockRenderLayerMap.INSTANCE.putBlocks(renderType, blocks);
-		UnusualFurniture.LOGGER.info("HEY!!!");
 	}
 
 	public static <T extends Entity> void registerEntityRenderer(EntityType<? extends T> type, EntityRendererProvider<T> provider) {

@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/stool",
   "textures": {
     "0": "unusual_furniture:block/bamboo_stool",
-    "particle": "unusual_furniture:block/carved_bamboo"
+    "particle": "minecraft:block/bamboo_planks"
   }
 }

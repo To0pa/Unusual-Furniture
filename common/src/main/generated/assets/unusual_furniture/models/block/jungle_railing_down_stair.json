@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/down_stair_railing",
   "textures": {
     "0": "unusual_furniture:block/jungle_railing",
-    "particle": "unusual_furniture:block/carved_jungle"
+    "particle": "minecraft:block/jungle_planks"
   }
 }

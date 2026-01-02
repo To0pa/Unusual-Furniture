@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
@@ -111,6 +112,9 @@ public interface UFObjects {
 	Map<Block, ResourceLocation> RAILING_BLOCKS = new LinkedHashMap<>();
 	Map<Item, ResourceLocation> RAILING_ITEMS = new LinkedHashMap<>();
 
+	Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
 	/* --------------------------------------------------------------------- */
@@ -189,12 +193,13 @@ public interface UFObjects {
 			CarvedPlanksBlock carved = registerCarvedPlanks("carved_" + w, wood.base());
 			OpenRiserStairBlock stairs = registerOpenRiserStair(w + "_open_riser_stairs", wood.base());
 			RailingBlock railing = registerRailing(w + "_railing", wood.base());
+			BeamBlock beam = registerBeam(w + "_beam", wood.base());
 
 			WoodSet set = new WoodSet(
 					wood.base(),
 					table, coffee, chair, stool, lamp,
 					drawer, bench, shelf, carved, stairs,
-					railing, null
+					railing, beam
 			);
 
 			WOOD_SETS.put(w, set);
@@ -237,6 +242,7 @@ public interface UFObjects {
 		addBuilding(CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS);
 		addBuilding(OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);
 		addBuilding(RAILING_BLOCKS, RAILING_ITEMS);
+		addBuilding(BEAM_BLOCKS, BEAM_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -331,6 +337,8 @@ public interface UFObjects {
 	private static OpenRiserStairBlock registerOpenRiserStair(String n, Block b) {return registerWithItem(n, OpenRiserStairBlock::new, BlockBehaviour.Properties.ofFullCopy(b).mapColor(b.defaultMapColor()), OpenRiserStairBlockItem::new, OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);}
 
 	private static RailingBlock registerRailing(String n, Block b) {return simple(n, RailingBlock::new, b, RAILING_BLOCKS, RAILING_ITEMS);}
+
+	private static BeamBlock registerBeam(String n, Block b) {return simple(n, BeamBlock::new, b, BEAM_BLOCKS, BEAM_ITEMS);}
 
 	private static IndustrialTableBlock registerIndustrialTable(String n) {return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);}
 

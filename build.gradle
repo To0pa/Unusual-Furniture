@@ -24,11 +24,21 @@ subprojects {
     }
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+		exclusiveContent {
+			forRepository {
+				maven {
+					name = "Modrinth"
+					url = "https://api.modrinth.com/maven"
+				}
+			}
+			filter {
+				includeGroup "maven.modrinth"
+			}
+		}
+		maven {
+			name = 'ParchmentMC'
+			url = 'https://maven.parchmentmc.org'
+		}
     }
 
     loom {
@@ -37,7 +47,10 @@ subprojects {
 
     dependencies {
         minecraft "net.minecraft:minecraft:${BuildConfig.minecraftVersion}"
-        mappings loom.officialMojangMappings()
+        mappings loom.layered {
+			officialMojangMappings()
+			parchment("org.parchmentmc.data:parchment-${BuildConfig.minecraftVersion}:${BuildConfig.parchmentMappings}@zip")
+		}
         api("org.jspecify:jspecify:1.0.0")
     }
 
