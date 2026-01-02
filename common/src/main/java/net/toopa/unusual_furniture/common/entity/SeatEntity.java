@@ -117,9 +117,9 @@ public class SeatEntity extends Entity {
 				}
 
 				return new Vec3(
-						dismountPos.x,
-						dismountPos.y + passenger.getBbHeight() * 0.5 + 0.1,
-						dismountPos.z
+						dismountPos.x - offset.getStepX() * 0.25,
+						dismountPos.y + passenger.getBbHeight() * 0.0 + 0.1,
+						dismountPos.z - offset.getStepZ() * 0.25
 				);
 			}
 		}
