@@ -21,9 +21,9 @@ public interface ISittableBlock {
 				player.startRiding(entity);
 				BlockState state = world.getBlockState(pos);
 				if (state.is(UFBlockTags.CHAIR) || state.is(UFBlockTags.STOOL) || state.is(UFBlockTags.BENCH)) {
-					world.playSound(null, pos, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.5F, 0.5F);
+					world.playSound(null, pos, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.6F, 0.5F);
 				} else if (state.is(UFBlockTags.SOFA)) {
-					world.playSound(null, pos, SoundEvents.WOOL_STEP, SoundSource.BLOCKS, 0.5F, 0.5F);
+					world.playSound(null, pos, SoundEvents.WOOL_STEP, SoundSource.BLOCKS, 0.6F, 0.5F);
 				}
 				return true;
 			} else {
