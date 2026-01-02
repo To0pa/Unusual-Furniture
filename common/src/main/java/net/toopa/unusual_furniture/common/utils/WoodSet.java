@@ -1,11 +1,21 @@
 package net.toopa.unusual_furniture.common.utils;
 
-import net.minecraft.world.level.block.Block;
-import net.toopa.unusual_furniture.common.block.*;
-import org.jspecify.annotations.Nullable;
-
 import java.util.Objects;
 import java.util.stream.Stream;
+
+import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
+import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
+import net.toopa.unusual_furniture.common.block.ChairBlock;
+import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
+import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
+import net.toopa.unusual_furniture.common.block.ShelfBlock;
+import net.toopa.unusual_furniture.common.block.StoolBlock;
+import net.toopa.unusual_furniture.common.block.TableBlock;
+import org.jspecify.annotations.Nullable;
+
+import net.minecraft.world.level.block.Block;
 
 public record WoodSet(
 		Block base,

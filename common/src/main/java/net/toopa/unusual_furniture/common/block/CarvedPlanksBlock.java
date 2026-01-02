@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -10,7 +12,6 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
 
 public class CarvedPlanksBlock extends RotatedPillarBlock {
 

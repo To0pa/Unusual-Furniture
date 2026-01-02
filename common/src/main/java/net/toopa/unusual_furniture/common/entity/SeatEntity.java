@@ -2,6 +2,9 @@ package net.toopa.unusual_furniture.common.entity;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import net.toopa.unusual_furniture.common.block.ISittableBlock;
+import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,8 +27,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityInLevelCallback;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.toopa.unusual_furniture.common.block.ISittableBlock;
-import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
 
 @MethodsReturnNonnullByDefault
 public class SeatEntity extends Entity {

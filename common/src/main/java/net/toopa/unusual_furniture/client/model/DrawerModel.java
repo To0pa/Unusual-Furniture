@@ -2,11 +2,12 @@ package net.toopa.unusual_furniture.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.Entity;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 public class DrawerModel<T extends Entity> extends EntityModel<T> {
 	public static final ModelLayerLocation LAYER = new ModelLayerLocation(UnusualFurniture.id("drawer_model"), "main");

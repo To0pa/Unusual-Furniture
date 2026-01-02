@@ -1,10 +1,11 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import net.toopa.unusual_furniture.common.entity.SeatEntity;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.toopa.unusual_furniture.common.entity.SeatEntity;
 
 public interface UFEntityTypes {
 

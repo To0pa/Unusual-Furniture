@@ -1,6 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
+import net.toopa.unusual_furniture.common.reg.UFBlockTags;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -27,9 +31,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
-import net.toopa.unusual_furniture.common.reg.UFBlockTags;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 public class BenchBlock extends HorizontalDirectionalBlock implements ISittableBlock, SimpleWaterloggedBlock {
 

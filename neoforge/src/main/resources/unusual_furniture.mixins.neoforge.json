@@ -1,10 +1,10 @@
 {
   "required": true,
-  "package": "net.toopa.unusual_furniture.mixin",
+  "package": "net.toopa.unusual_furniture.neoforge.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "mixins": [
-    "BushBlockMixin"
+    "BuiltInRegistriesMixin"
   ],
   "injectors": {
     "defaultRequire": 1

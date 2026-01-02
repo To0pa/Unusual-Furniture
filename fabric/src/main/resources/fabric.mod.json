@@ -19,7 +19,7 @@
       "net.toopa.unusual_furniture.fabric.UnusualFurnitureFabric"
     ],
     "client": [
-      "net.toopa.unusual_furniture.fabric.client.UnusualFurnitureClient"
+      "net.toopa.unusual_furniture.fabric.client.UnusualFurnitureClientFabric"
     ],
     "fabric-datagen": [
       "net.toopa.unusual_furniture.fabric.datagen.UnusualFurnitureDatagen"

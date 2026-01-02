@@ -1,10 +1,11 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 public interface UFBlockTags {
 

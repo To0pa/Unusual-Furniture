@@ -1,10 +1,11 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
 
 public interface UFBlockEntityTypes {
 

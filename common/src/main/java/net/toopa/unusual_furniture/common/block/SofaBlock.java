@@ -1,6 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.block.properties.ModularSofaProperty;
+import net.toopa.unusual_furniture.common.reg.UFBlockTags;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -12,7 +16,11 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -25,9 +33,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.block.properties.ModularSofaProperty;
-import net.toopa.unusual_furniture.common.reg.UFBlockTags;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBlock, SimpleWaterloggedBlock {
 

@@ -1,6 +1,8 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +24,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 public class ShelfBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 

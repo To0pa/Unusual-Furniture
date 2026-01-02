@@ -1,5 +1,34 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
+import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
+import net.toopa.unusual_furniture.common.block.ChairBlock;
+import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
+import net.toopa.unusual_furniture.common.block.CurtainBlock;
+import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.IndustrialCoffeeTableBlock;
+import net.toopa.unusual_furniture.common.block.IndustrialTableBlock;
+import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
+import net.toopa.unusual_furniture.common.block.RailingBlock;
+import net.toopa.unusual_furniture.common.block.ShelfBlock;
+import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.StoolBlock;
+import net.toopa.unusual_furniture.common.block.TableBlock;
+import net.toopa.unusual_furniture.common.item.DiscordItem;
+import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
+import net.toopa.unusual_furniture.common.utils.DyeSet;
+import net.toopa.unusual_furniture.common.utils.WoodSet;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -8,20 +37,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
-import net.toopa.unusual_furniture.common.block.*;
-import net.toopa.unusual_furniture.common.item.DiscordItem;
-import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
-import net.toopa.unusual_furniture.common.utils.DyeSet;
-import net.toopa.unusual_furniture.common.utils.WoodSet;
-import org.jspecify.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public interface UFObjects {
 
@@ -292,21 +307,35 @@ public interface UFObjects {
 	}
 
 	private static TableBlock registerTable(String n, Block b) {return simple(n, TableBlock::new, b, TABLE_BLOCKS, TABLE_ITEMS);}
+
 	private static CoffeeTableBlock registerCoffeeTable(String n, Block b) {return simple(n, CoffeeTableBlock::new, b, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS);}
+
 	private static ChairBlock registerChair(String n, Block b) {return simple(n, ChairBlock::new, b, CHAIR_BLOCKS, CHAIR_ITEMS);}
+
 	private static StoolBlock registerStool(String n, Block b) {return simple(n, StoolBlock::new, b, STOOL_BLOCKS, STOOL_ITEMS);}
+
 	private static SofaBlock registerSofa(String n, Block b) {return simple(n, SofaBlock::new, b, SOFA_BLOCKS, SOFA_ITEMS);}
+
 	private static CurtainBlock registerCurtain(String n, Block b) {return simple(n, CurtainBlock::new, b, CURTAIN_BLOCKS, CURTAIN_ITEMS);}
+
 	private static CeilingLampBlock registerCeilingLamp(String n, Block b) {return simple(n, CeilingLampBlock::new, b, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS);}
+
 	private static DrawerBlock registerDrawer(String n, Block b) {return simple(n, DrawerBlock::new, b, DRAWER_BLOCKS, DRAWER_ITEMS);}
+
 	private static BenchBlock registerBench(String n, Block b) {return simple(n, BenchBlock::new, b, BENCH_BLOCKS, BENCH_ITEMS);}
+
 	private static ShelfBlock registerShelf(String n, Block b) {return simple(n, ShelfBlock::new, b, SHELF_BLOCKS, SHELF_ITEMS);}
+
 	private static CarvedPlanksBlock registerCarvedPlanks(String n, Block b) {return simple(n, CarvedPlanksBlock::new, b, CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS);}
+
 	private static OpenRiserStairBlock registerOpenRiserStair(String n, Block b) {return registerWithItem(n, OpenRiserStairBlock::new, BlockBehaviour.Properties.ofFullCopy(b).mapColor(b.defaultMapColor()), OpenRiserStairBlockItem::new, OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);}
+
 	private static RailingBlock registerRailing(String n, Block b) {return simple(n, RailingBlock::new, b, RAILING_BLOCKS, RAILING_ITEMS);}
 
 	private static IndustrialTableBlock registerIndustrialTable(String n) {return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);}
+
 	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) {return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS);}
+
 	private static CeilingLampBlock registerCopperLamp(String n) {return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS);}
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
