@@ -5,6 +5,8 @@ import static net.minecraft.data.models.BlockModelGenerators.createHorizontalFac
 import java.util.Map;
 import java.util.Optional;
 
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
@@ -60,10 +62,10 @@ public class UFModelProvider extends FabricModelProvider {
 		UFObjects.TABLE_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerTable(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.INDUSTRIAL_COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
 			Block industrialTable = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_table"));
@@ -74,27 +76,27 @@ public class UFModelProvider extends FabricModelProvider {
 		UFObjects.COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerSmallTable(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.CHAIR_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			Block stool = woodSet.stool();
 			registerChair(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(stool))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.STOOL_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerStool(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.SOFA_BLOCKS.forEach((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
@@ -108,38 +110,38 @@ public class UFModelProvider extends FabricModelProvider {
 		});
 		UFObjects.CEILING_LAMP_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
-			Block carved;
+			Block planks;
 			if (woodSet != null) {
-				carved = woodSet.carved_planks();
+				planks = woodSet.base();
 			} else {
-				carved = Blocks.COPPER_BLOCK; // Copper lamp, if there's more maybe need a better system
+				planks = Blocks.COPPER_BLOCK; // Copper lamp, if there's more maybe need a better system
 			}
 			registerCeilingLamp(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)),
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)),
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
 							.put(SLOT_1, UnusualFurniture.id("block/light"))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerDrawer(blockModelGenerators, block,
 					new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block, "_java"))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)),
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)),
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerBench(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)),
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)),
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
@@ -153,11 +155,11 @@ public class UFModelProvider extends FabricModelProvider {
 		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			Block coffe_table = woodSet.coffee_table();
 			registerShelf(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffe_table))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.CARVED_PLANK_BLOCKS.forEach((block, reLo) -> {
 			registerCarvedPlanks(blockModelGenerators, block,
@@ -198,19 +200,28 @@ public class UFModelProvider extends FabricModelProvider {
 		UFObjects.OPEN_RISER_STAIR_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			Block coffe_table = woodSet.coffee_table();
 			registerOpenRiserStair(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffe_table))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 		UFObjects.RAILING_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
-			Block carved = woodSet.carved_planks();
+			Block planks = woodSet.base();
 			registerRailing(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(carved)));
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
+		});
+		UFObjects.BEAM_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
+			Block planks = woodSet.base();
+			Block coffee_table = woodSet.coffee_table();
+			registerBeam(blockModelGenerators, block,
+					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffee_table))
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
 	}
 
@@ -422,6 +433,11 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate RIGHT_UP_RAILING = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/down_stair_railing")),
 			Optional.of("_down_stair"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BEAM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/beam")),
+			Optional.empty(),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
@@ -676,6 +692,23 @@ public class UFModelProvider extends FabricModelProvider {
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(dispatch));
 		blockModelGenerators.delegateItemModel(block, railing);
+	}
+
+	private void registerBeam(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation identifier = BEAM.create(block, tm, blockModelGenerators.modelOutput);
+
+		var propDispatch = PropertyDispatch.property(BlockStateProperties.AXIS)
+				.select(Direction.Axis.Y, Variant.variant().with(VariantProperties.MODEL, identifier))
+				.select(Direction.Axis.Z, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(
+						Direction.Axis.X,
+						Variant.variant()
+								.with(VariantProperties.MODEL, identifier)
+								.with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)
+								.with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+				);
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(propDispatch));
+		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private VariantProperties.Rotation getRotation(int degrees) {
