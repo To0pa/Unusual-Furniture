@@ -138,17 +138,19 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 			);
 
 			case INNER_LEFT -> Shapes.or(
-					box(0, 0, 13, 3, 2, 16),
+					box(0, 0, 0, 3, 2, 3),
 					box(0, 2, 0, 16, 8, 16),
 					box(0, 8, 12, 12, 17, 16),
-					box(12, 8, 0, 16, 17, 16)
+					box(12, 8, 0, 16, 17, 16),
+					box(0, 0, 0, 3, 0, 3)
 			);
 
 			case INNER_RIGHT -> Shapes.or(
 					box(0, 0, 13, 3, 2, 16),
 					box(0, 2, 0, 16, 8, 16),
 					box(0, 8, 0, 4, 17, 12),
-					box(0, 8, 12, 16, 17, 16)
+					box(0, 8, 12, 16, 17, 16),
+					box(13, 0, 0, 16, 2, 3)
 			);
 
 			case OUTER_LEFT -> Shapes.or(
