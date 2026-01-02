@@ -21,7 +21,3 @@ Here are some images! ![tables](https://cdn.modrinth.com/data/cached_images/dc1c
 [![Discord Link](https://cdn.modrinth.com/data/cached_images/e7d437cbe00c4c4d693900b0e41e3a293a84a31b.png)](https://discord.gg/k3fGJwJqzu)
 
 [![Donate](https://cdn.modrinth.com/data/cached_images/e79bfe6b479f2a23fad07b79b13d88d027ae422e.png)](https://to0pa.ovh/donate)
-
-\==== Sponsor ====
-
-[![Sponsor](https://cdn.modrinth.com/data/cached_images/060ea25c304c36bb48e61db95e82269d2bc69c2a.png)](https://bisecthosting.com/wrench)
