@@ -3,6 +3,6 @@
   "textures": {
     "0": "unusual_furniture:block/cherry_ceiling_lamp",
     "1": "unusual_furniture:block/light",
-    "particle": "unusual_furniture:block/carved_cherry"
+    "particle": "minecraft:block/cherry_planks"
   }
 }

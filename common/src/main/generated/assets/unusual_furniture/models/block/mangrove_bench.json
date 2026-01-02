@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/bench",
   "textures": {
     "1": "unusual_furniture:block/mangrove_bench",
-    "particle": "unusual_furniture:block/carved_mangrove"
+    "particle": "minecraft:block/mangrove_planks"
   }
 }

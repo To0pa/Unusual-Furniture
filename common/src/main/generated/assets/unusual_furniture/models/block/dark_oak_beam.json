@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/beam",
+  "textures": {
+    "0": "unusual_furniture:block/dark_oak_coffee_table",
+    "particle": "minecraft:block/dark_oak_planks"
+  }
+}

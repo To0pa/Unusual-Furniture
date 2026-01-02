@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/drawer_open",
   "textures": {
     "1": "unusual_furniture:block/warped_drawer",
-    "particle": "unusual_furniture:block/carved_warped"
+    "particle": "minecraft:block/warped_planks"
   }
 }
