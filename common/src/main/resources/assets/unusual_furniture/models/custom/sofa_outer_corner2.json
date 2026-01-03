@@ -5,6 +5,10 @@
     128,
     128
   ],
+  "textures": {
+    "1": "unusual_furniture:block/yellow_sofa",
+    "particle": "unusual_furniture:block/yellow_sofa"
+  },
   "elements": [
     {
       "from": [

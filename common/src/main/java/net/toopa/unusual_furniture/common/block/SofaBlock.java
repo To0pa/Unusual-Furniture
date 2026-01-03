@@ -106,18 +106,19 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 
 		VoxelShape baseShape = switch (sofaType) {
 			case SINGLE -> Shapes.or(
-					box(13, 8, 0, 16, 12, 16),
-					box(0, 8, 0, 3, 12, 16),
 					box(13, 0, 13, 16, 2, 16),
 					box(0, 0, 13, 3, 2, 16),
 					box(13, 0, 0, 16, 2, 3),
 					box(0, 0, 0, 3, 2, 3),
 					box(0, 2, 0, 16, 8, 16),
-					box(1, 8, 12, 15, 17, 16)
+					box(1, 8, 12, 15, 17, 16),
+					box(-1, 8, 0, 3, 12, 16),
+					box(13, 8, 0, 17, 12, 16)
 			);
 
 			case LEFT -> Shapes.or(
-					box(13, 8, 0, 16, 12, 16),
+
+					box(13, 8, 0, 17, 12, 16),
 					box(13, 0, 13, 16, 2, 16),
 					box(13, 0, 0, 16, 2, 3),
 					box(0, 2, 0, 16, 8, 16),
@@ -130,7 +131,7 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 			);
 
 			case RIGHT -> Shapes.or(
-					box(0, 8, 0, 3, 12, 16),
+					box(-1, 8, 0, 3, 12, 16),
 					box(0, 0, 13, 3, 2, 16),
 					box(0, 0, 0, 3, 2, 3),
 					box(0, 2, 0, 16, 8, 16),

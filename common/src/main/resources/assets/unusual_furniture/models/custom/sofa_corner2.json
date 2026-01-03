@@ -4,7 +4,8 @@
 	"ambientocclusion": false,
 	"texture_size": [128, 128],
 	"textures": {
-		"1": "unusual_furniture:block/black_sofa"
+		"1": "newtextures/yellow_sofa",
+		"particle": "newtextures/yellow_sofa"
 	},
 	"elements": [
 		{
@@ -38,8 +39,8 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 13]},
 			"faces": {
 				"north": {"uv": [2, 2, 4, 2.75], "texture": "#1"},
-				"east": {"uv": [0, 2, 2, 2.75], "texture": "#1"},
-				"south": {"uv": [6, 2, 8, 2.75], "texture": "#1"},
+				"east": {"uv": [14, 6.125, 16, 6.875], "texture": "#1"},
+				"south": {"uv": [12, 6.125, 14, 6.875], "texture": "#1"},
 				"west": {"uv": [4, 2, 6, 2.75], "texture": "#1"},
 				"up": {"uv": [4, 2, 2, 0], "texture": "#1"},
 				"down": {"uv": [6, 0, 4, 2], "texture": "#1"}
@@ -83,7 +84,20 @@
 			"name": "right",
 			"origin": [13, 0, 13],
 			"color": 0,
-			"children": [0, 1]
+			"children": [
+				{
+					"name": "group",
+					"origin": [13, 0, 13],
+					"color": 0,
+					"children": [0]
+				},
+				{
+					"name": "group",
+					"origin": [13, 0, 13],
+					"color": 0,
+					"children": [1]
+				}
+			]
 		},
 		{
 			"name": "base",
