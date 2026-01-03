@@ -163,11 +163,26 @@ public interface UFObjects {
 	/* --------------------------------------------------------------------- */
 
 	DiscordItem DISCORD_ITEM =
-			registerItem("discord", new DiscordItem(new Item.Properties()), ALL_MAP());
+			registerItem("discord", new DiscordItem(new Item.Properties()), FURNITURE_MAP());
+
+	Item SCREW_ITEM =
+			registerItem("screw", new Item(new Item.Properties()), PROPS_MAP());
 
 	private static Map<Item, ResourceLocation> ALL_MAP() {
 		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
 		ALL_ITEMS.add(map);
+		return map;
+	}
+
+	private static Map<Item, ResourceLocation> FURNITURE_MAP() {
+		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
+		FURNITURE_ITEMS.add(map);
+		return map;
+	}
+
+	private static Map<Item, ResourceLocation> PROPS_MAP() {
+		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
+		PROPS_ITEMS.add(map);
 		return map;
 	}
 
