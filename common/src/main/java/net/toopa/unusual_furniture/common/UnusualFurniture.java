@@ -18,13 +18,6 @@ public class UnusualFurniture {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
 	}
 
-	public static void initRegistries() {
-		UFObjects.init();
-		UFBlockEntityTypes.init();
-		UFCreativeTabs.init();
-		UFEntityTypes.init();
-	}
-
 	private void initEvents() {
 	}
 }

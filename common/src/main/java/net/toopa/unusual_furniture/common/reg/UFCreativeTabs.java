@@ -43,8 +43,6 @@ public interface UFCreativeTabs {
 			.build();
 
 	static void init() {
-		if (PlatformUtils.isForge() || PlatformUtils.isNeoForge())
-			return; //TODO: Fix this because when it is run on neoforge it crashes
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, FURNITURE_TAB_KEY, FURNITURE_TAB);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PROPS_TAB_KEY, PROPS_TAB);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, BUILDING_TAB_KEY, BUILDING_TAB);

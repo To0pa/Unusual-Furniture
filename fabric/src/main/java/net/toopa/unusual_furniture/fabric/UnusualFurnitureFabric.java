@@ -4,6 +4,11 @@ import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
+import net.toopa.unusual_furniture.common.reg.UFCreativeTabs;
+import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+
 public final class UnusualFurnitureFabric implements ModInitializer {
 	@Override
 	public void onInitialize() {
@@ -12,6 +17,13 @@ public final class UnusualFurnitureFabric implements ModInitializer {
 		// Proceed with mild caution.
 
 		// Run our common setup.
-		UnusualFurniture.initRegistries();
+		initRegistries();
+	}
+
+	public static void initRegistries() {
+		UFObjects.init();
+		UFBlockEntityTypes.init();
+		UFCreativeTabs.init();
+		UFEntityTypes.init();
 	}
 }

@@ -43,6 +43,7 @@ fabric/build/
 forge/build/
 neoforge/build/
 /.architectury-transformer/
+/run/
 
 # java
 
