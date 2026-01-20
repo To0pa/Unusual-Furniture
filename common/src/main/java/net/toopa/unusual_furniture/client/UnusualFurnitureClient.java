@@ -24,6 +24,7 @@ public class UnusualFurnitureClient {
 		PlatformUtils.registerRenderType(RenderType.cutout(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_coffee_table")));
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
 		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
+		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,number_of_arms=0": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager11",
+      "y": 90
+    },
+    "facing=east,number_of_arms=1": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager22",
+      "y": 90
+    },
+    "facing=east,number_of_arms=2": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager44",
+      "y": 90
+    },
+    "facing=north,number_of_arms=0": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager11"
+    },
+    "facing=north,number_of_arms=1": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager22"
+    },
+    "facing=north,number_of_arms=2": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager44"
+    },
+    "facing=south,number_of_arms=0": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager11",
+      "y": 180
+    },
+    "facing=south,number_of_arms=1": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager22",
+      "y": 180
+    },
+    "facing=south,number_of_arms=2": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager44",
+      "y": 180
+    },
+    "facing=west,number_of_arms=0": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager11",
+      "y": 270
+    },
+    "facing=west,number_of_arms=1": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager22",
+      "y": 270
+    },
+    "facing=west,number_of_arms=2": {
+      "model": "unusual_furniture:block/floor_lamp_decoration_villager44",
+      "y": 270
+    }
+  }
+}

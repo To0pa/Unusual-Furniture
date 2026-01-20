@@ -15,9 +15,13 @@ import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.ChairBlock;
 import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
+import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.IndustrialCoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.IndustrialTableBlock;
+import net.toopa.unusual_furniture.common.block.IronBeamBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
@@ -114,6 +118,9 @@ public interface UFObjects {
 
 	Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
 	Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+
+	Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -239,6 +246,10 @@ public interface UFObjects {
 		registerIndustrialTable("industrial_table");
 		registerIndustrialCoffeeTable("industrial_coffee_table");
 		registerCopperLamp("copper_ceiling_lamp");
+		registerDecoratedIronBeam("decorated_iron_beam");
+		registerIronBeam("iron_beam");
+		registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat");
+		registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -258,6 +269,7 @@ public interface UFObjects {
 		addBuilding(OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);
 		addBuilding(RAILING_BLOCKS, RAILING_ITEMS);
 		addBuilding(BEAM_BLOCKS, BEAM_ITEMS);
+		addBuilding(FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -346,6 +358,10 @@ public interface UFObjects {
 	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
 	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
 	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static IronBeamBlock registerIronBeam(String n) { return simple(n, IronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static DecoratedIronBeamBlock registerDecoratedIronBeam(String n) { return simple(n, DecoratedIronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static FloorLampDecorationBatBlock registerFloorLampDecorationBatBlock(String n) { return simple(n, FloorLampDecorationBatBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
+	private static FloorLampDecorationVillagerBlock registerFloorLampDecorationVillagerBlock(String n) { return simple(n, FloorLampDecorationVillagerBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
