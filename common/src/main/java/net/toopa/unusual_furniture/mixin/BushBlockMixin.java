@@ -2,6 +2,7 @@ package net.toopa.unusual_furniture.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import net.toopa.unusual_furniture.common.block.AbstractPotBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -16,9 +17,6 @@ public class BushBlockMixin {
 			at = @At("RETURN")
 	)
 	private boolean unusual_furniture$onMayPlaceOn(boolean original, @Local(argsOnly = true) BlockState blockState) {
-		return original
-//                || blockState.getBlock() instanceof WoodenHangingPotBlock
-//                || blockState.getBlock() instanceof LargeHangingPotBlock
-				;
+		return original || blockState.getBlock() instanceof AbstractPotBlock;
 	}
 }

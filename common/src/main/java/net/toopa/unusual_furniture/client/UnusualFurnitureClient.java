@@ -19,12 +19,13 @@ import net.fabricmc.api.Environment;
 public class UnusualFurnitureClient {
 
 	public static void init() {
-		PlatformUtils.registerRenderType(RenderType.cutout(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_table")));
-		PlatformUtils.registerRenderType(RenderType.cutout(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_coffee_table")));
-		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
-		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
-		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_table")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_coffee_table")));
+		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
+		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
+		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		UFObjects.LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.translucent(), block));
+		UFObjects.POT_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

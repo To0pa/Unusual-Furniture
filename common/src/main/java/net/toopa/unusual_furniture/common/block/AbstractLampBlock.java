@@ -27,7 +27,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 
-public class AbstractLampBlock extends Block implements SimpleWaterloggedBlock {
+public abstract class AbstractLampBlock extends Block implements SimpleWaterloggedBlock {
 
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

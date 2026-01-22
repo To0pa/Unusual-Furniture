@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/huge_pot",
+  "textures": {
+    "0": "unusual_furniture:block/huge_pot",
+    "particle": "unusual_furniture:block/huge_pot"
+  }
+}

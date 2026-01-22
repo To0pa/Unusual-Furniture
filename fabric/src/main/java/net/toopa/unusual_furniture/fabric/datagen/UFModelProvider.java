@@ -256,6 +256,56 @@ public class UFModelProvider extends FabricModelProvider {
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)),
 				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps_off"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)));
+		Block greekPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("greek_pot"));
+		Block hugePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("huge_pot"));
+		Block stonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("stone_pot"));
+		Block tallTerracottaPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tall_terracotta_pot"));
+		Block bauhausPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("bauhaus_pot"));
+		Block blackstonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("blackstone_pot"));
+		Block fudgePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("fudge_pot"));
+		Block hangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("hanging_pot"));
+		Block largeHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("large_hanging_pot"));
+		Block woodenHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("wooden_hanging_pot"));
+		registerPot(blockModelGenerators, greekPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(greekPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(greekPot)),
+				GREEK_POT);
+		registerPot(blockModelGenerators, hugePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hugePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hugePot)),
+				HUGE_POT);
+		registerPot(blockModelGenerators, stonePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(stonePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(stonePot)),
+				STONE_POT);
+		registerPot(blockModelGenerators, tallTerracottaPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				TALL_TERRACOTTA_POT);
+		registerPot(blockModelGenerators, bauhausPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(bauhausPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(bauhausPot)),
+				BAUHAUS_POT);
+		registerPot(blockModelGenerators, blackstonePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(blackstonePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(blackstonePot)),
+				BLACKSTONE_POT);
+		registerPot(blockModelGenerators, fudgePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(fudgePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(fudgePot)),
+				FUDGE_POT);
+		registerPot(blockModelGenerators, hangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				HANGING_POT);
+		registerPot(blockModelGenerators, largeHangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				LARGE_HANGING_POT);
+		registerPot(blockModelGenerators, woodenHangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(woodenHangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(woodenHangingPot)),
+				WOODEN_HANGING_POT);
 	}
 
 	@Override
@@ -533,6 +583,56 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of(UnusualFurniture.id("custom/sphere_lamp")),
 			Optional.empty(),
 			SLOT_1, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate GREEK_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/greek_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate HUGE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/huge_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate STONE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/stone_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TALL_TERRACOTTA_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tall_terracotta_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BAUHAUS_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/bauhaus_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BLACKSTONE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/blackstone_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FUDGE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/fudge_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LARGE_HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/large_hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate WOODEN_HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/barrel_hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -906,6 +1006,13 @@ public class UFModelProvider extends FabricModelProvider {
 		}
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 		blockModelGenerators.delegateItemModel(block, modelOff);
+	}
+
+	private void registerPot(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm, ModelTemplate template) {
+		ResourceLocation model = template.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
+		blockModelGenerators.delegateItemModel(block, model);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

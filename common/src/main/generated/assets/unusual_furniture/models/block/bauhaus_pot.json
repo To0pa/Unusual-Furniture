@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/bauhaus_pot",
+  "textures": {
+    "0": "unusual_furniture:block/bauhaus_pot",
+    "particle": "unusual_furniture:block/bauhaus_pot"
+  }
+}

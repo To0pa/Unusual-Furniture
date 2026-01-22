@@ -8,6 +8,7 @@ public class UnusualFurnitureDatagen implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
+		pack.addProvider(UFBlockLootTableProvider::new);
 		pack.addProvider(UFBlockTagProvider::new);
 		pack.addProvider(UFModelProvider::new);
 	}
