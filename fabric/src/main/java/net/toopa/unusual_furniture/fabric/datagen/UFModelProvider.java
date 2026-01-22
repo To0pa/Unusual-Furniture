@@ -5,6 +5,8 @@ import static net.minecraft.data.models.BlockModelGenerators.createHorizontalFac
 import java.util.Map;
 import java.util.Optional;
 
+import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
@@ -17,6 +19,7 @@ import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.SphereLampBlock;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
@@ -241,6 +244,18 @@ public class UFModelProvider extends FabricModelProvider {
 		registerFloorLampDecorationVillager(blockModelGenerators, floorLampDecorationVillager,
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(floorLampDecorationVillager))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		Block ironLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("iron_lamp"));
+		Block sphereLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("sphere_lamp"));
+		registerIronLamp(blockModelGenerators, ironLamp,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps_off"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerSphereLamp(blockModelGenerators, sphereLamp,
+				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)),
+				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps_off"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)));
 	}
 
 	@Override
@@ -498,6 +513,26 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_villager4")),
 			Optional.of("4"),
 			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp_wall")),
+			Optional.of("_wall"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP_FLOOR = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp_floor")),
+			Optional.of("_floor"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate SPHERE_LAMP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/sphere_lamp")),
+			Optional.empty(),
+			SLOT_1, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -817,6 +852,60 @@ public class UFModelProvider extends FabricModelProvider {
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 		blockModelGenerators.delegateItemModel(block, two);
+	}
+
+	private void registerSphereLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmOn, TextureMapping tmOff) {
+		ResourceLocation modelOn = SPHERE_LAMP.createWithSuffix(block, "_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelOff = SPHERE_LAMP.createWithSuffix(block, "_off", tmOff, blockModelGenerators.modelOutput);
+		Map<Boolean, ResourceLocation> modelMap = Map.of(
+				true, modelOn,
+				false, modelOff
+		);
+		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(SphereLampBlock.LIT, SphereLampBlock.FACING);
+		for (boolean bool : new boolean[]{true, false}) {
+			map.select(bool, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.select(bool, Direction.UP, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(bool, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)))
+					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+		}
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelOff);
+	}
+
+	private void registerIronLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmOn, TextureMapping tmOff) {
+		ResourceLocation modelOn = METAL_LAMP.createWithSuffix(block, "_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelOff = METAL_LAMP.createWithSuffix(block, "_off", tmOff, blockModelGenerators.modelOutput);
+		ResourceLocation modelWallOn = METAL_LAMP_WALL.createWithSuffix(block, "_wall_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelWallOff = METAL_LAMP_WALL.createWithSuffix(block, "_wall_off", tmOff, blockModelGenerators.modelOutput);
+		ResourceLocation modelFloorOn = METAL_LAMP_FLOOR.createWithSuffix(block, "_floor_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelFloorOff = METAL_LAMP_FLOOR.createWithSuffix(block, "_floor_off", tmOff, blockModelGenerators.modelOutput);
+		Map<Pair<Boolean, Direction>, ResourceLocation> modelMap = Map.ofEntries(
+				Map.entry(Pair.of(true, Direction.UP), modelOn),
+				Map.entry(Pair.of(false, Direction.UP), modelOff),
+				Map.entry(Pair.of(true, Direction.DOWN), modelFloorOn),
+				Map.entry(Pair.of(false, Direction.DOWN), modelFloorOff),
+				Map.entry(Pair.of(true, Direction.NORTH), modelWallOn),
+				Map.entry(Pair.of(false, Direction.NORTH), modelWallOff),
+				Map.entry(Pair.of(true, Direction.SOUTH), modelWallOn),
+				Map.entry(Pair.of(false, Direction.SOUTH), modelWallOff),
+				Map.entry(Pair.of(true, Direction.EAST), modelWallOn),
+				Map.entry(Pair.of(false, Direction.EAST), modelWallOff),
+				Map.entry(Pair.of(true, Direction.WEST), modelWallOn),
+				Map.entry(Pair.of(false, Direction.WEST), modelWallOff)
+		);
+		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(SphereLampBlock.LIT, SphereLampBlock.FACING);
+		for (boolean bool : new boolean[]{true, false}) {
+			map.select(bool, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.DOWN))))
+					.select(bool, Direction.UP, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.UP))))
+					.select(bool, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.NORTH))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(bool, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.SOUTH))))
+					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.WEST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.EAST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+		}
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelOff);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

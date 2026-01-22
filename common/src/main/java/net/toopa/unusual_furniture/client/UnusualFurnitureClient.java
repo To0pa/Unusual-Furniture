@@ -1,7 +1,5 @@
 package net.toopa.unusual_furniture.client;
 
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
@@ -10,6 +8,7 @@ import net.toopa.unusual_furniture.common.reg.UFObjects;
 import net.toopa.unusual_furniture.common.utils.PlatformUtils;
 
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -25,6 +24,7 @@ public class UnusualFurnitureClient {
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
 		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
 		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutout(), block));
+		UFObjects.LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.translucent(), block));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

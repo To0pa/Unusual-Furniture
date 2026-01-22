@@ -13,7 +13,6 @@ import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
-import org.jspecify.annotations.Nullable;
 
 import net.minecraft.world.level.block.Block;
 

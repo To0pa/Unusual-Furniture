@@ -1,9 +1,5 @@
 package net.toopa.unusual_furniture.common;
 
-import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
-import net.toopa.unusual_furniture.common.reg.UFCreativeTabs;
-import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

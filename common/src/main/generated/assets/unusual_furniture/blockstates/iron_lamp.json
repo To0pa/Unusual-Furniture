@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "facing=down,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_floor_off_floor"
+    },
+    "facing=down,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_floor_on_floor"
+    },
+    "facing=east,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_wall_off_wall",
+      "y": 270
+    },
+    "facing=east,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_wall_on_wall",
+      "y": 270
+    },
+    "facing=north,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_wall_off_wall",
+      "y": 180
+    },
+    "facing=north,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_wall_on_wall",
+      "y": 180
+    },
+    "facing=south,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_wall_off_wall"
+    },
+    "facing=south,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_wall_on_wall"
+    },
+    "facing=up,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_off"
+    },
+    "facing=up,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_on"
+    },
+    "facing=west,lit=false": {
+      "model": "unusual_furniture:block/iron_lamp_wall_off_wall",
+      "y": 90
+    },
+    "facing=west,lit=true": {
+      "model": "unusual_furniture:block/iron_lamp_wall_on_wall",
+      "y": 90
+    }
+  }
+}
