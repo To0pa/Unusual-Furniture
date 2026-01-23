@@ -1,5 +1,9 @@
 package net.toopa.unusual_furniture.client;
 
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.GrassColor;
+
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
@@ -26,6 +30,14 @@ public class UnusualFurnitureClient {
 		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		UFObjects.LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.translucent(), block));
 		UFObjects.POT_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
+		PlatformUtils.registerBlockColors(
+				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
+						? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
+						: GrassColor.getDefaultColor(),
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant")),
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

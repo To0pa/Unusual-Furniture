@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/tropical_plant_1",
+  "textures": {
+    "0": "unusual_furniture:block/jungle_plant",
+    "particle": "unusual_furniture:block/jungle_plant"
+  }
+}

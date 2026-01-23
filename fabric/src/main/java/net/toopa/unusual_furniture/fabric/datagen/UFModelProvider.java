@@ -20,6 +20,7 @@ import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
@@ -306,12 +307,26 @@ public class UFModelProvider extends FabricModelProvider {
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(woodenHangingPot))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(woodenHangingPot)),
 				WOODEN_HANGING_POT);
+		Block tropicalPlant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant"));
+		Block tropicalPlantWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall"));
+		registerTropicalPlant(blockModelGenerators, tropicalPlant,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
+		registerWallTropicalPlant(blockModelGenerators, tropicalPlantWall,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerators itemModelGenerators) {
 		itemModelGenerators.generateFlatItem(UFObjects.DISCORD_ITEM, ModelTemplates.FLAT_ITEM);
 		itemModelGenerators.generateFlatItem(UFObjects.SCREW_ITEM, ModelTemplates.FLAT_ITEM);
+		ModelTemplates.FLAT_ITEM.create(
+				ModelLocationUtils.getModelLocation(
+						BuiltInRegistries.ITEM.get(UnusualFurniture.id("tropical_plant"))),
+				TextureMapping.layer0(
+						UnusualFurniture.id("item/tropical_plant_bag")),
+				itemModelGenerators.output);
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			DRAWER_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()),
 					new TextureMapping()
@@ -632,6 +647,26 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate WOODEN_HANGING_POT = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/barrel_hanging_pot")),
 			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_1 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_1")),
+			Optional.of("_1"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_2 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_2")),
+			Optional.of("_2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_3 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_3")),
+			Optional.of("_3"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_wall")),
+			Optional.of("_wall"),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
@@ -1013,6 +1048,31 @@ public class UFModelProvider extends FabricModelProvider {
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
 		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerTropicalPlant(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model1 = TROPICAL_PLANT_1.createWithSuffix(block, "_1", tm, blockModelGenerators.modelOutput);
+		ResourceLocation model2 = TROPICAL_PLANT_2.createWithSuffix(block, "_2", tm, blockModelGenerators.modelOutput);
+		ResourceLocation model3 = TROPICAL_PLANT_3.createWithSuffix(block, "_3", tm, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, model1,
+				1, model2,
+				2, model3
+		);
+
+		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Variant.variant().with(VariantProperties.MODEL, model));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+	}
+
+	private void registerWallTropicalPlant(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation identifier = TROPICAL_PLANT_WALL.create(block, tm, blockModelGenerators.modelOutput);
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

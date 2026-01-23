@@ -39,6 +39,7 @@ public abstract class AbstractLampBlock extends Block implements SimpleWaterlogg
 		));
 		registerDefaultState(defaultBlockState()
 				.setValue(LIT, false)
+				.setValue(FACING, Direction.DOWN)
 				.setValue(WATERLOGGED, false));
 	}
 
