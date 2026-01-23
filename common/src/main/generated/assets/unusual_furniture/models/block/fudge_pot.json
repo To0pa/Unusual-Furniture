@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/fudge_pot",
+  "textures": {
+    "0": "unusual_furniture:block/fudge_pot",
+    "particle": "unusual_furniture:block/fudge_pot"
+  }
+}

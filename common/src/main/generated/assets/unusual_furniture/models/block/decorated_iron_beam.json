@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/decorated_iron_beam",
+  "textures": {
+    "0": "unusual_furniture:block/decorated_iron_beam",
+    "particle": "unusual_furniture:block/metal_particule"
+  }
+}

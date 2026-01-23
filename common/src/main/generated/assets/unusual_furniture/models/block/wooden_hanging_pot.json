@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/barrel_hanging_pot",
+  "textures": {
+    "0": "unusual_furniture:block/wooden_hanging_pot",
+    "particle": "unusual_furniture:block/wooden_hanging_pot"
+  }
+}

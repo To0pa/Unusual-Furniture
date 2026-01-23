@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/sphere_lamp",
+  "textures": {
+    "1": "unusual_furniture:block/street_lamps",
+    "particle": "minecraft:block/yellow_stained_glass"
+  }
+}

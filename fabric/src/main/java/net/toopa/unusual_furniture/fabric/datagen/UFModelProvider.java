@@ -5,6 +5,8 @@ import static net.minecraft.data.models.BlockModelGenerators.createHorizontalFac
 import java.util.Map;
 import java.util.Optional;
 
+import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
@@ -13,8 +15,12 @@ import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
@@ -216,19 +222,111 @@ public class UFModelProvider extends FabricModelProvider {
 		});
 		UFObjects.BEAM_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
-			if (woodSet == null) throw new AssertionError("WoodSet is null");
+			if (woodSet == null) return; // iron beams
 			Block planks = woodSet.base();
 			Block coffee_table = woodSet.coffee_table();
 			registerBeam(blockModelGenerators, block,
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffee_table))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
+		Block decoratedIronBeam = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorated_iron_beam"));
+		Block ironBeam = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("iron_beam"));
+		registerDecoratedIronBeam(blockModelGenerators, decoratedIronBeam,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(decoratedIronBeam))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerIronBeam(blockModelGenerators, ironBeam,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(decoratedIronBeam))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		Block floorLampDecorationBat = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("floor_lamp_decoration_bat"));
+		Block floorLampDecorationVillager = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("floor_lamp_decoration_villager"));
+		registerFloorLampDecorationBat(blockModelGenerators, floorLampDecorationBat,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(floorLampDecorationBat))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerFloorLampDecorationVillager(blockModelGenerators, floorLampDecorationVillager,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(floorLampDecorationVillager))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		Block ironLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("iron_lamp"));
+		Block sphereLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("sphere_lamp"));
+		registerIronLamp(blockModelGenerators, ironLamp,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps_off"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerSphereLamp(blockModelGenerators, sphereLamp,
+				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)),
+				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps_off"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)));
+		Block greekPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("greek_pot"));
+		Block hugePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("huge_pot"));
+		Block stonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("stone_pot"));
+		Block tallTerracottaPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tall_terracotta_pot"));
+		Block bauhausPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("bauhaus_pot"));
+		Block blackstonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("blackstone_pot"));
+		Block fudgePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("fudge_pot"));
+		Block hangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("hanging_pot"));
+		Block largeHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("large_hanging_pot"));
+		Block woodenHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("wooden_hanging_pot"));
+		registerPot(blockModelGenerators, greekPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(greekPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(greekPot)),
+				GREEK_POT);
+		registerPot(blockModelGenerators, hugePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hugePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hugePot)),
+				HUGE_POT);
+		registerPot(blockModelGenerators, stonePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(stonePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(stonePot)),
+				STONE_POT);
+		registerPot(blockModelGenerators, tallTerracottaPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				TALL_TERRACOTTA_POT);
+		registerPot(blockModelGenerators, bauhausPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(bauhausPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(bauhausPot)),
+				BAUHAUS_POT);
+		registerPot(blockModelGenerators, blackstonePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(blackstonePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(blackstonePot)),
+				BLACKSTONE_POT);
+		registerPot(blockModelGenerators, fudgePot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(fudgePot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(fudgePot)),
+				FUDGE_POT);
+		registerPot(blockModelGenerators, hangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				HANGING_POT);
+		registerPot(blockModelGenerators, largeHangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+				LARGE_HANGING_POT);
+		registerPot(blockModelGenerators, woodenHangingPot,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(woodenHangingPot))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(woodenHangingPot)),
+				WOODEN_HANGING_POT);
+		Block tropicalPlant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant"));
+		Block tropicalPlantWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall"));
+		registerTropicalPlant(blockModelGenerators, tropicalPlant,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
+		registerWallTropicalPlant(blockModelGenerators, tropicalPlantWall,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
 	}
 
 	@Override
 	public void generateItemModels(ItemModelGenerators itemModelGenerators) {
 		itemModelGenerators.generateFlatItem(UFObjects.DISCORD_ITEM, ModelTemplates.FLAT_ITEM);
 		itemModelGenerators.generateFlatItem(UFObjects.SCREW_ITEM, ModelTemplates.FLAT_ITEM);
+		ModelTemplates.FLAT_ITEM.create(
+				ModelLocationUtils.getModelLocation(
+						BuiltInRegistries.ITEM.get(UnusualFurniture.id("tropical_plant"))),
+				TextureMapping.layer0(
+						UnusualFurniture.id("item/tropical_plant_bag")),
+				itemModelGenerators.output);
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			DRAWER_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()),
 					new TextureMapping()
@@ -439,6 +537,136 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate BEAM = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/beam")),
 			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate IRON_BEAM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/iron_beam")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate DECORATED_IRON_BEAM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/decorated_iron_beam")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_BAT1 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_bat1")),
+			Optional.of("1"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_BAT2 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_bat2")),
+			Optional.of("2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_BAT4 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_bat4")),
+			Optional.of("4"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_VILLAGER1 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_villager1")),
+			Optional.of("1"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_VILLAGER2 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_villager2")),
+			Optional.of("2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FLOOR_LAMP_DECORATION_VILLAGER4 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/floor_lamp_decoration_villager4")),
+			Optional.of("4"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp_wall")),
+			Optional.of("_wall"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate METAL_LAMP_FLOOR = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/metal_lamp_floor")),
+			Optional.of("_floor"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate SPHERE_LAMP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/sphere_lamp")),
+			Optional.empty(),
+			SLOT_1, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate GREEK_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/greek_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate HUGE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/huge_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate STONE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/stone_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TALL_TERRACOTTA_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tall_terracotta_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BAUHAUS_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/bauhaus_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BLACKSTONE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/blackstone_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FUDGE_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/fudge_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LARGE_HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/large_hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate WOODEN_HANGING_POT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/barrel_hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_1 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_1")),
+			Optional.of("_1"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_2 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_2")),
+			Optional.of("_2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_3 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_3")),
+			Optional.of("_3"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TROPICAL_PLANT_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/tropical_plant_wall")),
+			Optional.of("_wall"),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
@@ -698,6 +926,156 @@ public class UFModelProvider extends FabricModelProvider {
 	private void registerBeam(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = BEAM.create(block, tm, blockModelGenerators.modelOutput);
 
+		handleBeam(blockModelGenerators, block, identifier);
+	}
+
+	private void registerIronBeam(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation identifier = IRON_BEAM.create(block, tm, blockModelGenerators.modelOutput);
+
+		handleBeam(blockModelGenerators, block, identifier);
+	}
+
+	private void registerDecoratedIronBeam(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation identifier = DECORATED_IRON_BEAM.create(block, tm, blockModelGenerators.modelOutput);
+
+		handleBeam(blockModelGenerators, block, identifier);
+	}
+
+	private void registerFloorLampDecorationBat(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation one = FLOOR_LAMP_DECORATION_BAT1.createWithSuffix(block, "1", tm, blockModelGenerators.modelOutput);
+		ResourceLocation two = FLOOR_LAMP_DECORATION_BAT2.createWithSuffix(block, "2", tm, blockModelGenerators.modelOutput);
+		ResourceLocation four = FLOOR_LAMP_DECORATION_BAT4.createWithSuffix(block, "4", tm, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, one,
+				1, two,
+				2, four
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(FloorLampDecorationBatBlock.NUMBER_OF_ARMS, FloorLampDecorationBatBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			var shape = entry.getKey();
+			var model = entry.getValue();
+			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, two);
+	}
+
+	private void registerFloorLampDecorationVillager(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation one = FLOOR_LAMP_DECORATION_VILLAGER1.createWithSuffix(block, "1", tm, blockModelGenerators.modelOutput);
+		ResourceLocation two = FLOOR_LAMP_DECORATION_VILLAGER2.createWithSuffix(block, "2", tm, blockModelGenerators.modelOutput);
+		ResourceLocation four = FLOOR_LAMP_DECORATION_VILLAGER4.createWithSuffix(block, "4", tm, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, one,
+				1, two,
+				2, four
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(FloorLampDecorationVillagerBlock.NUMBER_OF_ARMS, FloorLampDecorationVillagerBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			var shape = entry.getKey();
+			var model = entry.getValue();
+			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, two);
+	}
+
+	private void registerSphereLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmOn, TextureMapping tmOff) {
+		ResourceLocation modelOn = SPHERE_LAMP.createWithSuffix(block, "_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelOff = SPHERE_LAMP.createWithSuffix(block, "_off", tmOff, blockModelGenerators.modelOutput);
+		Map<Boolean, ResourceLocation> modelMap = Map.of(
+				true, modelOn,
+				false, modelOff
+		);
+		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(SphereLampBlock.LIT, SphereLampBlock.FACING);
+		for (boolean bool : new boolean[]{true, false}) {
+			map.select(bool, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.select(bool, Direction.UP, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(bool, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)))
+					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+		}
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelOff);
+	}
+
+	private void registerIronLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmOn, TextureMapping tmOff) {
+		ResourceLocation modelOn = METAL_LAMP.createWithSuffix(block, "_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelOff = METAL_LAMP.createWithSuffix(block, "_off", tmOff, blockModelGenerators.modelOutput);
+		ResourceLocation modelWallOn = METAL_LAMP_WALL.createWithSuffix(block, "_wall_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelWallOff = METAL_LAMP_WALL.createWithSuffix(block, "_wall_off", tmOff, blockModelGenerators.modelOutput);
+		ResourceLocation modelFloorOn = METAL_LAMP_FLOOR.createWithSuffix(block, "_floor_on", tmOn, blockModelGenerators.modelOutput);
+		ResourceLocation modelFloorOff = METAL_LAMP_FLOOR.createWithSuffix(block, "_floor_off", tmOff, blockModelGenerators.modelOutput);
+		Map<Pair<Boolean, Direction>, ResourceLocation> modelMap = Map.ofEntries(
+				Map.entry(Pair.of(true, Direction.UP), modelOn),
+				Map.entry(Pair.of(false, Direction.UP), modelOff),
+				Map.entry(Pair.of(true, Direction.DOWN), modelFloorOn),
+				Map.entry(Pair.of(false, Direction.DOWN), modelFloorOff),
+				Map.entry(Pair.of(true, Direction.NORTH), modelWallOn),
+				Map.entry(Pair.of(false, Direction.NORTH), modelWallOff),
+				Map.entry(Pair.of(true, Direction.SOUTH), modelWallOn),
+				Map.entry(Pair.of(false, Direction.SOUTH), modelWallOff),
+				Map.entry(Pair.of(true, Direction.EAST), modelWallOn),
+				Map.entry(Pair.of(false, Direction.EAST), modelWallOff),
+				Map.entry(Pair.of(true, Direction.WEST), modelWallOn),
+				Map.entry(Pair.of(false, Direction.WEST), modelWallOff)
+		);
+		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(SphereLampBlock.LIT, SphereLampBlock.FACING);
+		for (boolean bool : new boolean[]{true, false}) {
+			map.select(bool, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.DOWN))))
+					.select(bool, Direction.UP, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.UP))))
+					.select(bool, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.NORTH))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(bool, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.SOUTH))))
+					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.WEST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.EAST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+		}
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelOff);
+	}
+
+	private void registerPot(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm, ModelTemplate template) {
+		ResourceLocation model = template.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
+		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerTropicalPlant(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model1 = TROPICAL_PLANT_1.createWithSuffix(block, "_1", tm, blockModelGenerators.modelOutput);
+		ResourceLocation model2 = TROPICAL_PLANT_2.createWithSuffix(block, "_2", tm, blockModelGenerators.modelOutput);
+		ResourceLocation model3 = TROPICAL_PLANT_3.createWithSuffix(block, "_3", tm, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, model1,
+				1, model2,
+				2, model3
+		);
+
+		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Variant.variant().with(VariantProperties.MODEL, model));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+	}
+
+	private void registerWallTropicalPlant(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation identifier = TROPICAL_PLANT_WALL.create(block, tm, blockModelGenerators.modelOutput);
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+	}
+
+	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {
 		var propDispatch = PropertyDispatch.property(BlockStateProperties.AXIS)
 				.select(Direction.Axis.Y, Variant.variant().with(VariantProperties.MODEL, identifier))
 				.select(Direction.Axis.Z, Variant.variant().with(VariantProperties.MODEL, identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))

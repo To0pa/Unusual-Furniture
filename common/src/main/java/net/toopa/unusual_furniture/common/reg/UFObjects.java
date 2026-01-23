@@ -8,24 +8,44 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BauhausPotBlock;
 import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.BlackstonePotBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.ChairBlock;
 import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
+import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
+import net.toopa.unusual_furniture.common.block.FudgePotBlock;
+import net.toopa.unusual_furniture.common.block.GreekPotBlock;
+import net.toopa.unusual_furniture.common.block.HangingPotBlock;
+import net.toopa.unusual_furniture.common.block.HugePotBlock;
 import net.toopa.unusual_furniture.common.block.IndustrialCoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.IndustrialTableBlock;
+import net.toopa.unusual_furniture.common.block.IronBeamBlock;
+import net.toopa.unusual_furniture.common.block.IronLampBlock;
+import net.toopa.unusual_furniture.common.block.LargeHangingPotBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.StonePotBlock;
 import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
+import net.toopa.unusual_furniture.common.block.TallTerracottaPotBlock;
+import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
+import net.toopa.unusual_furniture.common.block.WallTropicalPlantBlock;
+import net.toopa.unusual_furniture.common.block.WoodenHangingPotBlock;
 import net.toopa.unusual_furniture.common.item.DiscordItem;
+import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
+import net.toopa.unusual_furniture.common.item.TropicalPlantBlockItem;
 import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 import org.jspecify.annotations.Nullable;
@@ -114,6 +134,18 @@ public interface UFObjects {
 
 	Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
 	Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+
+	Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+
+	Map<Block, ResourceLocation> LAMP_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> LAMP_ITEMS = new LinkedHashMap<>();
+
+	Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
+
+	Map<Block, ResourceLocation> BAG_BLOCKS = new LinkedHashMap<>();
+	Map<Item, ResourceLocation> BAG_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -239,6 +271,25 @@ public interface UFObjects {
 		registerIndustrialTable("industrial_table");
 		registerIndustrialCoffeeTable("industrial_coffee_table");
 		registerCopperLamp("copper_ceiling_lamp");
+		registerDecoratedIronBeam("decorated_iron_beam");
+		registerIronBeam("iron_beam");
+
+		registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat");
+		registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager");
+		registerIronLampBlock("iron_lamp");
+		registerSphereLampBlock("sphere_lamp");
+
+		registerTropicalPlantBlock("tropical_plant");
+		registerGreekPotBlock("greek_pot");
+		registerHugePotBlock("huge_pot");
+		registerStonePotBlock("stone_pot");
+		registerTallTerracottaPotBlock("tall_terracotta_pot");
+		registerBauhausPotBlock("bauhaus_pot");
+		registerBlackstonePotBlock("blackstone_pot");
+		registerFudgePotBlock("fudge_pot");
+		registerHangingPotBlock("hanging_pot");
+		registerLargeHangingPotBlock("large_hanging_pot");
+		registerWoodenHangingPotBlock("wooden_hanging_pot");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -258,6 +309,11 @@ public interface UFObjects {
 		addBuilding(OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);
 		addBuilding(RAILING_BLOCKS, RAILING_ITEMS);
 		addBuilding(BEAM_BLOCKS, BEAM_ITEMS);
+		addBuilding(FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS);
+		addBuilding(LAMP_BLOCKS, LAMP_ITEMS);
+
+		addProps(BAG_BLOCKS, BAG_ITEMS);
+		addProps(POT_BLOCKS, POT_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -278,6 +334,11 @@ public interface UFObjects {
 	private static void addFurniture(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
 		FURNITURE_BLOCKS.add(b);
 		FURNITURE_ITEMS.add(i);
+	}
+
+	private static void addProps(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
+		PROPS_BLOCKS.add(b);
+		PROPS_ITEMS.add(i);
 	}
 
 	private static void addBuilding(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
@@ -346,6 +407,31 @@ public interface UFObjects {
 	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
 	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
 	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static IronBeamBlock registerIronBeam(String n) { return simple(n, IronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static DecoratedIronBeamBlock registerDecoratedIronBeam(String n) { return simple(n, DecoratedIronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static FloorLampDecorationBatBlock registerFloorLampDecorationBatBlock(String n) { return simple(n, FloorLampDecorationBatBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
+	private static FloorLampDecorationVillagerBlock registerFloorLampDecorationVillagerBlock(String n) { return simple(n, FloorLampDecorationVillagerBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
+	private static IronLampBlock registerIronLampBlock(String n) { return simple(n, IronLampBlock::new, Blocks.IRON_BLOCK, LAMP_BLOCKS, LAMP_ITEMS); }
+	private static SphereLampBlock registerSphereLampBlock(String n) { return simple(n, SphereLampBlock::new, Blocks.GLASS, LAMP_BLOCKS, LAMP_ITEMS); }
+	private static TropicalPlantBlock registerTropicalPlantBlock(String n) {
+		TropicalPlantBlock block = new TropicalPlantBlock(BlockBehaviour.Properties.of());
+		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(BlockBehaviour.Properties.of());
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		TropicalPlantBlockItem blockItem = new TropicalPlantBlockItem(block, wallBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
+	private static GreekPotBlock registerGreekPotBlock(String n) { return simple(n, GreekPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static HugePotBlock registerHugePotBlock(String n) { return simple(n, HugePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static StonePotBlock registerStonePotBlock(String n) { return simple(n, StonePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static TallTerracottaPotBlock registerTallTerracottaPotBlock(String n) { return simple(n, TallTerracottaPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static BauhausPotBlock registerBauhausPotBlock(String n) { return simple(n, BauhausPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static BlackstonePotBlock registerBlackstonePotBlock(String n) { return simple(n, BlackstonePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static FudgePotBlock registerFudgePotBlock(String n) { return simple(n, FudgePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static HangingPotBlock registerHangingPotBlock(String n) { return registerWithItem(n, HangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
+	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
+	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
