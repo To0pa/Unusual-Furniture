@@ -42,6 +42,7 @@ public class BenchBlock extends HorizontalDirectionalBlock implements ISittableB
 			box(0.0F, 0.0F, 1.0F, 16.0F, 8.0F, 16.0F),
 			box(0.0F, 0.0F, 14.0F, 16.0F, 18.0F, 16.0F)
 	);
+	//TODO: cache shapes
 
 	public BenchBlock(Properties properties) {
 		super(properties);

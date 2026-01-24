@@ -42,6 +42,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 	public static final EnumProperty<ModularCurtainProperty> SHAPE = EnumProperty.create("shape", ModularCurtainProperty.class);
 	private static final MapCodec<CurtainBlock> CODEC = simpleCodec(CurtainBlock::new);
 	private static final VoxelShape VOXEL_SHAPE = box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 15.0F);
+	//TODO: cache chapes
 
 	public CurtainBlock(Properties properties) {
 		super(properties);

@@ -1,5 +1,8 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.block.properties.ModularSofaProperty;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
@@ -40,6 +43,8 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final AABB SEAT = new AABB(0.125, 0, 0.125, 0.875, 0.5, 0.875);
 	private static final MapCodec<SofaBlock> CODEC = simpleCodec(SofaBlock::new);
+	private static final Map<ModularSofaProperty, Map<Direction, VoxelShape>> SHAPE_CACHE =
+			new EnumMap<>(ModularSofaProperty.class);
 
 	public SofaBlock(Properties properties) {
 		super(properties);
@@ -101,81 +106,9 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		ModularSofaProperty sofaType = state.getValue(SHAPE);
-		Direction facing = state.getValue(FACING);
-
-		VoxelShape baseShape = switch (sofaType) {
-			case SINGLE -> Shapes.or(
-					box(13, 0, 13, 16, 2, 16),
-					box(0, 0, 13, 3, 2, 16),
-					box(13, 0, 0, 16, 2, 3),
-					box(0, 0, 0, 3, 2, 3),
-					box(0, 2, 0, 16, 8, 16),
-					box(1, 8, 12, 15, 17, 16),
-					box(-1, 8, 0, 3, 12, 16),
-					box(13, 8, 0, 17, 12, 16)
-			);
-
-			case LEFT -> Shapes.or(
-
-					box(13, 8, 0, 17, 12, 16),
-					box(13, 0, 13, 16, 2, 16),
-					box(13, 0, 0, 16, 2, 3),
-					box(0, 2, 0, 16, 8, 16),
-					box(0, 8, 12, 15, 17, 16)
-			);
-
-			case MIDDLE -> Shapes.or(
-					box(0, 2, 0, 16, 8, 16),
-					box(0, 8, 12, 16, 17, 16)
-			);
-
-			case RIGHT -> Shapes.or(
-					box(-1, 8, 0, 3, 12, 16),
-					box(0, 0, 13, 3, 2, 16),
-					box(0, 0, 0, 3, 2, 3),
-					box(0, 2, 0, 16, 8, 16),
-					box(1, 8, 12, 16, 17, 16)
-			);
-
-			case INNER_LEFT -> Shapes.or(
-					box(0, 0, 0, 3, 2, 3),
-					box(0, 2, 0, 16, 8, 16),
-					box(0, 8, 12, 12, 17, 16),
-					box(12, 8, 0, 16, 17, 16),
-					box(0, 0, 0, 3, 0, 3)
-			);
-
-			case INNER_RIGHT -> Shapes.or(
-					box(0, 0, 13, 3, 2, 16),
-					box(0, 2, 0, 16, 8, 16),
-					box(0, 8, 0, 4, 17, 12),
-					box(0, 8, 12, 16, 17, 16),
-					box(13, 0, 0, 16, 2, 3)
-			);
-
-			case OUTER_LEFT -> Shapes.or(
-					box(0, 0, 0, 3, 2, 3),
-					box(0, 2, 14, 16, 8, 16),
-					box(0, 2, 0, 16, 8, 14),
-					box(12, 8, 12, 16, 17, 16)
-			);
-
-			case OUTER_RIGHT -> Shapes.or(
-					box(13, 0, 0, 16, 2, 3),
-					box(0, 2, 14, 16, 8, 16),
-					box(0, 2, 0, 16, 8, 14),
-					box(0, 8, 12, 4, 17, 16)
-			);
-		};
-
-		return switch (facing) {
-			case NORTH -> baseShape;
-			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 180);
-			case WEST -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 270);
-			case EAST -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPE_CACHE
+				.get(state.getValue(SHAPE))
+				.get(state.getValue(FACING));
 	}
 
 	@Override
@@ -255,5 +188,83 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 	@Override
 	public AABB getSeatSize(BlockState state) {
 		return SEAT;
+	}
+
+	private static VoxelShape createBaseShape(ModularSofaProperty sofaType) {
+		return switch (sofaType) {
+			case SINGLE -> Shapes.or(
+					box(13, 0, 13, 16, 2, 16),
+					box(0, 0, 13, 3, 2, 16),
+					box(13, 0, 0, 16, 2, 3),
+					box(0, 0, 0, 3, 2, 3),
+					box(0, 2, 0, 16, 8, 16),
+					box(1, 8, 12, 15, 17, 16),
+					box(-1, 8, 0, 3, 12, 16),
+					box(13, 8, 0, 17, 12, 16)
+			);
+
+			case LEFT -> Shapes.or(
+
+					box(13, 8, 0, 17, 12, 16),
+					box(13, 0, 13, 16, 2, 16),
+					box(13, 0, 0, 16, 2, 3),
+					box(0, 2, 0, 16, 8, 16),
+					box(0, 8, 12, 15, 17, 16)
+			);
+
+			case MIDDLE -> Shapes.or(
+					box(0, 2, 0, 16, 8, 16),
+					box(0, 8, 12, 16, 17, 16)
+			);
+
+			case RIGHT -> Shapes.or(
+					box(-1, 8, 0, 3, 12, 16),
+					box(0, 0, 13, 3, 2, 16),
+					box(0, 0, 0, 3, 2, 3),
+					box(0, 2, 0, 16, 8, 16),
+					box(1, 8, 12, 16, 17, 16)
+			);
+
+			case INNER_LEFT -> Shapes.or(
+					box(0, 0, 0, 3, 2, 3),
+					box(0, 2, 0, 16, 8, 16),
+					box(0, 8, 12, 12, 17, 16),
+					box(12, 8, 0, 16, 17, 16),
+					box(0, 0, 0, 3, 0, 3)
+			);
+
+			case INNER_RIGHT -> Shapes.or(
+					box(0, 0, 13, 3, 2, 16),
+					box(0, 2, 0, 16, 8, 16),
+					box(0, 8, 0, 4, 17, 12),
+					box(0, 8, 12, 16, 17, 16),
+					box(13, 0, 0, 16, 2, 3)
+			);
+
+			case OUTER_LEFT -> Shapes.or(
+					box(0, 0, 0, 3, 2, 3),
+					box(0, 2, 14, 16, 8, 16),
+					box(0, 2, 0, 16, 8, 14),
+					box(12, 8, 12, 16, 17, 16)
+			);
+
+			case OUTER_RIGHT -> Shapes.or(
+					box(13, 0, 0, 16, 2, 3),
+					box(0, 2, 14, 16, 8, 16),
+					box(0, 2, 0, 16, 8, 14),
+					box(0, 8, 12, 4, 17, 16)
+			);
+		};
+	}
+
+	static {
+		for (ModularSofaProperty type : ModularSofaProperty.values()) {
+
+			VoxelShape base = createBaseShape(type);
+
+			SHAPE_CACHE.put(type,
+					VoxelShapeUtils.createHorizontalShapeMap(base)
+			);
+		}
 	}
 }

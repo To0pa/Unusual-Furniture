@@ -27,6 +27,7 @@ public class BeamBlock extends RotatedPillarBlock implements SimpleWaterloggedBl
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final VoxelShape SHAPE = box(0.0F, 5.0F, 5.0F, 16.0F, 11.0F, 11.0F);
+	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public BeamBlock(Properties properties) {
 		super(properties);
@@ -42,12 +43,16 @@ public class BeamBlock extends RotatedPillarBlock implements SimpleWaterloggedBl
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-		return switch (blockState.getValue(AXIS)) {
-			case X -> SHAPE;
-			case Y -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Z, 90);
-			case Z -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
-		};
+	protected VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+		return SHAPES[state.getValue(AXIS).ordinal()];
+	}
+
+	static {
+		SHAPES[Direction.Axis.X.ordinal()] = SHAPE;
+		SHAPES[Direction.Axis.Y.ordinal()] =
+				VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Z, 90);
+		SHAPES[Direction.Axis.Z.ordinal()] =
+				VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
 	}
 
 	@Override

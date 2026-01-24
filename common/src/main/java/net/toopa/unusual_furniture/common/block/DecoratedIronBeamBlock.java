@@ -17,17 +17,22 @@ public class DecoratedIronBeamBlock extends BeamBlock {
 			box(3.0F, 5.0F, 5.0F, 13.0F, 11.0F, 11.0F),
 			box(13.0F, 4.0F, 4.0F, 16.0F, 12.0F, 12.0F)
 	);
+	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public DecoratedIronBeamBlock(Properties properties) {
 		super(properties);
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
-		return switch (blockState.getValue(AXIS)) {
-			case X -> SHAPE;
-			case Y -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Z, 90);
-			case Z -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
-		};
+	protected VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+		return SHAPES[state.getValue(AXIS).ordinal()];
+	}
+
+	static {
+		SHAPES[Direction.Axis.X.ordinal()] = SHAPE;
+		SHAPES[Direction.Axis.Y.ordinal()] =
+				VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Z, 90);
+		SHAPES[Direction.Axis.Z.ordinal()] =
+				VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
 	}
 }

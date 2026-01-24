@@ -20,6 +20,7 @@ public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBloc
 	);
 	public static VoxelShape ARM_SHAPE = box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
 	private static final MapCodec<FloorLampDecorationBatBlock> CODEC = simpleCodec(FloorLampDecorationBatBlock::new);
+	//TODO: Cache shapes
 
 	public FloorLampDecorationBatBlock(Properties properties) {
 		super(properties);

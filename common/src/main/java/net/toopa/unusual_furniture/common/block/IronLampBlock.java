@@ -23,6 +23,7 @@ public class IronLampBlock extends AbstractLampBlock {
 			box(4.0F, 6.0F, 4.0F, 12.0F, 14.0F, 12.0F),
 			box(3.0F, 14.0F, 3.0F, 13.0F, 16.0F, 13.0F)
 	);
+	//TODO: Cache shapes
 
 	public IronLampBlock(Properties properties) {
 		super(properties);

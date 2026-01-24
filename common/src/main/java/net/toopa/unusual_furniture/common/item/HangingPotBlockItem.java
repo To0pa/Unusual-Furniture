@@ -1,12 +1,12 @@
 package net.toopa.unusual_furniture.common.item;
 
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
-
-import org.jspecify.annotations.Nullable;
 
 public class HangingPotBlockItem extends BlockItem {
 

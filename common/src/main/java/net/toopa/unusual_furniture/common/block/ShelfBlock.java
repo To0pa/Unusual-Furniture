@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
@@ -29,11 +31,12 @@ public class ShelfBlock extends HorizontalDirectionalBlock implements SimpleWate
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	private static final MapCodec<ShelfBlock> CODEC = simpleCodec(ShelfBlock::new);
-	private static final VoxelShape SHAPE = Shapes.or(
+	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
 			box(2.0F, 10.0F, 5.0F, 5.0F, 13.0F, 16.0F),
 			box(11.0F, 10.0F, 5.0F, 14.0F, 13.0F, 16.0F),
 			box(0.0F, 13.0F, 3.0F, 16.0F, 16.0F, 16.0F)
 	);
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public ShelfBlock(Properties properties) {
 		super(properties);
@@ -88,12 +91,6 @@ public class ShelfBlock extends HorizontalDirectionalBlock implements SimpleWate
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(FACING)) {
-			case NORTH -> SHAPE;
-			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 180);
-			case WEST -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 270);
-			case EAST -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPE_MAP.get(state.getValue(FACING));
 	}
 }

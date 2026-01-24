@@ -34,6 +34,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock {
 	public static final EnumProperty<RailingDirectionProperty> RIGHT = EnumProperty.create("right", RailingDirectionProperty.class);
 	public static final EnumProperty<RailingDirectionProperty> LEFT = EnumProperty.create("left", RailingDirectionProperty.class);
 	private static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 4.0F, 16.0F, 16.0F, 12.0F);
+	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public RailingBlock(Properties properties) {
 		super(properties);
@@ -154,11 +155,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(AXIS)) {
-			case Direction.Axis.Z -> SHAPE;
-			case Direction.Axis.X -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPES[state.getValue(AXIS).ordinal()];
 	}
 
 	private BlockState updateConnections(LevelAccessor level, BlockPos pos, BlockState state) {
@@ -171,5 +168,16 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock {
 		RailingDirectionProperty[] resolved = resolveConflict(left, right);
 
 		return state.setValue(LEFT, resolved[0]).setValue(RIGHT, resolved[1]);
+	}
+
+	static {
+		SHAPES[Direction.Axis.X.ordinal()] =
+				VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
+
+		SHAPES[Direction.Axis.Y.ordinal()] =
+				Shapes.block();
+
+		SHAPES[Direction.Axis.Z.ordinal()] =
+				SHAPE;
 	}
 }

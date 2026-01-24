@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
@@ -23,12 +25,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class OpenRiserStairBlock extends HorizontalDirectionalBlock {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	// TODO: make this so it has a block item that when placed on another stair, it place the next one in front
-	private static final VoxelShape SHAPE = Shapes.or(
+	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
 			box(0.0F, 13.0F, 7.0F, 16.0F, 16.0F, 16.0F),
 			box(0.0F, 5.0F, -1.0F, 16.0F, 8.0F, 8.0F)
 	);
 	private static final MapCodec<OpenRiserStairBlock> CODEC = simpleCodec(OpenRiserStairBlock::new);
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public OpenRiserStairBlock(Properties properties) {
 		super(properties);
@@ -41,13 +43,7 @@ public class OpenRiserStairBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(FACING)) {
-			case NORTH -> SHAPE;
-			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 180);
-			case WEST -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 270);
-			case EAST -> VoxelShapeUtils.rotateVoxelShape(SHAPE, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPE_MAP.get(state.getValue(FACING));
 	}
 
 	@Override

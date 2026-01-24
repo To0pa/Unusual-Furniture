@@ -1,5 +1,8 @@
 package net.toopa.unusual_furniture.common.utils;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -34,6 +37,42 @@ public class VoxelShapeUtils {
 			result = rotated;
 		}
 		return result;
+	}
+
+	public static Map<Direction, VoxelShape> createHorizontalShapeMap(
+			VoxelShape baseShape,
+			Direction defaultFacing
+	) {
+		Map<Direction, VoxelShape> map = new EnumMap<>(Direction.class);
+
+		for (Direction dir : Direction.Plane.HORIZONTAL) {
+			int degrees = horizontalRotationDegrees(defaultFacing, dir);
+			map.put(dir, rotateVoxelShape(baseShape, Direction.Axis.Y, degrees));
+		}
+
+		return map;
+	}
+
+	public static Map<Direction, VoxelShape> createHorizontalShapeMap(VoxelShape northShape) {
+		return createHorizontalShapeMap(northShape, Direction.NORTH);
+	}
+
+	public static Map<Direction, VoxelShape> createFullDirectionalShapeMap(
+			VoxelShape baseShape,
+			Direction defaultFacing
+	) {
+		Map<Direction, VoxelShape> map = new EnumMap<>(Direction.class);
+
+		for (Direction target : Direction.values()) {
+			VoxelShape rotated = rotateFromTo(baseShape, defaultFacing, target);
+			map.put(target, rotated);
+		}
+
+		return map;
+	}
+
+	public static Map<Direction, VoxelShape> createFullDirectionalShapeMap(VoxelShape northShape) {
+		return createFullDirectionalShapeMap(northShape, Direction.NORTH);
 	}
 
 	public static VoxelShape mirrorVoxelShape(VoxelShape shape, Direction.Axis axis) {
@@ -128,4 +167,34 @@ public class VoxelShapeUtils {
 			this.z = z;
 		}
 	}
+
+	private static int horizontalRotationDegrees(Direction from, Direction to) {
+		int fromIdx = from.get2DDataValue();
+		int toIdx = to.get2DDataValue();
+
+		int diff = (toIdx - fromIdx) & 3;
+		return diff * 90;
+	}
+
+	private static VoxelShape rotateFromTo(VoxelShape shape, Direction from, Direction to) {
+		if (from == to) return shape;
+
+		VoxelShape result = shape;
+
+		if (from.getAxis().isVertical()) {
+			result = rotateVoxelShape(result, Direction.Axis.X,
+					from == Direction.UP ? 90 : 270);
+			from = Direction.NORTH;
+		}
+
+		if (to.getAxis().isVertical()) {
+			result = rotateVoxelShape(result, Direction.Axis.X,
+					to == Direction.UP ? 270 : 90);
+			return result;
+		}
+
+		int degrees = horizontalRotationDegrees(from, to);
+		return rotateVoxelShape(result, Direction.Axis.Y, degrees);
+	}
+
 }
