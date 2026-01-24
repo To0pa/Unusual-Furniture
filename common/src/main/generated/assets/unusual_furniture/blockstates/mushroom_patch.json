@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,plant_type=0": {
+      "model": "unusual_furniture:block/mushroom_patch_red",
+      "y": 90
+    },
+    "facing=east,plant_type=1": {
+      "model": "unusual_furniture:block/mushroom_patch_brown",
+      "y": 90
+    },
+    "facing=north,plant_type=0": {
+      "model": "unusual_furniture:block/mushroom_patch_red"
+    },
+    "facing=north,plant_type=1": {
+      "model": "unusual_furniture:block/mushroom_patch_brown"
+    },
+    "facing=south,plant_type=0": {
+      "model": "unusual_furniture:block/mushroom_patch_red",
+      "y": 180
+    },
+    "facing=south,plant_type=1": {
+      "model": "unusual_furniture:block/mushroom_patch_brown",
+      "y": 180
+    },
+    "facing=west,plant_type=0": {
+      "model": "unusual_furniture:block/mushroom_patch_red",
+      "y": 270
+    },
+    "facing=west,plant_type=1": {
+      "model": "unusual_furniture:block/mushroom_patch_brown",
+      "y": 270
+    }
+  }
+}

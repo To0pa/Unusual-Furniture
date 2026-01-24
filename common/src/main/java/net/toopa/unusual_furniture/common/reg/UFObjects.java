@@ -30,6 +30,7 @@ import net.toopa.unusual_furniture.common.block.IndustrialTableBlock;
 import net.toopa.unusual_furniture.common.block.IronBeamBlock;
 import net.toopa.unusual_furniture.common.block.IronLampBlock;
 import net.toopa.unusual_furniture.common.block.LargeHangingPotBlock;
+import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
@@ -40,12 +41,13 @@ import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
 import net.toopa.unusual_furniture.common.block.TallTerracottaPotBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
+import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WallTropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WoodenHangingPotBlock;
 import net.toopa.unusual_furniture.common.item.DiscordItem;
 import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
-import net.toopa.unusual_furniture.common.item.TropicalPlantBlockItem;
+import net.toopa.unusual_furniture.common.item.BagBlockItem;
 import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 import org.jspecify.annotations.Nullable;
@@ -280,6 +282,7 @@ public interface UFObjects {
 		registerSphereLampBlock("sphere_lamp");
 
 		registerTropicalPlantBlock("tropical_plant");
+		registerMushroomPatchBlock("mushroom_patch");
 		registerGreekPotBlock("greek_pot");
 		registerHugePotBlock("huge_pot");
 		registerStonePotBlock("stone_pot");
@@ -418,7 +421,16 @@ public interface UFObjects {
 		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(BlockBehaviour.Properties.of());
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
-		TropicalPlantBlockItem blockItem = new TropicalPlantBlockItem(block, wallBlock, new Item.Properties());
+		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
+	private static MushroomPatchBlock registerMushroomPatchBlock(String n) {
+		MushroomPatchBlock block = new MushroomPatchBlock(BlockBehaviour.Properties.of());
+		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(BlockBehaviour.Properties.of());
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
 	}

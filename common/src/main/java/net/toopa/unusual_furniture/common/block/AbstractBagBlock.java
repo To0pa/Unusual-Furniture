@@ -22,12 +22,13 @@ import org.jspecify.annotations.Nullable;
 
 public abstract class AbstractBagBlock extends Block {
 
-	public static @Nullable IntegerProperty TYPE;
-
-	public AbstractBagBlock(Properties properties, int maxTypes) {
+	public AbstractBagBlock(Properties properties) {
 		super(properties.noCollission());
-		registerDefaultState(defaultBlockState().setValue(TYPE, 0));
-		TYPE = IntegerProperty.create("type", 0, maxTypes);
+		registerDefaultState(defaultBlockState().setValue(getPlantTypeProperty(), 0));
+	}
+
+	protected IntegerProperty getPlantTypeProperty() {
+		throw new UnsupportedOperationException("Must be overridden by child class");
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public abstract class AbstractBagBlock extends Block {
 	protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
 		super.onPlace(state, level, pos, oldState, movedByPiston);
 		if (!level.isClientSide) {
-			level.setBlock(pos, state.setValue(TYPE, level.random.nextInt(3)), Block.UPDATE_ALL);
+			level.setBlock(pos, state.setValue(getPlantTypeProperty(), level.random.nextInt(getPlantTypeProperty().getPossibleValues().stream().max(Integer::compareTo).orElse(0) + 1)), Block.UPDATE_ALL);
 		}
 	}
 
@@ -53,7 +54,7 @@ public abstract class AbstractBagBlock extends Block {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(TYPE);
+		builder.add(getPlantTypeProperty());
 	}
 
 	@Override

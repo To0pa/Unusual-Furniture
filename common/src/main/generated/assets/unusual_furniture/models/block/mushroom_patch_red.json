@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/mushroom_patch",
+  "textures": {
+    "0": "unusual_furniture:block/red_mushroom",
+    "particle": "unusual_furniture:block/red_mushroom"
+  }
+}

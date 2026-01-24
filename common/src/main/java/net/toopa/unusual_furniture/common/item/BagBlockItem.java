@@ -8,12 +8,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TropicalPlantBlockItem extends BlockItem {
+public class BagBlockItem extends BlockItem {
 
 	private final Block wallBlock;
 	private final Block floorBlock;
 
-	public TropicalPlantBlockItem(Block floorBlock, Block wallBlock, Properties properties) {
+	public BagBlockItem(Block floorBlock, Block wallBlock, Properties properties) {
 		super(floorBlock, properties);
 		this.floorBlock = floorBlock;
 		this.wallBlock = wallBlock;
