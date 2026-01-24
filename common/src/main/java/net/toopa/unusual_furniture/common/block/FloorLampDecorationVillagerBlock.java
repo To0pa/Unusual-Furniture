@@ -17,7 +17,7 @@ public class FloorLampDecorationVillagerBlock extends AbstractFloorLampDecoratio
 	public static VoxelShape MIDDLE_SHAPE = Shapes.or(
 			box(6.0F, 0.0F, 6.0F, 10.0F, 15.0F, 10.0F),
 			box(5.0F, 1.0F, 5.0F, 11.0F, 13.0F, 11.0F)
-	);
+	).optimize();
 	public static VoxelShape ARM_SHAPE = box(7.0F, 0.0F, -9.0F, 9.0F, 10.0F, 5.0F);
 	private static final MapCodec<FloorLampDecorationVillagerBlock> CODEC = simpleCodec(FloorLampDecorationVillagerBlock::new);
 	//TODO: Cache shapes

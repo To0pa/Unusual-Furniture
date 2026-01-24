@@ -38,7 +38,7 @@ public class TableBlock extends HorizontalDirectionalBlock implements SimpleWate
 			box(-2.0, 6.0, 17.0, 17.0, 10.0, 20.0),
 			box(-5.0, 0.0, 17.0, -1.0, 12.1, 21.0),
 			box(17.0, 6.0, -1.0, 20.0, 10.0, 18.0)
-	);
+	).optimize();
 
 	public TableBlock(Properties properties) {
 		super(properties);

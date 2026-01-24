@@ -12,7 +12,7 @@ public class WoodenHangingPotBlock extends AbstractHangingPotBlock {
 	private static final VoxelShape SHAPE = Shapes.or(
 			box(2.0F, 6.0F, 2.0F, 14.0F, 17.0F, 14.0F),
 			box(4.0F, 16.0F, 4.0F, 12.0F, 17.0F, 12.0F)
-	);
+	).optimize();
 
 	public WoodenHangingPotBlock(Properties properties) {
 		super(properties);

@@ -7,7 +7,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class AbstractHangingPotBlock extends AbstractPotBlock {
+public abstract class AbstractHangingPotBlock extends AbstractPotBlock {
 
 	public AbstractHangingPotBlock(Properties properties) {
 		super(properties);

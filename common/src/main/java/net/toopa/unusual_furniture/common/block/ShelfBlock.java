@@ -35,7 +35,7 @@ public class ShelfBlock extends HorizontalDirectionalBlock implements SimpleWate
 			box(2.0F, 10.0F, 5.0F, 5.0F, 13.0F, 16.0F),
 			box(11.0F, 10.0F, 5.0F, 14.0F, 13.0F, 16.0F),
 			box(0.0F, 13.0F, 3.0F, 16.0F, 16.0F, 16.0F)
-	);
+	).optimize();
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public ShelfBlock(Properties properties) {

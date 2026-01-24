@@ -14,7 +14,7 @@ public class StonePotBlock extends AbstractPotBlock {
 			box(-3.0F, 5.0F, -3.0F, 19.0F, 10.0F, 19.0F),
 			box(-3.0F, 12.0F, -3.0F, 19.0F, 17.0F, 19.0F),
 			box(2.0F, 16.0F, 2.0F, 14.0F, 17.0F, 14.0F)
-	);
+	).optimize();
 
 	public StonePotBlock(Properties properties) {
 		super(properties);

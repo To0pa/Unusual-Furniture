@@ -20,7 +20,7 @@ public class SphereLampBlock extends AbstractLampBlock {
 			box(7.0F, 1.95, 6.95, 9.0F, 3.95, 8.95),
 			box(3.0F, 1.95, 2.95, 13.0F, 10.95, 12.95),
 			box(5.0F, 10.95, 4.95, 11.0F, 11.95, 10.95)
-	);
+	).optimize();
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createFullDirectionalShapeMap(DEFAULT_SHAPE, Direction.DOWN);
 
 	public SphereLampBlock(Properties properties) {

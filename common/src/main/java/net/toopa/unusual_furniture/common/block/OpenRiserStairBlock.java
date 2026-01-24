@@ -28,7 +28,7 @@ public class OpenRiserStairBlock extends HorizontalDirectionalBlock {
 	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
 			box(0.0F, 13.0F, 7.0F, 16.0F, 16.0F, 16.0F),
 			box(0.0F, 5.0F, -1.0F, 16.0F, 8.0F, 8.0F)
-	);
+	).optimize();
 	private static final MapCodec<OpenRiserStairBlock> CODEC = simpleCodec(OpenRiserStairBlock::new);
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 

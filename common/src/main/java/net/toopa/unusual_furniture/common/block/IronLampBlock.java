@@ -18,11 +18,11 @@ public class IronLampBlock extends AbstractLampBlock {
 	public static VoxelShape WALL_SHAPE = Shapes.or(
 			box(6.0F, 4.0F, 8.0F, 10.0F, 6.0F, 10.0F),
 			box(6.0F, 2.0F, 10.0F, 10.0F, 6.0F, 16.0F)
-	);
+	).optimize();
 	public static VoxelShape SHAPE = Shapes.or(
 			box(4.0F, 6.0F, 4.0F, 12.0F, 14.0F, 12.0F),
 			box(3.0F, 14.0F, 3.0F, 13.0F, 16.0F, 13.0F)
-	);
+	).optimize();
 	//TODO: Cache shapes
 
 	public IronLampBlock(Properties properties) {

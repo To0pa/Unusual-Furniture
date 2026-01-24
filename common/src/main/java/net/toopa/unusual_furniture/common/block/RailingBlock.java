@@ -33,7 +33,7 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock {
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<RailingDirectionProperty> RIGHT = EnumProperty.create("right", RailingDirectionProperty.class);
 	public static final EnumProperty<RailingDirectionProperty> LEFT = EnumProperty.create("left", RailingDirectionProperty.class);
-	private static final VoxelShape SHAPE = Block.box(0.0F, 0.0F, 4.0F, 16.0F, 16.0F, 12.0F);
+	private static final VoxelShape SHAPE = box(0.0F, 0.0F, 4.0F, 16.0F, 16.0F, 12.0F);
 	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public RailingBlock(Properties properties) {

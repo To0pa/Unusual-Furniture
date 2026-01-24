@@ -26,7 +26,7 @@ public class ChairBlock extends SittableBlock {
 			box(2.0, 0.0, 11.0, 5.0, 8.0, 14.0),
 			box(2.0, 0.0, 2.0, 5.0, 8.0, 5.0),
 			box(2.0, 13.0, 11.0, 14.0, 21.0, 14.0)
-	);
+	).optimize();
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public ChairBlock(Properties properties) {

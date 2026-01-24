@@ -17,7 +17,7 @@ public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBloc
 	public static VoxelShape MIDDLE_SHAPE = Shapes.or(
 			box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
 			box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)
-	);
+	).optimize();
 	public static VoxelShape ARM_SHAPE = box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
 	private static final MapCodec<FloorLampDecorationBatBlock> CODEC = simpleCodec(FloorLampDecorationBatBlock::new);
 	//TODO: Cache shapes

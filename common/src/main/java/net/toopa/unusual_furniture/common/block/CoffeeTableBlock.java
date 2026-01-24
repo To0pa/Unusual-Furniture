@@ -22,7 +22,7 @@ public class CoffeeTableBlock extends TableBlock {
 			box(12.0, 0.0, 1.0, 15.0, 12.0, 4.0),
 			box(1.0, 0.0, 12.0, 4.0, 12.0, 15.0),
 			box(12.0, 0.0, 12.0, 15.0, 12.0, 15.0)
-	);
+	).optimize();
 
 	public CoffeeTableBlock(Properties properties) {
 		super(properties);

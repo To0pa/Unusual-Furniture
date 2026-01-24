@@ -19,7 +19,7 @@ public class StoolBlock extends SittableBlock {
 			box(10.0, 0.0, 10.0, 13.0, 8.0, 13.0),
 			box(3.0, 0.0, 10.0, 6.0, 8.0, 13.0),
 			box(3.0, 0.0, 3.0, 6.0, 8.0, 6.0)
-	);
+	).optimize();
 
 	public StoolBlock(Properties properties) {
 		super(properties);

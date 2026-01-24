@@ -14,7 +14,7 @@ public class TallTerracottaPotBlock extends AbstractPotBlock {
 			box(0.0F, 14.0F, 0.0F, 16.0F, 17.0F, 16.0F),
 			box(0.0F, 3.0F, 0.0F, 16.0F, 11.0F, 16.0F),
 			box(3.0F, 16.0F, 3.0F, 13.0F, 17.0F, 13.0F)
-	);
+	).optimize();
 
 	public TallTerracottaPotBlock(Properties properties) {
 		super(properties);

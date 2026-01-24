@@ -16,7 +16,7 @@ public class DecoratedIronBeamBlock extends BeamBlock {
 			box(0.0F, 4.0F, 4.0F, 3.0F, 12.0F, 12.0F),
 			box(3.0F, 5.0F, 5.0F, 13.0F, 11.0F, 11.0F),
 			box(13.0F, 4.0F, 4.0F, 16.0F, 12.0F, 12.0F)
-	);
+	).optimize();
 	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public DecoratedIronBeamBlock(Properties properties) {

@@ -40,7 +40,7 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 	private static final VoxelShape SHAPE = Shapes.or(
 			box(0.0, 7.0, 0.0, 16.0, 12.0, 16.0),
 			box(3.0, 12.0, 3.0, 13.0, 16.0, 13.0)
-	);
+	).optimize();
 
 	public CeilingLampBlock(Properties properties) {
 		super(properties

@@ -13,7 +13,7 @@ public class HangingPotBlock extends AbstractHangingPotBlock {
 			box(3.0F, 7.0F, 3.0F, 13.0F, 15.0F, 13.0F),
 			box(2.0F, 15.0F, 2.0F, 14.0F, 17.0F, 14.0F),
 			box(4.0F, 16.0F, 4.0F, 12.0F, 17.0F, 12.0F)
-	);
+	).optimize();
 
 	public HangingPotBlock(Properties properties) {
 		super(properties);

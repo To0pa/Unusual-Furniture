@@ -1060,7 +1060,7 @@ public class UFModelProvider extends FabricModelProvider {
 				2, model3
 		);
 
-		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE);
+		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.TYPE);
 		for (var entry : modelMap.entrySet()) {
 			int blockstate = entry.getKey();
 			ResourceLocation model = entry.getValue();

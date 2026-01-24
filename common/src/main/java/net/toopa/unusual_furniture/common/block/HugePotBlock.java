@@ -13,7 +13,7 @@ public class HugePotBlock extends AbstractPotBlock {
 			box(0.0F, 0.0F, 0.0F, 16.0F, 12.0F, 16.0F),
 			box(-3.0F, 12.0F, -3.0F, 19.0F, 17.0F, 19.0F),
 			box(2.0F, 16.0F, 2.0F, 14.0F, 17.0F, 14.0F)
-	);
+	).optimize();
 
 	public HugePotBlock(Properties properties) {
 		super(properties);

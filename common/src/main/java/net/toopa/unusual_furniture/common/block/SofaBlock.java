@@ -201,7 +201,7 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 					box(1, 8, 12, 15, 17, 16),
 					box(-1, 8, 0, 3, 12, 16),
 					box(13, 8, 0, 17, 12, 16)
-			);
+			).optimize();
 
 			case LEFT -> Shapes.or(
 
@@ -210,12 +210,12 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 					box(13, 0, 0, 16, 2, 3),
 					box(0, 2, 0, 16, 8, 16),
 					box(0, 8, 12, 15, 17, 16)
-			);
+			).optimize();
 
 			case MIDDLE -> Shapes.or(
 					box(0, 2, 0, 16, 8, 16),
 					box(0, 8, 12, 16, 17, 16)
-			);
+			).optimize();
 
 			case RIGHT -> Shapes.or(
 					box(-1, 8, 0, 3, 12, 16),
@@ -223,7 +223,7 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 					box(0, 0, 0, 3, 2, 3),
 					box(0, 2, 0, 16, 8, 16),
 					box(1, 8, 12, 16, 17, 16)
-			);
+			).optimize();
 
 			case INNER_LEFT -> Shapes.or(
 					box(0, 0, 0, 3, 2, 3),
@@ -231,7 +231,7 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 					box(0, 8, 12, 12, 17, 16),
 					box(12, 8, 0, 16, 17, 16),
 					box(0, 0, 0, 3, 0, 3)
-			);
+			).optimize();
 
 			case INNER_RIGHT -> Shapes.or(
 					box(0, 0, 13, 3, 2, 16),
@@ -239,21 +239,21 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 					box(0, 8, 0, 4, 17, 12),
 					box(0, 8, 12, 16, 17, 16),
 					box(13, 0, 0, 16, 2, 3)
-			);
+			).optimize();
 
 			case OUTER_LEFT -> Shapes.or(
 					box(0, 0, 0, 3, 2, 3),
 					box(0, 2, 14, 16, 8, 16),
 					box(0, 2, 0, 16, 8, 14),
 					box(12, 8, 12, 16, 17, 16)
-			);
+			).optimize();
 
 			case OUTER_RIGHT -> Shapes.or(
 					box(13, 0, 0, 16, 2, 3),
 					box(0, 2, 14, 16, 8, 16),
 					box(0, 2, 0, 16, 8, 14),
 					box(0, 8, 12, 4, 17, 16)
-			);
+			).optimize();
 		};
 	}
 

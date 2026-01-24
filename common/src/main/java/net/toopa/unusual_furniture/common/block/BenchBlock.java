@@ -32,17 +32,19 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.Map;
+
 public class BenchBlock extends HorizontalDirectionalBlock implements ISittableBlock, SimpleWaterloggedBlock {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<ModularBenchProperty> SHAPE = EnumProperty.create("shape", ModularBenchProperty.class);
 	private static final MapCodec<BenchBlock> CODEC = simpleCodec(BenchBlock::new);
 	private static final AABB SEAT = new AABB(0.125, 0, 0.125, 0.875, 0.5, 0.875);
-	private static final VoxelShape VOXEL_SHAPE = Shapes.or(
+	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
 			box(0.0F, 0.0F, 1.0F, 16.0F, 8.0F, 16.0F),
 			box(0.0F, 0.0F, 14.0F, 16.0F, 18.0F, 16.0F)
-	);
-	//TODO: cache shapes
+	).optimize();
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public BenchBlock(Properties properties) {
 		super(properties);
@@ -101,13 +103,7 @@ public class BenchBlock extends HorizontalDirectionalBlock implements ISittableB
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(FACING)) {
-			case NORTH -> VOXEL_SHAPE;
-			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(VOXEL_SHAPE, Direction.Axis.Y, 180);
-			case WEST -> VoxelShapeUtils.rotateVoxelShape(VOXEL_SHAPE, Direction.Axis.Y, 270);
-			case EAST -> VoxelShapeUtils.rotateVoxelShape(VOXEL_SHAPE, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPE_MAP.get(state.getValue(FACING));
 	}
 
 	@Override

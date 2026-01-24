@@ -17,7 +17,7 @@ public class IndustrialCoffeeTableBlock extends CoffeeTableBlock {
 			box(14.0, 14.0, 0.0, 16.0, 16.0, 16.0),
 			box(7.0, 1.0, 7.0, 9.0, 16.0, 9.0),
 			box(6.0, 0.0, 6.0, 10.0, 3.0, 10.0)
-	);
+	).optimize();
 
 	public IndustrialCoffeeTableBlock(Properties properties) {
 		super(properties);

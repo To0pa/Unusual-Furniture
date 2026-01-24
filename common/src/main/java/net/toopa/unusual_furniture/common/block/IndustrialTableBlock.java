@@ -13,7 +13,7 @@ public class IndustrialTableBlock extends TableBlock {
 			box(-8.0, 14.0, -8.0, 24.0, 16.0, 24.0),
 			box(7.0, 1.0, 7.0, 9.0, 16.0, 9.0),
 			box(6.0, 0.0, 6.0, 10.0, 3.0, 10.0)
-	);
+	).optimize();
 
 	public IndustrialTableBlock(Properties properties) {
 		super(properties);
