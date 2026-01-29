@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/pebble3",
+  "textures": {
+    "0": "unusual_furniture:block/pebbles",
+    "particle": "minecraft:block/cobblestone"
+  }
+}

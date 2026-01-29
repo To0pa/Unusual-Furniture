@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "facing=east,pebble_type=0": {
+      "model": "unusual_furniture:block/pebble_bag_01",
+      "y": 90
+    },
+    "facing=east,pebble_type=1": {
+      "model": "unusual_furniture:block/pebble_bag_12",
+      "y": 90
+    },
+    "facing=east,pebble_type=2": {
+      "model": "unusual_furniture:block/pebble_bag_23",
+      "y": 90
+    },
+    "facing=east,pebble_type=3": {
+      "model": "unusual_furniture:block/pebble_bag_34",
+      "y": 90
+    },
+    "facing=east,pebble_type=4": {
+      "model": "unusual_furniture:block/pebble_bag_45",
+      "y": 90
+    },
+    "facing=north,pebble_type=0": {
+      "model": "unusual_furniture:block/pebble_bag_01"
+    },
+    "facing=north,pebble_type=1": {
+      "model": "unusual_furniture:block/pebble_bag_12"
+    },
+    "facing=north,pebble_type=2": {
+      "model": "unusual_furniture:block/pebble_bag_23"
+    },
+    "facing=north,pebble_type=3": {
+      "model": "unusual_furniture:block/pebble_bag_34"
+    },
+    "facing=north,pebble_type=4": {
+      "model": "unusual_furniture:block/pebble_bag_45"
+    },
+    "facing=south,pebble_type=0": {
+      "model": "unusual_furniture:block/pebble_bag_01",
+      "y": 180
+    },
+    "facing=south,pebble_type=1": {
+      "model": "unusual_furniture:block/pebble_bag_12",
+      "y": 180
+    },
+    "facing=south,pebble_type=2": {
+      "model": "unusual_furniture:block/pebble_bag_23",
+      "y": 180
+    },
+    "facing=south,pebble_type=3": {
+      "model": "unusual_furniture:block/pebble_bag_34",
+      "y": 180
+    },
+    "facing=south,pebble_type=4": {
+      "model": "unusual_furniture:block/pebble_bag_45",
+      "y": 180
+    },
+    "facing=west,pebble_type=0": {
+      "model": "unusual_furniture:block/pebble_bag_01",
+      "y": 270
+    },
+    "facing=west,pebble_type=1": {
+      "model": "unusual_furniture:block/pebble_bag_12",
+      "y": 270
+    },
+    "facing=west,pebble_type=2": {
+      "model": "unusual_furniture:block/pebble_bag_23",
+      "y": 270
+    },
+    "facing=west,pebble_type=3": {
+      "model": "unusual_furniture:block/pebble_bag_34",
+      "y": 270
+    },
+    "facing=west,pebble_type=4": {
+      "model": "unusual_furniture:block/pebble_bag_45",
+      "y": 270
+    }
+  }
+}

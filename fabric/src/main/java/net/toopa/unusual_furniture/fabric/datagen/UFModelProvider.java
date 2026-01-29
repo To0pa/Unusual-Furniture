@@ -15,11 +15,13 @@ import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
+import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
+import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
@@ -338,6 +340,17 @@ public class UFModelProvider extends FabricModelProvider {
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/large_cattail1")),
 				new TextureMapping().put(TextureSlot.CROSS, UnusualFurniture.id("block/large_cattail2"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/large_cattail2")));
+		registerWaterPlantsWater(blockModelGenerators, waterPlantWater,
+				new TextureMapping().put(TextureSlot.TEXTURE, UnusualFurniture.id("block/small_lily"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/small_lily")),
+				new TextureMapping().put(TextureSlot.TEXTURE, UnusualFurniture.id("block/scum1"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/scum1")),
+				new TextureMapping().put(TextureSlot.TEXTURE, UnusualFurniture.id("block/scum2"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/scum2")));
+		Block pebbleBag = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("pebble_bag"));
+		registerPebbleBag(blockModelGenerators, pebbleBag,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/pebbles"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.COBBLESTONE)));
 	}
 
 	@Override
@@ -357,6 +370,7 @@ public class UFModelProvider extends FabricModelProvider {
 				TextureMapping.layer0(
 						UnusualFurniture.id("item/water_plant_bag")),
 				itemModelGenerators.output);
+		itemModelGenerators.generateFlatItem(BuiltInRegistries.ITEM.get(UnusualFurniture.id("pebble_bag")), ModelTemplates.FLAT_ITEM);
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			DRAWER_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()),
 					new TextureMapping()
@@ -662,6 +676,41 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate MUSHROOM_PATCH_WALL2 = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/mushroom_wall2")),
 			Optional.of("2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LILY_PAD = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/lily_pad")),
+			Optional.empty(),
+			TextureSlot.TEXTURE, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate SCUM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/scum")),
+			Optional.empty(),
+			TextureSlot.TEXTURE, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PEBBLE1 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pebble1")),
+			Optional.of("1"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PEBBLE2 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pebble2")),
+			Optional.of("2"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PEBBLE3 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pebble3")),
+			Optional.of("3"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PEBBLE4 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pebble4")),
+			Optional.of("4"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PEBBLE5 = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pebble5")),
+			Optional.of("5"),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private static final ModelTemplate GREEK_POT = new ModelTemplate(
@@ -1179,25 +1228,56 @@ public class UFModelProvider extends FabricModelProvider {
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 	}
 
-//	private void registerWaterPlantsWater(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
-//		ResourceLocation model1 = TROPICAL_PLANT_1.createWithSuffix(block, "_1", tm, blockModelGenerators.modelOutput);
-//		ResourceLocation model2 = TROPICAL_PLANT_2.createWithSuffix(block, "_2", tm, blockModelGenerators.modelOutput);
-//		ResourceLocation model3 = TROPICAL_PLANT_3.createWithSuffix(block, "_3", tm, blockModelGenerators.modelOutput);
-//		Map<Integer, ResourceLocation> modelMap = Map.of(
-//				0, model1,
-//				1, model2,
-//				2, model3
-//		);
-//
-//		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE);
-//		for (var entry : modelMap.entrySet()) {
-//			int blockstate = entry.getKey();
-//			ResourceLocation model = entry.getValue();
-//			map.select(blockstate, Variant.variant().with(VariantProperties.MODEL, model));
-//		}
-//
-//		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
-//	}
+	private void registerWaterPlantsWater(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmLily, TextureMapping tmScum1, TextureMapping tmScum2) {
+		ResourceLocation model1 = LILY_PAD.createWithSuffix(block, "_lilypad", tmLily, blockModelGenerators.modelOutput);
+		ResourceLocation model2 = SCUM.createWithSuffix(block, "_scum_1", tmScum1, blockModelGenerators.modelOutput);
+		ResourceLocation model3 = SCUM.createWithSuffix(block, "_scum_2", tmScum2, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, model1,
+				1, model2,
+				2, model3
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(WaterPlantsBlock.PLANT_TYPE, WaterPlantsBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+	}
+
+	private void registerPebbleBag(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmLily) {
+		ResourceLocation model1 = PEBBLE1.createWithSuffix(block, "_0", tmLily, blockModelGenerators.modelOutput);
+		ResourceLocation model2 = PEBBLE2.createWithSuffix(block, "_1", tmLily, blockModelGenerators.modelOutput);
+		ResourceLocation model3 = PEBBLE3.createWithSuffix(block, "_2", tmLily, blockModelGenerators.modelOutput);
+		ResourceLocation model4 = PEBBLE4.createWithSuffix(block, "_3", tmLily, blockModelGenerators.modelOutput);
+		ResourceLocation model5 = PEBBLE5.createWithSuffix(block, "_4", tmLily, blockModelGenerators.modelOutput);
+		//TODO: the numbers don't correspond correctly
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, model1,
+				1, model2,
+				2, model3,
+				3, model4,
+				4, model5
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(PebbleBagBlock.PEBBLE_TYPE, PebbleBagBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+	}
 
 	private void registerPot(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm, ModelTemplate template) {
 		ResourceLocation model = template.create(block, tm, blockModelGenerators.modelOutput);

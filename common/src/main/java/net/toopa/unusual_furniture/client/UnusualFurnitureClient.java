@@ -34,10 +34,11 @@ public class UnusualFurnitureClient {
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		PlatformUtils.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
-						? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
+						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
 						: GrassColor.getDefaultColor(),
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant")),
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

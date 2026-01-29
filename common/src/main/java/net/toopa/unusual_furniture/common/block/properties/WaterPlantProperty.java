@@ -1,8 +1,8 @@
 package net.toopa.unusual_furniture.common.block.properties;
 
-import java.util.Locale;
-
 import net.minecraft.util.StringRepresentable;
+
+import java.util.Locale;
 
 public enum WaterPlantProperty implements StringRepresentable {
 	SINGLE,

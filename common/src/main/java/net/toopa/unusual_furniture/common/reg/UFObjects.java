@@ -32,6 +32,7 @@ import net.toopa.unusual_furniture.common.block.IronLampBlock;
 import net.toopa.unusual_furniture.common.block.LargeHangingPotBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
+import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
@@ -288,6 +289,7 @@ public interface UFObjects {
 		registerTropicalPlantBlock("tropical_plant");
 		registerMushroomPatchBlock("mushroom_patch");
 		registerWaterPlantsBlock("water_plants");
+		registerPebbleBagBlock("pebble_bag");
 		registerGreekPotBlock("greek_pot");
 		registerHugePotBlock("huge_pot");
 		registerStonePotBlock("stone_pot");
@@ -448,6 +450,7 @@ public interface UFObjects {
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
 	}
+	private static PebbleBagBlock registerPebbleBagBlock(String n) { return simple(n, PebbleBagBlock::new, Blocks.GLASS, BAG_BLOCKS, BAG_ITEMS); }
 	private static GreekPotBlock registerGreekPotBlock(String n) { return simple(n, GreekPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
 	private static HugePotBlock registerHugePotBlock(String n) { return simple(n, HugePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
 	private static StonePotBlock registerStonePotBlock(String n) { return simple(n, StonePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }

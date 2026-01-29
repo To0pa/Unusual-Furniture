@@ -21,23 +21,42 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class MushroomPatchBlock extends AbstractBagBlock {
+public class PebbleBagBlock extends AbstractBagBlock {
 
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
-			box(9.0F, 0.0F, 12.0F, 11.0F, 2.0F, 14.0F),
-			box(3.0F, 0.0F, 4.0F, 5.0F, 3.0F, 6.0F),
-			box(11.0F, 0.0F, 5.0F, 13.0F, 2.0F, 7.0F),
-			box(1.0F, 3.0F, 2.0F, 7.0F, 5.0F, 8.0F),
-			box(7.0F, 2.0F, 10.0F, 13.0F, 4.0F, 16.0F),
-			box(10.0F, 2.0F, 4.0F, 14.0F, 4.0F, 8.0F)
-	).optimize();
-	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
-	public static final IntegerProperty PLANT_TYPE = IntegerProperty.create("plant_type", 0, 1);
-	private static final MapCodec<MushroomPatchBlock> CODEC = simpleCodec(MushroomPatchBlock::new);
+	public static final IntegerProperty PEBBLE_TYPE = IntegerProperty.create("pebble_type", 0, 4);
+	private static final MapCodec<PebbleBagBlock> CODEC = simpleCodec(PebbleBagBlock::new);
+	private static final VoxelShape[] DEFAULT_SHAPES = {
+			Shapes.or(
+					box(4, 0, 3, 13, 8, 12),
+					box(1, 0, 1, 5, 3, 5),
+					box(8, 0, 10, 12, 2, 14)
+			).optimize(),
+			Shapes.or(
+					box(8, 0, 3, 12, 2, 7),
+					box(4, 0, 5, 11, 6, 12)
+			).optimize(),
+			Shapes.or(
+					box(1, 0, 6, 5, 3, 10),
+					box(10, 0, 2, 14, 2, 6),
+					box(3, 0, 8, 10, 6, 15)
+			).optimize(),
+			Shapes.or(
+					box(8, 0, 10, 12, 3, 14),
+					box(10, 0, 8, 14, 2, 12),
+					box(2, 0, 4, 6, 1, 8)
+			).optimize(),
+			Shapes.or(
+					box(10, 0, 9, 14, 2, 13),
+					box(8, 0, 2, 12, 1, 6),
+					box(3, 0, 8, 7, 1, 12)
+			).optimize()
+	};
+	private static final Map<Direction, VoxelShape>[] SHAPES =
+			new Map[DEFAULT_SHAPES.length];
 
-	public MushroomPatchBlock(Properties properties) {
-		super(properties.noCollission());
+	public PebbleBagBlock(Properties properties) {
+		super(properties);
 		this.registerDefaultState(this.defaultBlockState()
 				.setValue(FACING, Direction.NORTH));
 	}
@@ -49,7 +68,7 @@ public class MushroomPatchBlock extends AbstractBagBlock {
 
 	@Override
 	protected IntegerProperty getPlantTypeProperty() {
-		return PLANT_TYPE;
+		return PEBBLE_TYPE;
 	}
 
 	@Override
@@ -67,7 +86,18 @@ public class MushroomPatchBlock extends AbstractBagBlock {
 	}
 
 	@Override
+	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+		return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP);
+	}
+
+	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE_MAP.get(state.getValue(FACING));
+		return SHAPES[state.getValue(PEBBLE_TYPE)].get(state.getValue(FACING));
+	}
+
+	static {
+		for (int i = 0; i < DEFAULT_SHAPES.length; i++) {
+			SHAPES[i] = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPES[i]);
+		}
 	}
 }

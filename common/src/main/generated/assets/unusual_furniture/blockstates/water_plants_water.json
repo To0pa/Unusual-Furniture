@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,plant_type=0": {
+      "model": "unusual_furniture:block/water_plants_water_lilypad",
+      "y": 90
+    },
+    "facing=east,plant_type=1": {
+      "model": "unusual_furniture:block/water_plants_water_scum_1",
+      "y": 90
+    },
+    "facing=east,plant_type=2": {
+      "model": "unusual_furniture:block/water_plants_water_scum_2",
+      "y": 90
+    },
+    "facing=north,plant_type=0": {
+      "model": "unusual_furniture:block/water_plants_water_lilypad"
+    },
+    "facing=north,plant_type=1": {
+      "model": "unusual_furniture:block/water_plants_water_scum_1"
+    },
+    "facing=north,plant_type=2": {
+      "model": "unusual_furniture:block/water_plants_water_scum_2"
+    },
+    "facing=south,plant_type=0": {
+      "model": "unusual_furniture:block/water_plants_water_lilypad",
+      "y": 180
+    },
+    "facing=south,plant_type=1": {
+      "model": "unusual_furniture:block/water_plants_water_scum_1",
+      "y": 180
+    },
+    "facing=south,plant_type=2": {
+      "model": "unusual_furniture:block/water_plants_water_scum_2",
+      "y": 180
+    },
+    "facing=west,plant_type=0": {
+      "model": "unusual_furniture:block/water_plants_water_lilypad",
+      "y": 270
+    },
+    "facing=west,plant_type=1": {
+      "model": "unusual_furniture:block/water_plants_water_scum_1",
+      "y": 270
+    },
+    "facing=west,plant_type=2": {
+      "model": "unusual_furniture:block/water_plants_water_scum_2",
+      "y": 270
+    }
+  }
+}

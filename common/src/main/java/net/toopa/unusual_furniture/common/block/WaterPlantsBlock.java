@@ -2,19 +2,26 @@ package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -23,12 +30,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WaterPlantsBlock extends AbstractBagBlock {
 
-	public static final IntegerProperty PLANT_TYPE = IntegerProperty.create("plant_type", 0, 1);
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final IntegerProperty PLANT_TYPE = IntegerProperty.create("plant_type", 0, 2);
 	private static final MapCodec<WaterPlantsBlock> CODEC = simpleCodec(WaterPlantsBlock::new);
 	private static final VoxelShape SHAPE = box(1.0F, 0.0F, 1.0F, 15.0F, 1.0F, 15.0F);
 
 	public WaterPlantsBlock(Properties properties) {
 		super(properties);
+		this.registerDefaultState(this.defaultBlockState()
+				.setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
@@ -39,6 +49,20 @@ public class WaterPlantsBlock extends AbstractBagBlock {
 	@Override
 	protected IntegerProperty getPlantTypeProperty() {
 		return PLANT_TYPE;
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(FACING);
+	}
+
+	@Override
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockState state = super.getStateForPlacement(context);
+		if (state == null) return null;
+		return state
+				.setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 
 	@Override

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/lily_pad",
+  "textures": {
+    "particle": "unusual_furniture:block/small_lily",
+    "texture": "unusual_furniture:block/small_lily"
+  }
+}

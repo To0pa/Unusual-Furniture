@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/scum",
+  "textures": {
+    "particle": "unusual_furniture:block/scum2",
+    "texture": "unusual_furniture:block/scum2"
+  }
+}
