@@ -23,10 +23,13 @@ public class BagBlockItem extends BlockItem {
 	protected @Nullable BlockState getPlacementState(BlockPlaceContext context) {
 		Direction clickedFace = context.getClickedFace();
 
+		BlockState state;
 		if (clickedFace.getAxis().isHorizontal()) {
-			return wallBlock.getStateForPlacement(context);
+			state = wallBlock.getStateForPlacement(context);
+		} else {
+			state = floorBlock.getStateForPlacement(context);
 		}
 
-		return floorBlock.getStateForPlacement(context);
+		return state != null && this.canPlace(context, state) ? state : null;
 	}
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "plant_type=bottom": {
+      "model": "unusual_furniture:block/water_plants_big_bottom"
+    },
+    "plant_type=single": {
+      "model": "unusual_furniture:block/water_plants"
+    },
+    "plant_type=top": {
+      "model": "unusual_furniture:block/water_plants_big"
+    }
+  }
+}

@@ -1,12 +1,9 @@
 package net.toopa.unusual_furniture.common.block;
 
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -48,10 +45,5 @@ public abstract class AbstractWallBagBlock extends HorizontalDirectionalBlock {
 		BlockState state = this.defaultBlockState()
 				.setValue(FACING, context.getClickedFace());
 		return state.canSurvive(context.getLevel(), context.getClickedPos()) ? state : null;
-	}
-
-	@Override
-	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-		return new ItemStack(BuiltInRegistries.ITEM.get(UnusualFurniture.id("tropical_plant")));
 	}
 }

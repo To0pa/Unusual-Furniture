@@ -43,11 +43,14 @@ import net.toopa.unusual_furniture.common.block.TallTerracottaPotBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WallTropicalPlantBlock;
+import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
+import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
 import net.toopa.unusual_furniture.common.block.WoodenHangingPotBlock;
+import net.toopa.unusual_furniture.common.item.BagBlockItem;
 import net.toopa.unusual_furniture.common.item.DiscordItem;
 import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
-import net.toopa.unusual_furniture.common.item.BagBlockItem;
+import net.toopa.unusual_furniture.common.item.WaterBagBlockItem;
 import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 import org.jspecify.annotations.Nullable;
@@ -270,6 +273,7 @@ public interface UFObjects {
 			}
 		}
 
+		//TODO: make them variables to not have to look them up through strings
 		registerIndustrialTable("industrial_table");
 		registerIndustrialCoffeeTable("industrial_coffee_table");
 		registerCopperLamp("copper_ceiling_lamp");
@@ -283,6 +287,7 @@ public interface UFObjects {
 
 		registerTropicalPlantBlock("tropical_plant");
 		registerMushroomPatchBlock("mushroom_patch");
+		registerWaterPlantsBlock("water_plants");
 		registerGreekPotBlock("greek_pot");
 		registerHugePotBlock("huge_pot");
 		registerStonePotBlock("stone_pot");
@@ -431,6 +436,15 @@ public interface UFObjects {
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
+	private static WaterPlantsLandBlock registerWaterPlantsBlock(String n) {
+		WaterPlantsLandBlock block = new WaterPlantsLandBlock(BlockBehaviour.Properties.of());
+		WaterPlantsBlock waterBlock = new WaterPlantsBlock(BlockBehaviour.Properties.of());
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
+		WaterBagBlockItem blockItem = new WaterBagBlockItem(block, waterBlock, new Item.Properties());
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
 	}

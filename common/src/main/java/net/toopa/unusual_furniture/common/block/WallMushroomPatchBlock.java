@@ -5,16 +5,22 @@ import java.util.Map;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.StateDefinition;
 
+import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -70,5 +76,10 @@ public class WallMushroomPatchBlock extends AbstractWallBagBlock {
 		if (!level.isClientSide) {
 			level.setBlock(pos, state.setValue(PLANT_TYPE, level.random.nextInt(PLANT_TYPE.getPossibleValues().stream().max(Integer::compareTo).orElse(0) + 1)), Block.UPDATE_ALL);
 		}
+	}
+
+	@Override
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+		return new ItemStack(BuiltInRegistries.ITEM.get(UnusualFurniture.id("mushroom_patch")));
 	}
 }

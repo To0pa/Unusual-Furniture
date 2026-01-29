@@ -1,10 +1,17 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
+import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -13,10 +20,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-
-import java.util.Map;
 
 public class MushroomPatchBlock extends AbstractBagBlock {
 
@@ -31,9 +34,15 @@ public class MushroomPatchBlock extends AbstractBagBlock {
 	).optimize();
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 	public static final IntegerProperty PLANT_TYPE = IntegerProperty.create("plant_type", 0, 1);
+	private static final MapCodec<MushroomPatchBlock> CODEC = simpleCodec(MushroomPatchBlock::new);
 
 	public MushroomPatchBlock(Properties properties) {
 		super(properties.noCollission());
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -48,9 +57,12 @@ public class MushroomPatchBlock extends AbstractBagBlock {
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState()
-				.setValue(FACING, context.getHorizontalDirection().getOpposite());
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
+		BlockState state = super.getStateForPlacement(context);
+		if (state != null)
+			return state
+					.setValue(FACING, context.getHorizontalDirection().getOpposite());
+		else return null;
 	}
 
 	@Override

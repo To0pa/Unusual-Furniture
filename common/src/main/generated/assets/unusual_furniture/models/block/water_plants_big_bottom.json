@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "unusual_furniture:block/large_cattail1"
+  }
+}

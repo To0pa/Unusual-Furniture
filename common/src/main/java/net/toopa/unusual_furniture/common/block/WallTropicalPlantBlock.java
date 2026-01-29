@@ -3,11 +3,15 @@ package net.toopa.unusual_furniture.common.block;
 import java.util.Map;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -31,5 +35,10 @@ public class WallTropicalPlantBlock extends AbstractWallBagBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return SHAPE_MAP.get(state.getValue(FACING));
+	}
+
+	@Override
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+		return new ItemStack(BuiltInRegistries.ITEM.get(UnusualFurniture.id("tropical_plant")));
 	}
 }
