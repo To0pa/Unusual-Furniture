@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 public abstract class AbstractBagBlock extends BushBlock {
 
 	public AbstractBagBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 		registerDefaultState(defaultBlockState().setValue(getPlantTypeProperty(), 0));
 	}
 

@@ -36,7 +36,7 @@ public class WaterPlantsBlock extends AbstractBagBlock {
 	private static final VoxelShape SHAPE = box(1.0F, 0.0F, 1.0F, 15.0F, 1.0F, 15.0F);
 
 	public WaterPlantsBlock(Properties properties) {
-		super(properties);
+		super(properties.noCollission());
 		this.registerDefaultState(this.defaultBlockState()
 				.setValue(FACING, Direction.NORTH));
 	}
