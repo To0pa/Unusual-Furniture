@@ -1,6 +1,14 @@
 package net.toopa.unusual_furniture.common.utils.neoforge;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 import com.google.common.collect.Lists;
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -19,17 +27,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
-
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-
-import net.toopa.unusual_furniture.common.UnusualFurniture;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class PlatformUtilsImpl {
 	private static final List<Pair<ItemColor, Supplier<? extends ItemLike>[]>> ITEM_COLORS = Lists.newArrayList();

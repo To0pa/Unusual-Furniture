@@ -1,25 +1,21 @@
 package net.toopa.unusual_furniture.common.utils.fabric;
 
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.world.level.ItemLike;
-
-import net.toopa.unusual_furniture.common.UnusualFurniture;
-
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class PlatformUtilsImpl {
 

@@ -6,9 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.mojang.datafixers.util.Pair;
-
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
@@ -23,7 +20,6 @@ import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
-import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
@@ -51,6 +47,7 @@ import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
