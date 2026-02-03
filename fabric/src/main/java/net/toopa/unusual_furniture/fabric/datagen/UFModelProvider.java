@@ -20,6 +20,7 @@ import net.toopa.unusual_furniture.common.block.PosterBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.TrashBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
@@ -368,6 +369,10 @@ public class UFModelProvider extends FabricModelProvider {
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster6")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster7"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster7")));
+		Block trash = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("trash"));
+		registerTrash(blockModelGenerators, trash,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/trash_can"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/carved_spruce_alternate")));
 	}
 
 	@Override
@@ -789,6 +794,21 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate POSTER = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/poster")),
 			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TRASH_ITEM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/trash_item")),
+			Optional.of("_item"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TRASH_BOTTOM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/trash_bottom")),
+			Optional.of("_bottom"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TRASH_TOP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/trash_top")),
+			Optional.of("_top"),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
@@ -1348,6 +1368,29 @@ public class UFModelProvider extends FabricModelProvider {
 		}
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+	}
+
+	private void registerTrash(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation modelItem = TRASH_ITEM.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelTop = TRASH_TOP.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelBottom = TRASH_BOTTOM.create(block, tm, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, modelBottom,
+				1, modelTop
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(TrashBlock.SHAPE, TrashBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelItem);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

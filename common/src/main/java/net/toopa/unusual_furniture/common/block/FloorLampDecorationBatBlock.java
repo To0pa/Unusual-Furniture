@@ -14,6 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBlock {
 
+	//TODO: multiblock the arms
 	public static VoxelShape MIDDLE_SHAPE = Shapes.or(
 			box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
 			box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)

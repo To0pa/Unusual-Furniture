@@ -42,6 +42,7 @@ import net.toopa.unusual_furniture.common.block.StonePotBlock;
 import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
 import net.toopa.unusual_furniture.common.block.TallTerracottaPotBlock;
+import net.toopa.unusual_furniture.common.block.TrashBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WallTropicalPlantBlock;
@@ -91,6 +92,8 @@ public final class UFObjects {
 	public static final Map<Block, DyeSet> BLOCK_TO_DYESET = new LinkedHashMap<>();
 
 	public static final Map<String, WoodSet> WOOD_SETS = new LinkedHashMap<>();
+
+	public static final List<Block> LOOT_TABLE_BLACKLIST = new ArrayList<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Per-type registries                                                    */
@@ -156,8 +159,12 @@ public final class UFObjects {
 	public static final Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
 
+	// TODO: maybe for blocks that are alone we need a better way of registering them...
 	public static final Map<Block, ResourceLocation> POSTER_BLOCK = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> POSTER_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> TRASH_BLOCK = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> TRASH_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -307,6 +314,7 @@ public final class UFObjects {
 		registerLargeHangingPotBlock("large_hanging_pot");
 		registerWoodenHangingPotBlock("wooden_hanging_pot");
 		registerPosterBlock("poster");
+		registerTrashBlock("trash");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -332,6 +340,7 @@ public final class UFObjects {
 		addProps(BAG_BLOCKS, BAG_ITEMS);
 		addProps(POT_BLOCKS, POT_ITEMS);
 		addProps(POSTER_BLOCK, POSTER_ITEMS);
+		addProps(TRASH_BLOCK, TRASH_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -436,6 +445,7 @@ public final class UFObjects {
 		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(BlockBehaviour.Properties.of());
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
@@ -445,6 +455,7 @@ public final class UFObjects {
 		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(BlockBehaviour.Properties.of());
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
@@ -454,6 +465,7 @@ public final class UFObjects {
 		WaterPlantsBlock waterBlock = new WaterPlantsBlock(BlockBehaviour.Properties.of());
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
+		LOOT_TABLE_BLACKLIST.add(waterBlock);
 		WaterBagBlockItem blockItem = new WaterBagBlockItem(block, waterBlock, new Item.Properties());
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
@@ -470,6 +482,7 @@ public final class UFObjects {
 	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCK, POSTER_ITEMS); }
+	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_SIGN, TRASH_BLOCK, TRASH_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {

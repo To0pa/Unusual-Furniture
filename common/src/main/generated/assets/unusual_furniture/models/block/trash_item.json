@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/trash_item",
+  "textures": {
+    "0": "unusual_furniture:block/trash_can",
+    "particle": "unusual_furniture:block/carved_spruce_alternate"
+  }
+}
