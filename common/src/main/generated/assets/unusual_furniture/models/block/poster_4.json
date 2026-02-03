@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/poster",
+  "textures": {
+    "0": "unusual_furniture:block/poster4",
+    "particle": "unusual_furniture:block/poster4"
+  }
+}

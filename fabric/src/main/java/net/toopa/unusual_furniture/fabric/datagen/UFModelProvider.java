@@ -16,6 +16,7 @@ import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
+import net.toopa.unusual_furniture.common.block.PosterBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
@@ -351,6 +352,22 @@ public class UFModelProvider extends FabricModelProvider {
 		registerPebbleBag(blockModelGenerators, pebbleBag,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/pebbles"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.COBBLESTONE)));
+		Block poster = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("poster"));
+		registerPoster(blockModelGenerators, poster,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster1"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster1")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster2"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster2")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster3"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster3")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster4"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster4")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster5"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster5")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster6"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster6")),
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster7"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster7")));
 	}
 
 	@Override
@@ -371,6 +388,12 @@ public class UFModelProvider extends FabricModelProvider {
 						UnusualFurniture.id("item/water_plant_bag")),
 				itemModelGenerators.output);
 		itemModelGenerators.generateFlatItem(BuiltInRegistries.ITEM.get(UnusualFurniture.id("pebble_bag")), ModelTemplates.FLAT_ITEM);
+		ModelTemplates.FLAT_ITEM.create(
+				ModelLocationUtils.getModelLocation(
+						BuiltInRegistries.ITEM.get(UnusualFurniture.id("poster"))),
+				TextureMapping.layer0(
+						UnusualFurniture.id("block/poster2")),
+				itemModelGenerators.output);
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			DRAWER_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()),
 					new TextureMapping()
@@ -760,6 +783,11 @@ public class UFModelProvider extends FabricModelProvider {
 
 	private static final ModelTemplate WOODEN_HANGING_POT = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/barrel_hanging_pot")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate POSTER = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/poster")),
 			Optional.empty(),
 			SLOT_0, TextureSlot.PARTICLE);
 
@@ -1284,6 +1312,42 @@ public class UFModelProvider extends FabricModelProvider {
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
 		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerPoster(BlockModelGenerators blockModelGenerators, Block block,
+								TextureMapping tm1, TextureMapping tm2, TextureMapping tm3,
+								TextureMapping tm4, TextureMapping tm5, TextureMapping tm6,
+								TextureMapping tm7) {
+		ResourceLocation model1 = POSTER.createWithSuffix(block, "_1", tm1, blockModelGenerators.modelOutput);
+		ResourceLocation model2 = POSTER.createWithSuffix(block, "_2", tm2, blockModelGenerators.modelOutput);
+		ResourceLocation model3 = POSTER.createWithSuffix(block, "_3", tm3, blockModelGenerators.modelOutput);
+		ResourceLocation model4 = POSTER.createWithSuffix(block, "_4", tm4, blockModelGenerators.modelOutput);
+		ResourceLocation model5 = POSTER.createWithSuffix(block, "_5", tm5, blockModelGenerators.modelOutput);
+		ResourceLocation model6 = POSTER.createWithSuffix(block, "_6", tm6, blockModelGenerators.modelOutput);
+		ResourceLocation model7 = POSTER.createWithSuffix(block, "_7", tm7, blockModelGenerators.modelOutput);
+		Map<Integer, ResourceLocation> modelMap = Map.of(
+				0, model1,
+				1, model2,
+				2, model3,
+				3, model4,
+				4, model5,
+				5, model6,
+				6, model7
+		);
+
+		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(PosterBlock.POSTER_TYPE, PosterBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			int blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+					.select(blockstate, Direction.UP, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

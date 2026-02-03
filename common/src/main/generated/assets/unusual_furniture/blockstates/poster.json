@@ -1,0 +1,165 @@
+{
+  "variants": {
+    "facing=down,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1",
+      "x": 90
+    },
+    "facing=down,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2",
+      "x": 90
+    },
+    "facing=down,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3",
+      "x": 90
+    },
+    "facing=down,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4",
+      "x": 90
+    },
+    "facing=down,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5",
+      "x": 90
+    },
+    "facing=down,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6",
+      "x": 90
+    },
+    "facing=down,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7",
+      "x": 90
+    },
+    "facing=east,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1",
+      "y": 90
+    },
+    "facing=east,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2",
+      "y": 90
+    },
+    "facing=east,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3",
+      "y": 90
+    },
+    "facing=east,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4",
+      "y": 90
+    },
+    "facing=east,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5",
+      "y": 90
+    },
+    "facing=east,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6",
+      "y": 90
+    },
+    "facing=east,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7",
+      "y": 90
+    },
+    "facing=north,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1"
+    },
+    "facing=north,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2"
+    },
+    "facing=north,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3"
+    },
+    "facing=north,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4"
+    },
+    "facing=north,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5"
+    },
+    "facing=north,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6"
+    },
+    "facing=north,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7"
+    },
+    "facing=south,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1",
+      "y": 180
+    },
+    "facing=south,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2",
+      "y": 180
+    },
+    "facing=south,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3",
+      "y": 180
+    },
+    "facing=south,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4",
+      "y": 180
+    },
+    "facing=south,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5",
+      "y": 180
+    },
+    "facing=south,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6",
+      "y": 180
+    },
+    "facing=south,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7",
+      "y": 180
+    },
+    "facing=up,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1",
+      "x": 270
+    },
+    "facing=up,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2",
+      "x": 270
+    },
+    "facing=up,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3",
+      "x": 270
+    },
+    "facing=up,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4",
+      "x": 270
+    },
+    "facing=up,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5",
+      "x": 270
+    },
+    "facing=up,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6",
+      "x": 270
+    },
+    "facing=up,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7",
+      "x": 270
+    },
+    "facing=west,poster_type=0": {
+      "model": "unusual_furniture:block/poster_1",
+      "y": 270
+    },
+    "facing=west,poster_type=1": {
+      "model": "unusual_furniture:block/poster_2",
+      "y": 270
+    },
+    "facing=west,poster_type=2": {
+      "model": "unusual_furniture:block/poster_3",
+      "y": 270
+    },
+    "facing=west,poster_type=3": {
+      "model": "unusual_furniture:block/poster_4",
+      "y": 270
+    },
+    "facing=west,poster_type=4": {
+      "model": "unusual_furniture:block/poster_5",
+      "y": 270
+    },
+    "facing=west,poster_type=5": {
+      "model": "unusual_furniture:block/poster_6",
+      "y": 270
+    },
+    "facing=west,poster_type=6": {
+      "model": "unusual_furniture:block/poster_7",
+      "y": 270
+    }
+  }
+}
