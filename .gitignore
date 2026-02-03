@@ -35,6 +35,7 @@ bin/
 # mod
 
 common/run/
+common/src/main/generated/.cache
 fabric/run/
 forge/run/
 neoforge/run/
