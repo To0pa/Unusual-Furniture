@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/toolbox",
+  "textures": {
+    "0": "unusual_furniture:block/toolbox",
+    "particle": "minecraft:block/redstone_block"
+  }
+}

@@ -21,6 +21,7 @@ import net.toopa.unusual_furniture.common.block.PosterBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.ToolboxBlock;
 import net.toopa.unusual_furniture.common.block.TrashBlock;
 import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
@@ -386,7 +387,11 @@ public class UFModelProvider extends FabricModelProvider {
 		registerManhole(blockModelGenerators, manhole,
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(manhole))
 						.put(SLOT_1, UnusualFurniture.id("block/manhole_open"))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(emergencyFireHydrant)));
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(manhole)));
+		Block toolbox = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorative_toolbox"));
+		registerToolbox(blockModelGenerators, toolbox,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/toolbox"))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.REDSTONE_BLOCK)));
 	}
 
 	@Override
@@ -837,8 +842,18 @@ public class UFModelProvider extends FabricModelProvider {
 
 	private static final ModelTemplate MANHOLE_OPEN = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/manhole_open")),
-			Optional.of("open"),
+			Optional.of("_open"),
 			SLOT_0, SLOT_1, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TOOLBOX = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/toolbox")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate TOOLBOX_OPEN = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/toolbox_open")),
+			Optional.of("_open"),
+			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -1438,6 +1453,28 @@ public class UFModelProvider extends FabricModelProvider {
 		);
 
 		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(ManholeBlock.OPEN, ManholeBlock.FACING);
+		for (var entry : modelMap.entrySet()) {
+			boolean blockstate = entry.getKey();
+			ResourceLocation model = entry.getValue();
+			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
+					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
+		}
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.delegateItemModel(block, modelClosed);
+	}
+
+	private void registerToolbox(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation modelClosed = TOOLBOX.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelOpen = TOOLBOX_OPEN.create(block, tm, blockModelGenerators.modelOutput);
+		Map<Boolean, ResourceLocation> modelMap = Map.of(
+				false, modelClosed,
+				true, modelOpen
+		);
+
+		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(ToolboxBlock.OPEN, ToolboxBlock.FACING);
 		for (var entry : modelMap.entrySet()) {
 			boolean blockstate = entry.getKey();
 			ResourceLocation model = entry.getValue();

@@ -35,6 +35,7 @@ public class UnusualFurnitureClient {
 		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("trash")));
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("manhole")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorative_toolbox")));
 		PlatformUtils.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
 						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)

@@ -3,6 +3,6 @@
   "textures": {
     "0": "unusual_furniture:block/manhole",
     "1": "unusual_furniture:block/manhole_open",
-    "particle": "unusual_furniture:block/emergency_fire_hydrant"
+    "particle": "unusual_furniture:block/manhole"
   }
 }

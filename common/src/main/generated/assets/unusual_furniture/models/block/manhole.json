@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/manhole",
   "textures": {
     "0": "unusual_furniture:block/manhole",
-    "particle": "unusual_furniture:block/emergency_fire_hydrant"
+    "particle": "unusual_furniture:block/manhole"
   }
 }
