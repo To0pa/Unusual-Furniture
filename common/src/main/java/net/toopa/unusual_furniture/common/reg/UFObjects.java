@@ -33,6 +33,7 @@ import net.toopa.unusual_furniture.common.block.LargeHangingPotBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
+import net.toopa.unusual_furniture.common.block.PosterBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
@@ -65,105 +66,110 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public interface UFObjects {
+public final class UFObjects {
+
+	private UFObjects() {}
 
 	/* --------------------------------------------------------------------- */
 	/* Creative-tab grouping                                                  */
 	/* --------------------------------------------------------------------- */
 
-	List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
-	List<Map<Block, ResourceLocation>> BUILDING_BLOCKS = new ArrayList<>();
-	List<Map<Block, ResourceLocation>> PROPS_BLOCKS = new ArrayList<>();
+	public static final List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
+	public static final List<Map<Block, ResourceLocation>> BUILDING_BLOCKS = new ArrayList<>();
+	public static final List<Map<Block, ResourceLocation>> PROPS_BLOCKS = new ArrayList<>();
 
-	List<Map<Item, ResourceLocation>> FURNITURE_ITEMS = new ArrayList<>();
-	List<Map<Item, ResourceLocation>> BUILDING_ITEMS = new ArrayList<>();
-	List<Map<Item, ResourceLocation>> PROPS_ITEMS = new ArrayList<>();
-	List<Map<Item, ResourceLocation>> ALL_ITEMS = new ArrayList<>();
+	public static final List<Map<Item, ResourceLocation>> FURNITURE_ITEMS = new ArrayList<>();
+	public static final List<Map<Item, ResourceLocation>> BUILDING_ITEMS = new ArrayList<>();
+	public static final List<Map<Item, ResourceLocation>> PROPS_ITEMS = new ArrayList<>();
+	public static final List<Map<Item, ResourceLocation>> ALL_ITEMS = new ArrayList<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant lookup                                                         */
 	/* --------------------------------------------------------------------- */
 
-	Map<Block, WoodSet> BLOCK_TO_WOODSET = new LinkedHashMap<>();
-	Map<Block, DyeSet> BLOCK_TO_DYESET = new LinkedHashMap<>();
+	public static final Map<Block, WoodSet> BLOCK_TO_WOODSET = new LinkedHashMap<>();
+	public static final Map<Block, DyeSet> BLOCK_TO_DYESET = new LinkedHashMap<>();
 
-	Map<String, WoodSet> WOOD_SETS = new LinkedHashMap<>();
+	public static final Map<String, WoodSet> WOOD_SETS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Per-type registries                                                    */
 	/* --------------------------------------------------------------------- */
 
-	Map<Block, ResourceLocation> INDUSTRIAL_TABLE_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> INDUSTRIAL_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> INDUSTRIAL_TABLE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> INDUSTRIAL_TABLE_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> TABLE_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> TABLE_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> TABLE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> TABLE_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> CHAIR_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> CHAIR_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> CHAIR_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> CHAIR_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> STOOL_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> STOOL_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> STOOL_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> STOOL_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> SOFA_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> SOFA_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> SOFA_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> SOFA_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> CURTAIN_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> CURTAIN_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> CURTAIN_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> CURTAIN_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> CEILING_LAMP_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> CEILING_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> CEILING_LAMP_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> CEILING_LAMP_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> DRAWER_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> DRAWER_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> DRAWER_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> DRAWER_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> BENCH_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> BENCH_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> BENCH_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> BENCH_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> SHELF_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> SHELF_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> SHELF_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> SHELF_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> CARVED_PLANK_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> CARVED_PLANK_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> CARVED_PLANK_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> CARVED_PLANK_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> OPEN_RISER_STAIR_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> OPEN_RISER_STAIR_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> OPEN_RISER_STAIR_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> OPEN_RISER_STAIR_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> RAILING_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> RAILING_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> RAILING_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> RAILING_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> LAMP_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> LAMP_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> LAMP_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> LAMP_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> BAG_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> BAG_ITEMS = new LinkedHashMap<>();
 
-	Map<Block, ResourceLocation> BAG_BLOCKS = new LinkedHashMap<>();
-	Map<Item, ResourceLocation> BAG_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> POSTER_BLOCK = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> POSTER_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
 	/* --------------------------------------------------------------------- */
 
-	record WoodDef(String name, Block base) {
+	public record WoodDef(String name, Block base) {
 	}
 
-	record DyeDef(String name, Block wool) {
+	public record DyeDef(String name, Block wool) {
 	}
 
-	List<WoodDef> WOODS = List.of(
+	public static final List<WoodDef> WOODS = List.of(
 			new WoodDef("oak", Blocks.OAK_PLANKS),
 			new WoodDef("spruce", Blocks.SPRUCE_PLANKS),
 			new WoodDef("birch", Blocks.BIRCH_PLANKS),
@@ -177,7 +183,7 @@ public interface UFObjects {
 			new WoodDef("warped", Blocks.WARPED_PLANKS)
 	);
 
-	List<DyeDef> DYES = List.of(
+	public static final List<DyeDef> DYES = List.of(
 			new DyeDef("white", Blocks.WHITE_WOOL),
 			new DyeDef("light_gray", Blocks.LIGHT_GRAY_WOOL),
 			new DyeDef("gray", Blocks.GRAY_WOOL),
@@ -200,10 +206,10 @@ public interface UFObjects {
 	/* Items                                                                  */
 	/* --------------------------------------------------------------------- */
 
-	DiscordItem DISCORD_ITEM =
+	public static final DiscordItem DISCORD_ITEM =
 			registerItem("discord", new DiscordItem(new Item.Properties()), FURNITURE_MAP());
 
-	Item SCREW_ITEM =
+	public static final Item SCREW_ITEM =
 			registerItem("screw", new Item(new Item.Properties()), PROPS_MAP());
 
 	private static Map<Item, ResourceLocation> ALL_MAP() {
@@ -228,7 +234,7 @@ public interface UFObjects {
 	/* Init                                                                   */
 	/* --------------------------------------------------------------------- */
 
-	static void init() {
+	public static void init() {
 
 		/* ---------- Wood furniture ---------- */
 
@@ -300,6 +306,7 @@ public interface UFObjects {
 		registerHangingPotBlock("hanging_pot");
 		registerLargeHangingPotBlock("large_hanging_pot");
 		registerWoodenHangingPotBlock("wooden_hanging_pot");
+		registerPosterBlock("poster");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -324,6 +331,7 @@ public interface UFObjects {
 
 		addProps(BAG_BLOCKS, BAG_ITEMS);
 		addProps(POT_BLOCKS, POT_ITEMS);
+		addProps(POSTER_BLOCK, POSTER_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -461,6 +469,7 @@ public interface UFObjects {
 	private static HangingPotBlock registerHangingPotBlock(String n) { return registerWithItem(n, HangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
+	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCK, POSTER_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
@@ -468,11 +477,11 @@ public interface UFObjects {
 		return item;
 	}
 
-	static @Nullable WoodSet getWoodSet(Block block) {
+	public static @Nullable WoodSet getWoodSet(Block block) {
 		return BLOCK_TO_WOODSET.get(block);
 	}
 
-	static @Nullable DyeSet getDyeSet(Block block) {
+	public static @Nullable DyeSet getDyeSet(Block block) {
 		return BLOCK_TO_DYESET.get(block);
 	}
 }

@@ -7,9 +7,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
-public interface UFEntityTypes {
+public final class UFEntityTypes {
 
-	EntityType<SeatEntity> SEAT = Registry.register(BuiltInRegistries.ENTITY_TYPE, "seat",
+	public UFEntityTypes() {}
+
+	public static final EntityType<SeatEntity> SEAT = Registry.register(BuiltInRegistries.ENTITY_TYPE, "seat",
 			EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
 					.sized(1, 1)
 					.noSave()
@@ -17,6 +19,6 @@ public interface UFEntityTypes {
 					.noSummon()
 					.build("seat"));
 
-	static void init() {
+	public static void init() {
 	}
 }

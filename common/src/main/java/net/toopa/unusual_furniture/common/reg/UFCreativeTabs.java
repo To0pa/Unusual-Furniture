@@ -10,10 +10,12 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
-public interface UFCreativeTabs {
+public final class UFCreativeTabs {
 
-	ResourceKey<CreativeModeTab> FURNITURE_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("01_furniture"));
-	CreativeModeTab FURNITURE_TAB = PlatformUtils.creativeModeTabBuilder()
+	public UFCreativeTabs() {}
+
+	public static final ResourceKey<CreativeModeTab> FURNITURE_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("01_furniture"));
+	public static final CreativeModeTab FURNITURE_TAB = PlatformUtils.creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("oak").chair()))
 			.displayItems((itemDisplayParameters, output) -> {
@@ -22,8 +24,8 @@ public interface UFCreativeTabs {
 			})
 			.build();
 
-	ResourceKey<CreativeModeTab> PROPS_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("02_props"));
-	CreativeModeTab PROPS_TAB = PlatformUtils.creativeModeTabBuilder()
+	public static final ResourceKey<CreativeModeTab> PROPS_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("02_props"));
+	public static final CreativeModeTab PROPS_TAB = PlatformUtils.creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture_props"))
 			.icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(UnusualFurniture.id("huge_pot"))))
 			.displayItems((itemDisplayParameters, output) -> {
@@ -32,8 +34,8 @@ public interface UFCreativeTabs {
 			})
 			.build();
 
-	ResourceKey<CreativeModeTab> BUILDING_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("03_building"));
-	CreativeModeTab BUILDING_TAB = PlatformUtils.creativeModeTabBuilder()
+	public static final ResourceKey<CreativeModeTab> BUILDING_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("03_building"));
+	public static final CreativeModeTab BUILDING_TAB = PlatformUtils.creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_tab_2"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("acacia").open_riser_stairs()))
 			.displayItems((itemDisplayParameters, output) -> {
@@ -42,7 +44,7 @@ public interface UFCreativeTabs {
 			})
 			.build();
 
-	static void init() {
+	public static void init() {
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, FURNITURE_TAB_KEY, FURNITURE_TAB);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PROPS_TAB_KEY, PROPS_TAB);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, BUILDING_TAB_KEY, BUILDING_TAB);

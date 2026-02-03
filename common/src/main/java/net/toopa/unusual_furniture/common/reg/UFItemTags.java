@@ -7,9 +7,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-public interface UFItemTags {
+public final class UFItemTags {
 
-	TagKey<Item> COMMON_WATER_BUCKETS = createTag("buckets/water");
+	private UFItemTags() {}
+
+	public static final TagKey<Item> COMMON_WATER_BUCKETS = createTag("buckets/water");
 
 	private static TagKey<Item> createTag(String name) {
 		return TagKey.create(Registries.ITEM, UnusualFurniture.id(name));
