@@ -373,6 +373,14 @@ public class UFModelProvider extends FabricModelProvider {
 		registerTrash(blockModelGenerators, trash,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/trash_can"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/carved_spruce_alternate")));
+		Block fireHydrant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("fire_hydrant"));
+		Block emergencyFireHydrant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("emergency_fire_hydrant"));
+		registerFireHydrant(blockModelGenerators, fireHydrant,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(fireHydrant))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(fireHydrant)));
+		registerFireHydrant(blockModelGenerators, emergencyFireHydrant,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(emergencyFireHydrant))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(emergencyFireHydrant)));
 	}
 
 	@Override
@@ -809,6 +817,11 @@ public class UFModelProvider extends FabricModelProvider {
 	private static final ModelTemplate TRASH_TOP = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/trash_top")),
 			Optional.of("_top"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate FIRE_HYDRANT = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/fire_hydrant")),
+			Optional.empty(),
 			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
@@ -1391,6 +1404,13 @@ public class UFModelProvider extends FabricModelProvider {
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 		blockModelGenerators.delegateItemModel(block, modelItem);
+	}
+
+	private void registerFireHydrant(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = FIRE_HYDRANT.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model)));
+		blockModelGenerators.delegateItemModel(block, model);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

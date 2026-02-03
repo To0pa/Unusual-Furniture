@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/fire_hydrant",
+  "textures": {
+    "0": "unusual_furniture:block/fire_hydrant",
+    "particle": "unusual_furniture:block/fire_hydrant"
+  }
+}

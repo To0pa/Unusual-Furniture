@@ -19,6 +19,7 @@ import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FireHydrantBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.FudgePotBlock;
@@ -160,11 +161,14 @@ public final class UFObjects {
 	public static final Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
 
 	// TODO: maybe for blocks that are alone we need a better way of registering them...
-	public static final Map<Block, ResourceLocation> POSTER_BLOCK = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> POSTER_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> POSTER_ITEMS = new LinkedHashMap<>();
 
-	public static final Map<Block, ResourceLocation> TRASH_BLOCK = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> TRASH_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> TRASH_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> FIRE_HYDRANT_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> FIRE_HYDRANT_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -315,6 +319,8 @@ public final class UFObjects {
 		registerWoodenHangingPotBlock("wooden_hanging_pot");
 		registerPosterBlock("poster");
 		registerTrashBlock("trash");
+		registerFireHydrantBlock("fire_hydrant");
+		registerFireHydrantBlock("emergency_fire_hydrant");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -339,8 +345,9 @@ public final class UFObjects {
 
 		addProps(BAG_BLOCKS, BAG_ITEMS);
 		addProps(POT_BLOCKS, POT_ITEMS);
-		addProps(POSTER_BLOCK, POSTER_ITEMS);
-		addProps(TRASH_BLOCK, TRASH_ITEMS);
+		addProps(POSTER_BLOCKS, POSTER_ITEMS);
+		addProps(TRASH_BLOCKS, TRASH_ITEMS);
+		addProps(FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -481,8 +488,9 @@ public final class UFObjects {
 	private static HangingPotBlock registerHangingPotBlock(String n) { return registerWithItem(n, HangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
-	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCK, POSTER_ITEMS); }
-	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_SIGN, TRASH_BLOCK, TRASH_ITEMS); }
+	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCKS, POSTER_ITEMS); }
+	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, TRASH_BLOCKS, TRASH_ITEMS); }
+	private static FireHydrantBlock registerFireHydrantBlock(String n) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
