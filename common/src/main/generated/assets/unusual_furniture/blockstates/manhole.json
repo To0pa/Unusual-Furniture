@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,open=false": {
+      "model": "unusual_furniture:block/manhole",
+      "y": 90
+    },
+    "facing=east,open=true": {
+      "model": "unusual_furniture:block/manholeopen",
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "unusual_furniture:block/manhole"
+    },
+    "facing=north,open=true": {
+      "model": "unusual_furniture:block/manholeopen"
+    },
+    "facing=south,open=false": {
+      "model": "unusual_furniture:block/manhole",
+      "y": 180
+    },
+    "facing=south,open=true": {
+      "model": "unusual_furniture:block/manholeopen",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "unusual_furniture:block/manhole",
+      "y": 270
+    },
+    "facing=west,open=true": {
+      "model": "unusual_furniture:block/manholeopen",
+      "y": 270
+    }
+  }
+}

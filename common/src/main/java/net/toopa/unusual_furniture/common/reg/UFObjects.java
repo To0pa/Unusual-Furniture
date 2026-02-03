@@ -31,6 +31,7 @@ import net.toopa.unusual_furniture.common.block.IndustrialTableBlock;
 import net.toopa.unusual_furniture.common.block.IronBeamBlock;
 import net.toopa.unusual_furniture.common.block.IronLampBlock;
 import net.toopa.unusual_furniture.common.block.LargeHangingPotBlock;
+import net.toopa.unusual_furniture.common.block.ManholeBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
@@ -169,6 +170,9 @@ public final class UFObjects {
 
 	public static final Map<Block, ResourceLocation> FIRE_HYDRANT_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> FIRE_HYDRANT_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> MANHOLE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> MANHOLE_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -321,6 +325,7 @@ public final class UFObjects {
 		registerTrashBlock("trash");
 		registerFireHydrantBlock("fire_hydrant");
 		registerFireHydrantBlock("emergency_fire_hydrant");
+		registerManholeBlock("manhole");
 
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
@@ -348,6 +353,7 @@ public final class UFObjects {
 		addProps(POSTER_BLOCKS, POSTER_ITEMS);
 		addProps(TRASH_BLOCKS, TRASH_ITEMS);
 		addProps(FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS);
+		addProps(MANHOLE_BLOCKS, MANHOLE_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -491,6 +497,7 @@ public final class UFObjects {
 	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCKS, POSTER_ITEMS); }
 	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, TRASH_BLOCKS, TRASH_ITEMS); }
 	private static FireHydrantBlock registerFireHydrantBlock(String n) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
+	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
