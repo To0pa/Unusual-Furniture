@@ -237,113 +237,94 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffee_table))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		Block decoratedIronBeam = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorated_iron_beam"));
-		Block ironBeam = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("iron_beam"));
-		registerDecoratedIronBeam(blockModelGenerators, decoratedIronBeam,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(decoratedIronBeam))
+		registerDecoratedIronBeam(blockModelGenerators, UFObjects.DECORATED_IRON_BEAM,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		registerIronBeam(blockModelGenerators, ironBeam,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(decoratedIronBeam))
+		registerIronBeam(blockModelGenerators, UFObjects.IRON_BEAM,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		Block floorLampDecorationBat = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("floor_lamp_decoration_bat"));
-		Block floorLampDecorationVillager = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("floor_lamp_decoration_villager"));
-		registerFloorLampDecorationBat(blockModelGenerators, floorLampDecorationBat,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(floorLampDecorationBat))
+		registerFloorLampDecorationBat(blockModelGenerators, UFObjects.FLOOR_LAMP_DECORATION_BAT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.FLOOR_LAMP_DECORATION_BAT))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		registerFloorLampDecorationVillager(blockModelGenerators, floorLampDecorationVillager,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(floorLampDecorationVillager))
+		registerFloorLampDecorationVillager(blockModelGenerators, UFObjects.FLOOR_LAMP_DECORATION_VILLAGER,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.FLOOR_LAMP_DECORATION_VILLAGER))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		Block ironLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("iron_lamp"));
-		Block sphereLamp = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("sphere_lamp"));
-		registerIronLamp(blockModelGenerators, ironLamp,
+		registerIronLamp(blockModelGenerators, UFObjects.IRON_LAMP,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/street_lamps_off"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		registerSphereLamp(blockModelGenerators, sphereLamp,
+		registerSphereLamp(blockModelGenerators, UFObjects.SPHERE_LAMP,
 				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)),
 				new TextureMapping().put(SLOT_1, UnusualFurniture.id("block/street_lamps_off"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.YELLOW_STAINED_GLASS)));
-		Block greekPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("greek_pot"));
-		Block hugePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("huge_pot"));
-		Block stonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("stone_pot"));
-		Block tallTerracottaPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tall_terracotta_pot"));
-		Block bauhausPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("bauhaus_pot"));
-		Block blackstonePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("blackstone_pot"));
-		Block fudgePot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("fudge_pot"));
-		Block hangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("hanging_pot"));
-		Block largeHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("large_hanging_pot"));
-		Block woodenHangingPot = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("wooden_hanging_pot"));
-		registerPot(blockModelGenerators, greekPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(greekPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(greekPot)),
+		registerPot(blockModelGenerators, UFObjects.GREEK_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.GREEK_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.GREEK_POT)),
 				GREEK_POT);
-		registerPot(blockModelGenerators, hugePot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hugePot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hugePot)),
+		registerPot(blockModelGenerators, UFObjects.HUGE_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.HUGE_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.HUGE_POT)),
 				HUGE_POT);
-		registerPot(blockModelGenerators, stonePot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(stonePot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(stonePot)),
+		registerPot(blockModelGenerators, UFObjects.STONE_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.STONE_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.STONE_POT)),
 				STONE_POT);
-		registerPot(blockModelGenerators, tallTerracottaPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+		registerPot(blockModelGenerators, UFObjects.TALL_TERRACOTTA_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.HANGING_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.HANGING_POT)),
 				TALL_TERRACOTTA_POT);
-		registerPot(blockModelGenerators, bauhausPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(bauhausPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(bauhausPot)),
+		registerPot(blockModelGenerators, UFObjects.BAUHAUS_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.BAUHAUS_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.BAUHAUS_POT)),
 				BAUHAUS_POT);
-		registerPot(blockModelGenerators, blackstonePot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(blackstonePot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(blackstonePot)),
+		registerPot(blockModelGenerators, UFObjects.BLACKSTONE_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.BLACKSTONE_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.BLACKSTONE_POT)),
 				BLACKSTONE_POT);
-		registerPot(blockModelGenerators, fudgePot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(fudgePot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(fudgePot)),
+		registerPot(blockModelGenerators, UFObjects.FUDGE_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.FUDGE_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.FUDGE_POT)),
 				FUDGE_POT);
-		registerPot(blockModelGenerators, hangingPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+		registerPot(blockModelGenerators, UFObjects.HANGING_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.HANGING_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.HANGING_POT)),
 				HANGING_POT);
-		registerPot(blockModelGenerators, largeHangingPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(hangingPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(hangingPot)),
+		registerPot(blockModelGenerators, UFObjects.LARGE_HANGING_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.HANGING_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.HANGING_POT)),
 				LARGE_HANGING_POT);
-		registerPot(blockModelGenerators, woodenHangingPot,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(woodenHangingPot))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(woodenHangingPot)),
+		registerPot(blockModelGenerators, UFObjects.WOODEN_HANGING_POT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.WOODEN_HANGING_POT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.WOODEN_HANGING_POT)),
 				WOODEN_HANGING_POT);
-		Block tropicalPlant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant"));
-		Block tropicalPlantWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall"));
-		registerTropicalPlant(blockModelGenerators, tropicalPlant,
+		registerTropicalPlant(blockModelGenerators, UFObjects.TROPICAL_PLANT,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
+		Block tropicalPlantWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall"));
 		registerWallTropicalPlant(blockModelGenerators, tropicalPlantWall,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/jungle_plant"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/jungle_plant")));
-		Block mushroomPatch = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("mushroom_patch"));
-		Block mushroomPatchWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("mushroom_patch_wall"));
-		registerMushroomPatch(blockModelGenerators, mushroomPatch,
+		registerMushroomPatch(blockModelGenerators, UFObjects.MUSHROOM_PATCH,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/red_mushroom"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/red_mushroom")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/brown_mushroom"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/brown_mushroom")));
+		Block mushroomPatchWall = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("mushroom_patch_wall"));
 		registerWallMushroomPatch(blockModelGenerators, mushroomPatchWall,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/red_mushroom"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/red_mushroom")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/brown_mushroom"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/brown_mushroom")));
-		Block waterPlant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants"));
-		Block waterPlantWater = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water"));
-		registerWaterPlants(blockModelGenerators, waterPlant,
+		registerWaterPlants(blockModelGenerators, UFObjects.WATER_PLANTS,
 				new TextureMapping().put(TextureSlot.CROSS, UnusualFurniture.id("block/small_cattail"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/small_cattail")),
 				new TextureMapping().put(TextureSlot.CROSS, UnusualFurniture.id("block/large_cattail1"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/large_cattail1")),
 				new TextureMapping().put(TextureSlot.CROSS, UnusualFurniture.id("block/large_cattail2"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/large_cattail2")));
+		Block waterPlantWater = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water"));
 		registerWaterPlantsWater(blockModelGenerators, waterPlantWater,
 				new TextureMapping().put(TextureSlot.TEXTURE, UnusualFurniture.id("block/small_lily"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/small_lily")),
@@ -351,12 +332,10 @@ public class UFModelProvider extends FabricModelProvider {
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/scum1")),
 				new TextureMapping().put(TextureSlot.TEXTURE, UnusualFurniture.id("block/scum2"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/scum2")));
-		Block pebbleBag = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("pebble_bag"));
-		registerPebbleBag(blockModelGenerators, pebbleBag,
+		registerPebbleBag(blockModelGenerators, UFObjects.PEBBLE_BAG,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/pebbles"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.COBBLESTONE)));
-		Block poster = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("poster"));
-		registerPoster(blockModelGenerators, poster,
+		registerPoster(blockModelGenerators, UFObjects.POSTER,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster1"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster1")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster2"))
@@ -371,25 +350,20 @@ public class UFModelProvider extends FabricModelProvider {
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster6")),
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/poster7"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/poster7")));
-		Block trash = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("trash"));
-		registerTrash(blockModelGenerators, trash,
+		registerTrash(blockModelGenerators, UFObjects.TRASH,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/trash_can"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/carved_spruce_alternate")));
-		Block fireHydrant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("fire_hydrant"));
-		Block emergencyFireHydrant = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("emergency_fire_hydrant"));
-		registerFireHydrant(blockModelGenerators, fireHydrant,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(fireHydrant))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(fireHydrant)));
-		registerFireHydrant(blockModelGenerators, emergencyFireHydrant,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(emergencyFireHydrant))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(emergencyFireHydrant)));
-		Block manhole = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("manhole"));
-		registerManhole(blockModelGenerators, manhole,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(manhole))
+		registerFireHydrant(blockModelGenerators, UFObjects.FIRE_HYDRANT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.FIRE_HYDRANT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.FIRE_HYDRANT)));
+		registerFireHydrant(blockModelGenerators, UFObjects.EMERGENCY_FIRE_HYDRANT,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.EMERGENCY_FIRE_HYDRANT))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.EMERGENCY_FIRE_HYDRANT)));
+		registerManhole(blockModelGenerators, UFObjects.MANHOLE,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.MANHOLE))
 						.put(SLOT_1, UnusualFurniture.id("block/manhole_open"))
-						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(manhole)));
-		Block toolbox = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorative_toolbox"));
-		registerToolbox(blockModelGenerators, toolbox,
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.MANHOLE)));
+		registerToolbox(blockModelGenerators, UFObjects.DECORATIVE_TOOLBOX,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/toolbox"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.REDSTONE_BLOCK)));
 	}

@@ -1,12 +1,11 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -93,6 +92,6 @@ public class WaterPlantsBlock extends AbstractBagBlock {
 
 	@Override
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-		return new ItemStack(BuiltInRegistries.ITEM.get(UnusualFurniture.id("water_plants")));
+		return new ItemStack(UFObjects.WATER_PLANTS);
 	}
 }

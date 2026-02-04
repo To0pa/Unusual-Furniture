@@ -1,6 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,18 +29,10 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-
 import net.minecraft.world.phys.BlockHitResult;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
-
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
 
 public class ToolboxBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 

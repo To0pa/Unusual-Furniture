@@ -27,7 +27,7 @@ public final class UFCreativeTabs {
 	public static final ResourceKey<CreativeModeTab> PROPS_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("02_props"));
 	public static final CreativeModeTab PROPS_TAB = PlatformUtils.creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture_props"))
-			.icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(UnusualFurniture.id("huge_pot"))))
+			.icon(() -> new ItemStack(UFObjects.HUGE_POT))
 			.displayItems((itemDisplayParameters, output) -> {
 				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
 				UFObjects.PROPS_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));

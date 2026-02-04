@@ -1,6 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,21 +16,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
 import net.minecraft.world.level.material.PushReaction;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-import org.jspecify.annotations.Nullable;
-
-import java.util.Map;
 
 public class TrashBlock extends HorizontalDirectionalBlock {
 
@@ -34,7 +30,7 @@ public class TrashBlock extends HorizontalDirectionalBlock {
 	private static final MapCodec<TrashBlock> CODEC = simpleCodec(TrashBlock::new);
 	private static final VoxelShape TOP_SHAPE = Shapes.or(
 			box(1, 0, 1, 15, 9, 15),
-			box( 3, 2, 1, 13, 8, 13)
+			box(3, 2, 1, 13, 8, 13)
 	).optimize();
 	private static final Map<Direction, VoxelShape> TOP_SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(TOP_SHAPE);
 	private static final VoxelShape BOTTOM_SHAPE = box(1, 0, 1, 15, 16, 15);

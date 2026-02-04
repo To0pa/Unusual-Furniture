@@ -299,39 +299,6 @@ public final class UFObjects {
 			}
 		}
 
-		//TODO: make them variables to not have to look them up through strings
-		registerIndustrialTable("industrial_table");
-		registerIndustrialCoffeeTable("industrial_coffee_table");
-		registerCopperLamp("copper_ceiling_lamp");
-		registerDecoratedIronBeam("decorated_iron_beam");
-		registerIronBeam("iron_beam");
-
-		registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat");
-		registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager");
-		registerIronLampBlock("iron_lamp");
-		registerSphereLampBlock("sphere_lamp");
-
-		registerTropicalPlantBlock("tropical_plant");
-		registerMushroomPatchBlock("mushroom_patch");
-		registerWaterPlantsBlock("water_plants");
-		registerPebbleBagBlock("pebble_bag");
-		registerGreekPotBlock("greek_pot");
-		registerHugePotBlock("huge_pot");
-		registerStonePotBlock("stone_pot");
-		registerTallTerracottaPotBlock("tall_terracotta_pot");
-		registerBauhausPotBlock("bauhaus_pot");
-		registerBlackstonePotBlock("blackstone_pot");
-		registerFudgePotBlock("fudge_pot");
-		registerHangingPotBlock("hanging_pot");
-		registerLargeHangingPotBlock("large_hanging_pot");
-		registerWoodenHangingPotBlock("wooden_hanging_pot");
-		registerPosterBlock("poster");
-		registerTrashBlock("trash");
-		registerFireHydrantBlock("fire_hydrant");
-		registerFireHydrantBlock("emergency_fire_hydrant");
-		registerManholeBlock("manhole");
-		registerToolboxBlock("decorative_toolbox");
-
 		/* ---------- Creative tab grouping ---------- */
 		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
 		addFurniture(TABLE_BLOCKS, TABLE_ITEMS);
@@ -374,7 +341,43 @@ public final class UFObjects {
 	}
 
 	/* --------------------------------------------------------------------- */
-	/* Helpers                                                                */
+	/* Other blocks                                                          */
+	/* --------------------------------------------------------------------- */
+
+	public static final IndustrialTableBlock INDUSTRIAL_TABLE = registerIndustrialTable("industrial_table");
+	public static final IndustrialCoffeeTableBlock INDUSTRIAL_COFFEE_TABLE = registerIndustrialCoffeeTable("industrial_coffee_table");
+	public static final CeilingLampBlock COPPER_CEILING_LAMP = registerCopperLamp("copper_ceiling_lamp");
+	public static final DecoratedIronBeamBlock DECORATED_IRON_BEAM = registerDecoratedIronBeam("decorated_iron_beam");
+	public static final IronBeamBlock IRON_BEAM = registerIronBeam("iron_beam");
+
+	public static final FloorLampDecorationBatBlock FLOOR_LAMP_DECORATION_BAT = registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat");
+	public static final FloorLampDecorationVillagerBlock FLOOR_LAMP_DECORATION_VILLAGER = registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager");
+	public static final IronLampBlock IRON_LAMP = registerIronLampBlock("iron_lamp");
+	public static final SphereLampBlock SPHERE_LAMP = registerSphereLampBlock("sphere_lamp");
+
+	public static final TropicalPlantBlock TROPICAL_PLANT = registerTropicalPlantBlock("tropical_plant");
+	public static final MushroomPatchBlock MUSHROOM_PATCH = registerMushroomPatchBlock("mushroom_patch");
+	public static final WaterPlantsLandBlock WATER_PLANTS = registerWaterPlantsBlock("water_plants");
+	public static final PebbleBagBlock PEBBLE_BAG = registerPebbleBagBlock("pebble_bag");
+	public static final GreekPotBlock GREEK_POT = registerGreekPotBlock("greek_pot");
+	public static final HugePotBlock HUGE_POT = registerHugePotBlock("huge_pot");
+	public static final StonePotBlock STONE_POT = registerStonePotBlock("stone_pot");
+	public static final TallTerracottaPotBlock TALL_TERRACOTTA_POT = registerTallTerracottaPotBlock("tall_terracotta_pot");
+	public static final BauhausPotBlock BAUHAUS_POT = registerBauhausPotBlock("bauhaus_pot");
+	public static final BlackstonePotBlock BLACKSTONE_POT = registerBlackstonePotBlock("blackstone_pot");
+	public static final FudgePotBlock FUDGE_POT = registerFudgePotBlock("fudge_pot");
+	public static final HangingPotBlock HANGING_POT = registerHangingPotBlock("hanging_pot");
+	public static final LargeHangingPotBlock LARGE_HANGING_POT = registerLargeHangingPotBlock("large_hanging_pot");
+	public static final WoodenHangingPotBlock WOODEN_HANGING_POT = registerWoodenHangingPotBlock("wooden_hanging_pot");
+	public static final PosterBlock POSTER = registerPosterBlock("poster");
+	public static final TrashBlock TRASH = registerTrashBlock("trash");
+	public static final FireHydrantBlock FIRE_HYDRANT = registerFireHydrantBlock("fire_hydrant");
+	public static final FireHydrantBlock EMERGENCY_FIRE_HYDRANT = registerFireHydrantBlock("emergency_fire_hydrant");
+	public static final ManholeBlock MANHOLE = registerManholeBlock("manhole");
+	public static final ToolboxBlock DECORATIVE_TOOLBOX = registerToolboxBlock("decorative_toolbox");
+
+	/* --------------------------------------------------------------------- */
+	/* Helpers                                                               */
 	/* --------------------------------------------------------------------- */
 
 	private static void addFurniture(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {

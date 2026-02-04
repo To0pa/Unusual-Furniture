@@ -3,12 +3,11 @@ package net.toopa.unusual_furniture.common.block;
 import java.util.Map;
 
 import com.mojang.serialization.MapCodec;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -76,6 +75,6 @@ public class WallMushroomPatchBlock extends AbstractWallBagBlock {
 
 	@Override
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-		return new ItemStack(BuiltInRegistries.ITEM.get(UnusualFurniture.id("mushroom_patch")));
+		return new ItemStack(UFObjects.MUSHROOM_PATCH);
 	}
 }
