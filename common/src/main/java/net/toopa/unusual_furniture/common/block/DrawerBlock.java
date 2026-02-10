@@ -32,7 +32,7 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements EntityBlo
 
 	public DrawerBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any()
+		registerDefaultState(defaultBlockState()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(OPEN, false));
 	}

@@ -382,6 +382,9 @@ public class UFModelProvider extends FabricModelProvider {
 		registerMenu(blockModelGenerators, UFObjects.BLACKBOARD_MENU,
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.BLACKBOARD_MENU))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM)));
+		registerWallClock(blockModelGenerators, UFObjects.WOODEN_CLOCK,
+				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/clock"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/clock")));
 	}
 
 	@Override
@@ -852,6 +855,11 @@ public class UFModelProvider extends FabricModelProvider {
 
 	private static final ModelTemplate BLACKBOARD_MANU = new ModelTemplate(
 			Optional.of(UnusualFurniture.id("custom/blackboard_menu")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate CLOCK = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/clock")),
 			Optional.empty(),
 			SLOT_0, TextureSlot.PARTICLE);
 
@@ -1414,6 +1422,15 @@ public class UFModelProvider extends FabricModelProvider {
 				.accept(
 						MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
 								.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerWallClock(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = CLOCK.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, model);
 	}
 

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/clock",
+  "textures": {
+    "0": "unusual_furniture:block/clock",
+    "particle": "unusual_furniture:block/clock"
+  }
+}
