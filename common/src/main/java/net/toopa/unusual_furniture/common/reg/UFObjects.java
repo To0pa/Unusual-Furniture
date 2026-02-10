@@ -12,6 +12,7 @@ import net.toopa.unusual_furniture.common.block.BarrierBlock;
 import net.toopa.unusual_furniture.common.block.BauhausPotBlock;
 import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.BlackboardMenuBlock;
 import net.toopa.unusual_furniture.common.block.BlackstonePotBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
@@ -381,9 +382,10 @@ public final class UFObjects {
 	public static final ManholeBlock MANHOLE = registerManholeBlock("manhole");
 	public static final ToolboxBlock DECORATIVE_TOOLBOX = registerToolboxBlock("decorative_toolbox");
 	public static final BarrierBlock WARNING_BARRIER = registerBarrierBlock("warning_barrier");
-	public static final BarrierBlock WORKS_BARRIER = registerBarrierBlock("road_works_barrier");
+	public static final BarrierBlock ROAD_WORKS_BARRIER = registerBarrierBlock("road_works_barrier");
 	public static final BarrierBlock DANGER_BARRIER = registerBarrierBlock("danger_barrier");
 	public static final BarrierBlock WOODEN_BARRIER = registerBarrierBlock("wooden_barrier");
+	public static final BlackboardMenuBlock BLACKBOARD_MENU = registerBlackboardMenuBlock("blackboard_menu");
 
 	/* --------------------------------------------------------------------- */
 	/* Helpers                                                               */
@@ -518,6 +520,7 @@ public final class UFObjects {
 	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
 	private static ToolboxBlock registerToolboxBlock(String n) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
 	private static BarrierBlock registerBarrierBlock(String n) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
+	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/blackboard_menu",
+  "textures": {
+    "0": "unusual_furniture:block/blackboard_menu",
+    "particle": "unusual_furniture:block/decorated_iron_beam"
+  }
+}

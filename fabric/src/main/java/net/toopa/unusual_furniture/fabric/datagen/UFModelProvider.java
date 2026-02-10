@@ -370,8 +370,8 @@ public class UFModelProvider extends FabricModelProvider {
 		registerBarrier(blockModelGenerators, UFObjects.WARNING_BARRIER,
 				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WARNING_BARRIER))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
-		registerBarrier(blockModelGenerators, UFObjects.WORKS_BARRIER,
-				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WORKS_BARRIER))
+		registerBarrier(blockModelGenerators, UFObjects.ROAD_WORKS_BARRIER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.ROAD_WORKS_BARRIER))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
 		registerBarrier(blockModelGenerators, UFObjects.DANGER_BARRIER,
 				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.DANGER_BARRIER))
@@ -379,6 +379,9 @@ public class UFModelProvider extends FabricModelProvider {
 		registerBarrier(blockModelGenerators, UFObjects.WOODEN_BARRIER,
 				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WOODEN_BARRIER))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerMenu(blockModelGenerators, UFObjects.BLACKBOARD_MENU,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.BLACKBOARD_MENU))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM)));
 	}
 
 	@Override
@@ -846,6 +849,11 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of(UnusualFurniture.id("custom/barrier")),
 			Optional.empty(),
 			SLOT_1, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BLACKBOARD_MANU = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/blackboard_menu")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -1396,6 +1404,16 @@ public class UFModelProvider extends FabricModelProvider {
 												.select(Direction.Axis.Z, Variant.variant())
 												.select(Direction.Axis.X, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
 								));
+		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerMenu(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = BLACKBOARD_MANU.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(
+						MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+								.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, model);
 	}
 
