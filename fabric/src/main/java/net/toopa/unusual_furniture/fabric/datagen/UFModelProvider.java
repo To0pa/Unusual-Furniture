@@ -1,6 +1,6 @@
 package net.toopa.unusual_furniture.fabric.datagen;
 
-import static net.minecraft.data.models.BlockModelGenerators.createHorizontalFacingDispatch;
+import static net.minecraft.data.models.BlockModelGenerators.*;
 
 import java.util.Map;
 import java.util.Optional;
@@ -829,39 +829,62 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of("_open"),
 			SLOT_0, TextureSlot.PARTICLE);
 
+	private static final ModelTemplate BARRIER = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/barrier")),
+			Optional.empty(),
+			SLOT_1, TextureSlot.PARTICLE);
+
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private void registerTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = WOODEN_TABLE.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private void registerCoffeeTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = COFFEE_TABLE.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private void registerSmallTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = SMALL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private void registerChair(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = CHAIR.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
 	private void registerStool(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = STOOL.create(block, tm, blockModelGenerators.modelOutput);
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, identifier)).with(createHorizontalFacingDispatch()));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, identifier))
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, identifier);
 	}
 
@@ -874,27 +897,21 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation innerRightModel = SOFA_INNER_RIGHT.create(block, tm0, blockModelGenerators.modelOutput);
 		ResourceLocation outerLeftModel = SOFA_OUTER_LEFT.create(block, tm1, blockModelGenerators.modelOutput);
 		ResourceLocation outerRightModel = SOFA_OUTER_RIGHT.create(block, tm1, blockModelGenerators.modelOutput);
-		Map<ModularSofaProperty, ResourceLocation> modelMap = Map.of(
-				ModularSofaProperty.SINGLE, singleModel,
-				ModularSofaProperty.LEFT, leftModel,
-				ModularSofaProperty.MIDDLE, middleModel,
-				ModularSofaProperty.RIGHT, rightModel,
-				ModularSofaProperty.INNER_LEFT, innerLeftModel,
-				ModularSofaProperty.INNER_RIGHT, innerRightModel,
-				ModularSofaProperty.OUTER_LEFT, outerLeftModel,
-				ModularSofaProperty.OUTER_RIGHT, outerRightModel
-		);
 
-		PropertyDispatch.C2<ModularSofaProperty, Direction> map = PropertyDispatch.properties(SofaBlock.SHAPE, SofaBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-		}
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		PropertyDispatch map = PropertyDispatch.property(SofaBlock.SHAPE)
+				.select(ModularSofaProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel))
+				.select(ModularSofaProperty.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel))
+				.select(ModularSofaProperty.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel))
+				.select(ModularSofaProperty.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel))
+				.select(ModularSofaProperty.INNER_LEFT, Variant.variant().with(VariantProperties.MODEL, innerLeftModel))
+				.select(ModularSofaProperty.INNER_RIGHT, Variant.variant().with(VariantProperties.MODEL, innerRightModel))
+				.select(ModularSofaProperty.OUTER_LEFT, Variant.variant().with(VariantProperties.MODEL, outerLeftModel))
+				.select(ModularSofaProperty.OUTER_RIGHT, Variant.variant().with(VariantProperties.MODEL, outerRightModel));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, singleModel);
 	}
 
@@ -902,11 +919,9 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation ceilingLampId = CEILING_LAMP.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation ceilingLampOnId = CEILING_LAMP_ON.create(block, tmOn, blockModelGenerators.modelOutput);
 
-		PropertyDispatch.C1<Boolean> propertyDispatch = PropertyDispatch.property(CeilingLampBlock.LIT);
-		propertyDispatch.select(true, Variant.variant().with(VariantProperties.MODEL, ceilingLampOnId));
-		propertyDispatch.select(false, Variant.variant().with(VariantProperties.MODEL, ceilingLampId));
-
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(propertyDispatch));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createBooleanModelDispatch(CeilingLampBlock.LIT, ceilingLampOnId, ceilingLampId)));
 		blockModelGenerators.delegateItemModel(block, ceilingLampId);
 	}
 
@@ -914,11 +929,10 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation drawerId = ModelTemplates.CUBE_ALL.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation drawerOpenId = DRAWER_OPEN.create(block, tmOpen, blockModelGenerators.modelOutput);
 
-		PropertyDispatch.C1<Boolean> propertyDispatch = PropertyDispatch.property(DrawerBlock.OPEN);
-		propertyDispatch.select(true, Variant.variant().with(VariantProperties.MODEL, drawerOpenId));
-		propertyDispatch.select(false, Variant.variant().with(VariantProperties.MODEL, drawerId));
-
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(createHorizontalFacingDispatch()).with(propertyDispatch));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(createBooleanModelDispatch(DrawerBlock.OPEN, drawerOpenId, drawerId)));
 	}
 
 	private void registerBench(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm0, TextureMapping tm1) {
@@ -926,23 +940,17 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation leftModel = BENCH_LEFT.create(block, tm0, blockModelGenerators.modelOutput);
 		ResourceLocation rightModel = BENCH_RIGHT.create(block, tm0, blockModelGenerators.modelOutput);
 		ResourceLocation singleModel = BENCH.create(block, tm1, blockModelGenerators.modelOutput);
-		Map<ModularBenchProperty, ResourceLocation> modelMap = Map.of(
-				ModularBenchProperty.SINGLE, singleModel,
-				ModularBenchProperty.LEFT, leftModel,
-				ModularBenchProperty.MIDDLE, middleModel,
-				ModularBenchProperty.RIGHT, rightModel
-		);
 
-		PropertyDispatch.C2<ModularBenchProperty, Direction> map = PropertyDispatch.properties(BenchBlock.SHAPE, BenchBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-		}
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		PropertyDispatch map = PropertyDispatch.property(BenchBlock.SHAPE)
+				.select(ModularBenchProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, singleModel))
+				.select(ModularBenchProperty.LEFT, Variant.variant().with(VariantProperties.MODEL, leftModel))
+				.select(ModularBenchProperty.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middleModel))
+				.select(ModularBenchProperty.RIGHT, Variant.variant().with(VariantProperties.MODEL, rightModel));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map)
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, singleModel);
 	}
 
@@ -959,31 +967,25 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation rightBottomOpenModel = RIGHT_BOTTOM_OPEN_CURTAIN.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation leftTopOpenModel = LEFT_TOP_OPEN_CURTAIN.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation rightTopOpenModel = RIGHT_TOP_OPEN_CURTAIN.create(block, tm, blockModelGenerators.modelOutput);
-		Map<ModularCurtainProperty, ResourceLocation> modelMap = Map.ofEntries(
-				Map.entry(ModularCurtainProperty.SINGLE_CLOSED, singleClosedCurtain),
-				Map.entry(ModularCurtainProperty.TOP_CLOSED, topClosedModel),
-				Map.entry(ModularCurtainProperty.MIDDLE_CLOSED, middleClosedModel),
-				Map.entry(ModularCurtainProperty.BOTTOM_CLOSED, bottomClosedModel),
-				Map.entry(ModularCurtainProperty.MIDDLE_OPEN, middleOpenModel),
-				Map.entry(ModularCurtainProperty.TOP_OPEN, topOpenModel),
-				Map.entry(ModularCurtainProperty.LEFT_MIDDLE_OPEN, leftMiddleOpenModel),
-				Map.entry(ModularCurtainProperty.RIGHT_MIDDLE_OPEN, rightMiddleOpenModel),
-				Map.entry(ModularCurtainProperty.LEFT_BOTTOM_OPEN, leftBottomOpenModel),
-				Map.entry(ModularCurtainProperty.RIGHT_BOTTOM_OPEN, rightBottomOpenModel),
-				Map.entry(ModularCurtainProperty.LEFT_TOP_OPEN, leftTopOpenModel),
-				Map.entry(ModularCurtainProperty.RIGHT_TOP_OPEN, rightTopOpenModel)
-		);
 
-		PropertyDispatch.C2<ModularCurtainProperty, Direction> map = PropertyDispatch.properties(CurtainBlock.SHAPE, CurtainBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-		}
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		PropertyDispatch map = PropertyDispatch.property(CurtainBlock.SHAPE)
+				.select(ModularCurtainProperty.SINGLE_CLOSED, Variant.variant().with(VariantProperties.MODEL, singleClosedCurtain))
+				.select(ModularCurtainProperty.TOP_CLOSED, Variant.variant().with(VariantProperties.MODEL, topClosedModel))
+				.select(ModularCurtainProperty.MIDDLE_CLOSED, Variant.variant().with(VariantProperties.MODEL, middleClosedModel))
+				.select(ModularCurtainProperty.BOTTOM_CLOSED, Variant.variant().with(VariantProperties.MODEL, bottomClosedModel))
+				.select(ModularCurtainProperty.MIDDLE_OPEN, Variant.variant().with(VariantProperties.MODEL, middleOpenModel))
+				.select(ModularCurtainProperty.TOP_OPEN, Variant.variant().with(VariantProperties.MODEL, topOpenModel))
+				.select(ModularCurtainProperty.LEFT_MIDDLE_OPEN, Variant.variant().with(VariantProperties.MODEL, leftMiddleOpenModel))
+				.select(ModularCurtainProperty.RIGHT_MIDDLE_OPEN, Variant.variant().with(VariantProperties.MODEL, rightMiddleOpenModel))
+				.select(ModularCurtainProperty.LEFT_BOTTOM_OPEN, Variant.variant().with(VariantProperties.MODEL, leftBottomOpenModel))
+				.select(ModularCurtainProperty.RIGHT_BOTTOM_OPEN, Variant.variant().with(VariantProperties.MODEL, rightBottomOpenModel))
+				.select(ModularCurtainProperty.LEFT_TOP_OPEN, Variant.variant().with(VariantProperties.MODEL, leftTopOpenModel))
+				.select(ModularCurtainProperty.RIGHT_TOP_OPEN, Variant.variant().with(VariantProperties.MODEL, rightTopOpenModel));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map)
+						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, singleClosedCurtain);
 	}
 
@@ -998,23 +1000,22 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation middle = ModelTemplates.CUBE.createWithSuffix(block, "_middle", tmMiddle, blockModelGenerators.modelOutput);
 		ResourceLocation top = ModelTemplates.CUBE.createWithSuffix(block, "_top", tmTop, blockModelGenerators.modelOutput);
 		ResourceLocation bottom = ModelTemplates.CUBE.createWithSuffix(block, "_bottom", tmBottom, blockModelGenerators.modelOutput);
-		Map<ModularCarvedPlanksProperty, ResourceLocation> modelMap = Map.of(
-				ModularCarvedPlanksProperty.SINGLE, single,
-				ModularCarvedPlanksProperty.MIDDLE, middle,
-				ModularCarvedPlanksProperty.TOP, top,
-				ModularCarvedPlanksProperty.BOTTOM, bottom
-		);
 
-		PropertyDispatch.C2<ModularCarvedPlanksProperty, Direction.Axis> map = PropertyDispatch.properties(CarvedPlanksBlock.SHAPE, CarvedPlanksBlock.AXIS);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.Axis.Y, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.Axis.X, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(shape, Direction.Axis.Z, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180));
-		}
+		PropertyDispatch connectMap = PropertyDispatch.property(CarvedPlanksBlock.SHAPE)
+				.select(ModularCarvedPlanksProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, single))
+				.select(ModularCarvedPlanksProperty.MIDDLE, Variant.variant().with(VariantProperties.MODEL, middle))
+				.select(ModularCarvedPlanksProperty.TOP, Variant.variant().with(VariantProperties.MODEL, top))
+				.select(ModularCarvedPlanksProperty.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottom));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		PropertyDispatch rotationMap = PropertyDispatch.property(CarvedPlanksBlock.AXIS)
+				.select(Direction.Axis.Y, Variant.variant())
+				.select(Direction.Axis.X, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.Axis.Z, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(connectMap)
+						.with(rotationMap));
 		blockModelGenerators.delegateItemModel(block, single);
 	}
 
@@ -1105,23 +1106,16 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation one = FLOOR_LAMP_DECORATION_BAT1.createWithSuffix(block, "1", tm, blockModelGenerators.modelOutput);
 		ResourceLocation two = FLOOR_LAMP_DECORATION_BAT2.createWithSuffix(block, "2", tm, blockModelGenerators.modelOutput);
 		ResourceLocation four = FLOOR_LAMP_DECORATION_BAT4.createWithSuffix(block, "4", tm, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, one,
-				1, two,
-				2, four
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(FloorLampDecorationBatBlock.NUMBER_OF_ARMS, FloorLampDecorationBatBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(FloorLampDecorationBatBlock.NUMBER_OF_ARMS)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, one))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, two))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, four));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, two);
 	}
 
@@ -1129,43 +1123,35 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation one = FLOOR_LAMP_DECORATION_VILLAGER1.createWithSuffix(block, "1", tm, blockModelGenerators.modelOutput);
 		ResourceLocation two = FLOOR_LAMP_DECORATION_VILLAGER2.createWithSuffix(block, "2", tm, blockModelGenerators.modelOutput);
 		ResourceLocation four = FLOOR_LAMP_DECORATION_VILLAGER4.createWithSuffix(block, "4", tm, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, one,
-				1, two,
-				2, four
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(FloorLampDecorationVillagerBlock.NUMBER_OF_ARMS, FloorLampDecorationVillagerBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			var shape = entry.getKey();
-			var model = entry.getValue();
-			map.select(shape, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(shape, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(shape, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(shape, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(FloorLampDecorationVillagerBlock.NUMBER_OF_ARMS)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, one))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, two))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, four));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, two);
 	}
 
 	private void registerSphereLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmOn, TextureMapping tmOff) {
 		ResourceLocation modelOn = SPHERE_LAMP.createWithSuffix(block, "_on", tmOn, blockModelGenerators.modelOutput);
 		ResourceLocation modelOff = SPHERE_LAMP.createWithSuffix(block, "_off", tmOff, blockModelGenerators.modelOutput);
-		Map<Boolean, ResourceLocation> modelMap = Map.of(
-				true, modelOn,
-				false, modelOff
-		);
-		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(SphereLampBlock.LIT, SphereLampBlock.FACING);
-		for (boolean bool : new boolean[]{true, false}) {
-			map.select(bool, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.select(bool, Direction.UP, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
-					.select(bool, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(bool, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)))
-					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(bool)).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
-		}
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+
+		PropertyDispatch map = PropertyDispatch.property(SphereLampBlock.FACING)
+				.select(Direction.DOWN, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
+				.select(Direction.UP, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.NORTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
+				.select(Direction.SOUTH, Variant.variant())
+				.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+				.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createBooleanModelDispatch(SphereLampBlock.LIT, modelOn, modelOff))
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, modelOff);
 	}
 
@@ -1199,7 +1185,9 @@ public class UFModelProvider extends FabricModelProvider {
 					.select(bool, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.WEST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
 					.select(bool, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, modelMap.get(Pair.of(bool, Direction.EAST))).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270));
 		}
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, modelOff);
 	}
 
@@ -1207,18 +1195,11 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation model1 = TROPICAL_PLANT_1.createWithSuffix(block, "_1", tm, blockModelGenerators.modelOutput);
 		ResourceLocation model2 = TROPICAL_PLANT_2.createWithSuffix(block, "_2", tm, blockModelGenerators.modelOutput);
 		ResourceLocation model3 = TROPICAL_PLANT_3.createWithSuffix(block, "_3", tm, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, model1,
-				1, model2,
-				2, model3
-		);
 
-		PropertyDispatch.C1<Integer> map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Variant.variant().with(VariantProperties.MODEL, model));
-		}
+		PropertyDispatch map = PropertyDispatch.property(TropicalPlantBlock.PLANT_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, model1))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, model2))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, model3));
 
 		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
 	}
@@ -1231,22 +1212,15 @@ public class UFModelProvider extends FabricModelProvider {
 	private void registerMushroomPatch(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmRed, TextureMapping tmBrown) {
 		ResourceLocation modelRed = MUSHROOM_PATCH.createWithSuffix(block, "_red", tmRed, blockModelGenerators.modelOutput);
 		ResourceLocation modelBrown = MUSHROOM_PATCH.createWithSuffix(block, "_brown", tmBrown, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, modelRed,
-				1, modelBrown
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(MushroomPatchBlock.PLANT_TYPE, MushroomPatchBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(MushroomPatchBlock.PLANT_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, modelRed))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, modelBrown));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 	}
 
 	private void registerWallMushroomPatch(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmRed, TextureMapping tmBrown) {
@@ -1254,67 +1228,48 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation model1Brown = MUSHROOM_PATCH_WALL1.createWithSuffix(block, "_1_brown", tmBrown, blockModelGenerators.modelOutput);
 		ResourceLocation model2Red = MUSHROOM_PATCH_WALL2.createWithSuffix(block, "_2_red", tmRed, blockModelGenerators.modelOutput);
 		ResourceLocation model2Brown = MUSHROOM_PATCH_WALL2.createWithSuffix(block, "_2_brown", tmBrown, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, model1Red,
-				1, model1Brown,
-				2, model2Red,
-				3, model2Brown
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(WallMushroomPatchBlock.PLANT_TYPE, WallMushroomPatchBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(WallMushroomPatchBlock.PLANT_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, model1Red))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, model1Brown))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, model2Red))
+				.select(3, Variant.variant().with(VariantProperties.MODEL, model2Brown));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 	}
 
 	private void registerWaterPlants(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmSingle, TextureMapping tmBottom, TextureMapping tmTop) {
-		ResourceLocation model1 = ModelTemplates.CROSS.create(block, tmSingle, blockModelGenerators.modelOutput);
-		ResourceLocation model2 = ModelTemplates.CROSS.createWithSuffix(block, "_big", tmTop, blockModelGenerators.modelOutput);
-		ResourceLocation model3 = ModelTemplates.CROSS.createWithSuffix(block, "_big_bottom", tmBottom, blockModelGenerators.modelOutput);
-		Map<WaterPlantProperty, ResourceLocation> modelMap = Map.of(
-				WaterPlantProperty.SINGLE, model1,
-				WaterPlantProperty.TOP, model2,
-				WaterPlantProperty.BOTTOM, model3
-		);
+		ResourceLocation modelSingle = ModelTemplates.CROSS.create(block, tmSingle, blockModelGenerators.modelOutput);
+		ResourceLocation modelTop = ModelTemplates.CROSS.createWithSuffix(block, "_big", tmTop, blockModelGenerators.modelOutput);
+		ResourceLocation modelBottom = ModelTemplates.CROSS.createWithSuffix(block, "_big_bottom", tmBottom, blockModelGenerators.modelOutput);
 
-		PropertyDispatch.C1<WaterPlantProperty> map = PropertyDispatch.property(WaterPlantsLandBlock.PLANT_TYPE);
-		for (var entry : modelMap.entrySet()) {
-			WaterPlantProperty blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Variant.variant().with(VariantProperties.MODEL, model));
-		}
+		PropertyDispatch map = PropertyDispatch.property(WaterPlantsLandBlock.PLANT_TYPE)
+				.select(WaterPlantProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, modelSingle))
+				.select(WaterPlantProperty.TOP, Variant.variant().with(VariantProperties.MODEL, modelTop))
+				.select(WaterPlantProperty.BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map));
 	}
 
 	private void registerWaterPlantsWater(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmLily, TextureMapping tmScum1, TextureMapping tmScum2) {
 		ResourceLocation model1 = LILY_PAD.createWithSuffix(block, "_lilypad", tmLily, blockModelGenerators.modelOutput);
 		ResourceLocation model2 = SCUM.createWithSuffix(block, "_scum_1", tmScum1, blockModelGenerators.modelOutput);
 		ResourceLocation model3 = SCUM.createWithSuffix(block, "_scum_2", tmScum2, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, model1,
-				1, model2,
-				2, model3
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(WaterPlantsBlock.PLANT_TYPE, WaterPlantsBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(WaterPlantsBlock.PLANT_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, model1))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, model2))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, model3));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 	}
 
 	private void registerPebbleBag(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tmLily) {
@@ -1323,26 +1278,19 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation model3 = PEBBLE3.createWithSuffix(block, "_2", tmLily, blockModelGenerators.modelOutput);
 		ResourceLocation model4 = PEBBLE4.createWithSuffix(block, "_3", tmLily, blockModelGenerators.modelOutput);
 		ResourceLocation model5 = PEBBLE5.createWithSuffix(block, "_4", tmLily, blockModelGenerators.modelOutput);
-		//TODO: the numbers don't correspond correctly
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, model1,
-				1, model2,
-				2, model3,
-				3, model4,
-				4, model5
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(PebbleBagBlock.PEBBLE_TYPE, PebbleBagBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		//TODO: the numbers don't correspond correctly to the original mod
+		PropertyDispatch map = PropertyDispatch.property(PebbleBagBlock.PEBBLE_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, model1))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, model2))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, model3))
+				.select(3, Variant.variant().with(VariantProperties.MODEL, model4))
+				.select(4, Variant.variant().with(VariantProperties.MODEL, model5));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 	}
 
 	private void registerPot(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm, ModelTemplate template) {
@@ -1363,51 +1311,35 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation model5 = POSTER.createWithSuffix(block, "_5", tm5, blockModelGenerators.modelOutput);
 		ResourceLocation model6 = POSTER.createWithSuffix(block, "_6", tm6, blockModelGenerators.modelOutput);
 		ResourceLocation model7 = POSTER.createWithSuffix(block, "_7", tm7, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, model1,
-				1, model2,
-				2, model3,
-				3, model4,
-				4, model5,
-				5, model6,
-				6, model7
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(PosterBlock.POSTER_TYPE, PosterBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-					.select(blockstate, Direction.UP, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.DOWN, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(PosterBlock.POSTER_TYPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, model1))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, model2))
+				.select(2, Variant.variant().with(VariantProperties.MODEL, model3))
+				.select(3, Variant.variant().with(VariantProperties.MODEL, model4))
+				.select(4, Variant.variant().with(VariantProperties.MODEL, model5))
+				.select(5, Variant.variant().with(VariantProperties.MODEL, model6))
+				.select(6, Variant.variant().with(VariantProperties.MODEL, model7));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createFacingDispatch())
+						.with(map));
 	}
 
 	private void registerTrash(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation modelItem = TRASH_ITEM.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation modelTop = TRASH_TOP.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation modelBottom = TRASH_BOTTOM.create(block, tm, blockModelGenerators.modelOutput);
-		Map<Integer, ResourceLocation> modelMap = Map.of(
-				0, modelBottom,
-				1, modelTop
-		);
 
-		PropertyDispatch.C2<Integer, Direction> map = PropertyDispatch.properties(TrashBlock.SHAPE, TrashBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			int blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
+		PropertyDispatch map = PropertyDispatch.property(TrashBlock.SHAPE)
+				.select(0, Variant.variant().with(VariantProperties.MODEL, modelBottom))
+				.select(1, Variant.variant().with(VariantProperties.MODEL, modelTop));
 
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(map));
 		blockModelGenerators.delegateItemModel(block, modelItem);
 	}
 
@@ -1421,44 +1353,22 @@ public class UFModelProvider extends FabricModelProvider {
 	private void registerManhole(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation modelClosed = MANHOLE.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation modelOpen = MANHOLE_OPEN.create(block, tm, blockModelGenerators.modelOutput);
-		Map<Boolean, ResourceLocation> modelMap = Map.of(
-				false, modelClosed,
-				true, modelOpen
-		);
 
-		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(ManholeBlock.OPEN, ManholeBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			boolean blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
-
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(createBooleanModelDispatch(ManholeBlock.OPEN, modelOpen, modelClosed)));
 		blockModelGenerators.delegateItemModel(block, modelClosed);
 	}
 
 	private void registerToolbox(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation modelClosed = TOOLBOX.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation modelOpen = TOOLBOX_OPEN.create(block, tm, blockModelGenerators.modelOutput);
-		Map<Boolean, ResourceLocation> modelMap = Map.of(
-				false, modelClosed,
-				true, modelOpen
-		);
 
-		PropertyDispatch.C2<Boolean, Direction> map = PropertyDispatch.properties(ToolboxBlock.OPEN, ToolboxBlock.FACING);
-		for (var entry : modelMap.entrySet()) {
-			boolean blockstate = entry.getKey();
-			ResourceLocation model = entry.getValue();
-			map.select(blockstate, Direction.NORTH, Variant.variant().with(VariantProperties.MODEL, model))
-					.select(blockstate, Direction.SOUTH, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-					.select(blockstate, Direction.WEST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-					.select(blockstate, Direction.EAST, Variant.variant().with(VariantProperties.MODEL, model).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90));
-		}
-
-		blockModelGenerators.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block).with(map));
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(createHorizontalFacingDispatch())
+						.with(createBooleanModelDispatch(ToolboxBlock.OPEN, modelOpen, modelClosed)));
 		blockModelGenerators.delegateItemModel(block, modelClosed);
 	}
 
