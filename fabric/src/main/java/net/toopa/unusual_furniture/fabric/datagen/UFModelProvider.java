@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.mojang.datafixers.util.Pair;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BarrierBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
@@ -366,6 +367,18 @@ public class UFModelProvider extends FabricModelProvider {
 		registerToolbox(blockModelGenerators, UFObjects.DECORATIVE_TOOLBOX,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/toolbox"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.REDSTONE_BLOCK)));
+		registerBarrier(blockModelGenerators, UFObjects.WARNING_BARRIER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WARNING_BARRIER))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerBarrier(blockModelGenerators, UFObjects.WORKS_BARRIER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WORKS_BARRIER))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerBarrier(blockModelGenerators, UFObjects.DANGER_BARRIER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.DANGER_BARRIER))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
+		registerBarrier(blockModelGenerators, UFObjects.WOODEN_BARRIER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.WOODEN_BARRIER))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
 	}
 
 	@Override
@@ -1370,6 +1383,20 @@ public class UFModelProvider extends FabricModelProvider {
 						.with(createHorizontalFacingDispatch())
 						.with(createBooleanModelDispatch(ToolboxBlock.OPEN, modelOpen, modelClosed)));
 		blockModelGenerators.delegateItemModel(block, modelClosed);
+	}
+
+	private void registerBarrier(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = BARRIER.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(
+						MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+								.with(
+										PropertyDispatch.property(BarrierBlock.AXIS)
+												.select(Direction.Axis.Z, Variant.variant())
+												.select(Direction.Axis.X, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
+								));
+		blockModelGenerators.delegateItemModel(block, model);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

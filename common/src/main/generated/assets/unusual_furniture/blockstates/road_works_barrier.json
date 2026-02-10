@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "unusual_furniture:block/road_works_barrier",
+      "y": 90
+    },
+    "axis=z": {
+      "model": "unusual_furniture:block/road_works_barrier"
+    }
+  }
+}

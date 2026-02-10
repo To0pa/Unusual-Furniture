@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BarrierBlock;
 import net.toopa.unusual_furniture.common.block.BauhausPotBlock;
 import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
@@ -178,6 +179,9 @@ public final class UFObjects {
 	public static final Map<Block, ResourceLocation> TOOLBOX_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> TOOLBOX_ITEMS = new LinkedHashMap<>();
 
+	public static final Map<Block, ResourceLocation> BARRIER_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> BARRIER_ITEMS = new LinkedHashMap<>();
+
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
 	/* --------------------------------------------------------------------- */
@@ -327,6 +331,7 @@ public final class UFObjects {
 		addProps(FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS);
 		addProps(MANHOLE_BLOCKS, MANHOLE_ITEMS);
 		addProps(TOOLBOX_BLOCKS, TOOLBOX_ITEMS);
+		addProps(BARRIER_BLOCKS, BARRIER_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -375,6 +380,10 @@ public final class UFObjects {
 	public static final FireHydrantBlock EMERGENCY_FIRE_HYDRANT = registerFireHydrantBlock("emergency_fire_hydrant");
 	public static final ManholeBlock MANHOLE = registerManholeBlock("manhole");
 	public static final ToolboxBlock DECORATIVE_TOOLBOX = registerToolboxBlock("decorative_toolbox");
+	public static final BarrierBlock WARNING_BARRIER = registerBarrierBlock("warning_barrier");
+	public static final BarrierBlock WORKS_BARRIER = registerBarrierBlock("road_works_barrier");
+	public static final BarrierBlock DANGER_BARRIER = registerBarrierBlock("danger_barrier");
+	public static final BarrierBlock WOODEN_BARRIER = registerBarrierBlock("wooden_barrier");
 
 	/* --------------------------------------------------------------------- */
 	/* Helpers                                                               */
@@ -508,6 +517,7 @@ public final class UFObjects {
 	private static FireHydrantBlock registerFireHydrantBlock(String n) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
 	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
 	private static ToolboxBlock registerToolboxBlock(String n) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
+	private static BarrierBlock registerBarrierBlock(String n) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {

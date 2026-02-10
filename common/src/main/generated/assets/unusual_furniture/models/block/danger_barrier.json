@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/barrier",
+  "textures": {
+    "1": "unusual_furniture:block/danger_barrier",
+    "particle": "unusual_furniture:block/metal_particule"
+  }
+}
