@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "shape=bottom": {
+      "model": "unusual_furniture:block/spruce_floor_lamp_down"
+    },
+    "shape=middle": {
+      "model": "unusual_furniture:block/spruce_floor_lamp_middle"
+    },
+    "shape=single": {
+      "model": "unusual_furniture:block/spruce_floor_lamp_base"
+    },
+    "shape=top": {
+      "model": "unusual_furniture:block/spruce_floor_lamp_top"
+    }
+  }
+}

@@ -22,6 +22,7 @@ import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.FireHydrantBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.FudgePotBlock;
@@ -187,6 +188,9 @@ public final class UFObjects {
 	public static final Map<Block, ResourceLocation> WALL_CLOCK_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> WALL_CLOCK_ITEMS = new LinkedHashMap<>();
 
+	public static final Map<Block, ResourceLocation> WOODEN_FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> WOODEN_FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
 	/* --------------------------------------------------------------------- */
@@ -338,6 +342,7 @@ public final class UFObjects {
 		addProps(TOOLBOX_BLOCKS, TOOLBOX_ITEMS);
 		addProps(BARRIER_BLOCKS, BARRIER_ITEMS);
 		addProps(WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS);
+		addProps(WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -392,6 +397,7 @@ public final class UFObjects {
 	public static final BarrierBlock WOODEN_BARRIER = registerBarrierBlock("wooden_barrier");
 	public static final BlackboardMenuBlock BLACKBOARD_MENU = registerBlackboardMenuBlock("blackboard_menu");
 	public static final WallClockBlock WOODEN_CLOCK = registerWallClockBlock("wooden_clock");
+	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
 
 	/* --------------------------------------------------------------------- */
 	/* Helpers                                                               */
@@ -528,6 +534,7 @@ public final class UFObjects {
 	private static BarrierBlock registerBarrierBlock(String n) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
+	private static FloorLampBlock registerFloorLampBlock(String n) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {

@@ -13,6 +13,7 @@ import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.ManholeBlock;
@@ -28,6 +29,7 @@ import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
+import net.toopa.unusual_furniture.common.block.properties.FloorLampProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
@@ -62,6 +64,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 public class UFModelProvider extends FabricModelProvider {
 	private static final TextureSlot SLOT_0 = TextureSlot.create("0");
 	private static final TextureSlot SLOT_1 = TextureSlot.create("1");
+	private static final TextureSlot SLOT_2 = TextureSlot.create("2");
 
 	public UFModelProvider(FabricDataOutput output) {
 		super(output);
@@ -385,6 +388,9 @@ public class UFModelProvider extends FabricModelProvider {
 		registerWallClock(blockModelGenerators, UFObjects.WOODEN_CLOCK,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/clock"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/clock")));
+		registerFloorLamp(blockModelGenerators, UFObjects.SPRUCE_FLOOR_LAMP,
+				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp_spruce"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp_spruce")));
 	}
 
 	@Override
@@ -862,6 +868,26 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of(UnusualFurniture.id("custom/clock")),
 			Optional.empty(),
 			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LAMP_BASE = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/lamp_base")),
+			Optional.of("_base"),
+			SLOT_2, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LAMP_DOWN = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/lamp_down")),
+			Optional.of("_down"),
+			SLOT_2, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LAMP_MIDDLE = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/lamp_middle")),
+			Optional.of("_middle"),
+			SLOT_2, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate LAMP_TOP = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/lamp_top")),
+			Optional.of("_top"),
+			SLOT_2, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -1432,6 +1458,24 @@ public class UFModelProvider extends FabricModelProvider {
 				.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
 						.with(createHorizontalFacingDispatch()));
 		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerFloorLamp(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation modelSingle = LAMP_BASE.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelTop = LAMP_TOP.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelBottom = LAMP_DOWN.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelMiddle = LAMP_MIDDLE.create(block, tm, blockModelGenerators.modelOutput);
+
+		PropertyDispatch map = PropertyDispatch.property(FloorLampBlock.SHAPE)
+				.select(FloorLampProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, modelSingle))
+				.select(FloorLampProperty.TOP, Variant.variant().with(VariantProperties.MODEL, modelTop))
+				.select(FloorLampProperty.BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom))
+				.select(FloorLampProperty.MIDDLE, Variant.variant().with(VariantProperties.MODEL, modelMiddle));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map));
+		blockModelGenerators.delegateItemModel(block, modelSingle);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {
