@@ -1,7 +1,7 @@
 {
   "parent": "unusual_furniture:custom/lamp_base",
   "textures": {
-    "2": "unusual_furniture:block/table_lamp_spruce",
-    "particle": "unusual_furniture:block/table_lamp_spruce"
+    "2": "unusual_furniture:block/table_lamp",
+    "particle": "unusual_furniture:block/table_lamp"
   }
 }

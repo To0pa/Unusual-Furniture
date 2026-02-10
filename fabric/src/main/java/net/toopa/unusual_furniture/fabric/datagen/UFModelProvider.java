@@ -389,8 +389,8 @@ public class UFModelProvider extends FabricModelProvider {
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/clock"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/clock")));
 		registerFloorLamp(blockModelGenerators, UFObjects.SPRUCE_FLOOR_LAMP,
-				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp_spruce"))
-						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp_spruce")));
+				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp"))
+						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp")));
 	}
 
 	@Override
