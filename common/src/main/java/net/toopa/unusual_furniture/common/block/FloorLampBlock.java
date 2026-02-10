@@ -1,13 +1,9 @@
 package net.toopa.unusual_furniture.common.block;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.world.phys.shapes.Shapes;
-
 import net.toopa.unusual_furniture.common.block.properties.FloorLampProperty;
-import net.toopa.unusualfurniture.block.SpruceFloorLampBlock;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -25,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FloorLampBlock extends Block {

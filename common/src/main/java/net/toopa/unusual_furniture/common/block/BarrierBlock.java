@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -19,15 +21,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-
 public class BarrierBlock extends Block implements SimpleWaterloggedBlock {
 
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final VoxelShape DEFAULT_SHAPE = box(0.0F, 0.0F, 3.0F, 16.0F, 16.0F, 13.0F);
 	private static final VoxelShape[] SHAPES = new VoxelShape[3];
-	
+
 	public BarrierBlock(Properties properties) {
 		super(properties);
 		registerDefaultState(defaultBlockState()

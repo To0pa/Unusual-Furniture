@@ -27,7 +27,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class WallClockBlock extends HorizontalDirectionalBlock implements EntityBlock {
 
 	private static final MapCodec<WallClockBlock> CODEC = simpleCodec(WallClockBlock::new);
-	private static final VoxelShape DEFAULT_SHAPE = box((double) 3.0F, (double) 1.0F, (double) 14.0F, (double) 14.0F, (double) 12.0F, (double) 16.0F);
+	private static final VoxelShape DEFAULT_SHAPE = box(3.0F, 1.0F, 14.0F, 14.0F, 12.0F, 16.0F);
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public WallClockBlock(Properties properties) {
