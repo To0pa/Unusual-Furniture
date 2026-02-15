@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,placement=laying": {
+      "model": "unusual_furniture:block/rakes_laying_ground",
+      "y": 90
+    },
+    "facing=east,placement=leaning": {
+      "model": "unusual_furniture:block/rakes_leaning_wall",
+      "y": 90
+    },
+    "facing=east,placement=standing": {
+      "model": "unusual_furniture:block/rakes",
+      "y": 90
+    },
+    "facing=north,placement=laying": {
+      "model": "unusual_furniture:block/rakes_laying_ground"
+    },
+    "facing=north,placement=leaning": {
+      "model": "unusual_furniture:block/rakes_leaning_wall"
+    },
+    "facing=north,placement=standing": {
+      "model": "unusual_furniture:block/rakes"
+    },
+    "facing=south,placement=laying": {
+      "model": "unusual_furniture:block/rakes_laying_ground",
+      "y": 180
+    },
+    "facing=south,placement=leaning": {
+      "model": "unusual_furniture:block/rakes_leaning_wall",
+      "y": 180
+    },
+    "facing=south,placement=standing": {
+      "model": "unusual_furniture:block/rakes",
+      "y": 180
+    },
+    "facing=west,placement=laying": {
+      "model": "unusual_furniture:block/rakes_laying_ground",
+      "y": 270
+    },
+    "facing=west,placement=leaning": {
+      "model": "unusual_furniture:block/rakes_leaning_wall",
+      "y": 270
+    },
+    "facing=west,placement=standing": {
+      "model": "unusual_furniture:block/rakes",
+      "y": 270
+    }
+  }
+}

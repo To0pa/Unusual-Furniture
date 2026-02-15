@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/broom_wall",
+  "textures": {
+    "0": "unusual_furniture:block/broom",
+    "particle": "unusual_furniture:block/broom"
+  }
+}

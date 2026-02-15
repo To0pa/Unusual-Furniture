@@ -1,6 +1,13 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.StateDefinition;
+
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,11 +17,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
@@ -24,23 +29,17 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TableBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class GraveBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
+	private static final MapCodec<GraveBlock> CODEC = simpleCodec(GraveBlock::new);
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	private static final MapCodec<TableBlock> CODEC = simpleCodec(TableBlock::new);
-	private static final VoxelShape SHAPE = Shapes.or(
-			box(-8.0, 12.1, -8.0, 24.0, 16.1, 24.0),
-			box(17.0, 0.0, 17.0, 21.0, 12.1, 21.0),
-			box(-1.0, 6.0, -4.0, 18.0, 10.0, -1.0),
-			box(17.0, 0.0, -5.0, 21.0, 12.1, -1.0),
-			box(-4.0, 6.0, -2.0, -1.0, 10.0, 17.0),
-			box(-5.0, 0.0, -5.0, -1.0, 12.1, -1.0),
-			box(-2.0, 6.0, 17.0, 17.0, 10.0, 20.0),
-			box(-5.0, 0.0, 17.0, -1.0, 12.1, 21.0),
-			box(17.0, 6.0, -1.0, 20.0, 10.0, 18.0)
-	).optimize();
+	private static final VoxelShape DEFAULT_SHAPE = Shapes.or(
+			box(0.0F, 0.0F, 8.0F, 16.0F, 4.0F, 14.0F),
+			box(1.0F, 4.0F, 9.0F, 15.0F, 19.0F, 13.0F)
+	);
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
-	public TableBlock(Properties properties) {
+	public GraveBlock(Properties properties) {
 		super(properties);
 		registerDefaultState(stateDefinition.any()
 				.setValue(WATERLOGGED, false)
@@ -67,7 +66,7 @@ public class TableBlock extends HorizontalDirectionalBlock implements SimpleWate
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return SHAPE;
+		return SHAPE_MAP.get(state.getValue(FACING));
 	}
 
 	@Override

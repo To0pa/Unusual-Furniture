@@ -14,7 +14,9 @@ import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.BlackboardMenuBlock;
 import net.toopa.unusual_furniture.common.block.BlackstonePotBlock;
+import net.toopa.unusual_furniture.common.block.BroomBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
+import net.toopa.unusual_furniture.common.block.CatPlushBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.ChairBlock;
 import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
@@ -26,6 +28,7 @@ import net.toopa.unusual_furniture.common.block.FloorLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.FudgePotBlock;
+import net.toopa.unusual_furniture.common.block.GraveBlock;
 import net.toopa.unusual_furniture.common.block.GreekPotBlock;
 import net.toopa.unusual_furniture.common.block.HangingPotBlock;
 import net.toopa.unusual_furniture.common.block.HugePotBlock;
@@ -38,8 +41,10 @@ import net.toopa.unusual_furniture.common.block.ManholeBlock;
 import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
 import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
+import net.toopa.unusual_furniture.common.block.PlushBlock;
 import net.toopa.unusual_furniture.common.block.PosterBlock;
 import net.toopa.unusual_furniture.common.block.RailingBlock;
+import net.toopa.unusual_furniture.common.block.RakeBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
 import net.toopa.unusual_furniture.common.block.SphereLampBlock;
@@ -56,6 +61,7 @@ import net.toopa.unusual_furniture.common.block.WallTropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
 import net.toopa.unusual_furniture.common.block.WoodenHangingPotBlock;
+import net.toopa.unusual_furniture.common.block.properties.BroomProperty;
 import net.toopa.unusual_furniture.common.item.BagBlockItem;
 import net.toopa.unusual_furniture.common.item.DiscordItem;
 import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
@@ -190,6 +196,15 @@ public final class UFObjects {
 
 	public static final Map<Block, ResourceLocation> WOODEN_FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> WOODEN_FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> PLUSH_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> PLUSH_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> BROOM_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> BROOM_ITEMS = new LinkedHashMap<>();
+
+	public static final Map<Block, ResourceLocation> GRAVE_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> GRAVE_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -343,6 +358,9 @@ public final class UFObjects {
 		addProps(BARRIER_BLOCKS, BARRIER_ITEMS);
 		addProps(WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS);
 		addProps(WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS);
+		addProps(PLUSH_BLOCKS, PLUSH_ITEMS);
+		addProps(BROOM_BLOCKS, BROOM_ITEMS);
+		addProps(GRAVE_BLOCKS, GRAVE_ITEMS);
 
 		/* ---------- Final registry ---------- */
 
@@ -398,6 +416,14 @@ public final class UFObjects {
 	public static final BlackboardMenuBlock BLACKBOARD_MENU = registerBlackboardMenuBlock("blackboard_menu");
 	public static final WallClockBlock WOODEN_CLOCK = registerWallClockBlock("wooden_clock");
 	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
+	public static final PlushBlock PIG_PLUSH = registerPlushBlock("pig_plush");
+	public static final PlushBlock COW_PLUSH = registerPlushBlock("cow_plush");
+	public static final CatPlushBlock CAT_PLUSH = registerCatPlushBlock("cat_plush");
+	public static final BroomBlock BROOM = registerBroomBlock("broom");
+	public static final RakeBlock RAKE = registerRakeBlock("rakes");
+	public static final GraveBlock GRAVE_BROKEN = registerGraveBlock("grave_broken");
+	public static final GraveBlock GRAVE_SKELETON = registerGraveBlock("grave_skeleton");
+	public static final GraveBlock GRAVE_CREEPER = registerGraveBlock("grave_creeper");
 
 	/* --------------------------------------------------------------------- */
 	/* Helpers                                                               */
@@ -535,6 +561,11 @@ public final class UFObjects {
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
 	private static FloorLampBlock registerFloorLampBlock(String n) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
+	private static PlushBlock registerPlushBlock(String n) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
+	private static CatPlushBlock registerCatPlushBlock(String n) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
+	private static BroomBlock registerBroomBlock(String n) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
+	private static RakeBlock registerRakeBlock(String n) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
+	private static GraveBlock registerGraveBlock(String n) { return simple(n, GraveBlock::new, Blocks.STONE, GRAVE_BLOCKS, GRAVE_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {

@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/cat_plush",
+  "textures": {
+    "0": "unusual_furniture:block/cat_plush",
+    "particle": "unusual_furniture:block/cat_plush"
+  }
+}

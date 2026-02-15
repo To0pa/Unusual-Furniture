@@ -9,6 +9,7 @@ import com.mojang.datafixers.util.Pair;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.block.BarrierBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.BroomBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
@@ -29,6 +30,7 @@ import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
 import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
+import net.toopa.unusual_furniture.common.block.properties.BroomProperty;
 import net.toopa.unusual_furniture.common.block.properties.FloorLampProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
 import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
@@ -391,6 +393,30 @@ public class UFModelProvider extends FabricModelProvider {
 		registerFloorLamp(blockModelGenerators, UFObjects.SPRUCE_FLOOR_LAMP,
 				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp")));
+		registerPigLikePlush(blockModelGenerators, UFObjects.PIG_PLUSH,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.PIG_PLUSH))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.PIG_PLUSH)));
+		registerPigLikePlush(blockModelGenerators, UFObjects.COW_PLUSH,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.COW_PLUSH))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.COW_PLUSH)));
+		registerCatPlush(blockModelGenerators, UFObjects.CAT_PLUSH,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.CAT_PLUSH))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.CAT_PLUSH)));
+		registerBroom(blockModelGenerators, UFObjects.BROOM,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.BROOM))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.BROOM)));
+		registerRake(blockModelGenerators, UFObjects.RAKE,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.RAKE))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.RAKE)));
+		registerGrave(blockModelGenerators, UFObjects.GRAVE_BROKEN,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.GRAVE_BROKEN))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.GRAVE_BROKEN)));
+		registerGrave(blockModelGenerators, UFObjects.GRAVE_SKELETON,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.GRAVE_SKELETON))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.GRAVE_SKELETON)));
+		registerGrave(blockModelGenerators, UFObjects.GRAVE_CREEPER,
+				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.GRAVE_CREEPER))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.GRAVE_CREEPER)));
 	}
 
 	@Override
@@ -888,6 +914,51 @@ public class UFModelProvider extends FabricModelProvider {
 			Optional.of(UnusualFurniture.id("custom/lamp_top")),
 			Optional.of("_top"),
 			SLOT_2, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate CAT_PLUSH = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/cat_plush")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate PIG_PLUSH = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/pig_plush")),
+			Optional.empty(),
+			SLOT_1, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BROOM = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/broom")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BROOM_GROUND = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/broom_ground")),
+			Optional.of("_ground"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate BROOM_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/broom_wall")),
+			Optional.of("_wall"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate RAKES = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/rakes")),
+			Optional.empty(),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate RAKES_GROUND = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/rakes_ground")),
+			Optional.of("_ground"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate RAKES_WALL = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/rakes_wall")),
+			Optional.of("_wall"),
+			SLOT_0, TextureSlot.PARTICLE);
+
+	private static final ModelTemplate GRAVE = new ModelTemplate(
+			Optional.of(UnusualFurniture.id("custom/grave")),
+			Optional.empty(),
+			SLOT_1, TextureSlot.PARTICLE);
 
 	private void registerIndustrialTable(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
 		ResourceLocation identifier = INDUSTRIAL_TABLE.create(block, tm, blockModelGenerators.modelOutput);
@@ -1476,6 +1547,67 @@ public class UFModelProvider extends FabricModelProvider {
 				.accept(MultiVariantGenerator.multiVariant(block)
 						.with(map));
 		blockModelGenerators.delegateItemModel(block, modelSingle);
+	}
+
+	private void registerPigLikePlush(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = PIG_PLUSH.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+						.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerCatPlush(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = CAT_PLUSH.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+						.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, model);
+	}
+
+	private void registerBroom(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation modelStanding = BROOM.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelLeaning = BROOM_WALL.createWithSuffix(block, "_leaning", tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelLaying = BROOM_GROUND.createWithSuffix(block, "_laying", tm, blockModelGenerators.modelOutput);
+
+		PropertyDispatch map = PropertyDispatch.property(BroomBlock.PLACEMENT)
+				.select(BroomProperty.STANDING, Variant.variant().with(VariantProperties.MODEL, modelStanding))
+				.select(BroomProperty.LEANING, Variant.variant().with(VariantProperties.MODEL, modelLeaning))
+				.select(BroomProperty.LAYING, Variant.variant().with(VariantProperties.MODEL, modelLaying));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map)
+						.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, modelStanding);
+	}
+
+	private void registerRake(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation modelStanding = RAKES.create(block, tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelLeaning = RAKES_WALL.createWithSuffix(block, "_leaning", tm, blockModelGenerators.modelOutput);
+		ResourceLocation modelLaying = RAKES_GROUND.createWithSuffix(block, "_laying", tm, blockModelGenerators.modelOutput);
+
+		PropertyDispatch map = PropertyDispatch.property(BroomBlock.PLACEMENT)
+				.select(BroomProperty.STANDING, Variant.variant().with(VariantProperties.MODEL, modelStanding))
+				.select(BroomProperty.LEANING, Variant.variant().with(VariantProperties.MODEL, modelLeaning))
+				.select(BroomProperty.LAYING, Variant.variant().with(VariantProperties.MODEL, modelLaying));
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block)
+						.with(map)
+						.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, modelStanding);
+	}
+
+	private void registerGrave(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm) {
+		ResourceLocation model = GRAVE.create(block, tm, blockModelGenerators.modelOutput);
+
+		blockModelGenerators.blockStateOutput
+				.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, model))
+						.with(createHorizontalFacingDispatch()));
+		blockModelGenerators.delegateItemModel(block, model);
 	}
 
 	private void handleBeam(BlockModelGenerators blockModelGenerators, Block block, ResourceLocation identifier) {

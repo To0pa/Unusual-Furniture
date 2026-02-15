@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/pig_plush",
+  "textures": {
+    "1": "unusual_furniture:block/cow_plush",
+    "particle": "unusual_furniture:block/cow_plush"
+  }
+}

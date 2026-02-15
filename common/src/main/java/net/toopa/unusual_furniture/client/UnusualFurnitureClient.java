@@ -36,6 +36,9 @@ public class UnusualFurnitureClient {
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.TRASH);
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.MANHOLE);
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.DECORATIVE_TOOLBOX);
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.PIG_PLUSH);
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.COW_PLUSH);
+		UFObjects.BROOM_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		PlatformUtils.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
 						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)

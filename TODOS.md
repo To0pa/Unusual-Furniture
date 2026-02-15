@@ -1,2 +1,4 @@
-- add listening eventss fopr warden
+- add listening events for warden
 - add things for advancement used
+- add particles and sounds
+- add animations for the blockentities

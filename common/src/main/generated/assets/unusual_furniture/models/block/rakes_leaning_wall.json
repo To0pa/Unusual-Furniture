@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/rakes_wall",
+  "textures": {
+    "0": "unusual_furniture:block/rakes",
+    "particle": "unusual_furniture:block/rakes"
+  }
+}
