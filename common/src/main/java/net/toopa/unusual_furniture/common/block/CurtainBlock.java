@@ -89,7 +89,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 			}
 		}
 
-		level.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.5F, 0.5F);
+		level.playSound(player, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.5F, 0.5F);
 		return InteractionResult.SUCCESS;
 	}
 

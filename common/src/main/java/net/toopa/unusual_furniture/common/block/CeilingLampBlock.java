@@ -91,9 +91,9 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 					Block.UPDATE_ALL
 			);
 			if (state.is(UFObjects.COPPER_CEILING_LAMP)) {
-				level.playSound(null, pos, SoundEvents.COPPER_STEP, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
+				level.playSound(player, pos, SoundEvents.COPPER_STEP, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
 			} else {
-				level.playSound(null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
+				level.playSound(player, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
 			}
 			return InteractionResult.CONSUME;
 		}
