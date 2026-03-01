@@ -2,9 +2,13 @@ package net.toopa.unusual_furniture.common.block;
 
 import java.util.List;
 
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -86,6 +90,11 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 					state.cycle(LIT),
 					Block.UPDATE_ALL
 			);
+			if (state.is(UFObjects.COPPER_CEILING_LAMP)) {
+				level.playSound(null, pos, SoundEvents.COPPER_STEP, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
+			} else {
+				level.playSound(null, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
+			}
 			return InteractionResult.CONSUME;
 		}
 

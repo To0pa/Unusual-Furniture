@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import net.minecraft.world.level.block.SoundType;
+
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
@@ -15,7 +17,7 @@ public class IronBeamBlock extends BeamBlock {
 	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public IronBeamBlock(Properties properties) {
-		super(properties);
+		super(properties.sound(SoundType.COPPER));
 	}
 
 	@Override

@@ -1,5 +1,9 @@
 package net.toopa.unusual_furniture.client;
 
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.GrassColor;
+
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
@@ -7,12 +11,10 @@ import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
 import net.toopa.unusual_furniture.common.utils.PlatformUtils;
 
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.GrassColor;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,31 +23,27 @@ import net.fabricmc.api.Environment;
 public class UnusualFurnitureClient {
 
 	public static void init() {
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.INDUSTRIAL_TABLE);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.INDUSTRIAL_COFFEE_TABLE);
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_table")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_coffee_table")));
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
 		UFObjects.LAMP_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.translucent(), block));
 		UFObjects.POT_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.TROPICAL_PLANT);
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant")));
 		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.WATER_PLANTS);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
-		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.TRASH);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.MANHOLE);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.DECORATIVE_TOOLBOX);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.PIG_PLUSH);
-		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), UFObjects.COW_PLUSH);
-		UFObjects.BROOM_BLOCKS.forEach((block, reLo) -> PlatformUtils.registerRenderType(RenderType.cutoutMipped(), block));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("poster")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("trash")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("decorative_toolbox")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("manhole")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("broom")));
+		PlatformUtils.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("rakes")));
 		PlatformUtils.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
-						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
+						? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
 						: GrassColor.getDefaultColor(),
-				UFObjects.TROPICAL_PLANT,
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant")),
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 	}

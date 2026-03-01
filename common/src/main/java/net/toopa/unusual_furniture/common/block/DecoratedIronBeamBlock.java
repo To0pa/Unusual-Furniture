@@ -10,7 +10,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DecoratedIronBeamBlock extends BeamBlock {
+public class
+DecoratedIronBeamBlock extends BeamBlock {
 
 	public static final VoxelShape SHAPE = Shapes.or(
 			box(0.0F, 4.0F, 4.0F, 3.0F, 12.0F, 12.0F),
