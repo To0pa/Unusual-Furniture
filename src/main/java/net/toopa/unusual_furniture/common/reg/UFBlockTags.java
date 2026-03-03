@@ -1,14 +1,15 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 public final class UFBlockTags {
 
-	public UFBlockTags() {}
+	private UFBlockTags() {}
 
 	public static final TagKey<Block> TABLE = createTag("table");
 	public static final TagKey<Block> COFFEE_TABLE = createTag("coffee_table");

@@ -1,12 +1,14 @@
 package net.toopa.unusual_furniture.fabric.datagen;
+
 //? fabric {
+import java.util.concurrent.CompletableFuture;
+
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+
+import net.minecraft.core.HolderLookup;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.core.HolderLookup;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
-
-import java.util.concurrent.CompletableFuture;
 
 public class UFBlockLootTableProvider extends FabricBlockLootTableProvider {
 

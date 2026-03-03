@@ -1,6 +1,11 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.List;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.block.properties.WaterPlantProperty;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -18,10 +23,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.block.properties.WaterPlantProperty;
-import org.jspecify.annotations.Nullable;
-
-import java.util.List;
 
 public class WaterPlantsLandBlock extends BushBlock {
 

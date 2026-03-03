@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -28,8 +30,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.List;
 
 public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 

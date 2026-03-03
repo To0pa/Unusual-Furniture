@@ -1,6 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.function.BiConsumer;
+
 import com.mojang.serialization.MapCodec;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -29,9 +33,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.BiConsumer;
 
 public class ManholeBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 

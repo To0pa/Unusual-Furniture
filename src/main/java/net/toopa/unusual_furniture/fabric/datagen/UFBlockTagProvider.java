@@ -1,16 +1,18 @@
 package net.toopa.unusual_furniture.fabric.datagen;
-//? fabric {
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+//? fabric {
+import java.util.concurrent.CompletableFuture;
+
+import net.toopa.unusual_furniture.common.reg.UFBlockTags;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
-import net.toopa.unusual_furniture.common.reg.UFBlockTags;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
 public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 

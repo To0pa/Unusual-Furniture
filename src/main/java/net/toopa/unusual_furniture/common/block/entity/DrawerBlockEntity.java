@@ -1,5 +1,9 @@
 package net.toopa.unusual_furniture.common.block.entity;
 
+import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -20,9 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.toopa.unusual_furniture.common.block.DrawerBlock;
-import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
-import org.jspecify.annotations.Nullable;
 
 public class DrawerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
 

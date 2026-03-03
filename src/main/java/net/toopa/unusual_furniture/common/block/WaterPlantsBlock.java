@@ -1,6 +1,9 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -23,8 +26,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
-import org.jspecify.annotations.Nullable;
 
 public class WaterPlantsBlock extends AbstractBagBlock {
 

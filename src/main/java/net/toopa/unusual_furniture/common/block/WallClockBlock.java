@@ -1,6 +1,12 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.block.entity.WallClockBlockEntity;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,11 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.block.entity.WallClockBlockEntity;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
 
 public class WallClockBlock extends HorizontalDirectionalBlock implements EntityBlock {
 

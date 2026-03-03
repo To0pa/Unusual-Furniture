@@ -1,23 +1,24 @@
 package net.toopa.unusual_furniture.common.reg;
 
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 public final class UFCreativeTabs {
 
-	public UFCreativeTabs() {}
+	private UFCreativeTabs() {}
 
 	private static CreativeModeTab.Builder creativeModeTabBuilder() {
 		return  //? fabric {
 				CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0);
-				//?} neoforge {
-				/*CreativeModeTab.builder();
-				*///?}
+		        //?} neoforge {
+		        /*CreativeModeTab.builder();
+		         *///?}
 	}
 
 	public static final ResourceKey<CreativeModeTab> FURNITURE_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("01_furniture"));

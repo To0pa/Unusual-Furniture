@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.item;
 
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -15,7 +17,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jspecify.annotations.Nullable;
 
 public class WaterBagBlockItem extends BlockItem {
 

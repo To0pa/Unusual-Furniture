@@ -1,8 +1,9 @@
 package net.toopa.unusual_furniture.common;
 
-import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.minecraft.resources.ResourceLocation;
 
 public class UnusualFurniture {
 	public static final String MOD_ID = "unusual_furniture";

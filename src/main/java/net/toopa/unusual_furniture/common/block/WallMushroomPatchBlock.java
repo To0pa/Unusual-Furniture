@@ -1,6 +1,11 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -15,10 +20,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-
-import java.util.Map;
 
 public class WallMushroomPatchBlock extends AbstractWallBagBlock {
 

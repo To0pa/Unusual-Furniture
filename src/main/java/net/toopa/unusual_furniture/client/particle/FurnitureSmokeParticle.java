@@ -1,13 +1,17 @@
 package net.toopa.unusual_furniture.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
 
 public class FurnitureSmokeParticle extends TextureSheetParticle {
 	private final SpriteSet spriteSet;
 	private float angularVelocity;
-	private float angularAcceleration;
+	private final float angularAcceleration;
 
 	protected FurnitureSmokeParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
 		super(world, x, y, z);

@@ -1,14 +1,15 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-
-import java.util.Map;
 
 public class CatPlushBlock extends PlushBlock {
 

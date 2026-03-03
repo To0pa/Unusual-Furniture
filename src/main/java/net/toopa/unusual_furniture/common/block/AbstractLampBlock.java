@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -24,8 +26,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-
-import java.util.List;
 
 public abstract class AbstractLampBlock extends Block implements SimpleWaterloggedBlock {
 

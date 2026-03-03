@@ -1,6 +1,11 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,10 +21,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-import org.jspecify.annotations.Nullable;
-
-import java.util.Map;
 
 public class PosterBlock extends DirectionalBlock {
 

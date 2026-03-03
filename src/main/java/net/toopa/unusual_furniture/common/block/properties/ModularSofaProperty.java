@@ -1,8 +1,8 @@
 package net.toopa.unusual_furniture.common.block.properties;
 
-import net.minecraft.util.StringRepresentable;
-
 import java.util.Locale;
+
+import net.minecraft.util.StringRepresentable;
 
 public enum ModularSofaProperty implements StringRepresentable {
 	SINGLE,

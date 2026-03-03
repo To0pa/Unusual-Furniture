@@ -22,6 +22,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
 import net.toopa.unusual_furniture.common.block.properties.RailingDirectionProperty;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;

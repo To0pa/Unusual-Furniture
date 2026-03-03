@@ -1,9 +1,48 @@
 package net.toopa.unusual_furniture.fabric.datagen;
+
 //? fabric {
+import static net.minecraft.data.models.BlockModelGenerators.*;
+
+import java.util.Map;
+import java.util.Optional;
 
 import com.mojang.datafixers.util.Pair;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.block.BarrierBlock;
+import net.toopa.unusual_furniture.common.block.BenchBlock;
+import net.toopa.unusual_furniture.common.block.BroomBlock;
+import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
+import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
+import net.toopa.unusual_furniture.common.block.CurtainBlock;
+import net.toopa.unusual_furniture.common.block.DrawerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
+import net.toopa.unusual_furniture.common.block.ManholeBlock;
+import net.toopa.unusual_furniture.common.block.MushroomPatchBlock;
+import net.toopa.unusual_furniture.common.block.PebbleBagBlock;
+import net.toopa.unusual_furniture.common.block.PosterBlock;
+import net.toopa.unusual_furniture.common.block.RailingBlock;
+import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.SphereLampBlock;
+import net.toopa.unusual_furniture.common.block.ToolboxBlock;
+import net.toopa.unusual_furniture.common.block.TrashBlock;
+import net.toopa.unusual_furniture.common.block.TropicalPlantBlock;
+import net.toopa.unusual_furniture.common.block.WallMushroomPatchBlock;
+import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
+import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
+import net.toopa.unusual_furniture.common.block.properties.BroomProperty;
+import net.toopa.unusual_furniture.common.block.properties.FloorLampProperty;
+import net.toopa.unusual_furniture.common.block.properties.ModularBenchProperty;
+import net.toopa.unusual_furniture.common.block.properties.ModularCarvedPlanksProperty;
+import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
+import net.toopa.unusual_furniture.common.block.properties.ModularSofaProperty;
+import net.toopa.unusual_furniture.common.block.properties.RailingDirectionProperty;
+import net.toopa.unusual_furniture.common.block.properties.WaterPlantProperty;
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+import net.toopa.unusual_furniture.common.utils.DyeSet;
+import net.toopa.unusual_furniture.common.utils.WoodSet;
+
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.models.BlockModelGenerators;
@@ -12,22 +51,18 @@ import net.minecraft.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.data.models.blockstates.PropertyDispatch;
 import net.minecraft.data.models.blockstates.Variant;
 import net.minecraft.data.models.blockstates.VariantProperties;
-import net.minecraft.data.models.model.*;
+import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.toopa.unusual_furniture.common.UnusualFurniture;
-import net.toopa.unusual_furniture.common.block.*;
-import net.toopa.unusual_furniture.common.block.properties.*;
-import net.toopa.unusual_furniture.common.reg.UFObjects;
-import net.toopa.unusual_furniture.common.utils.DyeSet;
-import net.toopa.unusual_furniture.common.utils.WoodSet;
 
-import java.util.Map;
-import java.util.Optional;
-
-import static net.minecraft.data.models.BlockModelGenerators.*;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 
 public class UFModelProvider extends FabricModelProvider {
 	private static final TextureSlot SLOT_0 = TextureSlot.create("0");

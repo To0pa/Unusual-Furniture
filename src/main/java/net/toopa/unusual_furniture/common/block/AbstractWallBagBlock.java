@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -10,7 +12,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import org.jspecify.annotations.Nullable;
 
 public abstract class AbstractWallBagBlock extends HorizontalDirectionalBlock {
 

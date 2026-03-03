@@ -1,5 +1,10 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.Map;
+
+import net.toopa.unusual_furniture.common.block.properties.BroomProperty;
+import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,10 +19,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.toopa.unusual_furniture.common.block.properties.BroomProperty;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
-
-import java.util.Map;
 
 public class RakeBlock extends BroomBlock {
 
@@ -54,10 +55,10 @@ public class RakeBlock extends BroomBlock {
 		return switch (dir) {
 			case NORTH -> new Vec3(0, 0, -1);
 			case SOUTH -> new Vec3(0, 0, 1);
-			case EAST  -> new Vec3(1, 0, 0);
-			case WEST  -> new Vec3(-1, 0, 0);
-			case UP    -> new Vec3(0, 1, 0);
-			case DOWN  -> new Vec3(0, -1, 0);
+			case EAST -> new Vec3(1, 0, 0);
+			case WEST -> new Vec3(-1, 0, 0);
+			case UP -> new Vec3(0, 1, 0);
+			case DOWN -> new Vec3(0, -1, 0);
 		};
 	}
 

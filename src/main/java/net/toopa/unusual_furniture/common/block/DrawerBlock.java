@@ -1,6 +1,9 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -21,8 +24,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
-import org.jetbrains.annotations.Nullable;
 
 public class DrawerBlock extends HorizontalDirectionalBlock implements EntityBlock {
 

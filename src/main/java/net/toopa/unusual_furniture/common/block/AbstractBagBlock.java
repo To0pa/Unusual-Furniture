@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -11,8 +13,6 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
-import java.util.List;
 
 public abstract class AbstractBagBlock extends BushBlock {
 

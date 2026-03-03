@@ -1,12 +1,12 @@
 package net.toopa.unusual_furniture.common.utils;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.EnumMap;
-import java.util.Map;
 
 public class VoxelShapeUtils {
 

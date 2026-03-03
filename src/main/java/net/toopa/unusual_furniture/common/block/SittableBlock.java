@@ -1,6 +1,8 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.reg.UFItemTags;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +24,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
-import net.toopa.unusual_furniture.common.reg.UFItemTags;
 
 public class SittableBlock extends HorizontalDirectionalBlock implements ISittableBlock, SimpleWaterloggedBlock {
 

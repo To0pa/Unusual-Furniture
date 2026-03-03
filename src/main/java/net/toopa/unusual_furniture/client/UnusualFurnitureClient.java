@@ -1,11 +1,5 @@
 package net.toopa.unusual_furniture.client;
 
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.NoopRenderer;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.GrassColor;
 import net.toopa.unusual_furniture.Platform;
 import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
@@ -14,6 +8,13 @@ import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
 import net.toopa.unusual_furniture.common.reg.UFParticleTypes;
+
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.NoopRenderer;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.GrassColor;
 
 public class UnusualFurnitureClient {
 
