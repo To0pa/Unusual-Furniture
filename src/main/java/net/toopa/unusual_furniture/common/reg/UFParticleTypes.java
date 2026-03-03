@@ -1,14 +1,14 @@
 package net.toopa.unusual_furniture.common.reg;
 
-//? fabric {
-
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 
+//? fabric {
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+//?}
 
 public final class UFParticleTypes {
 

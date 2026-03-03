@@ -87,6 +87,9 @@ dependencies {
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("com.terraformersmc:modmenu:${property("deps.modmenu")}")
     }
+
+    //TODO: remove once we resolve tags and stuff
+    modLocalRuntime("maven.modrinth:lmft:mn7K4mkS")
 }
 
 configurations.all {
