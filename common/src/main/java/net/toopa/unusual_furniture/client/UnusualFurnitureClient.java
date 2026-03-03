@@ -1,10 +1,12 @@
 package net.toopa.unusual_furniture.client;
 
+import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
+import net.toopa.unusual_furniture.common.reg.UFParticleTypes;
 import net.toopa.unusual_furniture.common.utils.PlatformUtils;
 
 import net.minecraft.client.renderer.BiomeColors;
@@ -50,5 +52,6 @@ public class UnusualFurnitureClient {
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		PlatformUtils.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
+		PlatformUtils.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE, FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
 	}
 }

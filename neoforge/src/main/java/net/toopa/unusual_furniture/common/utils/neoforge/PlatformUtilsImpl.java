@@ -7,7 +7,17 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import com.google.common.collect.Lists;
+
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+
 import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.toopa.unusual_furniture.common.utils.PlatformUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.client.Minecraft;
@@ -33,6 +43,8 @@ public class PlatformUtilsImpl {
 	private static final List<Pair<ItemColor, Supplier<? extends ItemLike>[]>> ITEM_COLORS = Lists.newArrayList();
 	private static final List<Pair<BlockColor, Supplier<? extends Block>[]>> BLOCK_COLORS = Lists.newArrayList();
 
+	private static final List<ParticleEntry<?>> PARTICLE_TYPES = Lists.newArrayList();
+
 	static {
 		whenAvailable(UnusualFurniture.MOD_ID, bus -> {
 			bus.register(PlatformUtilsImpl.class);
@@ -50,6 +62,13 @@ public class PlatformUtilsImpl {
 	public static void onBlockColorEvent(RegisterColorHandlersEvent.Block event) {
 		for (Pair<BlockColor, Supplier<? extends Block>[]> pair : BLOCK_COLORS) {
 			event.register(pair.getLeft(), unpackBlocks(pair.getRight()));
+		}
+	}
+
+	@SubscribeEvent
+	public static void onRegisterParticles(RegisterParticleProvidersEvent event) {
+		for (ParticleEntry<?> entry : PARTICLE_TYPES) {
+			entry.register(event);
 		}
 	}
 
@@ -101,6 +120,20 @@ public class PlatformUtilsImpl {
 			array[i] = Objects.requireNonNull(blocks[i].get());
 		}
 		return array;
+	}
+
+	public static SimpleParticleType createSimpleParticleType() {
+		return new SimpleParticleType(false);
+	}
+
+	public static <T extends ParticleOptions> void registerClientParticleType(ParticleType<T> type, PlatformUtils.CommonSpriteParticleRegistration<T> factory) {
+		PARTICLE_TYPES.add(new ParticleEntry<>(type, factory::create));
+	}
+
+	private record ParticleEntry<T extends ParticleOptions>(ParticleType<T> type, ParticleEngine.SpriteParticleRegistration<T> factory) {
+		public void register(RegisterParticleProvidersEvent event) {
+			event.registerSpriteSet(type, factory);
+		}
 	}
 
 	public static void whenAvailable(String modId, Consumer<IEventBus> busConsumer) {

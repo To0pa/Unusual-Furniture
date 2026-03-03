@@ -3,10 +3,17 @@ package net.toopa.unusual_furniture.common.utils.fabric;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,6 +23,8 @@ import net.minecraft.world.level.block.Block;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+
+import net.toopa.unusual_furniture.common.utils.PlatformUtils;
 
 public class PlatformUtilsImpl {
 
@@ -57,5 +66,13 @@ public class PlatformUtilsImpl {
 			array[i] = Objects.requireNonNull(blocks[i].get());
 		}
 		return array;
+	}
+
+	public static SimpleParticleType createSimpleParticleType() {
+		return FabricParticleTypes.simple(false);
+	}
+
+	public static <T extends ParticleOptions> void registerClientParticleType(ParticleType<T> type, PlatformUtils.CommonSpriteParticleRegistration<T> factory) {
+		ParticleFactoryRegistry.getInstance().register(type, factory::create);
 	}
 }

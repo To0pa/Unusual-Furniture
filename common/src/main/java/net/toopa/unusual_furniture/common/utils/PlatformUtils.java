@@ -8,8 +8,13 @@ import dev.architectury.injectables.targets.ArchitecturyTarget;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -63,6 +68,16 @@ public class PlatformUtils {
 		throw new AssertionError("This should not happen");
 	}
 
+	@ExpectPlatform
+	public static SimpleParticleType createSimpleParticleType() {
+		throw new AssertionError("This should not happen");
+	}
+
+	@ExpectPlatform
+	public static <T extends ParticleOptions> void registerClientParticleType(ParticleType<T> type, CommonSpriteParticleRegistration<T> factory) {
+		throw new AssertionError("This should not happen");
+	}
+
 	public static boolean isFabric() {
 		return Objects.equals(ArchitecturyTarget.getCurrentTarget(), "fabric");
 	}
@@ -73,5 +88,10 @@ public class PlatformUtils {
 
 	public static boolean isForge() {
 		return Objects.equals(ArchitecturyTarget.getCurrentTarget(), "forge");
+	}
+
+	@FunctionalInterface
+	public interface CommonSpriteParticleRegistration<T extends ParticleOptions> {
+		ParticleProvider<T> create(SpriteSet sprites);
 	}
 }

@@ -13,6 +13,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import net.toopa.unusual_furniture.common.reg.UFParticleTypes;
+
 @Mod(UnusualFurniture.MOD_ID)
 @EventBusSubscriber(modid = UnusualFurniture.MOD_ID)
 public final class UnusualFurnitureNeoforge {
@@ -33,6 +35,9 @@ public final class UnusualFurnitureNeoforge {
 		}
 		if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
 			UFEntityTypes.init();
+		}
+		if (event.getRegistryKey().equals(Registries.PARTICLE_TYPE)) {
+			UFParticleTypes.init();
 		}
 	}
 }
