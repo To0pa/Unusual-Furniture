@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "unusual_furniture",
+  "name": "Unusual Furniture",
+  "version": "${version}",
+  "authors": ["to0pa, macuguita"],
+  "contact": {
+    "sources": "",
+    "issues": ""
+  },
+  "description": "Vanilla styled furniture mod!",
+  "icon": "assets/icon.png",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.toopa.unusual_furniture.fabric.FabricEntrypoint"
+    ],
+    "client": [
+      "net.toopa.unusual_furniture.fabric.FabricClientEntrypoint"
+    ],
+    "fabric-datagen": [
+      "net.toopa.unusual_furniture.fabric.datagen.UnusualFurnitureDatagen"
+    ]
+  },
+  "mixins": [
+    "unusual_furniture.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*"
+  }
+}

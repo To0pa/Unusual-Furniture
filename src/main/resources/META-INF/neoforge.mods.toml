@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "MIT"
+
+[[mods]]
+modId = "unusual_furniture"
+displayName = "Unusual Furniture"
+version = "${version}"
+displayURL = ""
+logoFile = "assets/icon.png"
+authors = "to0pa, macuguita"
+description = '''Vanilla styled furniture mod!'''
+
+[[mixins]]
+config = "unusual_furniture.mixins.json"
+
+[[dependencies.unusual_furniture]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.181,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.unusual_furniture]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft}"

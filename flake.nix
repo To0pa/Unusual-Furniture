@@ -22,7 +22,7 @@
             stdenv.cc.cc.lib
           ];
 
-          java = pkgs.jdk21;
+          java = pkgs.jdk25;
         in
         {
           default = pkgs.mkShell {

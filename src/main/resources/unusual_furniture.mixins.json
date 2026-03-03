@@ -1,0 +1,13 @@
+{
+  "package": "net.toopa.unusual_furniture.mixin",
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "${javaVersion}",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "ExampleMixin"
+  ],
+  "client": []
+}
