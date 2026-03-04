@@ -95,9 +95,6 @@ neoForge {
 
 dependencies {
     compileOnly("org.jspecify:jspecify:1.0.0")
-
-    //TODO: remove once we resolve tags and stuff
-    localRuntime("maven.modrinth:lmft:poGMd0AE")
 }
 
 tasks {

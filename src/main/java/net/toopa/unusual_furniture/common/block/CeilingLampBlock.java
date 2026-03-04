@@ -2,6 +2,8 @@ package net.toopa.unusual_furniture.common.block;
 
 import java.util.List;
 
+import net.minecraft.sounds.SoundEvent;
+
 import net.toopa.unusual_furniture.common.reg.UFObjects;
 
 import net.minecraft.core.BlockPos;
@@ -74,6 +76,11 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 				.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	}
 
+	protected void playSound(Level level, Player player, BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		level.playSound(player, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
+	}
+
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		if (level.isClientSide) {
@@ -86,11 +93,7 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 					state.cycle(LIT),
 					Block.UPDATE_ALL
 			);
-			if (state.is(UFObjects.COPPER_CEILING_LAMP)) {
-				level.playSound(player, pos, SoundEvents.COPPER_STEP, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
-			} else {
-				level.playSound(player, pos, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1F, state.getValue(LIT) ? 3F : 2F);
-			}
+			playSound(level, player, pos);
 			return InteractionResult.CONSUME;
 		}
 

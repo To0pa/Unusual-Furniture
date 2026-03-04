@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
+
+import net.minecraft.world.level.block.SoundType;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.block.BarrierBlock;
@@ -20,6 +23,7 @@ import net.toopa.unusual_furniture.common.block.CatPlushBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.ChairBlock;
 import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
+import net.toopa.unusual_furniture.common.block.CopperCeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
@@ -448,7 +452,7 @@ public final class UFObjects {
 	}
 
 	/* --------------------------------------------------------------------- */
-	/* Registration wrappers (unchanged logic)                                */
+	/* Registration wrappers                                                 */
 	/* --------------------------------------------------------------------- */
 
 	private static <T extends Block> T registerWithItem(
@@ -470,19 +474,38 @@ public final class UFObjects {
 
 	private static <T extends Block> T simple(
 			String name,
-			Function<BlockBehaviour.Properties, T> f,
+			Function<BlockBehaviour.Properties, T> factory,
 			Block base,
-			Map<Block, ResourceLocation> bm,
-			Map<Item, ResourceLocation> im
+			@Nullable UnaryOperator<BlockBehaviour.Properties> modifier,
+			Map<Block, ResourceLocation> blockMap,
+			Map<Item, ResourceLocation> itemMap
 	) {
+		BlockBehaviour.Properties props =
+				BlockBehaviour.Properties.ofFullCopy(base)
+						.mapColor(base.defaultMapColor());
+
+		if (modifier != null) {
+			props = modifier.apply(props);
+		}
+
 		return registerWithItem(
 				name,
-				f,
-				BlockBehaviour.Properties.ofFullCopy(base).mapColor(base.defaultMapColor()),
+				factory,
+				props,
 				BlockItem::new,
-				bm,
-				im
+				blockMap,
+				itemMap
 		);
+	}
+
+	private static <T extends Block> T simple(
+			String name,
+			Function<BlockBehaviour.Properties, T> factory,
+			Block base,
+			Map<Block, ResourceLocation> blockMap,
+			Map<Item, ResourceLocation> itemMap
+	) {
+		return simple(name, factory, base, null, blockMap, itemMap);
 	}
 
 	// @formatter:off
@@ -502,14 +525,23 @@ public final class UFObjects {
 	private static BeamBlock registerBeam(String n, Block b) { return simple(n, BeamBlock::new, b, BEAM_BLOCKS, BEAM_ITEMS); }
 
 	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
+	private static IndustrialTableBlock registerIndustrialTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, modifier, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
 	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
-	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, modifier, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
+	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CopperCeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static CeilingLampBlock registerCopperLamp(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, modifier, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
 	private static IronBeamBlock registerIronBeam(String n) { return simple(n, IronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static IronBeamBlock registerIronBeam(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IronBeamBlock::new, Blocks.IRON_BLOCK, modifier, BEAM_BLOCKS, BEAM_ITEMS); }
 	private static DecoratedIronBeamBlock registerDecoratedIronBeam(String n) { return simple(n, DecoratedIronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static DecoratedIronBeamBlock registerDecoratedIronBeam(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, DecoratedIronBeamBlock::new, Blocks.IRON_BLOCK, modifier, BEAM_BLOCKS, BEAM_ITEMS); }
 	private static FloorLampDecorationBatBlock registerFloorLampDecorationBatBlock(String n) { return simple(n, FloorLampDecorationBatBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
+	private static FloorLampDecorationBatBlock registerFloorLampDecorationBatBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FloorLampDecorationBatBlock::new, Blocks.IRON_BLOCK, modifier, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
 	private static FloorLampDecorationVillagerBlock registerFloorLampDecorationVillagerBlock(String n) { return simple(n, FloorLampDecorationVillagerBlock::new, Blocks.IRON_BLOCK, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
+	private static FloorLampDecorationVillagerBlock registerFloorLampDecorationVillagerBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FloorLampDecorationVillagerBlock::new, Blocks.IRON_BLOCK, modifier, FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS); }
 	private static IronLampBlock registerIronLampBlock(String n) { return simple(n, IronLampBlock::new, Blocks.IRON_BLOCK, LAMP_BLOCKS, LAMP_ITEMS); }
+	private static IronLampBlock registerIronLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IronLampBlock::new, Blocks.IRON_BLOCK, modifier, LAMP_BLOCKS, LAMP_ITEMS); }
 	private static SphereLampBlock registerSphereLampBlock(String n) { return simple(n, SphereLampBlock::new, Blocks.GLASS, LAMP_BLOCKS, LAMP_ITEMS); }
+	private static SphereLampBlock registerSphereLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, SphereLampBlock::new, Blocks.GLASS, modifier, LAMP_BLOCKS, LAMP_ITEMS); }
 	private static TropicalPlantBlock registerTropicalPlantBlock(String n) {
 		TropicalPlantBlock block = new TropicalPlantBlock(BlockBehaviour.Properties.of());
 		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(BlockBehaviour.Properties.of());
@@ -541,30 +573,52 @@ public final class UFObjects {
 		return block;
 	}
 	private static PebbleBagBlock registerPebbleBagBlock(String n) { return simple(n, PebbleBagBlock::new, Blocks.STONE, BAG_BLOCKS, BAG_ITEMS); }
+	private static PebbleBagBlock registerPebbleBagBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PebbleBagBlock::new, Blocks.STONE, modifier, BAG_BLOCKS, BAG_ITEMS); }
 	private static GreekPotBlock registerGreekPotBlock(String n) { return simple(n, GreekPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static GreekPotBlock registerGreekPotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, GreekPotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static HugePotBlock registerHugePotBlock(String n) { return simple(n, HugePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static HugePotBlock registerHugePotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, HugePotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static StonePotBlock registerStonePotBlock(String n) { return simple(n, StonePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static StonePotBlock registerStonePotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, StonePotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static TallTerracottaPotBlock registerTallTerracottaPotBlock(String n) { return simple(n, TallTerracottaPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static TallTerracottaPotBlock registerTallTerracottaPotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TallTerracottaPotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static BauhausPotBlock registerBauhausPotBlock(String n) { return simple(n, BauhausPotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static BauhausPotBlock registerBauhausPotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BauhausPotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static BlackstonePotBlock registerBlackstonePotBlock(String n) { return simple(n, BlackstonePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static BlackstonePotBlock registerBlackstonePotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BlackstonePotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static FudgePotBlock registerFudgePotBlock(String n) { return simple(n, FudgePotBlock::new, Blocks.DECORATED_POT, POT_BLOCKS, POT_ITEMS); }
+	private static FudgePotBlock registerFudgePotBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FudgePotBlock::new, Blocks.DECORATED_POT, modifier, POT_BLOCKS, POT_ITEMS); }
 	private static HangingPotBlock registerHangingPotBlock(String n) { return registerWithItem(n, HangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCKS, POSTER_ITEMS); }
+	private static PosterBlock registerPosterBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, modifier, POSTER_BLOCKS, POSTER_ITEMS); }
 	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, TRASH_BLOCKS, TRASH_ITEMS); }
+	private static TrashBlock registerTrashBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, modifier, TRASH_BLOCKS, TRASH_ITEMS); }
 	private static FireHydrantBlock registerFireHydrantBlock(String n) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
+	private static FireHydrantBlock registerFireHydrantBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, modifier, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
 	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
+	private static ManholeBlock registerManholeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, modifier, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
 	private static ToolboxBlock registerToolboxBlock(String n) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
+	private static ToolboxBlock registerToolboxBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, modifier, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
 	private static BarrierBlock registerBarrierBlock(String n) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
+	private static BarrierBlock registerBarrierBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, modifier, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
+	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, modifier, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
+	private static WallClockBlock registerWallClockBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, modifier, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
 	private static FloorLampBlock registerFloorLampBlock(String n) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
+	private static FloorLampBlock registerFloorLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, modifier, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
 	private static PlushBlock registerPlushBlock(String n) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
+	private static PlushBlock registerPlushBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, modifier, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static CatPlushBlock registerCatPlushBlock(String n) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
+	private static CatPlushBlock registerCatPlushBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, modifier, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static BroomBlock registerBroomBlock(String n) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
+	private static BroomBlock registerBroomBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, modifier, BROOM_BLOCKS, BROOM_ITEMS); }
 	private static RakeBlock registerRakeBlock(String n) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
+	private static RakeBlock registerRakeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, modifier, BROOM_BLOCKS, BROOM_ITEMS); }
 	private static GraveBlock registerGraveBlock(String n) { return simple(n, GraveBlock::new, Blocks.STONE, GRAVE_BLOCKS, GRAVE_ITEMS); }
+	private static GraveBlock registerGraveBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, GraveBlock::new, Blocks.STONE, modifier, GRAVE_BLOCKS, GRAVE_ITEMS); }
 	// @formatter:on
 
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
