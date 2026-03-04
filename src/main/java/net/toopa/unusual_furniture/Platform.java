@@ -1,21 +1,18 @@
 package net.toopa.unusual_furniture;
 
-//? fabric {
-import net.toopa.unusual_furniture.fabric.FabricPlatformImpl;
-//?}
-//? neoforge {
-/*import net.toopa.unusual_furniture.neoforge.NeoForgePlatformImpl;
- *///?}
-
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+//? < 26.1 {
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.renderer.RenderType;
+//?} else {
+/*import net.minecraft.client.renderer.rendertype.RenderType;
+*///?}
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -23,6 +20,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+
+//? fabric {
+import net.toopa.unusual_furniture.fabric.FabricPlatformImpl;
+//?}
+//? neoforge {
+/*import net.toopa.unusual_furniture.neoforge.NeoForgePlatformImpl;
+ *///?}
 
 public interface Platform {
 
@@ -32,7 +36,6 @@ public interface Platform {
 	//? neoforge {
 	/*Platform INSTANCE = new NeoForgePlatformImpl();
 	 *///?}
-
 
 	boolean isModLoaded(String modid);
 
@@ -48,6 +51,7 @@ public interface Platform {
 
 	<T extends Entity> void registerEntityRenderer(EntityType<? extends T> type, EntityRendererProvider<T> provider);
 
+	//? < 26.1 {
 	void registerItemColors(ItemColor color, Supplier<? extends ItemLike>... items);
 
 	void registerBlockColors(BlockColor color, Supplier<? extends Block>... blocks);
@@ -69,6 +73,7 @@ public interface Platform {
 		}
 		registerBlockColors(color, array);
 	}
+//?}
 
 	@FunctionalInterface
 	interface CommonSpriteParticleRegistration<T extends ParticleOptions> {
