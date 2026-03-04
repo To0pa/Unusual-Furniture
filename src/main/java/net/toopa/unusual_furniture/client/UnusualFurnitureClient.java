@@ -28,10 +28,12 @@ public class UnusualFurnitureClient {
 		UFObjects.POT_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.TROPICAL_PLANT);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
+		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("bamboo_chair")));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.WATER_PLANTS);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.TRASH);
+		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.SPRUCE_FLOOR_LAMP);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.MANHOLE);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.DECORATIVE_TOOLBOX);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.PIG_PLUSH);
@@ -41,7 +43,7 @@ public class UnusualFurnitureClient {
 		UFObjects.BROOM_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
-						? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
+						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
 						: GrassColor.getDefaultColor(),
 				UFObjects.TROPICAL_PLANT,
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
