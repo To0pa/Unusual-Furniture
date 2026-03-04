@@ -28,7 +28,7 @@ public class UnusualFurnitureClient {
 		UFObjects.POT_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.TROPICAL_PLANT);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")));
-		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("bamboo_chair")));
+		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.WOOD_SETS.get("bamboo").chair());
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.WATER_PLANTS);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
