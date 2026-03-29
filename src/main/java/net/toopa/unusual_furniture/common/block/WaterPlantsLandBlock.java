@@ -9,12 +9,16 @@ import org.jspecify.annotations.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BushBlock;
@@ -48,7 +52,17 @@ public class WaterPlantsLandBlock extends BushBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return super.mayPlaceOn(state, level, pos) || state.is(this);
+		return super.mayPlaceOn(state, level, pos);
+	}
+
+	@Override
+	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+		WaterPlantProperty type = state.getValue(PLANT_TYPE);
+		if (type == WaterPlantProperty.TOP) {
+			BlockState below = level.getBlockState(pos.below());
+			return below.is(this) && below.getValue(PLANT_TYPE) == WaterPlantProperty.BOTTOM;
+		}
+		return super.canSurvive(state, level, pos);
 	}
 
 	@Override
@@ -63,34 +77,44 @@ public class WaterPlantsLandBlock extends BushBlock {
 		}
 
 		WaterPlantProperty type = state.getValue(PLANT_TYPE);
-
-		if (facing == Direction.UP) {
-			if (facingState.is(this)) {
-				return state.setValue(PLANT_TYPE, WaterPlantProperty.BOTTOM);
-			} else if (type == WaterPlantProperty.BOTTOM) {
-				return state.setValue(
-						PLANT_TYPE,
-						world.getBlockState(currentPos.below()).is(this)
-								? WaterPlantProperty.TOP
-								: WaterPlantProperty.SINGLE
-				);
-			}
-		}
-
-		if (facing == Direction.DOWN) {
-			if (facingState.is(this)) {
-				return state.setValue(PLANT_TYPE, WaterPlantProperty.TOP);
-			} else if (type == WaterPlantProperty.TOP) {
-				return state.setValue(
-						PLANT_TYPE,
-						world.getBlockState(currentPos.above()).is(this)
-								? WaterPlantProperty.BOTTOM
-								: WaterPlantProperty.SINGLE
-				);
-			}
+		if (facing == Direction.UP && type == WaterPlantProperty.BOTTOM && !facingState.is(this)) {
+			return Blocks.AIR.defaultBlockState();
 		}
 
 		return state;
+	}
+
+	@Override
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+		super.setPlacedBy(level, pos, state, placer, stack);
+		if (!level.isClientSide && state.getValue(PLANT_TYPE) == WaterPlantProperty.SINGLE) {
+			if (level.random.nextFloat() < 0.5f) {
+				BlockPos abovePos = pos.above();
+				if (level.getBlockState(abovePos).isAir() && pos.getY() < level.getMaxBuildHeight() - 1) {
+					level.setBlock(pos, state.setValue(PLANT_TYPE, WaterPlantProperty.BOTTOM), 3);
+					level.setBlock(abovePos, state.setValue(PLANT_TYPE, WaterPlantProperty.TOP), 3);
+				}
+			}
+		}
+	}
+
+	@Override
+	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+		if (!level.isClientSide) {
+			WaterPlantProperty type = state.getValue(PLANT_TYPE);
+			if (type == WaterPlantProperty.BOTTOM) {
+				BlockPos abovePos = pos.above();
+				if (level.getBlockState(abovePos).is(this)) {
+					level.destroyBlock(abovePos, false);
+				}
+			} else if (type == WaterPlantProperty.TOP) {
+				BlockPos belowPos = pos.below();
+				if (level.getBlockState(belowPos).is(this)) {
+					level.destroyBlock(belowPos, false);
+				}
+			}
+		}
+		return super.playerWillDestroy(level, pos, state, player);
 	}
 
 	@Override
@@ -98,22 +122,11 @@ public class WaterPlantsLandBlock extends BushBlock {
 		BlockPos pos = context.getClickedPos();
 		LevelAccessor level = context.getLevel();
 
-		boolean hasPlantAbove = level.getBlockState(pos.above()).is(this);
-		boolean hasPlantBelow = level.getBlockState(pos.below()).is(this);
-
-		WaterPlantProperty type;
-		if (hasPlantAbove) {
-			type = WaterPlantProperty.BOTTOM;
-		} else if (hasPlantBelow) {
-			type = WaterPlantProperty.TOP;
-		} else {
-			type = WaterPlantProperty.SINGLE;
+		if (level.getBlockState(pos.below()).is(this) || level.getBlockState(pos.above()).is(this)) {
+			return null;
 		}
 
-		BlockState state = super.getStateForPlacement(context);
-		if (state == null) return null;
-		return state.setValue(PLANT_TYPE, type);
-
+		return super.getStateForPlacement(context);
 	}
 
 	@Override
