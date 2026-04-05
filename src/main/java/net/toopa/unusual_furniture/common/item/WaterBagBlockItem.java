@@ -1,5 +1,9 @@
 package net.toopa.unusual_furniture.common.item;
 
+import net.minecraft.tags.FluidTags;
+
+import net.minecraft.world.level.block.Blocks;
+
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -29,17 +33,20 @@ public class WaterBagBlockItem extends BlockItem {
 		this.waterBlock = waterBlock;
 	}
 
-	@Override
-	public InteractionResult useOn(UseOnContext context) {
-		return super.useOn(context);
+	public InteractionResult useOn(UseOnContext useOnContext) {
+		BlockState aboveState = useOnContext.getLevel().getBlockState(useOnContext.getClickedPos().above());
+		if (aboveState.is(Blocks.WATER)) {
+			return InteractionResult.PASS;
+		}
+		return super.useOn(useOnContext);
 	}
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
 		BlockHitResult blockHitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
 		BlockHitResult blockHitResult2 = blockHitResult.withPosition(blockHitResult.getBlockPos().above());
-		InteractionResult interactionResult = super.useOn(new UseOnContext(player, usedHand, blockHitResult2));
-		return new InteractionResultHolder<>(interactionResult, player.getItemInHand(usedHand));
+		InteractionResult interactionResult = super.useOn(new UseOnContext(player, interactionHand, blockHitResult2));
+		return new InteractionResultHolder<>(interactionResult, player.getItemInHand(interactionHand));
 	}
 
 	@Override
