@@ -51,11 +51,6 @@ public class WaterPlantsLandBlock extends BushBlock {
 	}
 
 	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-		return super.mayPlaceOn(state, level, pos);
-	}
-
-	@Override
 	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
 		WaterPlantProperty type = state.getValue(PLANT_TYPE);
 		if (type == WaterPlantProperty.TOP) {
@@ -72,12 +67,8 @@ public class WaterPlantsLandBlock extends BushBlock {
 
 	@Override
 	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-		if (facing == Direction.DOWN && !state.canSurvive(world, currentPos)) {
-			return Blocks.AIR.defaultBlockState();
-		}
-
-		WaterPlantProperty type = state.getValue(PLANT_TYPE);
-		if (facing == Direction.UP && type == WaterPlantProperty.BOTTOM && !facingState.is(this)) {
+		if ((facing == Direction.DOWN && !state.canSurvive(world, currentPos))
+				|| (facing == Direction.UP && state.getValue(PLANT_TYPE) == WaterPlantProperty.BOTTOM && !facingState.is(this))) {
 			return Blocks.AIR.defaultBlockState();
 		}
 
@@ -90,7 +81,7 @@ public class WaterPlantsLandBlock extends BushBlock {
 		if (!level.isClientSide && state.getValue(PLANT_TYPE) == WaterPlantProperty.SINGLE) {
 			if (level.random.nextFloat() < 0.5f) {
 				BlockPos abovePos = pos.above();
-				if (level.getBlockState(abovePos).isAir() && pos.getY() < level.getMaxBuildHeight() - 1) {
+				if (level.getBlockState(abovePos).canBeReplaced() && pos.getY() < level.getMaxBuildHeight() - 1) {
 					level.setBlock(pos, state.setValue(PLANT_TYPE, WaterPlantProperty.BOTTOM), 3);
 					level.setBlock(abovePos, state.setValue(PLANT_TYPE, WaterPlantProperty.TOP), 3);
 				}
