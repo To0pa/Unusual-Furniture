@@ -248,7 +248,7 @@ public class UFModelProvider extends FabricModelProvider {
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
 		registerIronBeam(blockModelGenerators, UFObjects.IRON_BEAM,
-				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.DECORATED_IRON_BEAM))
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.IRON_BEAM))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/metal_particule")));
 		registerFloorLampDecorationBat(blockModelGenerators, UFObjects.FLOOR_LAMP_DECORATION_BAT,
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.FLOOR_LAMP_DECORATION_BAT))

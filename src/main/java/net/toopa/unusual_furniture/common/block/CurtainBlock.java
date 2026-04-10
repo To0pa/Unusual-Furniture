@@ -41,8 +41,12 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<ModularCurtainProperty> SHAPE = EnumProperty.create("shape", ModularCurtainProperty.class);
 	private static final MapCodec<CurtainBlock> CODEC = simpleCodec(CurtainBlock::new);
+
+	// Base shapes
 	private static final VoxelShape VOXEL_SHAPE = box(0.0F, 0.0F, 14.0F, 16.0F, 16.0F, 15.0F);
-	//TODO: cache chapes
+	private static final VoxelShape LEFT_OPEN_SHAPE = box(0.0F, 0.0F, 14.0F, 8.0F, 16.0F, 15.0F);
+	private static final VoxelShape RIGHT_OPEN_SHAPE = box(8.0F, 0.0F, 14.0F, 16.0F, 16.0F, 15.0F);
+	private static final VoxelShape CENTER_HALF_SHAPE = box(0.0F, 8.0F, 14.0F, 16.0F, 16.0F, 15.0F);
 
 	public CurtainBlock(Properties properties) {
 		super(properties);
@@ -70,12 +74,9 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		if (level.isClientSide) {
-			return InteractionResult.SUCCESS;
-		}
+		if (level.isClientSide) return InteractionResult.SUCCESS;
 
 		boolean currentlyOpen = state.getValue(SHAPE).isOpen();
-
 		List<BlockPos> group = new ArrayList<>();
 		collectConnectedCurtains(level, pos, state.getValue(FACING), group);
 
@@ -89,7 +90,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 			}
 		}
 
-		level.playSound(player, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.5F, 0.5F);
+		level.playSound(null, pos, SoundEvents.BUNDLE_INSERT, SoundSource.BLOCKS, 0.5F, 0.5F);
 		return InteractionResult.SUCCESS;
 	}
 
@@ -99,12 +100,10 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		if (direction.getAxis().isHorizontal() || direction == Direction.UP || direction == Direction.DOWN) {
-			if (level instanceof Level realLevel) {
-				updateCurtainGroup(realLevel, pos);
-				if (neighborState.is(UFBlockTags.CURTAIN) && neighborState.getBlock() instanceof CurtainBlock) {
-					updateCurtainGroup(realLevel, neighborPos);
-				}
+		if ((direction.getAxis().isHorizontal() || direction == Direction.UP || direction == Direction.DOWN) && level instanceof Level realLevel) {
+			updateCurtainGroup(realLevel, pos);
+			if (neighborState.is(UFBlockTags.CURTAIN) && neighborState.getBlock() instanceof CurtainBlock) {
+				updateCurtainGroup(realLevel, neighborPos);
 			}
 		}
 
@@ -113,16 +112,14 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 	private void updateCurtainGroup(Level level, BlockPos origin) {
 		BlockState originState = level.getBlockState(origin);
-		if (!originState.is(UFBlockTags.CURTAIN) && !(originState.getBlock() instanceof CurtainBlock)) {
-			return;
-		}
+		if (!originState.is(UFBlockTags.CURTAIN) || !(originState.getBlock() instanceof CurtainBlock)) return;
 
 		List<BlockPos> group = new ArrayList<>();
 		collectConnectedCurtains(level, origin, originState.getValue(FACING), group);
 
 		for (BlockPos p : group) {
 			BlockState oldState = level.getBlockState(p);
-			if (originState.is(UFBlockTags.CURTAIN) && oldState.getBlock() instanceof CurtainBlock cBlock) {
+			if (oldState.getBlock() instanceof CurtainBlock cBlock) {
 				ModularCurtainProperty newShape = cBlock.computeShape(oldState, level, p);
 				if (oldState.getValue(SHAPE) != newShape) {
 					level.setBlock(p, oldState.setValue(SHAPE, newShape), Block.UPDATE_ALL);
@@ -135,27 +132,11 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 		if (group.contains(pos)) return;
 		group.add(pos);
 
-		Direction left = facing.getCounterClockWise();
-		Direction right = facing.getClockWise();
-
-		BlockPos above = pos.above();
-		if (isSameCurtain(level, above, facing)) {
-			collectConnectedCurtains(level, above, facing, group);
-		}
-
-		BlockPos below = pos.below();
-		if (isSameCurtain(level, below, facing)) {
-			collectConnectedCurtains(level, below, facing, group);
-		}
-
-		BlockPos leftPos = pos.relative(left);
-		if (isSameCurtain(level, leftPos, facing)) {
-			collectConnectedCurtains(level, leftPos, facing, group);
-		}
-
-		BlockPos rightPos = pos.relative(right);
-		if (isSameCurtain(level, rightPos, facing)) {
-			collectConnectedCurtains(level, rightPos, facing, group);
+		for (Direction dir : new Direction[]{Direction.UP, Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise()}) {
+			BlockPos neighbor = pos.relative(dir);
+			if (isSameCurtain(level, neighbor, facing)) {
+				collectConnectedCurtains(level, neighbor, facing, group);
+			}
 		}
 	}
 
@@ -174,117 +155,70 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 		Direction leftDir = facing.getCounterClockWise();
 		Direction rightDir = facing.getClockWise();
 
-		BlockPos abovePos = pos.above();
-		BlockPos belowPos = pos.below();
-		BlockPos leftPos = pos.relative(leftDir);
-		BlockPos rightPos = pos.relative(rightDir);
-
-		boolean connectedAbove = isSameCurtain(level, abovePos, facing);
-		boolean connectedBelow = isSameCurtain(level, belowPos, facing);
-		boolean connectedLeft = isSameCurtain(level, leftPos, facing);
-		boolean connectedRight = isSameCurtain(level, rightPos, facing);
+		boolean connectedAbove = isSameCurtain(level, pos.above(), facing);
+		boolean connectedBelow = isSameCurtain(level, pos.below(), facing);
+		boolean connectedLeft = isSameCurtain(level, pos.relative(leftDir), facing);
+		boolean connectedRight = isSameCurtain(level, pos.relative(rightDir), facing);
 
 		boolean isOpen = forceOpenState != null ? forceOpenState : state.getValue(SHAPE).isOpen();
 
-		if (!connectedAbove && !connectedBelow && !connectedLeft && !connectedRight) {
-			return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
-		}
-
-		if (connectedAbove && connectedBelow && !connectedLeft && !connectedRight) {
-			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-		}
+		if (!connectedAbove && !connectedBelow && !connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
+		if (connectedAbove && connectedBelow && !connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 
 		if (!connectedAbove && connectedBelow) {
-			if (!connectedLeft && !connectedRight) {
-				return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
-			}
-			if (connectedLeft && !connectedRight) {
-				return isOpen ? ModularCurtainProperty.LEFT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
-			}
-			if (!connectedLeft && connectedRight) {
-				return isOpen ? ModularCurtainProperty.RIGHT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
-			}
+			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
+			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
 			return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
 		}
 
 		if (connectedAbove && !connectedBelow) {
-			if (!connectedLeft && !connectedRight) {
-				return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
-			}
-			if (connectedLeft && !connectedRight) {
-				return isOpen ? ModularCurtainProperty.LEFT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
-			}
-			if (!connectedLeft && connectedRight) {
-				return isOpen ? ModularCurtainProperty.RIGHT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
-			}
+			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
+			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
 		}
 
 		if (connectedAbove && connectedBelow) {
-			if (connectedLeft && !connectedRight) {
-				return isOpen ? ModularCurtainProperty.LEFT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-			}
-			if (!connectedLeft && connectedRight) {
-				return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-			}
+			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
+			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-		}
-
-		if (!connectedAbove && !connectedBelow) {
-			return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
 		}
 
 		return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
 	}
 
 	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return CODEC;
-	}
-
-	@Override
-	protected boolean isPathfindable(BlockState state, PathComputationType type) {
-		return false;
-	}
-
-	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-
-		Direction facing = blockstate.getValue(FACING);
-		Direction leftDir = facing.getCounterClockWise();
-		Direction rightDir = facing.getClockWise();
-
-		boolean hasOpenNeighbor = false;
-		BlockPos[] neighborPositions = {
-				pos.above(),
-				pos.below(),
-				pos.relative(leftDir),
-				pos.relative(rightDir)
-		};
-
-		for (BlockPos neighborPos : neighborPositions) {
-			if (isSameCurtain(world, neighborPos, facing)) {
-				BlockState neighborState = world.getBlockState(neighborPos);
-				if (neighborState.getValue(SHAPE).isOpen()) {
-					hasOpenNeighbor = true;
-					break;
-				}
-			}
-		}
-
-		BlockState newState = blockstate.setValue(SHAPE, computeShape(blockstate, world, pos, hasOpenNeighbor ? true : null));
-		if (!blockstate.equals(newState)) {
-			world.setBlock(pos, newState, Block.UPDATE_ALL);
-		}
-	}
-
-	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (state.getValue(SHAPE).equals(ModularCurtainProperty.MIDDLE_OPEN))
-			return Shapes.empty();
+		ModularCurtainProperty shape = state.getValue(SHAPE);
+		Direction facing = state.getValue(FACING);
 
-		return switch (state.getValue(FACING)) {
+		if (shape.isOpen()) {
+			// Immediately return an empty shape for the middle open piece so there is NO hitbox
+			if (shape == ModularCurtainProperty.MIDDLE_OPEN) {
+				return Shapes.empty();
+			}
+
+			VoxelShape voxelShape = VOXEL_SHAPE;
+			if (shape == ModularCurtainProperty.LEFT_TOP_OPEN || shape == ModularCurtainProperty.RIGHT_TOP_OPEN) {
+				voxelShape = VOXEL_SHAPE;
+			} else if (shape == ModularCurtainProperty.LEFT_MIDDLE_OPEN || shape == ModularCurtainProperty.LEFT_BOTTOM_OPEN) {
+				voxelShape = RIGHT_OPEN_SHAPE;
+			} else if (shape == ModularCurtainProperty.RIGHT_MIDDLE_OPEN || shape == ModularCurtainProperty.RIGHT_BOTTOM_OPEN) {
+				voxelShape = LEFT_OPEN_SHAPE;
+			} else if (shape == ModularCurtainProperty.TOP_OPEN) {
+				voxelShape = CENTER_HALF_SHAPE;
+			}
+
+			return switch (facing) {
+				case NORTH -> voxelShape;
+				case SOUTH -> VoxelShapeUtils.rotateVoxelShape(voxelShape, Direction.Axis.Y, 180);
+				case WEST -> VoxelShapeUtils.rotateVoxelShape(voxelShape, Direction.Axis.Y, 270);
+				case EAST -> VoxelShapeUtils.rotateVoxelShape(voxelShape, Direction.Axis.Y, 90);
+				default -> Shapes.block();
+			};
+		}
+
+		// For closed states, standard full box
+		return switch (facing) {
 			case NORTH -> VOXEL_SHAPE;
 			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(VOXEL_SHAPE, Direction.Axis.Y, 180);
 			case WEST -> VoxelShapeUtils.rotateVoxelShape(VOXEL_SHAPE, Direction.Axis.Y, 270);
@@ -295,9 +229,30 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (state.getValue(SHAPE).isOpen()) {
-			return Shapes.empty();
-		}
 		return getShape(state, world, pos, context);
+	}
+
+	@Override
+	protected MapCodec<? extends HorizontalDirectionalBlock> codec() { return CODEC; }
+
+	@Override
+	protected boolean isPathfindable(BlockState state, PathComputationType type) { return false; }
+
+	@Override
+	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
+		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
+		Direction facing = blockstate.getValue(FACING);
+		boolean hasOpenNeighbor = false;
+
+		for (Direction dir : new Direction[]{Direction.UP, Direction.DOWN, facing.getClockWise(), facing.getCounterClockWise()}) {
+			BlockPos neighborPos = pos.relative(dir);
+			if (isSameCurtain(world, neighborPos, facing) && world.getBlockState(neighborPos).getValue(SHAPE).isOpen()) {
+				hasOpenNeighbor = true;
+				break;
+			}
+		}
+
+		BlockState newState = blockstate.setValue(SHAPE, computeShape(blockstate, world, pos, hasOpenNeighbor ? true : null));
+		if (!blockstate.equals(newState)) world.setBlock(pos, newState, Block.UPDATE_ALL);
 	}
 }
