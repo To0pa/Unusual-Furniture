@@ -9,7 +9,6 @@
 
 - Fixing sound from curtains, lamps and plusies
 - Fixing sound for plants
-- Fixing water plant client rendering
 
 
 
