@@ -2,16 +2,19 @@ package net.toopa.unusual_furniture.neoforge;
 
 //? neoforge {
 /*import net.minecraft.core.registries.Registries;
+
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import net.toopa.unusual_furniture.ExampleEventHandler;
+
+import net.toopa.unusual_furniture.UFEventHandler;
 import net.toopa.unusual_furniture.UnusualFurniture;
-import net.minecraft.server.level.ServerPlayer;
+
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+
 import net.toopa.unusual_furniture.client.UnusualFurnitureClient;
 import net.toopa.unusual_furniture.common.reg.*;
 
@@ -52,6 +55,11 @@ public class NeoforgeEntrypoint {
 			UFSoundEvents.init();
 		}
     }
+
+	@SubscribeEvent
+	static void onUsBlock(PlayerInteractEvent.RightClickBlock event) {
+		UFEventHandler.onBlockClick(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+	}
 
 }
 *///?}

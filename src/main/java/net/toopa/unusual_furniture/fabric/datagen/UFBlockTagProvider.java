@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 
+import net.minecraft.world.level.block.Blocks;
+
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
 
@@ -136,6 +138,8 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(getRes(UFObjects.MANHOLE, provider))
 				.add(getRes(UFObjects.FIRE_HYDRANT, provider))
 				.add(getRes(UFObjects.TRASH, provider));
+
+		tag(UFBlockTags.SITTABLE_BLOCKS);
 	}
 
 	private ResourceKey<Block> getRes(Block block, HolderLookup.Provider wrapperLookup) {

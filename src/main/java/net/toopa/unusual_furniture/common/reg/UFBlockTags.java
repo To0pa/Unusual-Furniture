@@ -25,6 +25,7 @@ public final class UFBlockTags {
 	public static final TagKey<Block> CARVED_PLANKS = createTag("craved_planks");
 	public static final TagKey<Block> OPEN_RISER_STAIRS = createTag("open_riser_stairs");
 	public static final TagKey<Block> RAILING = createTag("railing");
+	public static final TagKey<Block> SITTABLE_BLOCKS = createTag("sittable_blocks");
 
 	public static final TagKey<Block> COMMON_WATER_BUCKETS = createTag("buckets/water");
 
