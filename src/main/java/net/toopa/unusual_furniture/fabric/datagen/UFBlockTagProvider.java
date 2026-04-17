@@ -139,6 +139,10 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(getRes(UFObjects.FIRE_HYDRANT, provider))
 				.add(getRes(UFObjects.TRASH, provider));
 
+		UFObjects.POT_BLOCKS.forEach((block, reLo) -> {
+			tag(UFBlockTags.FLOWER_POTS).add(getRes(block, provider));
+		});
+
 		tag(UFBlockTags.SITTABLE_BLOCKS);
 	}
 
