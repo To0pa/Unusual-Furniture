@@ -10,6 +10,8 @@ import net.toopa.unusual_furniture.common.reg.UFParticleTypes;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.toopa.unusual_furniture.common.reg.UFSoundEvents;
+
 public class FabricEntrypoint implements ModInitializer {
 
 	@Override
@@ -25,6 +27,7 @@ public class FabricEntrypoint implements ModInitializer {
 		UFCreativeTabs.init();
 		UFEntityTypes.init();
 		UFParticleTypes.init();
+		UFSoundEvents.init();
 	}
 }
 //?}

@@ -3,6 +3,7 @@ package net.toopa.unusual_furniture.common.block;
 import java.util.Map;
 
 import com.mojang.serialization.MapCodec;
+import net.toopa.unusual_furniture.common.reg.UFSoundEvents;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
@@ -61,8 +62,7 @@ public class PlushBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		// TODO: Register and use the custom sound
-		level.playSound(null, pos, SoundEvents.HORSE_DEATH, SoundSource.NEUTRAL, 0.2F, 1.0F);
+		level.playSound(null, pos, UFSoundEvents.SQUEAK, SoundSource.NEUTRAL, 0.2F, 1.0F);
 		if (level instanceof ServerLevel serverLevel) {
 			serverLevel.sendParticles(ParticleTypes.HEART, pos.getX() + (double) 0.5F, pos.getY() + (double) 1.0F, pos.getZ() + (double) 0.5F, 2, 0.2, 0.2, 0.2, 1.0F);
 		}
