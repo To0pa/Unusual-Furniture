@@ -5,9 +5,5 @@
 - Lamp post hitbox
 - New mushroom textures (To0pa)
 
-## Bugs
-
-- Fixing water plant client rendering
-
 ## Not requiered for release
 - Smoke particules (added with a block tag)

@@ -17,6 +17,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.IceBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,7 +36,7 @@ public class WaterPlantsBlock extends AbstractBagBlock {
 	private static final VoxelShape SHAPE = box(1.0F, 0.0F, 1.0F, 15.0F, 1.0F, 15.0F);
 
 	public WaterPlantsBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties.noCollission().offsetType(BlockBehaviour.OffsetType.XYZ));
 		this.registerDefaultState(this.defaultBlockState()
 				.setValue(FACING, Direction.NORTH));
 	}
