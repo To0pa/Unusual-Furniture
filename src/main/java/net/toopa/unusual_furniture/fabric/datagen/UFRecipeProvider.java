@@ -1,5 +1,6 @@
 package net.toopa.unusual_furniture.fabric.datagen;
 
+//? fabric {
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
@@ -22,12 +23,13 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 	@Override
 	public void buildRecipes(RecipeOutput exporter) {
 		//This is an example of how to make a recipe
-		//TODO: remove when recipes are done
+		//TODO: remove example when recipes are done
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.COOKED_CHICKEN)
 				.requires(Items.LAVA_BUCKET)
 				.requires(Items.CHICKEN)
 				.unlockedBy("has_lava_bucket", has(Items.LAVA_BUCKET))
 				.unlockedBy("has_chicken", has(Items.CHICKEN))
-				.save(exporter, UnusualFurniture.id("lava chicken"));
+				.save(exporter, UnusualFurniture.id("lava_chicken"));
 	}
 }
+//?}

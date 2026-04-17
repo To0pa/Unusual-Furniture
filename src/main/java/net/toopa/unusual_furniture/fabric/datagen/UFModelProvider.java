@@ -15,7 +15,7 @@ import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
-import net.toopa.unusual_furniture.common.block.FloorLampBlock;
+import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.ManholeBlock;
@@ -172,6 +172,14 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(wool))
 							.put(TextureSlot.ALL, UnusualFurniture.id("block/curtains")));
+		});
+		UFObjects.TABLE_LAMP_BLOCKS.forEach((block, reLo) -> {
+			DyeSet dyeSet = UFObjects.getDyeSet(block);
+			if (dyeSet == null) throw new AssertionError("DyeSet is null");
+			Block wool = dyeSet.base();
+			registerFloorLamp(blockModelGenerators, block,
+					new TextureMapping().put(SLOT_2, TextureMapping.getBlockTexture(block))
+							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(wool)));
 		});
 		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
@@ -391,9 +399,9 @@ public class UFModelProvider extends FabricModelProvider {
 		registerWallClock(blockModelGenerators, UFObjects.WOODEN_CLOCK,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/clock"))
 						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/clock")));
-		registerFloorLamp(blockModelGenerators, UFObjects.SPRUCE_FLOOR_LAMP,
-				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp"))
-						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp")));
+//		registerFloorLamp(blockModelGenerators, UFObjects.SPRUCE_FLOOR_LAMP,
+//				new TextureMapping().put(SLOT_2, UnusualFurniture.id("block/table_lamp"))
+//						.put(TextureSlot.PARTICLE, UnusualFurniture.id("block/table_lamp")));
 		registerPigLikePlush(blockModelGenerators, UFObjects.PIG_PLUSH,
 				new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(UFObjects.PIG_PLUSH))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.PIG_PLUSH)));
@@ -1538,7 +1546,7 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation modelBottom = LAMP_DOWN.create(block, tm, blockModelGenerators.modelOutput);
 		ResourceLocation modelMiddle = LAMP_MIDDLE.create(block, tm, blockModelGenerators.modelOutput);
 
-		PropertyDispatch map = PropertyDispatch.property(FloorLampBlock.SHAPE)
+		PropertyDispatch map = PropertyDispatch.property(TableLampBlock.SHAPE)
 				.select(FloorLampProperty.SINGLE, Variant.variant().with(VariantProperties.MODEL, modelSingle))
 				.select(FloorLampProperty.TOP, Variant.variant().with(VariantProperties.MODEL, modelTop))
 				.select(FloorLampProperty.BOTTOM, Variant.variant().with(VariantProperties.MODEL, modelBottom))

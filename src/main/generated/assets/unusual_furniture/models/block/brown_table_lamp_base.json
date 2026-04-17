@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/lamp_base",
+  "textures": {
+    "2": "unusual_furniture:block/brown_table_lamp",
+    "particle": "minecraft:block/brown_wool"
+  }
+}

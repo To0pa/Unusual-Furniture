@@ -20,6 +20,7 @@ public final class UFBlockTags {
 	public static final TagKey<Block> DRAWER = createTag("drawer");
 	public static final TagKey<Block> BENCH = createTag("bench");
 	public static final TagKey<Block> CURTAIN = createTag("curtain");
+	public static final TagKey<Block> WOODEN_FLOOR_LAMP = createTag("wooden_floor_lamp");
 	public static final TagKey<Block> SHELF = createTag("shelf");
 	public static final TagKey<Block> CARVED_PLANKS = createTag("craved_planks");
 	public static final TagKey<Block> OPEN_RISER_STAIRS = createTag("open_riser_stairs");
