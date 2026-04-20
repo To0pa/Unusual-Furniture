@@ -7,7 +7,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 
-import net.toopa.unusual_furniture.common.UnusualFurniture;
+import net.minecraft.world.level.block.Blocks;
+
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
 
@@ -47,49 +48,52 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 		});
 		UFObjects.CHAIR_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.CHAIR).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CHAIR);
 		UFObjects.STOOL_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.STOOL).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.STOOL);
 		UFObjects.SOFA_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.SOFA).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.SOFA);
 		UFObjects.CEILING_LAMP_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.CEILING_LAMP).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CEILING_LAMP);
 		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.DRAWER).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.DRAWER);
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.BENCH).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.BENCH);
 		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.CURTAIN).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_HOE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CURTAIN);
+		UFObjects.TABLE_LAMP_BLOCKS.forEach((block, reLo) -> {
+			tag(UFBlockTags.WOODEN_FLOOR_LAMP).add(getRes(block, provider));
+		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.WOODEN_FLOOR_LAMP);
 		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.SHELF).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.SHELF);
 		UFObjects.CARVED_PLANK_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.CARVED_PLANKS).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CARVED_PLANKS);
 		UFObjects.OPEN_RISER_STAIR_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.OPEN_RISER_STAIRS).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.OPEN_RISER_STAIRS);
 		UFObjects.RAILING_BLOCKS.forEach((block, reLo) -> {
 			tag(UFBlockTags.RAILING).add(getRes(block, provider));
-			tag(BlockTags.MINEABLE_WITH_AXE).add(getRes(block, provider));
 		});
+		tag(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.RAILING);
 
 		tag(createTag("ftbchunks", "interact_whitelist"))
 				.addTag(UFBlockTags.CHAIR)
@@ -107,7 +111,6 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(getRes(UFObjects.WOODEN_BARRIER, provider))
 				.add(getRes(UFObjects.WOODEN_CLOCK, provider))
 				.add(getRes(UFObjects.BLACKBOARD_MENU, provider))
-				.add(getRes(UFObjects.SPRUCE_FLOOR_LAMP, provider))
 				.add(getRes(UFObjects.RAKE, provider))
 				.add(getRes(UFObjects.BROOM, provider));
 
@@ -135,6 +138,12 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(getRes(UFObjects.MANHOLE, provider))
 				.add(getRes(UFObjects.FIRE_HYDRANT, provider))
 				.add(getRes(UFObjects.TRASH, provider));
+
+		UFObjects.POT_BLOCKS.forEach((block, reLo) -> {
+			tag(UFBlockTags.FLOWER_POTS).add(getRes(block, provider));
+		});
+
+		tag(UFBlockTags.SITTABLE_BLOCKS);
 	}
 
 	private ResourceKey<Block> getRes(Block block, HolderLookup.Provider wrapperLookup) {

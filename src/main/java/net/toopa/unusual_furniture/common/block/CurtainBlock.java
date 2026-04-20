@@ -36,6 +36,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import org.jspecify.annotations.Nullable;
+
 public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -150,7 +152,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 		return computeShape(state, level, pos, null);
 	}
 
-	public ModularCurtainProperty computeShape(BlockState state, Level level, BlockPos pos, Boolean forceOpenState) {
+	public ModularCurtainProperty computeShape(BlockState state, Level level, BlockPos pos, @Nullable Boolean forceOpenState) {
 		Direction facing = state.getValue(FACING);
 		Direction leftDir = facing.getCounterClockWise();
 		Direction rightDir = facing.getClockWise();
@@ -177,9 +179,9 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
 		}
 
-		if (connectedAbove && connectedBelow) {
+		if (connectedAbove) {
 			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
+			if (!connectedLeft) return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 		}
 
@@ -197,16 +199,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 				return Shapes.empty();
 			}
 
-			VoxelShape voxelShape = VOXEL_SHAPE;
-			if (shape == ModularCurtainProperty.LEFT_TOP_OPEN || shape == ModularCurtainProperty.RIGHT_TOP_OPEN) {
-				voxelShape = VOXEL_SHAPE;
-			} else if (shape == ModularCurtainProperty.LEFT_MIDDLE_OPEN || shape == ModularCurtainProperty.LEFT_BOTTOM_OPEN) {
-				voxelShape = RIGHT_OPEN_SHAPE;
-			} else if (shape == ModularCurtainProperty.RIGHT_MIDDLE_OPEN || shape == ModularCurtainProperty.RIGHT_BOTTOM_OPEN) {
-				voxelShape = LEFT_OPEN_SHAPE;
-			} else if (shape == ModularCurtainProperty.TOP_OPEN) {
-				voxelShape = CENTER_HALF_SHAPE;
-			}
+			VoxelShape voxelShape = getBaseVoxelShape(shape);
 
 			return switch (facing) {
 				case NORTH -> voxelShape;
@@ -227,9 +220,21 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 		};
 	}
 
+	private static VoxelShape getBaseVoxelShape(ModularCurtainProperty shape) {
+		VoxelShape voxelShape = VOXEL_SHAPE;
+		if (shape == ModularCurtainProperty.LEFT_MIDDLE_OPEN || shape == ModularCurtainProperty.LEFT_BOTTOM_OPEN) {
+			voxelShape = RIGHT_OPEN_SHAPE;
+		} else if (shape == ModularCurtainProperty.RIGHT_MIDDLE_OPEN || shape == ModularCurtainProperty.RIGHT_BOTTOM_OPEN) {
+			voxelShape = LEFT_OPEN_SHAPE;
+		} else if (shape == ModularCurtainProperty.TOP_OPEN) {
+			voxelShape = CENTER_HALF_SHAPE;
+		}
+		return voxelShape;
+	}
+
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return getShape(state, world, pos, context);
+		return state.getValue(SHAPE).isOpen()? Shapes.empty() : super.getCollisionShape(state, world, pos, context);
 	}
 
 	@Override
@@ -239,7 +244,7 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 	protected boolean isPathfindable(BlockState state, PathComputationType type) { return false; }
 
 	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
+	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, @Nullable LivingEntity entity, ItemStack itemstack) {
 		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
 		Direction facing = blockstate.getValue(FACING);
 		boolean hasOpenNeighbor = false;

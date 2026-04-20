@@ -12,6 +12,7 @@ public class UnusualFurnitureDatagen implements DataGeneratorEntrypoint {
 		pack.addProvider(UFBlockLootTableProvider::new);
 		pack.addProvider(UFBlockTagProvider::new);
 		pack.addProvider(UFModelProvider::new);
+		pack.addProvider(UFRecipeProvider::new);
 	}
 }
 //?}

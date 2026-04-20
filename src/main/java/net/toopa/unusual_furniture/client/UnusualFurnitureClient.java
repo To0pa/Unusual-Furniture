@@ -33,7 +33,7 @@ public class UnusualFurnitureClient {
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.TRASH);
-		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.SPRUCE_FLOOR_LAMP);
+		UFObjects.TABLE_LAMP_BLOCKS.forEach((block, reLo) -> Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.MANHOLE);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.DECORATIVE_TOOLBOX);
 		Platform.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.PIG_PLUSH);

@@ -19,12 +19,27 @@ public interface ISittableBlock {
 			SeatEntity entity = SeatEntity.of(world, pos, dir);
 			if (world.addFreshEntity(entity)) {
 				player.startRiding(entity);
+				SeatEntity.SITTING_POSITIONS.put(world.dimension(), pos);
 				BlockState state = world.getBlockState(pos);
 				if (state.is(UFBlockTags.CHAIR) || state.is(UFBlockTags.STOOL) || state.is(UFBlockTags.BENCH)) {
 					world.playSound(null, pos, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.6F, 0.5F);
 				} else if (state.is(UFBlockTags.SOFA)) {
 					world.playSound(null, pos, SoundEvents.WOOL_STEP, SoundSource.BLOCKS, 0.6F, 0.5F);
 				}
+				return true;
+			} else {
+				entity.removeSeat();
+			}
+		}
+		return false;
+	}
+
+	static boolean sitOn(Level world, BlockPos pos, Player player) {
+		if (!world.isClientSide && !SeatEntity.SITTING_POSITIONS.get(world.dimension()).contains(pos)) {
+			SeatEntity entity = SeatEntity.of(world, pos, null);
+			if (world.addFreshEntity(entity)) {
+				player.startRiding(entity);
+				SeatEntity.SITTING_POSITIONS.put(world.dimension(), pos);
 				return true;
 			} else {
 				entity.removeSeat();

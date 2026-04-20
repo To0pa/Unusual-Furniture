@@ -28,7 +28,7 @@ import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.FireHydrantBlock;
-import net.toopa.unusual_furniture.common.block.FloorLampBlock;
+import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
 import net.toopa.unusual_furniture.common.block.FudgePotBlock;
@@ -197,8 +197,8 @@ public final class UFObjects {
 	public static final Map<Block, ResourceLocation> WALL_CLOCK_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> WALL_CLOCK_ITEMS = new LinkedHashMap<>();
 
-	public static final Map<Block, ResourceLocation> WOODEN_FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> WOODEN_FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final Map<Block, ResourceLocation> TABLE_LAMP_BLOCKS = new LinkedHashMap<>();
+	public static final Map<Item, ResourceLocation> TABLE_LAMP_ITEMS = new LinkedHashMap<>();
 
 	public static final Map<Block, ResourceLocation> PLUSH_BLOCKS = new LinkedHashMap<>();
 	public static final Map<Item, ResourceLocation> PLUSH_ITEMS = new LinkedHashMap<>();
@@ -323,8 +323,9 @@ public final class UFObjects {
 		for (DyeDef dye : DYES) {
 			SofaBlock sofa = registerSofa(dye.name() + "_sofa", dye.wool());
 			CurtainBlock curtain = registerCurtain(dye.name() + "_curtain", dye.wool());
+			TableLampBlock floorLamp = registerTableLamp(dye.name() + "_table_lamp", dye.wool());
 
-			DyeSet set = new DyeSet(dye.wool(), sofa, curtain);
+			DyeSet set = new DyeSet(dye.wool(), sofa, curtain, floorLamp);
 			for (Block b : set.stream().toList()) {
 				BLOCK_TO_DYESET.put(b, set);
 			}
@@ -360,7 +361,7 @@ public final class UFObjects {
 		addProps(TOOLBOX_BLOCKS, TOOLBOX_ITEMS);
 		addProps(BARRIER_BLOCKS, BARRIER_ITEMS);
 		addProps(WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS);
-		addProps(WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS);
+		addProps(TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS);
 		addProps(PLUSH_BLOCKS, PLUSH_ITEMS);
 		addProps(BROOM_BLOCKS, BROOM_ITEMS);
 		addProps(GRAVE_BLOCKS, GRAVE_ITEMS);
@@ -387,14 +388,14 @@ public final class UFObjects {
 	public static final DecoratedIronBeamBlock DECORATED_IRON_BEAM = registerDecoratedIronBeam("decorated_iron_beam");
 	public static final IronBeamBlock IRON_BEAM = registerIronBeam("iron_beam");
 
-	public static final FloorLampDecorationBatBlock FLOOR_LAMP_DECORATION_BAT = registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat");
-	public static final FloorLampDecorationVillagerBlock FLOOR_LAMP_DECORATION_VILLAGER = registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager");
-	public static final IronLampBlock IRON_LAMP = registerIronLampBlock("iron_lamp");
-	public static final SphereLampBlock SPHERE_LAMP = registerSphereLampBlock("sphere_lamp");
+	public static final FloorLampDecorationBatBlock FLOOR_LAMP_DECORATION_BAT = registerFloorLampDecorationBatBlock("floor_lamp_decoration_bat", p -> p.sound(SoundType.NETHERITE_BLOCK));
+	public static final FloorLampDecorationVillagerBlock FLOOR_LAMP_DECORATION_VILLAGER = registerFloorLampDecorationVillagerBlock("floor_lamp_decoration_villager", p -> p.sound(SoundType.NETHERITE_BLOCK));
+	public static final IronLampBlock IRON_LAMP = registerIronLampBlock("iron_lamp", p -> p.sound(SoundType.NETHERITE_BLOCK));
+	public static final SphereLampBlock SPHERE_LAMP = registerSphereLampBlock("sphere_lamp", p -> p.sound(SoundType.NETHERITE_BLOCK));
 
-	public static final TropicalPlantBlock TROPICAL_PLANT = registerTropicalPlantBlock("tropical_plant");
-	public static final MushroomPatchBlock MUSHROOM_PATCH = registerMushroomPatchBlock("mushroom_patch");
-	public static final WaterPlantsLandBlock WATER_PLANTS = registerWaterPlantsBlock("water_plants");
+	public static final TropicalPlantBlock TROPICAL_PLANT = registerTropicalPlantBlock("tropical_plant", p -> p.sound(SoundType.GRASS));
+	public static final MushroomPatchBlock MUSHROOM_PATCH = registerMushroomPatchBlock("mushroom_patch", p -> p.sound(SoundType.GRASS));
+	public static final WaterPlantsLandBlock WATER_PLANTS = registerWaterPlantsBlock("water_plants", p -> p.sound(SoundType.LILY_PAD));
 	public static final PebbleBagBlock PEBBLE_BAG = registerPebbleBagBlock("pebble_bag");
 	public static final GreekPotBlock GREEK_POT = registerGreekPotBlock("greek_pot");
 	public static final HugePotBlock HUGE_POT = registerHugePotBlock("huge_pot");
@@ -418,7 +419,7 @@ public final class UFObjects {
 	public static final BarrierBlock WOODEN_BARRIER = registerBarrierBlock("wooden_barrier");
 	public static final BlackboardMenuBlock BLACKBOARD_MENU = registerBlackboardMenuBlock("blackboard_menu");
 	public static final WallClockBlock WOODEN_CLOCK = registerWallClockBlock("wooden_clock");
-	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
+//	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
 	public static final PlushBlock PIG_PLUSH = registerPlushBlock("pig_plush");
 	public static final PlushBlock COW_PLUSH = registerPlushBlock("cow_plush");
 	public static final CatPlushBlock CAT_PLUSH = registerCatPlushBlock("cat_plush");
@@ -514,7 +515,8 @@ public final class UFObjects {
 	private static ChairBlock registerChair(String n, Block b) { return simple(n, ChairBlock::new, b, CHAIR_BLOCKS, CHAIR_ITEMS); }
 	private static StoolBlock registerStool(String n, Block b) { return simple(n, StoolBlock::new, b, STOOL_BLOCKS, STOOL_ITEMS); }
 	private static SofaBlock registerSofa(String n, Block b) { return simple(n, SofaBlock::new, b, SOFA_BLOCKS, SOFA_ITEMS); }
-	private static CurtainBlock registerCurtain(String n, Block b) { return simple(n, CurtainBlock::new, b, CURTAIN_BLOCKS, CURTAIN_ITEMS); }
+	private static CurtainBlock registerCurtain(String n, Block b) { return simple(n, CurtainBlock::new, b, p -> p.sound(SoundType.WOOL), CURTAIN_BLOCKS, CURTAIN_ITEMS); }
+	private static TableLampBlock registerTableLamp(String n, Block b) { return simple(n, TableLampBlock::new, b, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
 	private static CeilingLampBlock registerCeilingLamp(String n, Block b) { return simple(n, CeilingLampBlock::new, b, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
 	private static DrawerBlock registerDrawer(String n, Block b) { return simple(n, DrawerBlock::new, b, DRAWER_BLOCKS, DRAWER_ITEMS); }
 	private static BenchBlock registerBench(String n, Block b) { return simple(n, BenchBlock::new, b, BENCH_BLOCKS, BENCH_ITEMS); }
@@ -552,6 +554,16 @@ public final class UFObjects {
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
 	}
+	private static TropicalPlantBlock registerTropicalPlantBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
+		TropicalPlantBlock block = new TropicalPlantBlock(modifier.apply(BlockBehaviour.Properties.of()));
+		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(modifier.apply(BlockBehaviour.Properties.of()));
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		LOOT_TABLE_BLACKLIST.add(wallBlock);
+		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
 	private static MushroomPatchBlock registerMushroomPatchBlock(String n) {
 		MushroomPatchBlock block = new MushroomPatchBlock(BlockBehaviour.Properties.of());
 		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(BlockBehaviour.Properties.of());
@@ -562,9 +574,29 @@ public final class UFObjects {
 		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
 		return block;
 	}
+	private static MushroomPatchBlock registerMushroomPatchBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
+		MushroomPatchBlock block = new MushroomPatchBlock(modifier.apply(BlockBehaviour.Properties.of()));
+		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(modifier.apply(BlockBehaviour.Properties.of()));
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		LOOT_TABLE_BLACKLIST.add(wallBlock);
+		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
 	private static WaterPlantsLandBlock registerWaterPlantsBlock(String n) {
 		WaterPlantsLandBlock block = new WaterPlantsLandBlock(BlockBehaviour.Properties.of());
 		WaterPlantsBlock waterBlock = new WaterPlantsBlock(BlockBehaviour.Properties.of());
+		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
+		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
+		LOOT_TABLE_BLACKLIST.add(waterBlock);
+		WaterBagBlockItem blockItem = new WaterBagBlockItem(block, waterBlock, new Item.Properties());
+		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		return block;
+	}
+	private static WaterPlantsLandBlock registerWaterPlantsBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
+		WaterPlantsLandBlock block = new WaterPlantsLandBlock(modifier.apply(BlockBehaviour.Properties.of()));
+		WaterPlantsBlock waterBlock = new WaterPlantsBlock(modifier.apply(BlockBehaviour.Properties.of()));
 		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
 		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
 		LOOT_TABLE_BLACKLIST.add(waterBlock);
@@ -607,8 +639,8 @@ public final class UFObjects {
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, modifier, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
 	private static WallClockBlock registerWallClockBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, modifier, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
-	private static FloorLampBlock registerFloorLampBlock(String n) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
-	private static FloorLampBlock registerFloorLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FloorLampBlock::new, Blocks.OAK_PLANKS, modifier, WOODEN_FLOOR_LAMP_BLOCKS, WOODEN_FLOOR_LAMP_ITEMS); }
+	private static TableLampBlock registerFloorLampBlock(String n) { return simple(n, TableLampBlock::new, Blocks.OAK_PLANKS, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
+	private static TableLampBlock registerFloorLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TableLampBlock::new, Blocks.OAK_PLANKS, modifier, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
 	private static PlushBlock registerPlushBlock(String n) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static PlushBlock registerPlushBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, modifier, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static CatPlushBlock registerCatPlushBlock(String n) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }

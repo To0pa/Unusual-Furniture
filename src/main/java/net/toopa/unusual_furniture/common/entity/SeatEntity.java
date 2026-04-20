@@ -3,9 +3,10 @@ package net.toopa.unusual_furniture.common.entity;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.toopa.unusual_furniture.common.block.ISittableBlock;
+import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
+import org.jspecify.annotations.Nullable;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -28,18 +29,19 @@ import net.minecraft.world.level.entity.EntityInLevelCallback;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-@MethodsReturnNonnullByDefault
+@SuppressWarnings("resource")
 public class SeatEntity extends Entity {
 
 	public static final Multimap<ResourceKey<Level>, BlockPos> SITTING_POSITIONS = ArrayListMultimap.create();
 
-	private AABB shape;
-	private boolean remove;
+	private @Nullable AABB shape;
 	private boolean canRotate;
+	private int emptyTicks = 0;
 
 	public SeatEntity(EntityType<? extends Entity> type, Level world) {
 		super(type, world);
 		this.setLevelCallback(EntityInLevelCallback.NULL);
+		this.shape = new AABB(new Vec3(0, 0, 0), new Vec3(1, 0.5, 1));
 	}
 
 	public SeatEntity(Level world, AABB shape) {
@@ -47,7 +49,7 @@ public class SeatEntity extends Entity {
 		this.shape = copyBox(shape);
 	}
 
-	public static SeatEntity of(Level world, BlockPos pos, Direction dir) {
+	public static SeatEntity of(Level world, BlockPos pos, @Nullable Direction dir) {
 		BlockState state = world.getBlockState(pos);
 		AABB shape = new AABB(pos);
 		if (state.getBlock() instanceof ISittableBlock seat) {
@@ -127,21 +129,26 @@ public class SeatEntity extends Entity {
 		return this.position().add(0.0, 1.0, 0.0);
 	}
 
-
 	@Override
 	public void tick() {
 		super.tick();
-		if (!this.level().isClientSide() &&
-				(!(this.level().getBlockState(blockPosition()).getBlock() instanceof ISittableBlock) || remove)) {
-			removeSeat();
-		}
-	}
 
-	@Override
-	protected void removePassenger(Entity passenger) {
-		super.removePassenger(passenger);
-		if (!this.level().isClientSide() && getPassengers().isEmpty()) {
-			remove = true;
+		if (!level().isClientSide()) {
+			if (getPassengers().isEmpty()) {
+				emptyTicks++;
+			} else {
+				emptyTicks = 0;
+			}
+
+			if (emptyTicks > 5) {
+				removeSeat();
+				return;
+			}
+
+			var blockState = level().getBlockState(blockPosition());
+			if (!(blockState.getBlock() instanceof ISittableBlock || blockState.is(UFBlockTags.SITTABLE_BLOCKS))) {
+				removeSeat();
+			}
 		}
 	}
 
@@ -204,22 +211,16 @@ public class SeatEntity extends Entity {
 
 		@Override
 		public void onMove() {
-			if (delegate != null) {
-				delegate.onMove();
-				Block block = SeatEntity.this.level().getBlockState(blockPosition()).getBlock();
-				if (block instanceof ISittableBlock seat) {
-					shape = seat.getSeatSize(SeatEntity.this.level().getBlockState(blockPosition()));
-				}
-			} else {
-				shape = null;
+			delegate.onMove();
+			Block block = SeatEntity.this.level().getBlockState(blockPosition()).getBlock();
+			if (block instanceof ISittableBlock seat) {
+				shape = seat.getSeatSize(SeatEntity.this.level().getBlockState(blockPosition()));
 			}
 		}
 
 		@Override
 		public void onRemove(RemovalReason reason) {
-			if (delegate != null) {
-				delegate.onRemove(reason);
-			}
+			delegate.onRemove(reason);
 		}
 	}
 }

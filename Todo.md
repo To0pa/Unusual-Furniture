@@ -1,16 +1,9 @@
 ## Missing Features
-- Adding lamps colors variations
+- Adding lamps colors variations translation files (will be datagenned when we do recipes too)
 - Drawers and clock java animation rendering
-- Recipes
+- Recipes (I added an example)
 - Lamp post hitbox
 - New mushroom textures (To0pa)
-
-## Bugs
-
-- Fixing sound from curtains, lamps and plusies
-- Fixing sound for plants
-
-
 
 ## Not requiered for release
 - Smoke particules (added with a block tag)

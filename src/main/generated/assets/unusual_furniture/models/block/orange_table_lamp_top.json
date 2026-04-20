@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/lamp_top",
+  "textures": {
+    "2": "unusual_furniture:block/orange_table_lamp",
+    "particle": "minecraft:block/orange_wool"
+  }
+}
