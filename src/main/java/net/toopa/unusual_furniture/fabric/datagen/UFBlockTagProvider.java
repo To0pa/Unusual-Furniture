@@ -143,6 +143,10 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 			tag(UFBlockTags.FLOWER_POTS).add(getRes(block, provider));
 		});
 
+		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> {
+			tag(UFBlockTags.FLOOR_LAMP_DECORATIONS).add(getRes(block, provider));
+		});
+
 		tag(UFBlockTags.SITTABLE_BLOCKS);
 	}
 

@@ -31,6 +31,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.toopa.unusual_furniture.common.reg.UFObjects;
+import org.jspecify.annotations.Nullable;
+
 public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
 	private static final int MAX_NUMBER_OF_ARMS = 2;
@@ -60,10 +63,23 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 	}
 
 	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+		super.setPlacedBy(level, pos, state, entity, stack);
+
+		if (!level.isClientSide) {
+			int arms = state.getValue(NUMBER_OF_ARMS);
+			if (canPlaceArms(level, pos, state, arms)) {
+				placeArms(level, pos, state, arms);
+			}
+		}
+	}
+
+	@Override
+	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+		if (state.getBlock() != newState.getBlock()) {
+			removeArms(level, pos);
+		}
+		super.onRemove(state, level, pos, newState, isMoving);
 	}
 
 	@Override
@@ -74,14 +90,99 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		int arms = state.getValue(NUMBER_OF_ARMS);
-		arms++;
-		if (arms > MAX_NUMBER_OF_ARMS) {
-			arms = 0;
+		int nextArms = state.getValue(NUMBER_OF_ARMS) + 1;
+		if (nextArms > MAX_NUMBER_OF_ARMS) nextArms = 0;
+
+		if (!level.isClientSide) {
+			if (!canPlaceArms(level, pos, state, nextArms)) {
+				return InteractionResult.FAIL;
+			}
+			removeArms(level, pos);
+			placeArms(level, pos, state, nextArms);
+
+			level.setBlock(pos, state.setValue(NUMBER_OF_ARMS, nextArms), Block.UPDATE_ALL);
 		}
-		if (level.setBlock(pos, state.setValue(NUMBER_OF_ARMS, arms), Block.UPDATE_ALL))
-			return InteractionResult.SUCCESS;
-		return super.useWithoutItem(state, level, pos, player, hitResult);
+		return InteractionResult.SUCCESS;
+	}
+
+	private boolean canPlaceAt(Level level, BlockPos pos, Direction expectedFacing) {
+		var blockState = level.getBlockState(pos);
+
+		if (blockState.canBeReplaced()) {
+			return true;
+		}
+		if (blockState.is(UFObjects.FLOOR_LAMP_SUPPORT)) {
+			return blockState.getValue(HorizontalDirectionalBlock.FACING) == expectedFacing;
+		}
+		return false;
+	}
+
+	private boolean canPlaceArms(Level level, BlockPos pos, BlockState state, int arms) {
+		Direction front = state.getValue(FACING);
+		Direction left = front.getCounterClockWise();
+		Direction right = front.getClockWise();
+		Direction back = front.getOpposite();
+
+		return switch (arms) {
+			case 0 -> canPlaceAt(level, pos.relative(front), front);
+
+			case 1 -> canPlaceAt(level, pos.relative(left), left)
+					&& canPlaceAt(level, pos.relative(right), right);
+
+			case 2 -> canPlaceAt(level, pos.relative(front), front)
+					&& canPlaceAt(level, pos.relative(back), back)
+					&& canPlaceAt(level, pos.relative(left), left)
+					&& canPlaceAt(level, pos.relative(right), right);
+
+			default -> true;
+		};
+	}
+
+	private void placeSupport(Level level, BlockPos targetPos, Direction facing, BlockState support) {
+		var blockState = level.getBlockState(targetPos);
+		if (!blockState.canBeReplaced() && !blockState.is(UFObjects.FLOOR_LAMP_SUPPORT)) {
+			return;
+		}
+		level.setBlock(targetPos,
+				support.setValue(HorizontalDirectionalBlock.FACING, facing),
+				Block.UPDATE_ALL
+		);
+	}
+
+	private void placeArms(Level level, BlockPos pos, BlockState state, int arms) {
+		Direction front = state.getValue(FACING);
+		Direction left = front.getCounterClockWise();
+		Direction right = front.getClockWise();
+		Direction back = front.getOpposite();
+
+		BlockState support = UFObjects.FLOOR_LAMP_SUPPORT.defaultBlockState();
+
+		switch (arms) {
+			case 0: // 1 arm
+				placeSupport(level, pos.relative(front), front, support);
+				break;
+
+			case 1: // 2 arms
+				placeSupport(level, pos.relative(left), left, support);
+				placeSupport(level, pos.relative(right), right, support);
+				break;
+
+			case 2: // 4 arms
+				placeSupport(level, pos.relative(front), front, support);
+				placeSupport(level, pos.relative(back), back, support);
+				placeSupport(level, pos.relative(left), left, support);
+				placeSupport(level, pos.relative(right), right, support);
+				break;
+		}
+	}
+
+	private void removeArms(Level level, BlockPos pos) {
+		for (Direction dir : Direction.Plane.HORIZONTAL) {
+			BlockPos target = pos.relative(dir);
+			if (level.getBlockState(target).is(UFObjects.FLOOR_LAMP_SUPPORT)) {
+				level.removeBlock(target, false);
+			}
+		}
 	}
 
 	@Override

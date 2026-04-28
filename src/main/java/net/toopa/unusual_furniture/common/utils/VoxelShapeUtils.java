@@ -8,7 +8,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class VoxelShapeUtils {
+public final class VoxelShapeUtils {
+
+	private VoxelShapeUtils() {}
 
 	public static VoxelShape rotateVoxelShape(VoxelShape shape, Direction.Axis axis, int degrees) {
 		int times = ((degrees % 360) + 360) % 360 / 90;
