@@ -28,6 +28,7 @@ import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.FireHydrantBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampSupportBlock;
 import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
@@ -94,6 +95,7 @@ public final class UFObjects {
 	public static final List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
 	public static final List<Map<Block, ResourceLocation>> BUILDING_BLOCKS = new ArrayList<>();
 	public static final List<Map<Block, ResourceLocation>> PROPS_BLOCKS = new ArrayList<>();
+	public static final List<Map<Block, ResourceLocation>> ALL_BLOCKS = new ArrayList<>();
 
 	public static final List<Map<Item, ResourceLocation>> FURNITURE_ITEMS = new ArrayList<>();
 	public static final List<Map<Item, ResourceLocation>> BUILDING_ITEMS = new ArrayList<>();
@@ -257,24 +259,33 @@ public final class UFObjects {
 	/* --------------------------------------------------------------------- */
 
 	public static final DiscordItem DISCORD_ITEM =
-			registerItem("discord", new DiscordItem(new Item.Properties()), FURNITURE_MAP());
+			registerItem("discord", new DiscordItem(new Item.Properties()), FURNITURE_ITEM_MAP());
 
 	public static final Item SCREW_ITEM =
-			registerItem("screw", new Item(new Item.Properties()), PROPS_MAP());
+			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEM_MAP());
 
-	private static Map<Item, ResourceLocation> ALL_MAP() {
+	public static final Block FLOOR_LAMP_SUPPORT =
+			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), ALL_BLOCK_MAP());
+
+	private static Map<Block, ResourceLocation> ALL_BLOCK_MAP() {
+		Map<Block, ResourceLocation> map = new LinkedHashMap<>();
+		ALL_BLOCKS.add(map);
+		return map;
+	}
+
+	private static Map<Item, ResourceLocation> ALL_ITEM_MAP() {
 		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
 		ALL_ITEMS.add(map);
 		return map;
 	}
 
-	private static Map<Item, ResourceLocation> FURNITURE_MAP() {
+	private static Map<Item, ResourceLocation> FURNITURE_ITEM_MAP() {
 		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
 		FURNITURE_ITEMS.add(map);
 		return map;
 	}
 
-	private static Map<Item, ResourceLocation> PROPS_MAP() {
+	private static Map<Item, ResourceLocation> PROPS_ITEM_MAP() {
 		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
 		PROPS_ITEMS.add(map);
 		return map;
@@ -371,6 +382,7 @@ public final class UFObjects {
 		registerAll(FURNITURE_BLOCKS, BuiltInRegistries.BLOCK);
 		registerAll(BUILDING_BLOCKS, BuiltInRegistries.BLOCK);
 		registerAll(PROPS_BLOCKS, BuiltInRegistries.BLOCK);
+		registerAll(ALL_BLOCKS, BuiltInRegistries.BLOCK);
 
 		registerAll(FURNITURE_ITEMS, BuiltInRegistries.ITEM);
 		registerAll(BUILDING_ITEMS, BuiltInRegistries.ITEM);
@@ -656,6 +668,11 @@ public final class UFObjects {
 	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
 		map.put(item, UnusualFurniture.id(name));
 		return item;
+	}
+
+	private static <T extends Block> T registerBlock(String name, T block, Map<Block, ResourceLocation> map) {
+		map.put(block, UnusualFurniture.id(name));
+		return block;
 	}
 
 	public static @Nullable WoodSet getWoodSet(Block block) {
