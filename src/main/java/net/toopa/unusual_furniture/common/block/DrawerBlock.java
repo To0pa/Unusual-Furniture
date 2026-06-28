@@ -2,7 +2,7 @@ package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,7 +31,8 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements EntityBlo
 	private static final MapCodec<DrawerBlock> CODEC = simpleCodec(DrawerBlock::new);
 
 	public DrawerBlock(Properties properties) {
-		super(properties);
+		super(properties
+				.noOcclusion());
 		registerDefaultState(defaultBlockState()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(OPEN, false));
@@ -81,7 +82,7 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements EntityBlo
 	}
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+	public @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
 		BlockEntity be = level.getBlockEntity(pos);
 		if (be instanceof DrawerBlockEntity drawer) {
 			return drawer;
