@@ -3,6 +3,7 @@
 - Drawers and clock java animation rendering
 - Recipes (I added an example)
 - Lamp post hitbox
+- Make the hand swing when you turn on lights
 
 
 ## Not requiered for release
