@@ -90,7 +90,7 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 					Block.UPDATE_ALL
 			);
 			playSound(level, player, pos);
-			return InteractionResult.CONSUME;
+			return InteractionResult.SUCCESS_NO_ITEM_USED;
 		}
 
 		return InteractionResult.PASS;
