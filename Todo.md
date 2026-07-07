@@ -3,7 +3,5 @@
 - Drawers and clock java animation rendering
 - Recipes (I added an example)
 
-
 ## Not requiered for release
-- Smoke particules (added with a block tag)
 - New mushroom textures (To0pa)

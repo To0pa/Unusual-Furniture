@@ -28,6 +28,7 @@ public final class UFBlockTags {
 	public static final TagKey<Block> FLOWER_POTS = createTag("flower_pots");
 	public static final TagKey<Block> FLOOR_LAMP_DECORATIONS = createTag("floor_lamp_decorations");
 	public static final TagKey<Block> SITTABLE_BLOCKS = createTag("sittable_blocks");
+	public static final TagKey<Block> EMITS_DUST_PARTICLES = createTag("emits_dust_particles");
 
 	public static final TagKey<Block> COMMON_WATER_BUCKETS = createTag("buckets/water");
 
