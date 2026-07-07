@@ -105,6 +105,41 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 		return InteractionResult.SUCCESS;
 	}
 
+	@Override
+	protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean isMoving) {
+		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, isMoving);
+
+		if (level.isClientSide) return;
+
+		int arms = state.getValue(NUMBER_OF_ARMS);
+		if (!armsStillIntact(level, pos, state, arms)) {
+			level.destroyBlock(pos, true);
+		}
+	}
+
+	private boolean armsStillIntact(Level level, BlockPos pos, BlockState state, int arms) {
+		Direction front = state.getValue(FACING);
+		Direction left = front.getCounterClockWise();
+		Direction right = front.getClockWise();
+		Direction back = front.getOpposite();
+
+		return switch (arms) {
+			case 0 -> isSupport(level, pos.relative(front), front);
+			case 1 -> isSupport(level, pos.relative(left), left) && isSupport(level, pos.relative(right), right);
+			case 2 -> isSupport(level, pos.relative(front), front)
+					&& isSupport(level, pos.relative(back), back)
+					&& isSupport(level, pos.relative(left), left)
+					&& isSupport(level, pos.relative(right), right);
+			default -> true;
+		};
+	}
+
+	private boolean isSupport(Level level, BlockPos pos, Direction expectedFacing) {
+		var blockState = level.getBlockState(pos);
+		return blockState.is(UFObjects.FLOOR_LAMP_SUPPORT)
+				&& blockState.getValue(HorizontalDirectionalBlock.FACING) == expectedFacing;
+	}
+
 	private boolean canPlaceAt(Level level, BlockPos pos, Direction expectedFacing) {
 		var blockState = level.getBlockState(pos);
 
