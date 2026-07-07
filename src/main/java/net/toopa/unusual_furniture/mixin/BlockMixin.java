@@ -3,6 +3,7 @@ package net.toopa.unusual_furniture.mixin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +24,7 @@ public class BlockMixin {
 
 	@Inject(method = "setPlacedBy", at = @At("HEAD"))
 	private void unusual_furniture$sendSmokeParticles(Level level, BlockPos blockPos, BlockState blockState, LivingEntity livingEntity, ItemStack itemStack, CallbackInfo ci) {
-		if (level instanceof ServerLevel serverLevel) {
+		if (level instanceof ServerLevel serverLevel && livingEntity instanceof Player) { // instanceof already checks for null
 			if (blockState.is(UFBlockTags.EMITS_DUST_PARTICLES)) {
 				serverLevel.sendParticles(
 						UFParticleTypes.FURNITURE_SMOKE, blockPos.getX() + 0.5, blockPos.getY() + 0.25, blockPos.getZ() + 0.5, 16, 0.6, 0.1, 0.6, 0.03
