@@ -1065,9 +1065,9 @@ public class UFModelProvider extends FabricModelProvider {
 		ResourceLocation drawerOpenId = DRAWER_OPEN.create(block, tmOpen, blockModelGenerators.modelOutput);
 
 		blockModelGenerators.blockStateOutput
-				.accept(MultiVariantGenerator.multiVariant(block)
-						.with(createHorizontalFacingDispatch())
-						.with(createBooleanModelDispatch(DrawerBlock.OPEN, drawerOpenId, drawerId)));
+				.accept(MultiVariantGenerator.multiVariant(block,
+								Variant.variant().with(VariantProperties.MODEL, drawerId))
+						.with(createHorizontalFacingDispatch()));
 	}
 
 	private void registerBench(BlockModelGenerators blockModelGenerators, Block block, TextureMapping tm0, TextureMapping tm1) {

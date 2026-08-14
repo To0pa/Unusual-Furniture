@@ -1,6 +1,9 @@
 package net.toopa.unusual_furniture.client;
 
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+
 import net.toopa.unusual_furniture.Platform;
+import net.toopa.unusual_furniture.client.model.DrawerModel;
 import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
@@ -48,6 +51,9 @@ public class UnusualFurnitureClient {
 				UFObjects.TROPICAL_PLANT,
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
+		//TODO fabric only atm, just testing
+		//? fabric
+		EntityModelLayerRegistry.registerModelLayer(DrawerModel.LAYER_LOCATION, DrawerModel::createBodyLayer);
 		Platform.INSTANCE.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 		Platform.INSTANCE.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE, FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
