@@ -1,8 +1,8 @@
 package net.toopa.unusual_furniture.client.model;
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -14,10 +14,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
-
 import net.minecraft.resources.ResourceLocation;
-
-import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 public class DrawerModel extends Model {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(UnusualFurniture.id("main"), "main_layer");
@@ -43,11 +40,11 @@ public class DrawerModel extends Model {
 
 		main.addOrReplaceChild("top", CubeListBuilder.create()
 				.texOffs(0, 32)
-				.addBox(-15.0F, -3.0F, 3.0F, 14.0F, 6.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 14.0F, -11.0F));
+				.addBox(-7.0F, -13.0F, -8.05F, 14.0F, 6.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		main.addOrReplaceChild("bottom", CubeListBuilder.create()
 				.texOffs(0, 32)
-				.addBox(-15.0F, -3.0F, 3.0F, 14.0F, 6.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 20.0F, -11.0F));
+				.addBox(-7.0F, -7.0F, -8.05F, 14.0F, 6.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}

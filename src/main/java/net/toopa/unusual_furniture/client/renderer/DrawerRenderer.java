@@ -1,22 +1,16 @@
 package net.toopa.unusual_furniture.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import com.mojang.math.Axis;
-
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.RenderType;
-
-import net.minecraft.client.renderer.blockentity.ChestRenderer;
-import net.minecraft.util.Mth;
-
 import net.toopa.unusual_furniture.client.model.DrawerModel;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.entity.DrawerBlockEntity;
 
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.util.Mth;
 
 public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 	private final DrawerModel model;
@@ -29,16 +23,19 @@ public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 	public void render(DrawerBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 		poseStack.pushPose();
 
-		poseStack.translate(0.5f, -0.5f, 0.5f);
+		poseStack.translate(0.5F, 1.5F, 0.5F);
+		poseStack.scale(-1.0F, -1.0F, 1.0F);
 
-		ModelPart lid = this.model.getTop();
+		float open = blockEntity.getOpenNess(partialTick);
 
-		float f = blockEntity.getOpenNess(partialTick);
+		float topProgress = Mth.clamp(open / 0.3333F, 0.0F, 1.0F);
+		float bottomProgress = Mth.clamp(open / 0.4167F, 0.0F, 1.0F);
 
-		f = 1.0F - f;
-		f = 1.0F - f * f * f;
+		topProgress = drawerCurve(topProgress);
+		bottomProgress = drawerCurve(bottomProgress);
 
-		lid.xRot = -(f * (float)(Math.PI / 2));
+		this.model.getTop().z = -7.0F * topProgress;
+		this.model.getBottom().z = -10.0F * bottomProgress;
 
 		poseStack.mulPose(Axis.YP.rotationDegrees(switch (blockEntity.getBlockState().getValue(DrawerBlock.FACING)) {
 			case EAST -> 270;
@@ -50,5 +47,14 @@ public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(RenderType.entitySolid(DrawerModel.TEXTURE_LOCATION)), packedLight, packedOverlay);
 
 		poseStack.popPose();
+	}
+
+	private static float drawerCurve(float t) {
+		t = Mth.clamp(t, 0.0F, 1.0F);
+
+		float t2 = t * t;
+		float t3 = t2 * t;
+
+		return 3.0F * t2 - 2.0F * t3;
 	}
 }
