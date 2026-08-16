@@ -155,14 +155,10 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.STOOL)
 				.addTag(UFBlockTags.SOFA)
 				.addTag(UFBlockTags.CEILING_LAMP)
-				.addTag(UFBlockTags.DRAWER)
 				.addTag(UFBlockTags.BENCH)
 				.addTag(UFBlockTags.CURTAIN)
 				.addTag(UFBlockTags.WOODEN_FLOOR_LAMP)
 				.addTag(UFBlockTags.SHELF)
-				.addTag(UFBlockTags.CARVED_PLANKS)
-				.addTag(UFBlockTags.OPEN_RISER_STAIRS)
-				.addTag(UFBlockTags.RAILING)
 				.addTag(UFBlockTags.FLOWER_POTS)
 				.addTag(UFBlockTags.FLOOR_LAMP_DECORATIONS);
 	}
