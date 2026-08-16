@@ -179,13 +179,6 @@ public class SofaBlock extends HorizontalDirectionalBlock implements ISittableBl
 	}
 
 	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
-	}
-
-	@Override
 	public AABB getSeatSize(BlockState state) {
 		return SEAT;
 	}

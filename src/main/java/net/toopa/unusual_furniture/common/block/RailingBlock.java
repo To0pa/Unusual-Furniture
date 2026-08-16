@@ -103,9 +103,6 @@ public class RailingBlock extends Block implements SimpleWaterloggedBlock {
 			world.neighborShapeChanged(Direction.DOWN, blockstate, upPos, pos, Block.UPDATE_ALL, 512);
 			world.neighborShapeChanged(Direction.UP, blockstate, downPos, pos, Block.UPDATE_ALL, 512);
 		}
-
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

@@ -80,8 +80,6 @@ public abstract class AbstractLampBlock extends Block implements SimpleWaterlogg
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
 		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 		world.scheduleTick(pos, this, 20);
 	}
 

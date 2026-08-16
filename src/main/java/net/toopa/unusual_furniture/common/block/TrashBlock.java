@@ -73,8 +73,6 @@ public class TrashBlock extends HorizontalDirectionalBlock {
 	@Override
 	public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
 		super.setPlacedBy(level, pos, state, placer, stack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 		level.setBlock(pos.above(), state.setValue(SHAPE, 1), 3);
 	}
 

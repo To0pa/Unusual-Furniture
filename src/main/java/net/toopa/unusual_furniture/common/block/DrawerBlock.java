@@ -136,11 +136,4 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements EntityBlo
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new DrawerBlockEntity(pos, state);
 	}
-
-	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
-	}
 }

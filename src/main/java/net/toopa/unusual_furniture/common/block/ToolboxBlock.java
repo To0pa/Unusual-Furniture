@@ -84,13 +84,6 @@ public class ToolboxBlock extends HorizontalDirectionalBlock implements SimpleWa
 		this.playSound(player, level, pos, blockState.getValue(OPEN));
 	}
 
-	@Override
-	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-		super.setPlacedBy(world, pos, blockstate, entity, itemstack);
-		// TODO: Place particles
-//        TableSmokeProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
-	}
-
 	protected void playSound(@Nullable Player player, Level level, BlockPos pos, boolean isOpened) {
 		level.playSound(
 				player, pos, isOpened ? SoundEvents.IRON_TRAPDOOR_OPEN : SoundEvents.IRON_TRAPDOOR_CLOSE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 0.9F
