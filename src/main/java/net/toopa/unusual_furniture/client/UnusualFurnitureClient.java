@@ -1,11 +1,11 @@
 package net.toopa.unusual_furniture.client;
 
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-
 import net.toopa.unusual_furniture.Platform;
+import net.toopa.unusual_furniture.client.model.ClockModel;
 import net.toopa.unusual_furniture.client.model.DrawerModel;
 import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
+import net.toopa.unusual_furniture.client.renderer.WallClockRenderer;
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
 import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
@@ -18,6 +18,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.GrassColor;
+
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 
 public class UnusualFurnitureClient {
 
@@ -52,10 +54,13 @@ public class UnusualFurnitureClient {
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
 		//TODO fabric only atm, just testing
-		//? fabric
+		//? fabric {
 		EntityModelLayerRegistry.registerModelLayer(DrawerModel.LAYER_LOCATION, DrawerModel::createBodyLayer);
+		EntityModelLayerRegistry.registerModelLayer(ClockModel.LAYER_LOCATION, ClockModel::createBodyLayer);
+		//?}
 		Platform.INSTANCE.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
+		BlockEntityRenderers.register(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY, WallClockRenderer::new);
 		Platform.INSTANCE.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE, FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
 	}
 }

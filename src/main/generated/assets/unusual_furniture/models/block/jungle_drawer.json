@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "unusual_furniture:block/jungle_drawer_java"
+    "all": "minecraft:block/jungle_planks"
   }
 }

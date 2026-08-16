@@ -1,33 +1,18 @@
 {
   "variants": {
-    "facing=east,open=false": {
+    "facing=east": {
       "model": "unusual_furniture:block/cherry_drawer",
       "y": 90
     },
-    "facing=east,open=true": {
-      "model": "unusual_furniture:block/cherry_drawer_open",
-      "y": 90
-    },
-    "facing=north,open=false": {
+    "facing=north": {
       "model": "unusual_furniture:block/cherry_drawer"
     },
-    "facing=north,open=true": {
-      "model": "unusual_furniture:block/cherry_drawer_open"
-    },
-    "facing=south,open=false": {
+    "facing=south": {
       "model": "unusual_furniture:block/cherry_drawer",
       "y": 180
     },
-    "facing=south,open=true": {
-      "model": "unusual_furniture:block/cherry_drawer_open",
-      "y": 180
-    },
-    "facing=west,open=false": {
+    "facing=west": {
       "model": "unusual_furniture:block/cherry_drawer",
-      "y": 270
-    },
-    "facing=west,open=true": {
-      "model": "unusual_furniture:block/cherry_drawer_open",
       "y": 270
     }
   }

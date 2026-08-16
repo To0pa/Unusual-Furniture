@@ -149,8 +149,7 @@ public class UFModelProvider extends FabricModelProvider {
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.base();
 			registerDrawer(blockModelGenerators, block,
-					new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(block, "_java"))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)),
+					new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(planks)),
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
