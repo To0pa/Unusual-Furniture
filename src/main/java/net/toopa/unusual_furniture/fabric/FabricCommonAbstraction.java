@@ -5,7 +5,11 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import net.toopa.unusual_furniture.Platform;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+
+import net.minecraft.client.model.geom.ModelLayerLocation;
+
+import net.toopa.unusual_furniture.CommonAbstraction;
 
 //? < 26.1 {
 import net.minecraft.client.color.block.BlockColor;
@@ -28,7 +32,7 @@ import net.minecraft.world.level.block.Block;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 
-public class FabricPlatformImpl implements Platform {
+public class FabricCommonAbstraction implements CommonAbstraction {
 
 	@Override
 	public boolean isModLoaded(String modid) {
@@ -63,6 +67,11 @@ public class FabricPlatformImpl implements Platform {
 	@Override
 	public <T extends Entity> void registerEntityRenderer(EntityType<? extends T> type, EntityRendererProvider<T> provider) {
 		EntityRendererRegistry.register(type, provider);
+	}
+
+	@Override
+	public void registerLayerDefinition(ModelLayerLocation modelLayer, CommonTexturedModelDataProvider provider) {
+		EntityModelLayerRegistry.registerModelLayer(modelLayer, provider::createModelData);
 	}
 
 	//? < 26.1 {

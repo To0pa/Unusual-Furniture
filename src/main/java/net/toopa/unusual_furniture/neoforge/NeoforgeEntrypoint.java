@@ -3,9 +3,12 @@ package net.toopa.unusual_furniture.neoforge;
 //? neoforge {
 /*import net.minecraft.core.registries.Registries;
 
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+import net.toopa.unusual_furniture.CommonAbstraction;
 import net.toopa.unusual_furniture.UFEventHandler;
 import net.toopa.unusual_furniture.UnusualFurniture;
 
@@ -22,7 +25,15 @@ import net.toopa.unusual_furniture.common.reg.*;
 @EventBusSubscriber(modid = net.toopa.unusual_furniture.common.UnusualFurniture.MOD_ID)
 public class NeoforgeEntrypoint {
 
-    public NeoforgeEntrypoint() {
+    public NeoforgeEntrypoint(IEventBus modBus) {
+		NeoCommonAbstraction.EVENT_BUS = modBus;
+		for (var a : NeoCommonAbstraction.instance().lateActions()) {
+			a.accept(modBus);
+		}
+		if (FMLEnvironment.dist.isClient()) {
+			UnusualFurnitureClient.initEarly();
+		}
+		NeoCommonAbstraction.instance().lateActions().clear();
         UnusualFurniture.init();
     }
 
@@ -57,7 +68,7 @@ public class NeoforgeEntrypoint {
     }
 
 	@SubscribeEvent
-	static void onUsBlock(PlayerInteractEvent.RightClickBlock event) {
+	static void onUseBlock(PlayerInteractEvent.RightClickBlock event) {
 		UFEventHandler.onBlockClick(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
 	}
 

@@ -7,6 +7,8 @@ import java.util.function.Supplier;
 //? < 26.1 {
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.RenderType;
 //?} else {
 /*import net.minecraft.client.renderer.rendertype.RenderType;
@@ -22,19 +24,21 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 //? fabric {
-import net.toopa.unusual_furniture.fabric.FabricPlatformImpl;
+import net.toopa.unusual_furniture.fabric.FabricCommonAbstraction;
 //?}
 //? neoforge {
-/*import net.toopa.unusual_furniture.neoforge.NeoForgePlatformImpl;
+/*import java.util.ArrayList;
+
+import net.toopa.unusual_furniture.neoforge.NeoCommonAbstraction;
  *///?}
 
-public interface Platform {
+public interface CommonAbstraction {
 
 	//? fabric {
-	Platform INSTANCE = new FabricPlatformImpl();
+	CommonAbstraction INSTANCE = new FabricCommonAbstraction();
 	//?}
 	//? neoforge {
-	/*Platform INSTANCE = new NeoForgePlatformImpl();
+	/*CommonAbstraction INSTANCE = new NeoCommonAbstraction(new ArrayList<>());
 	 *///?}
 
 	boolean isModLoaded(String modid);
@@ -50,6 +54,8 @@ public interface Platform {
 	void registerRenderType(RenderType renderType, Block... blocks);
 
 	<T extends Entity> void registerEntityRenderer(EntityType<? extends T> type, EntityRendererProvider<T> provider);
+
+	void registerLayerDefinition(ModelLayerLocation modelLayer, CommonTexturedModelDataProvider provider);
 
 	//? < 26.1 {
 	void registerItemColors(ItemColor color, Supplier<? extends ItemLike>... items);
@@ -78,5 +84,10 @@ public interface Platform {
 	@FunctionalInterface
 	interface CommonSpriteParticleRegistration<T extends ParticleOptions> {
 		ParticleProvider<T> create(SpriteSet sprites);
+	}
+
+	@FunctionalInterface
+	interface CommonTexturedModelDataProvider {
+		LayerDefinition createModelData();
 	}
 }

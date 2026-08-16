@@ -9,6 +9,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		UnusualFurnitureClient.initEarly();
 		UnusualFurnitureClient.init();
 	}
 
