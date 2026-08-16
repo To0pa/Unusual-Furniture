@@ -429,7 +429,6 @@ public class UFModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateItemModels(ItemModelGenerators itemModelGenerators) {
-		itemModelGenerators.generateFlatItem(UFObjects.DISCORD_ITEM, ModelTemplates.FLAT_ITEM);
 		itemModelGenerators.generateFlatItem(UFObjects.SCREW_ITEM, ModelTemplates.FLAT_ITEM);
 		ModelTemplates.FLAT_ITEM.create(
 				ModelLocationUtils.getModelLocation(

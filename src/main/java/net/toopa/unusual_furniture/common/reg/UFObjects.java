@@ -67,7 +67,6 @@ import net.toopa.unusual_furniture.common.block.WaterPlantsBlock;
 import net.toopa.unusual_furniture.common.block.WaterPlantsLandBlock;
 import net.toopa.unusual_furniture.common.block.WoodenHangingPotBlock;
 import net.toopa.unusual_furniture.common.item.BagBlockItem;
-import net.toopa.unusual_furniture.common.item.DiscordItem;
 import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
 import net.toopa.unusual_furniture.common.item.WaterBagBlockItem;
@@ -257,9 +256,6 @@ public final class UFObjects {
 	/* --------------------------------------------------------------------- */
 	/* Items                                                                  */
 	/* --------------------------------------------------------------------- */
-
-	public static final DiscordItem DISCORD_ITEM =
-			registerItem("discord", new DiscordItem(new Item.Properties()), FURNITURE_ITEM_MAP());
 
 	public static final Item SCREW_ITEM =
 			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEM_MAP());
