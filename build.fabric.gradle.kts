@@ -1,7 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("net.fabricmc.fabric-loom")
+    id("dev.kikugie.loom-back-compat")
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
     id("maven-publish")
@@ -43,6 +43,7 @@ jsonlang {
 
 repositories {
     mavenLocal()
+    mavenCentral()
     val exclusiveRepos: List<Triple<String, String, List<String>>> = listOf(
         Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
         Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
@@ -73,10 +74,15 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:${property("deps.minecraft")}")
-    implementation("net.fabricmc:fabric-loader:${property("deps.fabric-loader")}")
+    loomx.applyMojangMappings()
+    modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric-loader")}")
 
-    implementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
     compileOnly("org.jspecify:jspecify:1.0.0")
+
+    if (hasProperty("deps.modmenu")) {
+        modLocalRuntime("com.terraformersmc:modmenu:${property("deps.modmenu")}")
+    }
 }
 
 configurations.all {
@@ -99,7 +105,7 @@ tasks {
 
     register<Copy>("buildAndCollect") {
         group = "build"
-        from(jar.map { it.archiveFile })
+        from(loomx.modJar.map { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
     }
@@ -118,8 +124,8 @@ fabricApi {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 val additionalVersionsStr = findProperty("publish.additionalVersions") as String?
@@ -130,8 +136,7 @@ val additionalVersions: List<String> = additionalVersionsStr
     ?: emptyList()
 
 publishMods {
-    file = tasks.jar.map { it.archiveFile.get() }
-    additionalFiles.from(tasks.named<org.gradle.jvm.tasks.Jar>("sourcesJar").map { it.archiveFile.get() })
+    file = loomx.modJar.map { it.archiveFile.get() }
 
     // one of BETA, ALPHA, STABLE
     type = STABLE
@@ -139,20 +144,21 @@ publishMods {
     version = "${property("mod.version")}+${property("deps.minecraft")}-fabric"
     changelog = provider { rootProject.file("CHANGELOG-LATEST.md").readText() }
     modLoaders.add("fabric")
+    modLoaders.add("quilt")
 
     modrinth {
+        additionalFile(loomx.modSourcesJar) {
+            type.set(SOURCES_JAR)
+        }
         projectId = property("publish.modrinth") as String
         accessToken = env.MODRINTH_API_KEY.orNull()
-        if (!stonecutter.eval(mcVersion, ">1.21.10")) {
-            minecraftVersions.add(stonecutter.current.version)
-        } else {
-            minecraftVersions.add(property("deps.minecraft").toString())
-        }
+        minecraftVersions.add(property("deps.minecraft").toString())
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
     }
 
     curseforge {
+        additionalFiles.from(loomx.modSourcesJar.map { it.archiveFile.get() })
         projectId = property("publish.curseforge") as String
         accessToken = env.CURSEFORGE_API_KEY.orNull()
         minecraftVersions.add(stonecutter.current.version)

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:spruce_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aa",
+    "aa",
+    "bb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:spruce_chair"
+  }
+}

@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/down_stair_railing",
   "textures": {
     "0": "unusual_furniture:block/cherry_railing",
-    "particle": "minecraft:block/cherry_planks"
+    "particle": "minecraft:block/cherry_log"
   }
 }

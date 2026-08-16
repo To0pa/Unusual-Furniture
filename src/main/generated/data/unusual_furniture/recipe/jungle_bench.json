@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:jungle_log"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "a  ",
+    "aba",
+    "a a"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:jungle_bench"
+  }
+}

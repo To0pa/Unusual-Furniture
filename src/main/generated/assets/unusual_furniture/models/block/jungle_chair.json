@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/chair",
   "textures": {
     "0": "unusual_furniture:block/jungle_stool",
-    "particle": "minecraft:block/jungle_planks"
+    "particle": "minecraft:block/jungle_log"
   }
 }

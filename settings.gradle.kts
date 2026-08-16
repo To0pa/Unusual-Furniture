@@ -14,18 +14,14 @@ pluginManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
     id("dev.kikugie.stonecutter") version "0.9.7"
+    id("dev.kikugie.loom-back-compat") version "0.3"
 }
 
 stonecutter {
     create(rootProject) {
         fun match(version: String, vararg loaders: String) = loaders
             .forEach { loader ->
-                val buildscript = if (loader == "fabric" && stonecutter.eval(version, "<26.1")) {
-                    "build.fabric_remap.gradle.kts"
-                } else {
-                    "build.$loader.gradle.kts"
-                }
-                version("$version-$loader", version).buildscript = buildscript
+                version("$version-$loader", version).buildscript = "build.$loader.gradle.kts"
             }
 
         match("1.21.1", "fabric", "neoforge")

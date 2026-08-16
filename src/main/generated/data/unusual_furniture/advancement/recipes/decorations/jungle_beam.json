@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chicken": {
+    "has_jungle_slab": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:chicken"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_lava_bucket": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:lava_bucket"
+            "items": "minecraft:jungle_slab"
           }
         ]
       },
@@ -23,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "unusual_furniture:lava_chicken"
+        "recipe": "unusual_furniture:jungle_beam"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_lava_bucket",
-      "has_chicken"
+      "has_jungle_slab"
     ]
   ],
   "rewards": {
     "recipes": [
-      "unusual_furniture:lava_chicken"
+      "unusual_furniture:jungle_beam"
     ]
   }
 }

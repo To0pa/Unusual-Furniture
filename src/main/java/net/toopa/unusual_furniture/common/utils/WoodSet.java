@@ -3,6 +3,7 @@ package net.toopa.unusual_furniture.common.utils;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import net.toopa.unusual_furniture.common.block.BeamBlock;
 import net.toopa.unusual_furniture.common.block.BenchBlock;
 import net.toopa.unusual_furniture.common.block.CarvedPlanksBlock;
 import net.toopa.unusual_furniture.common.block.CeilingLampBlock;
@@ -10,6 +11,7 @@ import net.toopa.unusual_furniture.common.block.ChairBlock;
 import net.toopa.unusual_furniture.common.block.CoffeeTableBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.OpenRiserStairBlock;
+import net.toopa.unusual_furniture.common.block.RailingBlock;
 import net.toopa.unusual_furniture.common.block.ShelfBlock;
 import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
@@ -17,7 +19,8 @@ import net.toopa.unusual_furniture.common.block.TableBlock;
 import net.minecraft.world.level.block.Block;
 
 public record WoodSet(
-		Block base,
+		Block plank,
+		Block log,
 		TableBlock table,
 		CoffeeTableBlock coffee_table,
 		ChairBlock chair,
@@ -28,12 +31,13 @@ public record WoodSet(
 		ShelfBlock shelf,
 		CarvedPlanksBlock carved_planks,
 		OpenRiserStairBlock open_riser_stairs,
-		Block railing,
-		Block beam
+		RailingBlock railing,
+		BeamBlock beam
 ) {
 	public Stream<? extends Block> stream() {
 		return Stream.of(
-				base,
+				plank,
+				log,
 				table,
 				coffee_table,
 				chair,

@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/stair_railing",
   "textures": {
     "0": "unusual_furniture:block/acacia_railing",
-    "particle": "minecraft:block/acacia_planks"
+    "particle": "minecraft:block/acacia_log"
   }
 }

@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/drawer_open",
   "textures": {
     "1": "unusual_furniture:block/oak_drawer",
-    "particle": "minecraft:block/oak_planks"
+    "particle": "minecraft:block/oak_log"
   }
 }

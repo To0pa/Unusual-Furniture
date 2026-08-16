@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:mangrove_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aa",
+    "aa",
+    "bb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:mangrove_chair"
+  }
+}

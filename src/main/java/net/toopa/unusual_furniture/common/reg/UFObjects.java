@@ -214,24 +214,24 @@ public final class UFObjects {
 	/* Variant definitions                                                    */
 	/* --------------------------------------------------------------------- */
 
-	public record WoodDef(String name, Block base) {
+	public record WoodDef(String name, Block plank, Block log) {
 	}
 
 	public record DyeDef(String name, Block wool) {
 	}
 
 	public static final List<WoodDef> WOODS = List.of(
-			new WoodDef("oak", Blocks.OAK_PLANKS),
-			new WoodDef("spruce", Blocks.SPRUCE_PLANKS),
-			new WoodDef("birch", Blocks.BIRCH_PLANKS),
-			new WoodDef("jungle", Blocks.JUNGLE_PLANKS),
-			new WoodDef("acacia", Blocks.ACACIA_PLANKS),
-			new WoodDef("dark_oak", Blocks.DARK_OAK_PLANKS),
-			new WoodDef("mangrove", Blocks.MANGROVE_PLANKS),
-			new WoodDef("cherry", Blocks.CHERRY_PLANKS),
-			new WoodDef("bamboo", Blocks.BAMBOO_PLANKS),
-			new WoodDef("crimson", Blocks.CRIMSON_PLANKS),
-			new WoodDef("warped", Blocks.WARPED_PLANKS)
+			new WoodDef("oak", Blocks.OAK_PLANKS, Blocks.OAK_LOG),
+			new WoodDef("spruce", Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_LOG),
+			new WoodDef("birch", Blocks.BIRCH_PLANKS, Blocks.BIRCH_LOG),
+			new WoodDef("jungle", Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_LOG),
+			new WoodDef("acacia", Blocks.ACACIA_PLANKS, Blocks.ACACIA_LOG),
+			new WoodDef("dark_oak", Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_LOG),
+			new WoodDef("mangrove", Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_LOG),
+			new WoodDef("cherry", Blocks.CHERRY_PLANKS, Blocks.CHERRY_LOG),
+			new WoodDef("bamboo", Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_BLOCK),
+			new WoodDef("crimson", Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STEM),
+			new WoodDef("warped", Blocks.WARPED_PLANKS, Blocks.WARPED_STEM)
 	);
 
 	public static final List<DyeDef> DYES = List.of(
@@ -298,21 +298,21 @@ public final class UFObjects {
 		for (WoodDef wood : WOODS) {
 			String w = wood.name();
 
-			TableBlock table = registerTable(w + "_table", wood.base());
-			CoffeeTableBlock coffee = registerCoffeeTable(w + "_coffee_table", wood.base());
-			ChairBlock chair = registerChair(w + "_chair", wood.base());
-			StoolBlock stool = registerStool(w + "_stool", wood.base());
-			CeilingLampBlock lamp = registerCeilingLamp(w + "_ceiling_lamp", wood.base());
-			DrawerBlock drawer = registerDrawer(w + "_drawer", wood.base());
-			BenchBlock bench = registerBench(w + "_bench", wood.base());
-			ShelfBlock shelf = registerShelf(w + "_shelf", wood.base());
-			CarvedPlanksBlock carved = registerCarvedPlanks("carved_" + w, wood.base());
-			OpenRiserStairBlock stairs = registerOpenRiserStair(w + "_open_riser_stairs", wood.base());
-			RailingBlock railing = registerRailing(w + "_railing", wood.base());
-			BeamBlock beam = registerBeam(w + "_beam", wood.base());
+			TableBlock table = registerTable(w + "_table", wood.plank());
+			CoffeeTableBlock coffee = registerCoffeeTable(w + "_coffee_table", wood.plank());
+			ChairBlock chair = registerChair(w + "_chair", wood.plank());
+			StoolBlock stool = registerStool(w + "_stool", wood.plank());
+			CeilingLampBlock lamp = registerCeilingLamp(w + "_ceiling_lamp", wood.plank());
+			DrawerBlock drawer = registerDrawer(w + "_drawer", wood.plank());
+			BenchBlock bench = registerBench(w + "_bench", wood.plank());
+			ShelfBlock shelf = registerShelf(w + "_shelf", wood.plank());
+			CarvedPlanksBlock carved = registerCarvedPlanks("carved_" + w, wood.plank());
+			OpenRiserStairBlock stairs = registerOpenRiserStair(w + "_open_riser_stairs", wood.plank());
+			RailingBlock railing = registerRailing(w + "_railing", wood.plank());
+			BeamBlock beam = registerBeam(w + "_beam", wood.plank());
 
 			WoodSet set = new WoodSet(
-					wood.base(),
+					wood.plank(), wood.log(),
 					table, coffee, chair, stool, lamp,
 					drawer, bench, shelf, carved, stairs,
 					railing, beam

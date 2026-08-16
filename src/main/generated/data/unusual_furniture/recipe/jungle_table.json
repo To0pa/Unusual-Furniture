@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:jungle_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_jungle_log"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "b b",
+    "b b"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:jungle_table"
+  }
+}

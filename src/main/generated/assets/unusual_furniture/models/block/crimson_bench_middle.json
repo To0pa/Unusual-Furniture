@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/bench_middle",
   "textures": {
     "0": "unusual_furniture:block/crimson_bench",
-    "particle": "minecraft:block/crimson_planks"
+    "particle": "minecraft:block/crimson_stem"
   }
 }
