@@ -39,7 +39,7 @@ public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEnti
 		this.model.getMinute().zRot = minuteAngle * Mth.DEG_TO_RAD;
 
 		poseStack.mulPose(Axis.YP.rotationDegrees(switch (blockEntity.getBlockState().getValue(WallClockBlock.FACING)) {
-			case NORTH -> 180;
+			case SOUTH -> 180;
 			case WEST -> 270;
 			case EAST -> 90;
 			default -> 0;
