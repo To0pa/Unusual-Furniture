@@ -147,6 +147,28 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 			getOrCreateTagBuilder(UFBlockTags.FLOOR_LAMP_DECORATIONS).add(block);
 		});
 
+		//== dust ==
+
+		UFObjects.BARRIER_BLOCKS.forEach((block, reLo) -> {
+			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
+		});
+
+		UFObjects.FIRE_HYDRANT_BLOCKS.forEach((block, reLo) -> {
+			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
+		});
+
+		UFObjects.TOOLBOX_BLOCKS.forEach((block, reLo) -> {
+			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
+		});
+
+		UFObjects.PLUSH_BLOCKS.forEach((block, reLo) -> {
+			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
+		});
+
+		UFObjects.GRAVE_BLOCKS.forEach((block, reLo) -> {
+			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
+		});
+
 		getOrCreateTagBuilder(UFBlockTags.SITTABLE_BLOCKS);
 		getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES)
 				.addTag(UFBlockTags.TABLE)
@@ -156,12 +178,12 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.SOFA)
 				.addTag(UFBlockTags.CEILING_LAMP)
 				.addTag(UFBlockTags.BENCH)
-				.addTag(UFBlockTags.CURTAIN)
 				.addTag(UFBlockTags.WOODEN_FLOOR_LAMP)
 				.addTag(UFBlockTags.SHELF)
 				.addTag(UFBlockTags.FLOWER_POTS)
 				.addTag(UFBlockTags.FLOOR_LAMP_DECORATIONS);
 	}
+
 
 	@SuppressWarnings("deprecation")
 	private ResourceKey<Block> getRes(Block block, HolderLookup.Provider wrapperLookup) {
