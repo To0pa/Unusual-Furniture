@@ -25,7 +25,7 @@ public class DrawerModel extends Model {
 	private final ModelPart bottom;
 
 	public DrawerModel(ModelPart root) {
-		super(RenderType::entitySolid);
+		super(RenderType::entityCutout);
 		this.main = root.getChild("main");
 		this.top = this.main.getChild("top");
 		this.bottom = this.main.getChild("bottom");
