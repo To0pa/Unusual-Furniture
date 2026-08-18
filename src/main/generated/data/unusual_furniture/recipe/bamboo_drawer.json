@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:bamboo_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aba",
+    "aaa",
+    "aba"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:bamboo_drawer"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:jungle_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aba",
+    "aaa",
+    "aba"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:jungle_drawer"
+  }
+}

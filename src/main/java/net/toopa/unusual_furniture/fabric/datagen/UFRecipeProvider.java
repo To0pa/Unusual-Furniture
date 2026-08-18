@@ -13,11 +13,13 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Items;
 
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
+import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 
 import java.util.concurrent.CompletableFuture;
@@ -51,6 +53,26 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
+		UFObjects.COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
+			var plankSlab = BlockFamilies.getAllFamilies()
+					.filter(f -> f.getBaseBlock() == woodSet.plank())
+					.findFirst()
+					.orElseThrow()
+					.get(BlockFamily.Variant.SLAB);
+			var strippedLog = AxeItemAccessor.getStrippedBlocks().get(woodSet.log());
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("aa")
+					.pattern("bb")
+					.pattern("bb")
+					.define('a', plankSlab)
+					.define('b', strippedLog)
+					.unlockedBy(getHasName(strippedLog), has(strippedLog))
+					.unlockedBy(getHasName(plankSlab), has(plankSlab))
+					.save(exporter);
+		});
+
 		UFObjects.CHAIR_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
@@ -70,6 +92,73 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
+		UFObjects.STOOL_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
+			var plankSlab = BlockFamilies.getAllFamilies()
+					.filter(f -> f.getBaseBlock() == woodSet.plank())
+					.findFirst()
+					.orElseThrow()
+					.get(BlockFamily.Variant.SLAB);
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("aa")
+					.pattern("bb")
+					.define('a', plankSlab)
+					.define('b', Items.STICK)
+					.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+					.unlockedBy(getHasName(plankSlab), has(plankSlab))
+					.save(exporter);
+		});
+
+		UFObjects.SOFA_BLOCKS.forEach((block, reLo) -> {
+			DyeSet dyeSet = UFObjects.getDyeSet(block);
+			if (dyeSet == null) throw new AssertionError("DyeSet is null");
+			var wool = dyeSet.base();
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("a  ")
+					.pattern("aaa")
+					.pattern("b b")
+					.define('a', wool)
+					.define('b', ItemTags.PLANKS)
+					.unlockedBy("has_planks", has(ItemTags.PLANKS))
+					.unlockedBy(getHasName(wool), has(wool))
+					.save(exporter);
+		});
+
+		UFObjects.CEILING_LAMP_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) return; // Copper lamp
+			// TODO: copper lamp
+			var planks = woodSet.plank();
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern(" a ")
+					.pattern("aba")
+					.define('a', planks)
+					.define('b', Items.TORCH)
+					.unlockedBy(getHasName(Items.TORCH), has(Items.TORCH))
+					.unlockedBy(getHasName(planks), has(planks))
+					.save(exporter);
+		});
+
+		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
+			var plankSlab = BlockFamilies.getAllFamilies()
+					.filter(f -> f.getBaseBlock() == woodSet.plank())
+					.findFirst()
+					.orElseThrow()
+					.get(BlockFamily.Variant.SLAB);
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("aba")
+					.pattern("aaa")
+					.pattern("aba")
+					.define('a', plankSlab)
+					.define('b', Items.STICK)
+					.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+					.unlockedBy(getHasName(woodSet.log()), has(woodSet.log()))
+					.save(exporter);
+		});
+
 		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
@@ -81,6 +170,38 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.define('b', Items.IRON_INGOT)
 					.unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
 					.unlockedBy(getHasName(woodSet.log()), has(woodSet.log()))
+					.save(exporter);
+		});
+
+		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> {
+			DyeSet dyeSet = UFObjects.getDyeSet(block);
+			if (dyeSet == null) throw new AssertionError("DyeSet is null");
+			var wool = dyeSet.base();
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("a")
+					.pattern("b")
+					.define('a', Items.STICK)
+					.define('b', wool)
+					.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+					.unlockedBy(getHasName(wool), has(wool))
+					.save(exporter);
+		});
+
+		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
+			WoodSet woodSet = UFObjects.getWoodSet(block);
+			if (woodSet == null) throw new AssertionError("DyeSet is null");
+			var plankSlab = BlockFamilies.getAllFamilies()
+					.filter(f -> f.getBaseBlock() == woodSet.plank())
+					.findFirst()
+					.orElseThrow()
+					.get(BlockFamily.Variant.SLAB);
+			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
+					.pattern("aaa")
+					.pattern("b b")
+					.define('a', plankSlab)
+					.define('b', Items.STICK)
+					.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+					.unlockedBy(getHasName(plankSlab), has(plankSlab))
 					.save(exporter);
 		});
 

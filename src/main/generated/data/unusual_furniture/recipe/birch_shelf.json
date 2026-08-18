@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:birch_slab"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aaa",
+    "b b"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:birch_shelf"
+  }
+}

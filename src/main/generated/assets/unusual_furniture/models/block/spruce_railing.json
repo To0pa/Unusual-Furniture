@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/railing",
   "textures": {
     "0": "unusual_furniture:block/spruce_railing",
-    "particle": "minecraft:block/spruce_log"
+    "particle": "minecraft:block/spruce_planks"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:light_gray_wool"
+    },
+    "b": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "a  ",
+    "aaa",
+    "b b"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:light_gray_sofa"
+  }
+}

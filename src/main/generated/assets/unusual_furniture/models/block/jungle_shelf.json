@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/shelf",
   "textures": {
     "0": "unusual_furniture:block/jungle_coffee_table",
-    "particle": "minecraft:block/jungle_log"
+    "particle": "minecraft:block/jungle_planks"
   }
 }

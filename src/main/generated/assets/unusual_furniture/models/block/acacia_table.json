@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/wodden_table",
   "textures": {
     "0": "unusual_furniture:block/acacia_table",
-    "particle": "minecraft:block/acacia_log"
+    "particle": "minecraft:block/acacia_planks"
   }
 }
