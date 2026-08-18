@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:warped_slab"
+    },
+    "b": {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  },
+  "pattern": [
+    "aa",
+    "bb",
+    "bb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:warped_coffee_table"
+  }
+}

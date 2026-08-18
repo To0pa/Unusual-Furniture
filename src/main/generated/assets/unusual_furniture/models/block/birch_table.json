@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/wodden_table",
   "textures": {
     "0": "unusual_furniture:block/birch_table",
-    "particle": "minecraft:block/birch_log"
+    "particle": "minecraft:block/birch_planks"
   }
 }

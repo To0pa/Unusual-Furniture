@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/beam",
   "textures": {
     "0": "unusual_furniture:block/mangrove_coffee_table",
-    "particle": "minecraft:block/mangrove_log"
+    "particle": "minecraft:block/mangrove_planks"
   }
 }

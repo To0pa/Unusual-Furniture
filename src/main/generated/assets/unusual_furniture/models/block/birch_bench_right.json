@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/bench_right",
   "textures": {
     "0": "unusual_furniture:block/birch_bench",
-    "particle": "minecraft:block/birch_log"
+    "particle": "minecraft:block/birch_planks"
   }
 }
