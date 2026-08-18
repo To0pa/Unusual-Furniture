@@ -27,7 +27,7 @@ public class BlockMixin {
 		if (level instanceof ServerLevel serverLevel && livingEntity instanceof Player) { // instanceof already checks for null
 			if (blockState.is(UFBlockTags.EMITS_DUST_PARTICLES)) {
 				serverLevel.sendParticles(
-						UFParticleTypes.FURNITURE_SMOKE.get(), blockPos.getX() + 0.5, blockPos.getY() + 0.25, blockPos.getZ() + 0.5, 10, 0.3, 0.1, 0.3, 0.05
+						UFParticleTypes.FURNITURE_SMOKE, blockPos.getX() + 0.5, blockPos.getY() + 0.25, blockPos.getZ() + 0.5, 10, 0.3, 0.1, 0.3, 0.05
 				);
 			}
 		}

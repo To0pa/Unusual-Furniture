@@ -9,6 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 public class WallClockBlockEntity extends BlockEntity {
 
 	public WallClockBlockEntity(BlockPos pos, BlockState blockState) {
-		super(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY.get(), pos, blockState);
+		super(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY, pos, blockState);
 	}
 }

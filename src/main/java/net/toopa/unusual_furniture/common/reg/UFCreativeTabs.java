@@ -1,7 +1,5 @@
 package net.toopa.unusual_furniture.common.reg;
 
-import net.minecraft.world.level.block.entity.BlockEntityType;
-
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 import net.minecraft.core.Registry;
@@ -11,13 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
-import net.toopa.unusual_furniture.platform.UFRegistries;
-import net.toopa.unusual_furniture.platform.UFRegistry;
-import net.toopa.unusual_furniture.platform.UFRegistryEntry;
-
 public final class UFCreativeTabs {
-
-	public static final UFRegistry<CreativeModeTab> CREATIVE_MODE_TABS = UFRegistries.create(BuiltInRegistries.CREATIVE_MODE_TAB, UnusualFurniture.MOD_ID);
 
 	private UFCreativeTabs() {}
 
@@ -29,31 +21,39 @@ public final class UFCreativeTabs {
 		         *///?}
 	}
 
-	public static final UFRegistryEntry<CreativeModeTab> FURNITURE_TAB = CREATIVE_MODE_TABS.register("01_furniture", () -> creativeModeTabBuilder()
+	public static final ResourceKey<CreativeModeTab> FURNITURE_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("01_furniture"));
+	public static final CreativeModeTab FURNITURE_TAB = creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("oak").chair()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.FURNITURE_ITEMS.stream().forEach((entry) -> output.accept(entry.get()));
+				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.FURNITURE_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
 			})
-			.build());
+			.build();
 
-	public static final UFRegistryEntry<CreativeModeTab> PROPS_TAB = CREATIVE_MODE_TABS.register("02_props", () -> creativeModeTabBuilder()
+	public static final ResourceKey<CreativeModeTab> PROPS_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("02_props"));
+	public static final CreativeModeTab PROPS_TAB = creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture_props"))
 			.icon(() -> new ItemStack(UFObjects.HUGE_POT))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.PROPS_ITEMS.stream().forEach((entry) -> output.accept(entry.get()));
+				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.PROPS_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
 			})
-			.build());
+			.build();
 
-	public static final UFRegistryEntry<CreativeModeTab> BUILDING_TAB = CREATIVE_MODE_TABS.register("01_furniture", () -> creativeModeTabBuilder()
+	public static final ResourceKey<CreativeModeTab> BUILDING_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("03_building"));
+	public static final CreativeModeTab BUILDING_TAB = creativeModeTabBuilder()
 			.title(Component.translatable("item_group.unusual_furniture.unusual_tab_2"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("acacia").open_riser_stairs()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.BUILDING_ITEMS.stream().forEach((entry) -> output.accept(entry.get()));
+				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.BUILDING_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
 			})
-			.build());
+			.build();
 
 	public static void init() {
-		CREATIVE_MODE_TABS.init();
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, FURNITURE_TAB_KEY, FURNITURE_TAB);
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PROPS_TAB_KEY, PROPS_TAB);
+		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, BUILDING_TAB_KEY, BUILDING_TAB);
 	}
 }

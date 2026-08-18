@@ -45,7 +45,7 @@ public class SeatEntity extends Entity {
 	}
 
 	public SeatEntity(Level world, AABB shape) {
-		super(UFEntityTypes.SEAT.get(), world);
+		super(UFEntityTypes.SEAT, world);
 		this.shape = copyBox(shape);
 	}
 

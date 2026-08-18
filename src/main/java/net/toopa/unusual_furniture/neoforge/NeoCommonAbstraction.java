@@ -3,16 +3,13 @@ package net.toopa.unusual_furniture.neoforge;
 //? neoforge {
 
 /*import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import net.minecraft.core.Registry;
-
 import net.toopa.unusual_furniture.CommonAbstraction;
-import net.toopa.unusual_furniture.platform.UFRegistry;
-import net.toopa.unusual_furniture.platform.impl.neoforge.NeoForgeUFRegistry;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.Minecraft;
@@ -159,11 +156,6 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
 		} else {
 			Minecraft.getInstance().getBlockColors().register(blockColor, unpackBlocks(blocks));
 		}
-	}
-
-	@Override
-	public <T> UFRegistry<T> createUFRegistry(Registry<T> registry, String id) {
-		return new NeoForgeUFRegistry<>(registry, id);
 	}
 
 	public void addLateAction(Consumer<IEventBus> consumer) {

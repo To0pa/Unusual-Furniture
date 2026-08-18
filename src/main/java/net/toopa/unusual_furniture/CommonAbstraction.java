@@ -16,15 +16,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-
-import net.toopa.unusual_furniture.platform.UFRegistry;
 
 //? fabric {
 import net.toopa.unusual_furniture.fabric.FabricCommonAbstraction;
@@ -83,8 +80,6 @@ public interface CommonAbstraction {
 		registerBlockColors(color, array);
 	}
 //?}
-
-	<T> UFRegistry<T> createUFRegistry(Registry<T> registry, String id);
 
 	@FunctionalInterface
 	interface CommonSpriteParticleRegistration<T extends ParticleOptions> {

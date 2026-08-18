@@ -54,7 +54,7 @@ public class DrawerBlockEntity extends BaseContainerBlockEntity {
 	};
 
 	public DrawerBlockEntity(BlockPos pos, BlockState state) {
-		super(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY.get(), pos, state);
+		super(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, pos, state);
 	}
 
 	@Override

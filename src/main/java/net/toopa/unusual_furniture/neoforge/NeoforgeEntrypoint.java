@@ -30,11 +30,11 @@ public class NeoforgeEntrypoint {
 		for (var a : NeoCommonAbstraction.instance().lateActions()) {
 			a.accept(modBus);
 		}
-        UnusualFurniture.init();
 		if (FMLEnvironment.dist.isClient()) {
 			UnusualFurnitureClient.initEarly();
 		}
 		NeoCommonAbstraction.instance().lateActions().clear();
+        UnusualFurniture.init();
     }
 
     @EventBusSubscriber(modid = UnusualFurniture.MOD_ID, value = Dist.CLIENT)
@@ -43,6 +43,28 @@ public class NeoforgeEntrypoint {
         public static void onClientSetup(final FMLClientSetupEvent event) {
             event.enqueueWork(UnusualFurnitureClient::init);
         }
+    }
+
+    @SubscribeEvent
+    static void register(RegisterEvent event) {
+        if (event.getRegistryKey().equals(Registries.BLOCK)) {
+            UFObjects.init();
+        }
+        if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
+            UFBlockEntityTypes.init();
+        }
+        if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
+            UFCreativeTabs.init();
+        }
+        if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
+            UFEntityTypes.init();
+        }
+        if (event.getRegistryKey().equals(Registries.PARTICLE_TYPE)) {
+            UFParticleTypes.init();
+        }
+		if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
+			UFSoundEvents.init();
+		}
     }
 
 	@SubscribeEvent
