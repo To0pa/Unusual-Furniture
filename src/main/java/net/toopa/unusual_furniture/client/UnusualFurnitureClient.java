@@ -24,7 +24,7 @@ public class UnusualFurnitureClient {
 	public static void initEarly() {
 		CommonAbstraction.INSTANCE.registerLayerDefinition(DrawerModel.LAYER_LOCATION, DrawerModel::createBodyLayer);
 		CommonAbstraction.INSTANCE.registerLayerDefinition(ClockModel.LAYER_LOCATION, ClockModel::createBodyLayer);
-		CommonAbstraction.INSTANCE.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE, FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
+		CommonAbstraction.INSTANCE.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE.get(), FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
 	}
 
 	public static void init() {
@@ -32,21 +32,21 @@ public class UnusualFurnitureClient {
 				UFObjects.INDUSTRIAL_TABLE,
 				UFObjects.INDUSTRIAL_COFFEE_TABLE
 		);
-		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
-		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
-		UFObjects.FLOOR_LAMP_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
-		UFObjects.LAMP_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.translucent(), block));
-		UFObjects.POT_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
+		UFObjects.BENCH_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block.get()));
+		UFObjects.CURTAIN_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block.get()));
+		UFObjects.FLOOR_LAMP_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block.get()));
+		UFObjects.LAMP_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.translucent(), block.get()));
+		UFObjects.POT_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block.get()));
 		CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(),
 				UFObjects.TROPICAL_PLANT,
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
 				UFObjects.WOOD_SETS.get("bamboo").chair(),
 				UFObjects.WATER_PLANTS,
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water"))
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")),
+				UFObjects.POSTER
 		);
-		UFObjects.POSTER_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), UFObjects.TRASH);
-		UFObjects.TABLE_LAMP_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
+		UFObjects.TABLE_LAMP_BLOCKS.stream().forEach(block -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block.get()));
 		CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(),
 				UFObjects.MANHOLE,
 				UFObjects.DECORATIVE_TOOLBOX,
@@ -55,7 +55,6 @@ public class UnusualFurnitureClient {
 				UFObjects.BROOM,
 				UFObjects.RAKE
 		);
-		UFObjects.BROOM_BLOCKS.forEach((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		CommonAbstraction.INSTANCE.registerBlockColors(
 				(blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
 						? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
@@ -63,8 +62,8 @@ public class UnusualFurnitureClient {
 				UFObjects.TROPICAL_PLANT,
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
-		CommonAbstraction.INSTANCE.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
-		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
-		BlockEntityRenderers.register(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY, WallClockRenderer::new);
+		CommonAbstraction.INSTANCE.registerEntityRenderer(UFEntityTypes.SEAT.get(), NoopRenderer::new);
+		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY.get(), DrawerRenderer::new);
+		BlockEntityRenderers.register(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY.get(), WallClockRenderer::new);
 	}
 }

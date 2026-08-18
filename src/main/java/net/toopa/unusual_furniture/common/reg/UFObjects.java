@@ -72,6 +72,8 @@ import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
 import net.toopa.unusual_furniture.common.item.WaterBagBlockItem;
 import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
+import net.toopa.unusual_furniture.platform.UFRegistries;
+import net.toopa.unusual_furniture.platform.UFRegistry;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.Registry;
@@ -91,15 +93,16 @@ public final class UFObjects {
 	/* Creative-tab grouping                                                  */
 	/* --------------------------------------------------------------------- */
 
-	public static final List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> BUILDING_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> PROPS_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> ALL_BLOCKS = new ArrayList<>();
+	public static final UFRegistry<Block> BLOCKS = UFRegistries.create(BuiltInRegistries.BLOCK, UnusualFurniture.MOD_ID);
+	public static final UFRegistry<Item> ITEMS = UFRegistries.create(BuiltInRegistries.ITEM, UnusualFurniture.MOD_ID);
 
-	public static final List<Map<Item, ResourceLocation>> FURNITURE_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> BUILDING_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> PROPS_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> ALL_ITEMS = new ArrayList<>();
+	public static final UFRegistry<Block> FURNITURE_BLOCKS = UFRegistries.create(BLOCKS);
+	public static final UFRegistry<Block> BUILDING_BLOCKS = UFRegistries.create(BLOCKS);
+	public static final UFRegistry<Block> PROPS_BLOCKS = UFRegistries.create(BLOCKS);
+
+	public static final UFRegistry<Item> FURNITURE_ITEMS = UFRegistries.create(ITEMS);
+	public static final UFRegistry<Item> BUILDING_ITEMS = UFRegistries.create(ITEMS);
+	public static final UFRegistry<Item> PROPS_ITEMS = UFRegistries.create(ITEMS);
 
 	/* --------------------------------------------------------------------- */
 	/* Variant lookup                                                         */
@@ -116,99 +119,86 @@ public final class UFObjects {
 	/* Per-type registries                                                    */
 	/* --------------------------------------------------------------------- */
 
-	public static final Map<Block, ResourceLocation> INDUSTRIAL_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> INDUSTRIAL_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> TABLE_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> TABLE_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> WOODEN_TABLE_BLOCKS = UFRegistries.create(TABLE_BLOCKS);
+	public static final UFRegistry<Item> WOODEN_TABLE_ITEMS = UFRegistries.create(TABLE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TABLE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> COFFEE_TABLE_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> COFFEE_TABLE_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> WOODEN_COFFEE_TABLE_BLOCKS = UFRegistries.create(COFFEE_TABLE_BLOCKS);
+	public static final UFRegistry<Item> WOODEN_COFFEE_TABLE_ITEMS = UFRegistries.create(COFFEE_TABLE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> CHAIR_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CHAIR_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> CHAIR_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> CHAIR_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> STOOL_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> STOOL_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> STOOL_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> STOOL_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> SOFA_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> SOFA_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> SOFA_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> SOFA_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> CURTAIN_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CURTAIN_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> CEILING_LAMP_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> CEILING_LAMP_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> CEILING_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CEILING_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> WOODEN_CEILING_LAMP_BLOCKS = UFRegistries.create(CEILING_LAMP_BLOCKS);
+	public static final UFRegistry<Item> WOODEN_CEILING_LAMP_ITEMS = UFRegistries.create(CEILING_LAMP_ITEMS);
 
-	public static final Map<Block, ResourceLocation> DRAWER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> DRAWER_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> DRAWER_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> DRAWER_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> BENCH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BENCH_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> BENCH_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> BENCH_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> SHELF_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> SHELF_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> CURTAIN_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> CURTAIN_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> CARVED_PLANK_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CARVED_PLANK_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> SHELF_BLOCKS = UFRegistries.create(FURNITURE_BLOCKS);
+	public static final UFRegistry<Item> SHELF_ITEMS = UFRegistries.create(FURNITURE_ITEMS);
 
-	public static final Map<Block, ResourceLocation> OPEN_RISER_STAIR_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> OPEN_RISER_STAIR_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> BAG_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> BAG_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> RAILING_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> RAILING_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> POT_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> POT_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> FIRE_HYDRANT_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> FIRE_HYDRANT_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> BARRIER_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> BARRIER_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> LAMP_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> TABLE_LAMP_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> TABLE_LAMP_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> BAG_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BAG_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> PLUSH_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> PLUSH_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	public static final Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> GRAVE_BLOCKS = UFRegistries.create(PROPS_BLOCKS);
+	public static final UFRegistry<Item> GRAVE_ITEMS = UFRegistries.create(PROPS_ITEMS);
 
-	// TODO: maybe for blocks that are alone we need a better way of registering them...
-	public static final Map<Block, ResourceLocation> POSTER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> POSTER_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> CARVED_PLANK_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> CARVED_PLANK_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
-	public static final Map<Block, ResourceLocation> TRASH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TRASH_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> OPEN_RISER_STAIR_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> OPEN_RISER_STAIR_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
-	public static final Map<Block, ResourceLocation> FIRE_HYDRANT_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> FIRE_HYDRANT_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> RAILING_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> RAILING_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
-	public static final Map<Block, ResourceLocation> MANHOLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> MANHOLE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> BEAM_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> BEAM_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
-	public static final Map<Block, ResourceLocation> TOOLBOX_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TOOLBOX_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> WOODEN_BEAM_BLOCKS = UFRegistries.create(BEAM_BLOCKS);
+	public static final UFRegistry<Item> WOODEN_BEAM_ITEMS = UFRegistries.create(BEAM_ITEMS);
 
-	public static final Map<Block, ResourceLocation> BARRIER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BARRIER_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> FLOOR_LAMP_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> FLOOR_LAMP_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
-	public static final Map<Block, ResourceLocation> WALL_CLOCK_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> WALL_CLOCK_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> TABLE_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TABLE_LAMP_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> PLUSH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> PLUSH_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> BROOM_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BROOM_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> GRAVE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> GRAVE_ITEMS = new LinkedHashMap<>();
+	public static final UFRegistry<Block> LAMP_BLOCKS = UFRegistries.create(BUILDING_BLOCKS);
+	public static final UFRegistry<Item> LAMP_ITEMS = UFRegistries.create(BUILDING_ITEMS);
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                    */
@@ -258,34 +248,10 @@ public final class UFObjects {
 	/* --------------------------------------------------------------------- */
 
 	public static final Item SCREW_ITEM =
-			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEM_MAP());
+			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEMS);
 
 	public static final Block FLOOR_LAMP_SUPPORT =
-			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), ALL_BLOCK_MAP());
-
-	private static Map<Block, ResourceLocation> ALL_BLOCK_MAP() {
-		Map<Block, ResourceLocation> map = new LinkedHashMap<>();
-		ALL_BLOCKS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> ALL_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		ALL_ITEMS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> FURNITURE_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		FURNITURE_ITEMS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> PROPS_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		PROPS_ITEMS.add(map);
-		return map;
-	}
+			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), BLOCKS);
 
 	/* --------------------------------------------------------------------- */
 	/* Init                                                                   */
@@ -338,52 +304,8 @@ public final class UFObjects {
 			}
 		}
 
-		/* ---------- Creative tab grouping ---------- */
-		addFurniture(INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS);
-		addFurniture(TABLE_BLOCKS, TABLE_ITEMS);
-		addFurniture(INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS);
-		addFurniture(COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS);
-		addFurniture(CHAIR_BLOCKS, CHAIR_ITEMS);
-		addFurniture(STOOL_BLOCKS, STOOL_ITEMS);
-		addFurniture(SOFA_BLOCKS, SOFA_ITEMS);
-		addFurniture(CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS);
-		addFurniture(DRAWER_BLOCKS, DRAWER_ITEMS);
-		addFurniture(BENCH_BLOCKS, BENCH_ITEMS);
-		addFurniture(CURTAIN_BLOCKS, CURTAIN_ITEMS);
-		addFurniture(SHELF_BLOCKS, SHELF_ITEMS);
-
-		addBuilding(CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS);
-		addBuilding(OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS);
-		addBuilding(RAILING_BLOCKS, RAILING_ITEMS);
-		addBuilding(BEAM_BLOCKS, BEAM_ITEMS);
-		addBuilding(FLOOR_LAMP_BLOCKS, FLOOR_LAMP_ITEMS);
-		addBuilding(LAMP_BLOCKS, LAMP_ITEMS);
-
-		addProps(BAG_BLOCKS, BAG_ITEMS);
-		addProps(POT_BLOCKS, POT_ITEMS);
-		addProps(POSTER_BLOCKS, POSTER_ITEMS);
-		addProps(TRASH_BLOCKS, TRASH_ITEMS);
-		addProps(FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS);
-		addProps(MANHOLE_BLOCKS, MANHOLE_ITEMS);
-		addProps(TOOLBOX_BLOCKS, TOOLBOX_ITEMS);
-		addProps(BARRIER_BLOCKS, BARRIER_ITEMS);
-		addProps(WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS);
-		addProps(TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS);
-		addProps(PLUSH_BLOCKS, PLUSH_ITEMS);
-		addProps(BROOM_BLOCKS, BROOM_ITEMS);
-		addProps(GRAVE_BLOCKS, GRAVE_ITEMS);
-
-		/* ---------- Final registry ---------- */
-
-		registerAll(FURNITURE_BLOCKS, BuiltInRegistries.BLOCK);
-		registerAll(BUILDING_BLOCKS, BuiltInRegistries.BLOCK);
-		registerAll(PROPS_BLOCKS, BuiltInRegistries.BLOCK);
-		registerAll(ALL_BLOCKS, BuiltInRegistries.BLOCK);
-
-		registerAll(FURNITURE_ITEMS, BuiltInRegistries.ITEM);
-		registerAll(BUILDING_ITEMS, BuiltInRegistries.ITEM);
-		registerAll(PROPS_ITEMS, BuiltInRegistries.ITEM);
-		registerAll(ALL_ITEMS, BuiltInRegistries.ITEM);
+		BLOCKS.init();
+		ITEMS.init();
 	}
 
 	/* --------------------------------------------------------------------- */
@@ -438,29 +360,6 @@ public final class UFObjects {
 	public static final GraveBlock GRAVE_CREEPER = registerGraveBlock("grave_creeper");
 
 	/* --------------------------------------------------------------------- */
-	/* Helpers                                                               */
-	/* --------------------------------------------------------------------- */
-
-	private static void addFurniture(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
-		FURNITURE_BLOCKS.add(b);
-		FURNITURE_ITEMS.add(i);
-	}
-
-	private static void addProps(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
-		PROPS_BLOCKS.add(b);
-		PROPS_ITEMS.add(i);
-	}
-
-	private static void addBuilding(Map<Block, ResourceLocation> b, Map<Item, ResourceLocation> i) {
-		BUILDING_BLOCKS.add(b);
-		BUILDING_ITEMS.add(i);
-	}
-
-	private static <T> void registerAll(List<Map<T, ResourceLocation>> maps, Registry<T> registry) {
-		maps.forEach(m -> m.forEach((obj, id) -> Registry.register(registry, id, obj)));
-	}
-
-	/* --------------------------------------------------------------------- */
 	/* Registration wrappers                                                 */
 	/* --------------------------------------------------------------------- */
 
@@ -469,14 +368,14 @@ public final class UFObjects {
 			Function<BlockBehaviour.Properties, T> blockFactory,
 			BlockBehaviour.Properties properties,
 			@Nullable BiFunction<Block, Item.Properties, ? extends BlockItem> itemFactory,
-			Map<Block, ResourceLocation> blockMap,
-			Map<Item, ResourceLocation> itemMap
+			UFRegistry<Block> blockReg,
+			UFRegistry<Item> itemReg
 	) {
 		T block = blockFactory.apply(properties);
-		blockMap.put(block, UnusualFurniture.id(name));
+		blockReg.register(name, () -> block);
 		if (itemFactory != null) {
 			Item item = itemFactory.apply(block, new Item.Properties());
-			itemMap.put(item, UnusualFurniture.id(name));
+			itemReg.register(name, () -> item);
 		}
 		return block;
 	}
@@ -486,8 +385,8 @@ public final class UFObjects {
 			Function<BlockBehaviour.Properties, T> factory,
 			Block base,
 			@Nullable UnaryOperator<BlockBehaviour.Properties> modifier,
-			Map<Block, ResourceLocation> blockMap,
-			Map<Item, ResourceLocation> itemMap
+			UFRegistry<Block> blockReg,
+			UFRegistry<Item> itemReg
 	) {
 		BlockBehaviour.Properties props =
 				BlockBehaviour.Properties.ofFullCopy(base)
@@ -502,8 +401,8 @@ public final class UFObjects {
 				factory,
 				props,
 				BlockItem::new,
-				blockMap,
-				itemMap
+				blockReg,
+				itemReg
 		);
 	}
 
@@ -511,33 +410,33 @@ public final class UFObjects {
 			String name,
 			Function<BlockBehaviour.Properties, T> factory,
 			Block base,
-			Map<Block, ResourceLocation> blockMap,
-			Map<Item, ResourceLocation> itemMap
+			UFRegistry<Block> blockReg,
+			UFRegistry<Item> itemReg
 	) {
-		return simple(name, factory, base, null, blockMap, itemMap);
+		return simple(name, factory, base, null, blockReg, itemReg);
 	}
 
 	// @formatter:off
-	private static TableBlock registerTable(String n, Block b) { return simple(n, TableBlock::new, b, TABLE_BLOCKS, TABLE_ITEMS); }
-	private static CoffeeTableBlock registerCoffeeTable(String n, Block b) { return simple(n, CoffeeTableBlock::new, b, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS); }
+	private static TableBlock registerTable(String n, Block b) { return simple(n, TableBlock::new, b, WOODEN_TABLE_BLOCKS, WOODEN_TABLE_ITEMS); }
+	private static CoffeeTableBlock registerCoffeeTable(String n, Block b) { return simple(n, CoffeeTableBlock::new, b, WOODEN_COFFEE_TABLE_BLOCKS, WOODEN_COFFEE_TABLE_ITEMS); }
 	private static ChairBlock registerChair(String n, Block b) { return simple(n, ChairBlock::new, b, CHAIR_BLOCKS, CHAIR_ITEMS); }
 	private static StoolBlock registerStool(String n, Block b) { return simple(n, StoolBlock::new, b, STOOL_BLOCKS, STOOL_ITEMS); }
 	private static SofaBlock registerSofa(String n, Block b) { return simple(n, SofaBlock::new, b, SOFA_BLOCKS, SOFA_ITEMS); }
 	private static CurtainBlock registerCurtain(String n, Block b) { return simple(n, CurtainBlock::new, b, p -> p.sound(SoundType.WOOL), CURTAIN_BLOCKS, CURTAIN_ITEMS); }
 	private static TableLampBlock registerTableLamp(String n, Block b) { return simple(n, TableLampBlock::new, b, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
-	private static CeilingLampBlock registerCeilingLamp(String n, Block b) { return simple(n, CeilingLampBlock::new, b, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
+	private static CeilingLampBlock registerCeilingLamp(String n, Block b) { return simple(n, CeilingLampBlock::new, b, WOODEN_CEILING_LAMP_BLOCKS, WOODEN_CEILING_LAMP_ITEMS); }
 	private static DrawerBlock registerDrawer(String n, Block b) { return simple(n, DrawerBlock::new, b, DRAWER_BLOCKS, DRAWER_ITEMS); }
 	private static BenchBlock registerBench(String n, Block b) { return simple(n, BenchBlock::new, b, BENCH_BLOCKS, BENCH_ITEMS); }
 	private static ShelfBlock registerShelf(String n, Block b) { return simple(n, ShelfBlock::new, b, SHELF_BLOCKS, SHELF_ITEMS); }
 	private static CarvedPlanksBlock registerCarvedPlanks(String n, Block b) { return simple(n, CarvedPlanksBlock::new, b, CARVED_PLANK_BLOCKS, CARVED_PLANK_ITEMS); }
 	private static OpenRiserStairBlock registerOpenRiserStair(String n, Block b) { return registerWithItem(n, OpenRiserStairBlock::new, BlockBehaviour.Properties.ofFullCopy(b).mapColor(b.defaultMapColor()), OpenRiserStairBlockItem::new, OPEN_RISER_STAIR_BLOCKS, OPEN_RISER_STAIR_ITEMS); }
 	private static RailingBlock registerRailing(String n, Block b) { return simple(n, RailingBlock::new, b, RAILING_BLOCKS, RAILING_ITEMS); }
-	private static BeamBlock registerBeam(String n, Block b) { return simple(n, BeamBlock::new, b, BEAM_BLOCKS, BEAM_ITEMS); }
+	private static BeamBlock registerBeam(String n, Block b) { return simple(n, BeamBlock::new, b, WOODEN_BEAM_BLOCKS, WOODEN_BEAM_ITEMS); }
 
-	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
-	private static IndustrialTableBlock registerIndustrialTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, modifier, INDUSTRIAL_TABLE_BLOCKS, INDUSTRIAL_TABLE_ITEMS); }
-	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
-	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, modifier, INDUSTRIAL_COFFEE_TABLE_BLOCKS, INDUSTRIAL_COFFEE_TABLE_ITEMS); }
+	private static IndustrialTableBlock registerIndustrialTable(String n) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, TABLE_BLOCKS, TABLE_ITEMS); }
+	private static IndustrialTableBlock registerIndustrialTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialTableBlock::new, Blocks.IRON_BLOCK, modifier, TABLE_BLOCKS, TABLE_ITEMS); }
+	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS); }
+	private static IndustrialCoffeeTableBlock registerIndustrialCoffeeTable(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, IndustrialCoffeeTableBlock::new, Blocks.IRON_BLOCK, modifier, COFFEE_TABLE_BLOCKS, COFFEE_TABLE_ITEMS); }
 	private static CeilingLampBlock registerCopperLamp(String n) { return simple(n, CopperCeilingLampBlock::new, Blocks.COPPER_BLOCK, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
 	private static CeilingLampBlock registerCopperLamp(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, CeilingLampBlock::new, Blocks.COPPER_BLOCK, modifier, CEILING_LAMP_BLOCKS, CEILING_LAMP_ITEMS); }
 	private static IronBeamBlock registerIronBeam(String n) { return simple(n, IronBeamBlock::new, Blocks.IRON_BLOCK, BEAM_BLOCKS, BEAM_ITEMS); }
@@ -555,61 +454,61 @@ public final class UFObjects {
 	private static TropicalPlantBlock registerTropicalPlantBlock(String n) {
 		TropicalPlantBlock block = new TropicalPlantBlock(BlockBehaviour.Properties.of());
 		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(BlockBehaviour.Properties.of());
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_wall", () -> wallBlock);
 		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static TropicalPlantBlock registerTropicalPlantBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
 		TropicalPlantBlock block = new TropicalPlantBlock(modifier.apply(BlockBehaviour.Properties.of()));
 		WallTropicalPlantBlock wallBlock = new WallTropicalPlantBlock(modifier.apply(BlockBehaviour.Properties.of()));
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_wall", () -> wallBlock);
 		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static MushroomPatchBlock registerMushroomPatchBlock(String n) {
 		MushroomPatchBlock block = new MushroomPatchBlock(BlockBehaviour.Properties.of());
 		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(BlockBehaviour.Properties.of());
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_wall", () -> wallBlock);
 		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static MushroomPatchBlock registerMushroomPatchBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
 		MushroomPatchBlock block = new MushroomPatchBlock(modifier.apply(BlockBehaviour.Properties.of()));
 		WallMushroomPatchBlock wallBlock = new WallMushroomPatchBlock(modifier.apply(BlockBehaviour.Properties.of()));
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(wallBlock, UnusualFurniture.id(n + "_wall"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_wall", () -> wallBlock);
 		LOOT_TABLE_BLACKLIST.add(wallBlock);
 		BagBlockItem blockItem = new BagBlockItem(block, wallBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static WaterPlantsLandBlock registerWaterPlantsBlock(String n) {
 		WaterPlantsLandBlock block = new WaterPlantsLandBlock(BlockBehaviour.Properties.of());
 		WaterPlantsBlock waterBlock = new WaterPlantsBlock(BlockBehaviour.Properties.of());
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_water", () -> waterBlock);
 		LOOT_TABLE_BLACKLIST.add(waterBlock);
 		WaterBagBlockItem blockItem = new WaterBagBlockItem(block, waterBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static WaterPlantsLandBlock registerWaterPlantsBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) {
 		WaterPlantsLandBlock block = new WaterPlantsLandBlock(modifier.apply(BlockBehaviour.Properties.of()));
 		WaterPlantsBlock waterBlock = new WaterPlantsBlock(modifier.apply(BlockBehaviour.Properties.of()));
-		BAG_BLOCKS.put(block, UnusualFurniture.id(n));
-		BAG_BLOCKS.put(waterBlock, UnusualFurniture.id(n + "_water"));
+		BAG_BLOCKS.register(n, () -> block);
+		BAG_BLOCKS.register(n + "_water", () -> waterBlock);
 		LOOT_TABLE_BLACKLIST.add(waterBlock);
 		WaterBagBlockItem blockItem = new WaterBagBlockItem(block, waterBlock, new Item.Properties());
-		BAG_ITEMS.put(blockItem, UnusualFurniture.id(n));
+		BAG_ITEMS.register(n, () -> blockItem);
 		return block;
 	}
 	private static PebbleBagBlock registerPebbleBagBlock(String n) { return simple(n, PebbleBagBlock::new, Blocks.STONE, BAG_BLOCKS, BAG_ITEMS); }
@@ -631,43 +530,43 @@ public final class UFObjects {
 	private static HangingPotBlock registerHangingPotBlock(String n) { return registerWithItem(n, HangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static LargeHangingPotBlock registerLargeHangingPotBlock(String n) { return registerWithItem(n, LargeHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
 	private static WoodenHangingPotBlock registerWoodenHangingPotBlock(String n) { return registerWithItem(n, WoodenHangingPotBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT).mapColor(Blocks.DECORATED_POT.defaultMapColor()), HangingPotBlockItem::new, POT_BLOCKS, POT_ITEMS); }
-	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, POSTER_BLOCKS, POSTER_ITEMS); }
-	private static PosterBlock registerPosterBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, modifier, POSTER_BLOCKS, POSTER_ITEMS); }
-	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, TRASH_BLOCKS, TRASH_ITEMS); }
-	private static TrashBlock registerTrashBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, modifier, TRASH_BLOCKS, TRASH_ITEMS); }
+	private static PosterBlock registerPosterBlock(String n) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static PosterBlock registerPosterBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PosterBlock::new, Blocks.OAK_SIGN, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static TrashBlock registerTrashBlock(String n) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static TrashBlock registerTrashBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TrashBlock::new, Blocks.OAK_PLANKS, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
 	private static FireHydrantBlock registerFireHydrantBlock(String n) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
 	private static FireHydrantBlock registerFireHydrantBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, FireHydrantBlock::new, Blocks.IRON_BLOCK, modifier, FIRE_HYDRANT_BLOCKS, FIRE_HYDRANT_ITEMS); }
-	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
-	private static ManholeBlock registerManholeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, modifier, MANHOLE_BLOCKS, MANHOLE_ITEMS); }
-	private static ToolboxBlock registerToolboxBlock(String n) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
-	private static ToolboxBlock registerToolboxBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, modifier, TOOLBOX_BLOCKS, TOOLBOX_ITEMS); }
+	private static ManholeBlock registerManholeBlock(String n) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static ManholeBlock registerManholeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ManholeBlock::new, Blocks.IRON_TRAPDOOR, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static ToolboxBlock registerToolboxBlock(String n) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static ToolboxBlock registerToolboxBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, ToolboxBlock::new, Blocks.IRON_TRAPDOOR, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
 	private static BarrierBlock registerBarrierBlock(String n) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static BarrierBlock registerBarrierBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BarrierBlock::new, Blocks.OAK_PLANKS, modifier, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, BARRIER_BLOCKS, BARRIER_ITEMS); }
 	private static BlackboardMenuBlock registerBlackboardMenuBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BlackboardMenuBlock::new, Blocks.OAK_PLANKS, modifier, BARRIER_BLOCKS, BARRIER_ITEMS); }
-	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
-	private static WallClockBlock registerWallClockBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, modifier, WALL_CLOCK_BLOCKS, WALL_CLOCK_ITEMS); }
+	private static WallClockBlock registerWallClockBlock(String n) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static WallClockBlock registerWallClockBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, WallClockBlock::new, Blocks.OAK_PLANKS, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
 	private static TableLampBlock registerFloorLampBlock(String n) { return simple(n, TableLampBlock::new, Blocks.OAK_PLANKS, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
 	private static TableLampBlock registerFloorLampBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, TableLampBlock::new, Blocks.OAK_PLANKS, modifier, TABLE_LAMP_BLOCKS, TABLE_LAMP_ITEMS); }
 	private static PlushBlock registerPlushBlock(String n) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static PlushBlock registerPlushBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, PlushBlock::new, Blocks.WHITE_WOOL, modifier, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static CatPlushBlock registerCatPlushBlock(String n) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, PLUSH_BLOCKS, PLUSH_ITEMS); }
 	private static CatPlushBlock registerCatPlushBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, CatPlushBlock::new, Blocks.WHITE_WOOL, modifier, PLUSH_BLOCKS, PLUSH_ITEMS); }
-	private static BroomBlock registerBroomBlock(String n) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
-	private static BroomBlock registerBroomBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, modifier, BROOM_BLOCKS, BROOM_ITEMS); }
-	private static RakeBlock registerRakeBlock(String n) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, BROOM_BLOCKS, BROOM_ITEMS); }
-	private static RakeBlock registerRakeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, modifier, BROOM_BLOCKS, BROOM_ITEMS); }
+	private static BroomBlock registerBroomBlock(String n) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static BroomBlock registerBroomBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, BroomBlock::new, Blocks.OAK_PLANKS, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static RakeBlock registerRakeBlock(String n) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, PROPS_BLOCKS, PROPS_ITEMS); }
+	private static RakeBlock registerRakeBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, RakeBlock::new, Blocks.OAK_PLANKS, modifier, PROPS_BLOCKS, PROPS_ITEMS); }
 	private static GraveBlock registerGraveBlock(String n) { return simple(n, GraveBlock::new, Blocks.STONE, GRAVE_BLOCKS, GRAVE_ITEMS); }
 	private static GraveBlock registerGraveBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, GraveBlock::new, Blocks.STONE, modifier, GRAVE_BLOCKS, GRAVE_ITEMS); }
 	// @formatter:on
 
-	private static <T extends Item> T registerItem(String name, T item, Map<Item, ResourceLocation> map) {
-		map.put(item, UnusualFurniture.id(name));
+	private static <T extends Item> T registerItem(String name, T item, UFRegistry<Item> itemReg) {
+		itemReg.register(name, () -> item);
 		return item;
 	}
 
-	private static <T extends Block> T registerBlock(String name, T block, Map<Block, ResourceLocation> map) {
-		map.put(block, UnusualFurniture.id(name));
+	private static <T extends Block> T registerBlock(String name, T block, UFRegistry<Block> blockReg) {
+		blockReg.register(name, () -> block);
 		return block;
 	}
 

@@ -45,28 +45,6 @@ public class NeoforgeEntrypoint {
         }
     }
 
-    @SubscribeEvent
-    static void register(RegisterEvent event) {
-        if (event.getRegistryKey().equals(Registries.BLOCK)) {
-            UFObjects.init();
-        }
-        if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
-            UFBlockEntityTypes.init();
-        }
-        if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
-            UFCreativeTabs.init();
-        }
-        if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
-            UFEntityTypes.init();
-        }
-        if (event.getRegistryKey().equals(Registries.PARTICLE_TYPE)) {
-            UFParticleTypes.init();
-        }
-		if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
-			UFSoundEvents.init();
-		}
-    }
-
 	@SubscribeEvent
 	static void onUseBlock(PlayerInteractEvent.RightClickBlock event) {
 		UFEventHandler.onBlockClick(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
