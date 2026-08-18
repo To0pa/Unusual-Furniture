@@ -62,7 +62,7 @@ public class PlushBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		level.playSound(null, pos, UFSoundEvents.SQUEAK, SoundSource.NEUTRAL, 0.2F, 1.0F);
+		level.playSound(null, pos, UFSoundEvents.SQUEAK.get(), SoundSource.NEUTRAL, 0.2F, 1.0F);
 		if (level instanceof ServerLevel serverLevel) {
 			serverLevel.sendParticles(ParticleTypes.HEART, pos.getX() + (double) 0.5F, pos.getY() + (double) 1.0F, pos.getZ() + (double) 0.5F, 2, 0.2, 0.2, 0.2, 1.0F);
 		}

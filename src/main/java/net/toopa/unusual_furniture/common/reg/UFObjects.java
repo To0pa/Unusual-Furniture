@@ -74,6 +74,7 @@ import net.toopa.unusual_furniture.common.utils.DyeSet;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 import net.toopa.unusual_furniture.platform.UFRegistries;
 import net.toopa.unusual_furniture.platform.UFRegistry;
+import net.toopa.unusual_furniture.platform.UFRegistryEntry;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.Registry;
@@ -247,10 +248,10 @@ public final class UFObjects {
 	/* Items                                                                  */
 	/* --------------------------------------------------------------------- */
 
-	public static final Item SCREW_ITEM =
+	public static final UFRegistryEntry<Item> SCREW_ITEM =
 			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEMS);
 
-	public static final Block FLOOR_LAMP_SUPPORT =
+	public static final UFRegistryEntry<Block> FLOOR_LAMP_SUPPORT =
 			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), BLOCKS);
 
 	/* --------------------------------------------------------------------- */
@@ -363,7 +364,7 @@ public final class UFObjects {
 	/* Registration wrappers                                                 */
 	/* --------------------------------------------------------------------- */
 
-	private static <T extends Block> T registerWithItem(
+	private static <T extends Block> UFRegistryEntry<T> registerWithItem(
 			String name,
 			Function<BlockBehaviour.Properties, T> blockFactory,
 			BlockBehaviour.Properties properties,
@@ -372,15 +373,15 @@ public final class UFObjects {
 			UFRegistry<Item> itemReg
 	) {
 		T block = blockFactory.apply(properties);
-		blockReg.register(name, () -> block);
+		var toReturn = blockReg.register(name, () -> block);
 		if (itemFactory != null) {
 			Item item = itemFactory.apply(block, new Item.Properties());
 			itemReg.register(name, () -> item);
 		}
-		return block;
+		return toReturn;
 	}
 
-	private static <T extends Block> T simple(
+	private static <T extends Block> UFRegistryEntry<T> simple(
 			String name,
 			Function<BlockBehaviour.Properties, T> factory,
 			Block base,
@@ -406,7 +407,7 @@ public final class UFObjects {
 		);
 	}
 
-	private static <T extends Block> T simple(
+	private static <T extends Block> UFRegistryEntry<T> simple(
 			String name,
 			Function<BlockBehaviour.Properties, T> factory,
 			Block base,
@@ -560,14 +561,12 @@ public final class UFObjects {
 	private static GraveBlock registerGraveBlock(String n, UnaryOperator<BlockBehaviour.Properties> modifier) { return simple(n, GraveBlock::new, Blocks.STONE, modifier, GRAVE_BLOCKS, GRAVE_ITEMS); }
 	// @formatter:on
 
-	private static <T extends Item> T registerItem(String name, T item, UFRegistry<Item> itemReg) {
-		itemReg.register(name, () -> item);
-		return item;
+	private static <T extends Item> UFRegistryEntry<T> registerItem(String name, T item, UFRegistry<Item> itemReg) {
+		return itemReg.register(name, () -> item);
 	}
 
-	private static <T extends Block> T registerBlock(String name, T block, UFRegistry<Block> blockReg) {
-		blockReg.register(name, () -> block);
-		return block;
+	private static <T extends Block> UFRegistryEntry<T> registerBlock(String name, T block, UFRegistry<Block> blockReg) {
+		return blockReg.register(name, () -> block);
 	}
 
 	public static @Nullable WoodSet getWoodSet(Block block) {

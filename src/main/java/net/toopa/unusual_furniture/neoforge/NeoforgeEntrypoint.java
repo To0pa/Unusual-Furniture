@@ -30,11 +30,11 @@ public class NeoforgeEntrypoint {
 		for (var a : NeoCommonAbstraction.instance().lateActions()) {
 			a.accept(modBus);
 		}
+        UnusualFurniture.init();
 		if (FMLEnvironment.dist.isClient()) {
 			UnusualFurnitureClient.initEarly();
 		}
 		NeoCommonAbstraction.instance().lateActions().clear();
-        UnusualFurniture.init();
     }
 
     @EventBusSubscriber(modid = UnusualFurniture.MOD_ID, value = Dist.CLIENT)
