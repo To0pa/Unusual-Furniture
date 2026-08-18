@@ -9,6 +9,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 
+import net.minecraft.core.Registry;
+
 import net.toopa.unusual_furniture.CommonAbstraction;
 
 //? < 26.1 {
@@ -31,6 +33,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.loader.api.FabricLoader;
+
+import net.toopa.unusual_furniture.platform.UFRegistry;
+import net.toopa.unusual_furniture.platform.impl.fabric.FabricUFRegistry;
 
 public class FabricCommonAbstraction implements CommonAbstraction {
 
@@ -123,5 +128,10 @@ public class FabricCommonAbstraction implements CommonAbstraction {
 		ColorProviderRegistry.BLOCK.register(color, unpackBlocks(blocks));
 	}
 	//?}
+
+	@Override
+	public <T> UFRegistry<T> createUFRegistry(Registry<T> registry, String id) {
+		return new FabricUFRegistry<>(registry, id);
+	}
 }
 //?}
