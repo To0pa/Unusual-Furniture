@@ -88,7 +88,7 @@ public final class UFObjects {
 	private UFObjects() {}
 
 	/* --------------------------------------------------------------------- */
-	/* Creative-tab grouping                                                  */
+	/* Creative-tab grouping                                                 */
 	/* --------------------------------------------------------------------- */
 
 	public static final List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
@@ -102,7 +102,7 @@ public final class UFObjects {
 	public static final List<Map<Item, ResourceLocation>> ALL_ITEMS = new ArrayList<>();
 
 	/* --------------------------------------------------------------------- */
-	/* Variant lookup                                                         */
+	/* Variant lookup                                                        */
 	/* --------------------------------------------------------------------- */
 
 	public static final Map<Block, WoodSet> BLOCK_TO_WOODSET = new LinkedHashMap<>();
@@ -113,7 +113,7 @@ public final class UFObjects {
 	public static final List<Block> LOOT_TABLE_BLACKLIST = new ArrayList<>();
 
 	/* --------------------------------------------------------------------- */
-	/* Per-type registries                                                    */
+	/* Per-type registries                                                   */
 	/* --------------------------------------------------------------------- */
 
 	public static final Map<Block, ResourceLocation> INDUSTRIAL_TABLE_BLOCKS = new LinkedHashMap<>();
@@ -211,7 +211,7 @@ public final class UFObjects {
 	public static final Map<Item, ResourceLocation> GRAVE_ITEMS = new LinkedHashMap<>();
 
 	/* --------------------------------------------------------------------- */
-	/* Variant definitions                                                    */
+	/* Variant definitions                                                   */
 	/* --------------------------------------------------------------------- */
 
 	public record WoodDef(String name, Block plank, Block log) {
@@ -254,7 +254,7 @@ public final class UFObjects {
 	);
 
 	/* --------------------------------------------------------------------- */
-	/* Items                                                                  */
+	/* Items                                                                 */
 	/* --------------------------------------------------------------------- */
 
 	public static final Item SCREW_ITEM =
@@ -288,7 +288,7 @@ public final class UFObjects {
 	}
 
 	/* --------------------------------------------------------------------- */
-	/* Init                                                                   */
+	/* Init                                                                  */
 	/* --------------------------------------------------------------------- */
 
 	public static void init() {
