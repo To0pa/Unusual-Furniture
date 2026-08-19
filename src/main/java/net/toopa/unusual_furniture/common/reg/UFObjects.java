@@ -71,6 +71,7 @@ import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
 import net.toopa.unusual_furniture.common.item.WaterBagBlockItem;
 import net.toopa.unusual_furniture.common.utils.DyeSet;
+import net.toopa.unusual_furniture.common.utils.RegistryGroup;
 import net.toopa.unusual_furniture.common.utils.WoodSet;
 import org.jspecify.annotations.Nullable;
 
@@ -91,15 +92,17 @@ public final class UFObjects {
 	/* Creative-tab grouping                                                 */
 	/* --------------------------------------------------------------------- */
 
-	public static final List<Map<Block, ResourceLocation>> FURNITURE_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> BUILDING_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> PROPS_BLOCKS = new ArrayList<>();
-	public static final List<Map<Block, ResourceLocation>> ALL_BLOCKS = new ArrayList<>();
+	public static final RegistryGroup<Block> BLOCKS = new RegistryGroup<>();
+	public static final RegistryGroup<Item> ITEM = new RegistryGroup<>();
 
-	public static final List<Map<Item, ResourceLocation>> FURNITURE_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> BUILDING_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> PROPS_ITEMS = new ArrayList<>();
-	public static final List<Map<Item, ResourceLocation>> ALL_ITEMS = new ArrayList<>();
+	public static final RegistryGroup<Block> FURNITURE_BLOCKS = BLOCKS.child();
+	public static final RegistryGroup<Block> BUILDING_BLOCKS = BLOCKS.child();
+	public static final RegistryGroup<Block> PROPS_BLOCKS = BLOCKS.child();
+
+	public static final RegistryGroup<Item> FURNITURE_ITEMS = ITEM.child();
+	public static final RegistryGroup<Item> BUILDING_ITEMS = ITEM.child();
+	public static final RegistryGroup<Item> PROPS_ITEMS = ITEM.child();
+	public static final RegistryGroup<Item> ALL_ITEMS = ITEM.child();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant lookup                                                        */
@@ -116,99 +119,83 @@ public final class UFObjects {
 	/* Per-type registries                                                   */
 	/* --------------------------------------------------------------------- */
 
-	public static final Map<Block, ResourceLocation> INDUSTRIAL_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> INDUSTRIAL_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> TABLE_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> TABLE_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> INDUSTRIAL_COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> WOODEN_TABLE_BLOCKS = TABLE_BLOCKS.child();
+	public static final RegistryGroup<Item> WOODEN_TABLE_ITEMS = TABLE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TABLE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> COFFEE_TABLE_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> COFFEE_TABLE_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> COFFEE_TABLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> COFFEE_TABLE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> WOODEN_COFFEE_TABLE_BLOCKS = TABLE_BLOCKS.child();
+	public static final RegistryGroup<Item> WOODEN_COFFEE_TABLE_ITEMS = TABLE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> CHAIR_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CHAIR_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> CHAIR_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> CHAIR_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> STOOL_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> STOOL_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> STOOL_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> STOOL_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> SOFA_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> SOFA_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> SOFA_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> SOFA_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> CURTAIN_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CURTAIN_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> CEILING_LAMP_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> CEILING_LAMP_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> CEILING_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CEILING_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> WOODEN_CEILING_LAMP_BLOCKS = CEILING_LAMP_BLOCKS.child();
+	public static final RegistryGroup<Item> WOODEN_CEILING_LAMP_ITEMS = CEILING_LAMP_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> DRAWER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> DRAWER_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> DRAWER_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> DRAWER_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> BENCH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BENCH_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> BENCH_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> BENCH_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> SHELF_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> SHELF_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> CURTAIN_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> CURTAIN_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> CARVED_PLANK_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> CARVED_PLANK_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> SHELF_BLOCKS = FURNITURE_BLOCKS.child();
+	public static final RegistryGroup<Item> SHELF_ITEMS = FURNITURE_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> OPEN_RISER_STAIR_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> OPEN_RISER_STAIR_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> BAG_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> BAG_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> RAILING_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> RAILING_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> POT_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> POT_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> BEAM_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BEAM_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> BARRIER_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> BARRIER_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> FLOOR_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> FLOOR_LAMP_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> TABLE_LAMP_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> TABLE_LAMP_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> LAMP_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> PLUSH_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> PLUSH_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> BAG_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BAG_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> GRAVE_BLOCKS = PROPS_BLOCKS.child();
+	public static final RegistryGroup<Item> GRAVE_ITEMS = PROPS_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> POT_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> POT_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> CARVED_PLANK_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> CARVED_PLANK_ITEMS = BUILDING_ITEMS.child();
 
-	// TODO: maybe for blocks that are alone we need a better way of registering them...
-	public static final Map<Block, ResourceLocation> POSTER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> POSTER_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> OPEN_RISER_STAIR_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> OPEN_RISER_STAIR_ITEMS = BUILDING_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> TRASH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TRASH_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> RAILING_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> RAILING_ITEMS = BUILDING_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> FIRE_HYDRANT_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> FIRE_HYDRANT_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> BEAM_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> BEAM_ITEMS = BUILDING_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> MANHOLE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> MANHOLE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> WOODEN_BEAM_BLOCKS = BEAM_BLOCKS.child();
+	public static final RegistryGroup<Item> WOODEN_BEAM_ITEMS = BEAM_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> TOOLBOX_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TOOLBOX_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> FLOOR_LAMP_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> FLOOR_LAMP_ITEMS = BUILDING_ITEMS.child();
 
-	public static final Map<Block, ResourceLocation> BARRIER_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BARRIER_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> WALL_CLOCK_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> WALL_CLOCK_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> TABLE_LAMP_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> TABLE_LAMP_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> PLUSH_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> PLUSH_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> BROOM_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> BROOM_ITEMS = new LinkedHashMap<>();
-
-	public static final Map<Block, ResourceLocation> GRAVE_BLOCKS = new LinkedHashMap<>();
-	public static final Map<Item, ResourceLocation> GRAVE_ITEMS = new LinkedHashMap<>();
+	public static final RegistryGroup<Block> LAMP_BLOCKS = BUILDING_BLOCKS.child();
+	public static final RegistryGroup<Item> LAMP_ITEMS = BUILDING_ITEMS.child();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant definitions                                                   */
@@ -258,34 +245,10 @@ public final class UFObjects {
 	/* --------------------------------------------------------------------- */
 
 	public static final Item SCREW_ITEM =
-			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEM_MAP());
+			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEMS);
 
 	public static final Block FLOOR_LAMP_SUPPORT =
-			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), ALL_BLOCK_MAP());
-
-	private static Map<Block, ResourceLocation> ALL_BLOCK_MAP() {
-		Map<Block, ResourceLocation> map = new LinkedHashMap<>();
-		ALL_BLOCKS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> ALL_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		ALL_ITEMS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> FURNITURE_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		FURNITURE_ITEMS.add(map);
-		return map;
-	}
-
-	private static Map<Item, ResourceLocation> PROPS_ITEM_MAP() {
-		Map<Item, ResourceLocation> map = new LinkedHashMap<>();
-		PROPS_ITEMS.add(map);
-		return map;
-	}
+			registerBlock("floor_lamp_support", new FloorLampSupportBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)), BLOCKSz);
 
 	/* --------------------------------------------------------------------- */
 	/* Init                                                                  */
