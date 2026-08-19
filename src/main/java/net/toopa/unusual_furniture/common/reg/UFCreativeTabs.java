@@ -26,8 +26,7 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("oak").chair()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
-				UFObjects.FURNITURE_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.FURNITURE_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 			})
 			.build();
 
@@ -36,8 +35,7 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture_props"))
 			.icon(() -> new ItemStack(UFObjects.HUGE_POT))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
-				UFObjects.PROPS_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.PROPS_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 			})
 			.build();
 
@@ -46,8 +44,7 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_tab_2"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("acacia").open_riser_stairs()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.ALL_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
-				UFObjects.BUILDING_ITEMS.forEach((map) -> map.forEach((item, resourceLocation) -> output.accept(item)));
+				UFObjects.BUILDING_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 			})
 			.build();
 

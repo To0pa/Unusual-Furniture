@@ -19,21 +19,11 @@ public class UFBlockLootTableProvider extends FabricBlockLootTableProvider {
 	@Override
 	public void generate() {
 		//TODO: do the weird dual block items manually
-		UFObjects.FURNITURE_BLOCKS.forEach(entry -> entry.forEach((block, reLo) -> {
+		UFObjects.BLOCKS.forEachEntry((block, reLo) -> {
 			if (!UFObjects.LOOT_TABLE_BLACKLIST.contains(block)) {
 				dropSelf(block);
 			}
-		}));
-		UFObjects.BUILDING_BLOCKS.forEach(entry -> entry.forEach((block, reLo) -> {
-			if (!UFObjects.LOOT_TABLE_BLACKLIST.contains(block)) {
-				dropSelf(block);
-			}
-		}));
-		UFObjects.PROPS_BLOCKS.forEach(entry -> entry.forEach((block, reLo) -> {
-			if (!UFObjects.LOOT_TABLE_BLACKLIST.contains(block)) {
-				dropSelf(block);
-			}
-		}));
+		});
 	}
 }
 //?}
