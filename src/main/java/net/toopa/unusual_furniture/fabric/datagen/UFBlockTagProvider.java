@@ -1,13 +1,12 @@
 package net.toopa.unusual_furniture.fabric.datagen;
 
 //? fabric {
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-
-import net.minecraft.world.level.block.Blocks;
 
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
@@ -28,144 +27,104 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-		getOrCreateTagBuilder(UFBlockTags.TABLE).add(UFObjects.INDUSTRIAL_TABLE);
-		getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(UFObjects.INDUSTRIAL_TABLE);
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(UFObjects.INDUSTRIAL_TABLE);
+		getOrCreateTagBuilder(UFBlockTags.TABLE)
+				.add(UFObjects.TABLE_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.COFFEE_TABLE)
+				.add(UFObjects.COFFEE_TABLE_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.CHAIR)
+				.add(UFObjects.CHAIR_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.STOOL)
+				.add(UFObjects.STOOL_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.SOFA)
+				.add(UFObjects.SOFA_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.CEILING_LAMP)
+				.add(UFObjects.CEILING_LAMP_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.DRAWER)
+				.add(UFObjects.DRAWER_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.BENCH)
+				.add(UFObjects.BENCH_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.CURTAIN)
+				.add(UFObjects.CURTAIN_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.SHELF)
+				.add(UFObjects.SHELF_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.POT)
+				.add(UFObjects.POT_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.TABLE_LAMP)
+				.add(UFObjects.TABLE_LAMP_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.CARVED_PLANKS)
+				.add(UFObjects.CARVED_PLANK_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.OPEN_RISER_STAIRS)
+				.add(UFObjects.OPEN_RISER_STAIR_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.RAILING)
+				.add(UFObjects.RAILING_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.BEAM)
+				.add(UFObjects.BEAM_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(UFBlockTags.FLOOR_LAMP_DECORATIONS)
+				.add(UFObjects.FLOOR_LAMP_BLOCKS.keys(Block[]::new));
 
-		getOrCreateTagBuilder(UFBlockTags.COFFEE_TABLE).add(UFObjects.INDUSTRIAL_COFFEE_TABLE);
-		getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(UFObjects.INDUSTRIAL_COFFEE_TABLE);
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(UFObjects.INDUSTRIAL_COFFEE_TABLE);
-		UFObjects.WOODEN_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.TABLE).add(block);
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).add(block);
-		});
-		UFObjects.WOODEN_COFFEE_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.COFFEE_TABLE).add(block);
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).add(block);
-		});
-		UFObjects.CHAIR_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.CHAIR).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CHAIR);
-		UFObjects.STOOL_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.STOOL).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.STOOL);
-		UFObjects.SOFA_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.SOFA).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.SOFA);
-		UFObjects.CEILING_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.CEILING_LAMP).add(block);
-		});
-		UFObjects.WOODEN_CEILING_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).add(block);
-		});
-		UFObjects.DRAWER_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.DRAWER).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.DRAWER);
-		UFObjects.BENCH_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.BENCH).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.BENCH);
-		UFObjects.CURTAIN_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.CURTAIN).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CURTAIN);
-		UFObjects.TABLE_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.WOODEN_FLOOR_LAMP).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.WOODEN_FLOOR_LAMP);
-		UFObjects.SHELF_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.SHELF).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.SHELF);
-		UFObjects.CARVED_PLANK_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.CARVED_PLANKS).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.CARVED_PLANKS);
-		UFObjects.OPEN_RISER_STAIR_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.OPEN_RISER_STAIRS).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.OPEN_RISER_STAIRS);
-		UFObjects.RAILING_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.RAILING).add(block);
-		});
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE).addTag(UFBlockTags.RAILING);
+		getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
+				.add(UFObjects.INDUSTRIAL_TABLE)
+				.add(UFObjects.INDUSTRIAL_COFFEE_TABLE)
+				.add(UFObjects.COPPER_CEILING_LAMP)
+				.add(UFObjects.IRON_BEAM)
+				.add(UFObjects.DECORATED_IRON_BEAM)
+				.add(UFObjects.FLOOR_LAMP_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
+				.add(UFObjects.INDUSTRIAL_TABLE)
+				.add(UFObjects.INDUSTRIAL_COFFEE_TABLE)
+				.add(UFObjects.COPPER_CEILING_LAMP)
+				.add(UFObjects.POT_BLOCKS.stream().filter((entry) ->
+								!entry.getValue().getPath().contains("wood"))
+						.map(Map.Entry::getKey).toArray(Block[]::new))
+				.add(UFObjects.WARNING_BARRIER)
+				.add(UFObjects.ROAD_WORKS_BARRIER)
+				.add(UFObjects.DANGER_BARRIER)
+				.add(UFObjects.DECORATIVE_TOOLBOX)
+				.add(UFObjects.IRON_LAMP)
+				.add(UFObjects.SPHERE_LAMP)
+				.add(UFObjects.MANHOLE)
+				.add(UFObjects.FIRE_HYDRANT)
+				.add(UFObjects.TRASH)
+				.add(UFObjects.GRAVE_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.IRON_BEAM)
+				.add(UFObjects.DECORATED_IRON_BEAM)
+				.add(UFObjects.FLOOR_LAMP_BLOCKS.keys(Block[]::new));
+		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
+				.add(UFObjects.WOODEN_TABLE_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.WOODEN_COFFEE_TABLE_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.CHAIR_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.STOOL_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.SOFA_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.WOODEN_CEILING_LAMP_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.DRAWER_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.BENCH_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.CURTAIN_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.SHELF_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.POT_BLOCKS.stream().filter((entry) ->
+						entry.getValue().getPath().contains("wood"))
+						.map(Map.Entry::getKey).toArray(Block[]::new))
+				.add(UFObjects.TABLE_LAMP_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.CARVED_PLANK_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.OPEN_RISER_STAIR_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.RAILING_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.WOODEN_BEAM_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.BROOM)
+				.add(UFObjects.RAKE);
 
 		getOrCreateTagBuilder(createTag("ftbchunks", "interact_whitelist"))
 				.addTag(UFBlockTags.CHAIR)
 				.addTag(UFBlockTags.STOOL)
 				.addTag(UFBlockTags.SOFA)
-				.addTag(UFBlockTags.BENCH);
-
-		getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
-				.add(getRes(UFObjects.IRON_BEAM, provider))
-				.add(getRes(UFObjects.DECORATED_IRON_BEAM, provider))
-				.add(getRes(UFObjects.IRON_LAMP, provider));
-
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_AXE)
-				.add(getRes(UFObjects.WOODEN_HANGING_POT, provider))
-				.add(getRes(UFObjects.WOODEN_BARRIER, provider))
-				.add(getRes(UFObjects.WOODEN_CLOCK, provider))
-				.add(getRes(UFObjects.BLACKBOARD_MENU, provider))
-				.add(getRes(UFObjects.RAKE, provider))
-				.add(getRes(UFObjects.BROOM, provider));
-
-		UFObjects.POT_BLOCKS.forEachEntry((block, reLo) -> {
-			if (getRes(block, provider).registry().getPath().contains("wood")) return;
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-		});
-
-		UFObjects.GRAVE_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-		});
-
-		UFObjects.FLOOR_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-			getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL).add(block);
-		});
-
-		getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
-				.add(getRes(UFObjects.WARNING_BARRIER, provider))
-				.add(getRes(UFObjects.ROAD_WORKS_BARRIER, provider))
-				.add(getRes(UFObjects.DANGER_BARRIER, provider))
-				.add(getRes(UFObjects.DECORATIVE_TOOLBOX, provider))
-				.add(getRes(UFObjects.IRON_LAMP, provider))
-				.add(getRes(UFObjects.SPHERE_LAMP, provider))
-				.add(getRes(UFObjects.MANHOLE, provider))
-				.add(getRes(UFObjects.FIRE_HYDRANT, provider))
-				.add(getRes(UFObjects.TRASH, provider));
-
-		UFObjects.POT_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.FLOWER_POTS).add(block);
-		});
-
-		UFObjects.FLOOR_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.FLOOR_LAMP_DECORATIONS).add(block);
-		});
-
-		//== dust ==
-
-		UFObjects.BARRIER_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
-		});
-
-		UFObjects.FIRE_HYDRANT_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
-		});
-
-		UFObjects.PLUSH_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
-		});
-
-		UFObjects.GRAVE_BLOCKS.forEachEntry((block, reLo) -> {
-			getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES).add(block);
-		});
+				.addTag(UFBlockTags.BENCH)
+				.addTag(UFBlockTags.SITTABLE_BLOCKS);
 
 		getOrCreateTagBuilder(UFBlockTags.SITTABLE_BLOCKS);
+
 		getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES)
+				.add(UFObjects.BARRIER_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.FIRE_HYDRANT_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.PLUSH_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.GRAVE_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.DECORATIVE_TOOLBOX)
 				.addTag(UFBlockTags.TABLE)
 				.addTag(UFBlockTags.COFFEE_TABLE)
@@ -174,9 +133,9 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.SOFA)
 				.addTag(UFBlockTags.CEILING_LAMP)
 				.addTag(UFBlockTags.BENCH)
-				.addTag(UFBlockTags.WOODEN_FLOOR_LAMP)
+				.addTag(UFBlockTags.TABLE_LAMP)
 				.addTag(UFBlockTags.SHELF)
-				.addTag(UFBlockTags.FLOWER_POTS)
+				.addTag(UFBlockTags.POT)
 				.addTag(UFBlockTags.FLOOR_LAMP_DECORATIONS);
 	}
 

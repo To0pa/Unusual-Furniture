@@ -20,12 +20,13 @@ public final class UFBlockTags {
 	public static final TagKey<Block> DRAWER = createTag("drawer");
 	public static final TagKey<Block> BENCH = createTag("bench");
 	public static final TagKey<Block> CURTAIN = createTag("curtain");
-	public static final TagKey<Block> WOODEN_FLOOR_LAMP = createTag("wooden_floor_lamp");
+	public static final TagKey<Block> TABLE_LAMP = createTag("table_lamp");
 	public static final TagKey<Block> SHELF = createTag("shelf");
 	public static final TagKey<Block> CARVED_PLANKS = createTag("craved_planks");
 	public static final TagKey<Block> OPEN_RISER_STAIRS = createTag("open_riser_stairs");
+	public static final TagKey<Block> BEAM = createTag("beam");
 	public static final TagKey<Block> RAILING = createTag("railing");
-	public static final TagKey<Block> FLOWER_POTS = createTag("flower_pots");
+	public static final TagKey<Block> POT = createTag("pot");
 	public static final TagKey<Block> FLOOR_LAMP_DECORATIONS = createTag("floor_lamp_decorations");
 	public static final TagKey<Block> SITTABLE_BLOCKS = createTag("sittable_blocks");
 	public static final TagKey<Block> EMITS_DUST_PARTICLES = createTag("emits_dust_particles");

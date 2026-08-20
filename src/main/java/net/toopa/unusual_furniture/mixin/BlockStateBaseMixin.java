@@ -29,7 +29,7 @@ public class BlockStateBaseMixin {
 		while (cursor.getY() >= level.getMinBuildHeight()) {
 			var state = level.getBlockState(cursor);
 
-			if (state.is(UFBlockTags.FLOWER_POTS)) {
+			if (state.is(UFBlockTags.POT)) {
 				return Vec3.ZERO;
 			}
 			if (!state.isAir() && !state.getCollisionShape(level, cursor).isEmpty()) {

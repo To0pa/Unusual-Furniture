@@ -15,8 +15,7 @@ public final class UFBlockEntityTypes {
 	public static final BlockEntityType<DrawerBlockEntity> DRAWER_BLOCK_ENTITY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
 			"drawer",
 			BlockEntityType.Builder.of(DrawerBlockEntity::new,
-					UFObjects.DRAWER_BLOCKS.entries().keySet()
-							.toArray(new Block[0])).build(null));
+					UFObjects.DRAWER_BLOCKS.keys(Block[]::new)).build(null));
 
 	public static final BlockEntityType<WallClockBlockEntity> WALL_CLOCK_BLOCK_ENTITY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
 			"wall_clock", BlockEntityType.Builder.of(WallClockBlockEntity::new,

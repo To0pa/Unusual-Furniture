@@ -2,12 +2,16 @@ package net.toopa.unusual_furniture.common.utils;
 
 import net.minecraft.resources.ResourceLocation;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.IntFunction;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class RegistryGroup<T> implements Iterable<Map.Entry<T, ResourceLocation>> {
 
@@ -53,6 +57,21 @@ public class RegistryGroup<T> implements Iterable<Map.Entry<T, ResourceLocation>
 		for (RegistryGroup<T> c : children) {
 			c.collect(out);
 		}
+	}
+
+	public Stream<Map.Entry<T, ResourceLocation>> stream() {
+		return StreamSupport.stream(spliterator(), false);
+	}
+
+	/**
+	 * Extracts all keys (T) as an array. Pass a generator like `Block[]::new` or `Item[]::new`.
+	 */
+	public T[] keys(IntFunction<T[]> generator) {
+		return flatten().keySet().toArray(generator);
+	}
+
+	public ResourceLocation[] values() {
+		return flatten().values().toArray(new ResourceLocation[0]);
 	}
 
 	@Override

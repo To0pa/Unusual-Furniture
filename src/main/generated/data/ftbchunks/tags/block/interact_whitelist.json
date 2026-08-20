@@ -3,6 +3,7 @@
     "#unusual_furniture:chair",
     "#unusual_furniture:stool",
     "#unusual_furniture:sofa",
-    "#unusual_furniture:bench"
+    "#unusual_furniture:bench",
+    "#unusual_furniture:sittable_blocks"
   ]
 }
