@@ -29,6 +29,8 @@ public class SphereLampBlock extends AbstractLampBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE_MAP.get(state.getValue(FACING));
+		Direction facing = state.getValue(FACING);
+		// Jank jank jank
+		return SHAPE_MAP.get(facing.getAxis().isHorizontal() ? facing.getOpposite() : facing);
 	}
 }
