@@ -33,7 +33,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 	@Override
 	public void buildRecipes(RecipeOutput exporter) {
 
-		UFObjects.TABLE_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.WOODEN_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
@@ -53,7 +53,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.WOODEN_COFFEE_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
@@ -73,7 +73,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.CHAIR_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CHAIR_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
@@ -92,7 +92,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.STOOL_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.STOOL_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
@@ -110,7 +110,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.SOFA_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.SOFA_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");
 			var wool = dyeSet.base();
@@ -125,9 +125,9 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.CEILING_LAMP_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.WOODEN_CEILING_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
-			if (woodSet == null) return; // Copper lamp
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			// TODO: copper lamp
 			var planks = woodSet.plank();
 			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
@@ -140,7 +140,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.DRAWER_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
@@ -159,7 +159,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.BENCH_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, block)
@@ -173,7 +173,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CURTAIN_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");
 			var wool = dyeSet.base();
@@ -187,9 +187,9 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.SHELF_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
-			if (woodSet == null) throw new AssertionError("DyeSet is null");
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			var plankSlab = BlockFamilies.getAllFamilies()
 					.filter(f -> f.getBaseBlock() == woodSet.plank())
 					.findFirst()
@@ -205,9 +205,9 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 					.save(exporter);
 		});
 
-		UFObjects.BEAM_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.WOODEN_BEAM_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
-			if (woodSet == null) return; // Skip the iron variants of the beams
+			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			// TODO: iron variants
 			var plankSlab = BlockFamilies.getAllFamilies()
 					.filter(f -> f.getBaseBlock() == woodSet.plank())

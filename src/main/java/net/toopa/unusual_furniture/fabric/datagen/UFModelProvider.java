@@ -74,12 +74,10 @@ public class UFModelProvider extends FabricModelProvider {
 
 	@Override
 	public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-		UFObjects.INDUSTRIAL_TABLE_BLOCKS.forEach((block, reLo) -> {
-			registerIndustrialTable(blockModelGenerators, block,
-					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block)));
-		});
-		UFObjects.TABLE_BLOCKS.forEach((block, reLo) -> {
+		registerIndustrialTable(blockModelGenerators, UFObjects.INDUSTRIAL_TABLE,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.INDUSTRIAL_TABLE))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.INDUSTRIAL_TABLE)));
+		UFObjects.WOODEN_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -87,13 +85,10 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.INDUSTRIAL_COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
-			Block industrialTable = BuiltInRegistries.BLOCK.get(UnusualFurniture.id("industrial_table"));
-			registerCoffeeTable(blockModelGenerators, block,
-					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(industrialTable))
-							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(industrialTable)));
-		});
-		UFObjects.COFFEE_TABLE_BLOCKS.forEach((block, reLo) -> {
+		registerCoffeeTable(blockModelGenerators, UFObjects.INDUSTRIAL_COFFEE_TABLE,
+				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.INDUSTRIAL_TABLE))
+						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.INDUSTRIAL_TABLE)));
+		UFObjects.WOODEN_COFFEE_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -101,7 +96,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.CHAIR_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CHAIR_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -110,7 +105,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(stool))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.STOOL_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.STOOL_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -118,7 +113,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.SOFA_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.SOFA_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");
 			Block wool = dyeSet.base();
@@ -128,7 +123,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(wool)));
 		});
-		UFObjects.CEILING_LAMP_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CEILING_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			Block planks;
 			if (woodSet != null) {
@@ -143,7 +138,7 @@ public class UFModelProvider extends FabricModelProvider {
 							.put(SLOT_1, UnusualFurniture.id("block/light"))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.DRAWER_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -152,7 +147,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.BENCH_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.BENCH_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -162,7 +157,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_1, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.CURTAIN_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CURTAIN_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");
 			Block wool = dyeSet.base();
@@ -171,7 +166,7 @@ public class UFModelProvider extends FabricModelProvider {
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(wool))
 							.put(TextureSlot.ALL, UnusualFurniture.id("block/curtains")));
 		});
-		UFObjects.TABLE_LAMP_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.TABLE_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");
 			Block wool = dyeSet.base();
@@ -179,7 +174,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_2, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(wool)));
 		});
-		UFObjects.SHELF_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.SHELF_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -188,7 +183,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffe_table))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.CARVED_PLANK_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.CARVED_PLANK_BLOCKS.forEachEntry((block, reLo) -> {
 			registerCarvedPlanks(blockModelGenerators, block,
 					new TextureMapping()
 							.put(TextureSlot.UP, TextureMapping.getBlockTexture(block))
@@ -224,7 +219,7 @@ public class UFModelProvider extends FabricModelProvider {
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block))
 			);
 		});
-		UFObjects.OPEN_RISER_STAIR_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.OPEN_RISER_STAIR_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -233,7 +228,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(coffe_table))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.RAILING_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.RAILING_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
 			Block planks = woodSet.plank();
@@ -241,7 +236,7 @@ public class UFModelProvider extends FabricModelProvider {
 					new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(block))
 							.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(planks)));
 		});
-		UFObjects.BEAM_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.BEAM_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) return; // iron beams
 			Block planks = woodSet.plank();
@@ -449,7 +444,7 @@ public class UFModelProvider extends FabricModelProvider {
 				TextureMapping.layer0(
 						UnusualFurniture.id("block/poster2")),
 				itemModelGenerators.output);
-		UFObjects.DRAWER_BLOCKS.forEach((block, reLo) -> {
+		UFObjects.DRAWER_BLOCKS.forEachEntry((block, reLo) -> {
 			DRAWER_ITEM.create(ModelLocationUtils.getModelLocation(block.asItem()),
 					new TextureMapping()
 							.put(SLOT_0, TextureMapping.getBlockTexture(block)), itemModelGenerators.output);
