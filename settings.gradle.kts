@@ -31,3 +31,7 @@ stonecutter {
         vcsVersion = "1.21.1-fabric"
     }
 }
+
+rootProject.name = "unusual_furniture"
+
+includeBuild("build_logic")

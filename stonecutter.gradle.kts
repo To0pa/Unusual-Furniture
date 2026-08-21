@@ -5,6 +5,7 @@ plugins {
     id("net.neoforged.moddev") version "2.0.144" apply false
     id("dev.kikugie.postprocess.jsonlang") version "2.1-beta.4" apply false
     id("me.modmuss50.mod-publish-plugin") version "2.2.0" apply false
+    id("unusual_furniture.package-info")
 }
 
 stonecutter active "1.21.1-fabric"
