@@ -74,7 +74,6 @@ public class FabricCommonAbstraction implements CommonAbstraction {
 		EntityModelLayerRegistry.registerModelLayer(modelLayer, provider::createModelData);
 	}
 
-	//? < 26.1 {
 	public void registerItemColors(ItemColor color, ItemLike... items) {
 		Supplier<ItemLike>[] array = new Supplier[items.length];
 		for (var i = 0; i < items.length; i++) {
@@ -122,6 +121,5 @@ public class FabricCommonAbstraction implements CommonAbstraction {
 		Objects.requireNonNull(color, "color is null!");
 		ColorProviderRegistry.BLOCK.register(color, unpackBlocks(blocks));
 	}
-	//?}
 }
 //?}

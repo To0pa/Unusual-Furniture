@@ -57,7 +57,6 @@ public interface CommonAbstraction {
 
 	void registerLayerDefinition(ModelLayerLocation modelLayer, CommonTexturedModelDataProvider provider);
 
-	//? < 26.1 {
 	void registerItemColors(ItemColor color, Supplier<? extends ItemLike>... items);
 
 	void registerBlockColors(BlockColor color, Supplier<? extends Block>... blocks);
@@ -79,7 +78,6 @@ public interface CommonAbstraction {
 		}
 		registerBlockColors(color, array);
 	}
-//?}
 
 	@FunctionalInterface
 	interface CommonSpriteParticleRegistration<T extends ParticleOptions> {
