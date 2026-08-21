@@ -1,83 +1,58 @@
-import org.gradle.api.DefaultTask
-import org.gradle.api.file.ConfigurableFileCollection
-import org.gradle.api.provider.Property
-import org.gradle.api.tasks.*
-import java.io.File
+import java.nio.file.Files
+import kotlin.io.path.createDirectories
+import kotlin.io.path.exists
+import kotlin.io.path.isDirectory
+import kotlin.io.path.isRegularFile
+import kotlin.io.path.listDirectoryEntries
+import kotlin.io.path.writeText
 
-listOf("main" to "Main", "client" to "Client").forEach { (dirName, taskSuffix) ->
-
-    val srcDir = project.file("src/$dirName/java")
-
-    val generateTask = tasks.register<GeneratePackageInfos>("generate${taskSuffix}PackageInfos") {
-        group = "generation"
-        if (srcDir.exists()) {
-            sourceRoots.setFrom(srcDir)
-        }
-    }
-
-    tasks.matching { it.name == "ideaSyncTask" }.configureEach {
-        dependsOn(generateTask)
-    }
-
-    val cleanTask = tasks.register("clean${taskSuffix}PackageInfos") {
-        group = "generation"
-        doLast {
-            if (srcDir.exists()) {
-                srcDir.walkTopDown()
-                    .filter { it.isFile && it.name == "package-info.java" }
-                    .forEach { file ->
-                        if (file.readText().contains("Auto-generated package-info")) {
-                            file.delete()
-                        }
-                    }
-            }
-        }
-    }
-
-    tasks.matching { it.name == "clean" }.configureEach {
-        dependsOn(cleanTask)
-    }
+plugins {
+    java
 }
 
 abstract class GeneratePackageInfos : DefaultTask() {
 
+    @get:SkipWhenEmpty
+    @get:InputFiles
+    abstract val sourceRoots: ConfigurableFileCollection
+
+    @get:OutputDirectory
+    abstract val outputDir: DirectoryProperty
+
     @get:Input
     abstract val projectName: Property<String>
 
-    @get:InputFiles
-    @get:SkipWhenEmpty
-    abstract val sourceRoots: ConfigurableFileCollection
-
-    init {
-        projectName.convention(project.name)
-    }
-
     @TaskAction
     fun run() {
-        sourceRoots.files.forEach { root ->
-            if (!root.exists() || !root.isDirectory) return@forEach
+        val output = outputDir.get().asFile.toPath()
 
-            root.walkTopDown().filter { it.isDirectory }.forEach { dir ->
-                val containsSource = dir.listFiles()?.any {
-                    it.isFile && (it.name.endsWith(".java") || it.name.endsWith(".kt"))
-                } ?: false
+        sourceRoots.files
+            .filter(File::isDirectory)
+            .forEach { sourceRoot -> generateForRoot(sourceRoot.toPath(), output) }
+    }
 
+    private fun generateForRoot(sourceRoot: java.nio.file.Path, output: java.nio.file.Path) {
+        Files.walk(sourceRoot).use { stream ->
+            stream.filter { it.isDirectory() }.forEach { dir ->
+                val containsSource = dir.listDirectoryEntries().any {
+                    it.isRegularFile() &&
+                            (it.fileName.toString().endsWith(".java") || it.fileName.toString().endsWith(".kt"))
+                }
                 if (!containsSource) return@forEach
 
-                val packageName = dir.relativeTo(root).path.replace(File.separatorChar, '.')
-                val packageInfoFile = File(dir, "package-info.java")
+                val relativePath = sourceRoot.relativize(dir)
+                if (relativePath.toString().isEmpty()) return@forEach
 
-                if (packageInfoFile.exists()) {
-                    val text = packageInfoFile.readText()
-                    if (!text.contains("Auto-generated package-info")) {
-                        require(text.contains("@NullMarked")) {
-                            "Manual package-info.java $packageInfoFile is missing @NullMarked annotation."
-                        }
-                        return@forEach
-                    }
-                }
+                val existingPackageInfo = dir.resolve("package-info.java")
+                if (existingPackageInfo.exists()) return@forEach
 
-                packageInfoFile.writeText("""
+                val target = output.resolve(relativePath)
+                target.createDirectories()
+
+                val packageName = relativePath.toString().replace(File.separatorChar, '.')
+
+                target.resolve("package-info.java").writeText(
+                    """
                     |/**
                     | * Auto-generated package-info for ${projectName.get()}.
                     | */
@@ -85,8 +60,48 @@ abstract class GeneratePackageInfos : DefaultTask() {
                     |package $packageName;
                     |
                     |import org.jspecify.annotations.NullMarked;
-                    |""".trimMargin())
+                    |""".trimMargin()
+                )
             }
         }
+    }
+}
+
+// Hardcoded to the shared stonecutter source root
+val mainSourceDir = rootProject.file("src/main/java")
+val clientSourceDir = rootProject.file("src/client/java")
+
+val mainOutputDir = rootProject.file("src/generated/main/java")
+val clientOutputDir = rootProject.file("src/generated/client/java")
+
+data class PackageInfoTarget(val sourceDir: File, val outputDir: File)
+
+val targets = mapOf(
+    "main" to PackageInfoTarget(mainSourceDir, mainOutputDir),
+    "client" to PackageInfoTarget(clientSourceDir, clientOutputDir)
+)
+
+sourceSets.configureEach {
+    val sourceSetName = name
+    val target = targets[sourceSetName] ?: return@configureEach
+
+    val generateTask = tasks.register<GeneratePackageInfos>(getTaskName("generate", "PackageInfos")) {
+        group = "generation"
+        description = "Generates package-info.java files for the $sourceSetName source set."
+
+        sourceRoots.from(target.sourceDir)
+        outputDir.set(target.outputDir)
+        projectName.set(project.name)
+    }
+
+    java.srcDir(generateTask)
+
+    val cleanTask = tasks.register<Delete>(getTaskName("clean", "PackageInfos")) {
+        group = "generation"
+        delete(target.outputDir)
+    }
+
+    tasks.named("clean") {
+        dependsOn(cleanTask)
     }
 }

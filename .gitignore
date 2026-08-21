@@ -48,3 +48,6 @@ bin/
 
 ### Jetbrains ###
 .idea/
+
+### Auto generated ###
+/src/generated/**

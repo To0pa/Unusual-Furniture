@@ -5,6 +5,7 @@ plugins {
     id("dev.kikugie.postprocess.jsonlang")
     id("me.modmuss50.mod-publish-plugin")
     id("maven-publish")
+    id("unusual_furniture.package-info")
 }
 
 val minecraft = stonecutter.current.version
