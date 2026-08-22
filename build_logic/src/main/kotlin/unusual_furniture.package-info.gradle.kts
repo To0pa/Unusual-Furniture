@@ -5,10 +5,16 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.isRegularFile
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.writeText
+import org.jetbrains.gradle.ext.settings
+import org.jetbrains.gradle.ext.taskTriggers
+import org.gradle.plugins.ide.idea.model.IdeaModel
 
 plugins {
     java
 }
+
+rootProject.pluginManager.apply("idea")
+rootProject.pluginManager.apply("org.jetbrains.gradle.plugin.idea-ext")
 
 abstract class GeneratePackageInfos : DefaultTask() {
 
@@ -85,23 +91,40 @@ sourceSets.configureEach {
     val sourceSetName = name
     val target = targets[sourceSetName] ?: return@configureEach
 
-    val generateTask = tasks.register<GeneratePackageInfos>(getTaskName("generate", "PackageInfos")) {
-        group = "generation"
-        description = "Generates package-info.java files for the $sourceSetName source set."
+    val generateTaskName = "generate${sourceSetName.replaceFirstChar { it.uppercase() }}PackageInfos"
+    val cleanTaskName = "clean${sourceSetName.replaceFirstChar { it.uppercase() }}PackageInfos"
 
-        sourceRoots.from(target.sourceDir)
-        outputDir.set(target.outputDir)
-        projectName.set(project.name)
+    val generateTask = rootProject.tasks.run {
+        if (names.contains(generateTaskName)) named<GeneratePackageInfos>(generateTaskName)
+        else register<GeneratePackageInfos>(generateTaskName) {
+            group = "generation"
+            description = "Generates package-info.java files for the $sourceSetName source set."
+            sourceRoots.from(target.sourceDir)
+            outputDir.set(target.outputDir)
+            projectName.set(rootProject.name)
+        }
+    }
+
+    val cleanTask = rootProject.tasks.run {
+        if (names.contains(cleanTaskName)) named<Delete>(cleanTaskName)
+        else register<Delete>(cleanTaskName) {
+            group = "generation"
+            delete(target.outputDir)
+        }
     }
 
     java.srcDir(generateTask)
+    tasks.matching { it.name == "compileJava" }.configureEach { dependsOn(generateTask) }
+    tasks.matching { it.name == "sourcesJar" }.configureEach { dependsOn(generateTask) }
+    tasks.named("clean") { dependsOn(cleanTask) }
 
-    val cleanTask = tasks.register<Delete>(getTaskName("clean", "PackageInfos")) {
-        group = "generation"
-        delete(target.outputDir)
+    val ideaModel = rootProject.extensions.getByType<IdeaModel>()
+
+    ideaModel.project.settings {
+        taskTriggers {
+            afterSync(generateTask)
+        }
     }
 
-    tasks.named("clean") {
-        dependsOn(cleanTask)
-    }
+    ideaModel.module.generatedSourceDirs.add(target.outputDir)
 }
