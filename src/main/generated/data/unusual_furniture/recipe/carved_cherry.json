@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:cherry_slab"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    }
+  },
+  "pattern": [
+    "a",
+    "b",
+    "a"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:carved_cherry"
+  }
+}

@@ -77,7 +77,6 @@ import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -102,7 +101,6 @@ public final class UFObjects {
 	public static final RegistryGroup<Item> FURNITURE_ITEMS = ITEM.child();
 	public static final RegistryGroup<Item> BUILDING_ITEMS = ITEM.child();
 	public static final RegistryGroup<Item> PROPS_ITEMS = ITEM.child();
-	public static final RegistryGroup<Item> ALL_ITEMS = ITEM.child();
 
 	/* --------------------------------------------------------------------- */
 	/* Variant lookup                                                        */
@@ -204,24 +202,24 @@ public final class UFObjects {
 	/* Variant definitions                                                   */
 	/* --------------------------------------------------------------------- */
 
-	public record WoodDef(String name, Block plank, Block log) {
+	public record WoodDef(String name, Block plank, Block log, Block wood) {
 	}
 
 	public record DyeDef(String name, Block wool) {
 	}
 
 	public static final List<WoodDef> WOODS = List.of(
-			new WoodDef("oak", Blocks.OAK_PLANKS, Blocks.OAK_LOG),
-			new WoodDef("spruce", Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_LOG),
-			new WoodDef("birch", Blocks.BIRCH_PLANKS, Blocks.BIRCH_LOG),
-			new WoodDef("jungle", Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_LOG),
-			new WoodDef("acacia", Blocks.ACACIA_PLANKS, Blocks.ACACIA_LOG),
-			new WoodDef("dark_oak", Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_LOG),
-			new WoodDef("mangrove", Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_LOG),
-			new WoodDef("cherry", Blocks.CHERRY_PLANKS, Blocks.CHERRY_LOG),
-			new WoodDef("bamboo", Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_BLOCK),
-			new WoodDef("crimson", Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STEM),
-			new WoodDef("warped", Blocks.WARPED_PLANKS, Blocks.WARPED_STEM)
+			new WoodDef("oak", Blocks.OAK_PLANKS, Blocks.OAK_LOG, Blocks.OAK_WOOD),
+			new WoodDef("spruce", Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_LOG, Blocks.SPRUCE_WOOD),
+			new WoodDef("birch", Blocks.BIRCH_PLANKS, Blocks.BIRCH_LOG, Blocks.BIRCH_WOOD),
+			new WoodDef("jungle", Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_LOG, Blocks.JUNGLE_WOOD),
+			new WoodDef("acacia", Blocks.ACACIA_PLANKS, Blocks.ACACIA_LOG, Blocks.ACACIA_WOOD),
+			new WoodDef("dark_oak", Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_WOOD),
+			new WoodDef("mangrove", Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_LOG, Blocks.MANGROVE_WOOD),
+			new WoodDef("cherry", Blocks.CHERRY_PLANKS, Blocks.CHERRY_LOG, Blocks.CHERRY_WOOD),
+			new WoodDef("bamboo", Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_BLOCK, Blocks.BAMBOO_BLOCK),
+			new WoodDef("crimson", Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STEM, Blocks.CRIMSON_HYPHAE),
+			new WoodDef("warped", Blocks.WARPED_PLANKS, Blocks.WARPED_STEM, Blocks.WARPED_HYPHAE)
 	);
 
 	public static final List<DyeDef> DYES = List.of(
@@ -247,7 +245,7 @@ public final class UFObjects {
 	/* Items                                                                 */
 	/* --------------------------------------------------------------------- */
 
-	public static final Item SCREW_ITEM =
+	public static final Item SCREW =
 			registerItem("screw", new Item(new Item.Properties()), PROPS_ITEMS);
 
 	public static final Block FLOOR_LAMP_SUPPORT =
@@ -278,7 +276,7 @@ public final class UFObjects {
 			BeamBlock beam = registerBeam(w + "_beam", wood.plank());
 
 			WoodSet set = new WoodSet(
-					wood.plank(), wood.log(),
+					wood.plank(), wood.log(), wood.wood(),
 					table, coffee, chair, stool, lamp,
 					drawer, bench, shelf, carved, stairs,
 					railing, beam

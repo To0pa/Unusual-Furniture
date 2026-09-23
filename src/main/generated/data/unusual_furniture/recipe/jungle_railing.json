@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:stripped_jungle_wood"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aaa",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:jungle_railing"
+  }
+}

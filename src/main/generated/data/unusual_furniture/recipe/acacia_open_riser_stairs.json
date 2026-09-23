@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:acacia_stairs"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " ab",
+    "ab "
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:acacia_open_riser_stairs"
+  }
+}

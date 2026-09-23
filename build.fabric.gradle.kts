@@ -112,10 +112,6 @@ tasks {
     }
 }
 
-loom.runs.named("server") {
-    isIdeConfigGenerated = false
-}
-
 fabricApi {
     configureDataGeneration {
         outputDirectory = file("$rootDir/src/main/generated")

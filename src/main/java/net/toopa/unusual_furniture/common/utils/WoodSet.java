@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 public record WoodSet(
 		Block plank,
 		Block log,
+		Block wood,
 		TableBlock table,
 		CoffeeTableBlock coffee_table,
 		ChairBlock chair,
@@ -38,6 +39,7 @@ public record WoodSet(
 		return Stream.of(
 				plank,
 				log,
+				wood,
 				table,
 				coffee_table,
 				chair,
