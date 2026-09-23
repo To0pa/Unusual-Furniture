@@ -35,7 +35,20 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_furniture_props"))
 			.icon(() -> new ItemStack(UFObjects.HUGE_POT))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.PROPS_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.BAG_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.POT_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				output.accept(UFObjects.POSTER);
+				output.accept(UFObjects.TRASH);
+				UFObjects.FIRE_HYDRANT_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				output.accept(UFObjects.MANHOLE);
+				output.accept(UFObjects.DECORATIVE_TOOLBOX);
+				UFObjects.BARRIER_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				output.accept(UFObjects.WOODEN_CLOCK);
+				UFObjects.TABLE_LAMP_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.PLUSH_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				output.accept(UFObjects.BROOM);
+				output.accept(UFObjects.RAKE);
+				UFObjects.GRAVE_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 			})
 			.build();
 
@@ -44,7 +57,14 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_tab_2"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("acacia").open_riser_stairs()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.BUILDING_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.DRAWER_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.OPEN_RISER_STAIR_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.RAILING_BLOCKS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.WOODEN_BEAM_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				output.accept(UFObjects.DECORATED_IRON_BEAM);
+				output.accept(UFObjects.IRON_BEAM);
+				UFObjects.FLOOR_LAMP_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.LAMP_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 			})
 			.build();
 
