@@ -3,8 +3,8 @@ package net.toopa.unusual_furniture.common.utils;
 import java.util.stream.Stream;
 
 import net.toopa.unusual_furniture.common.block.CurtainBlock;
-import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.SofaBlock;
+import net.toopa.unusual_furniture.common.block.TableLampBlock;
 
 import net.minecraft.world.level.block.Block;
 

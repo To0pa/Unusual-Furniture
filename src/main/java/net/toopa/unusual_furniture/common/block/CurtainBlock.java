@@ -7,6 +7,7 @@ import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,8 +36,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import org.jspecify.annotations.Nullable;
 
 public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
@@ -164,24 +163,32 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 		boolean isOpen = forceOpenState != null ? forceOpenState : state.getValue(SHAPE).isOpen();
 
-		if (!connectedAbove && !connectedBelow && !connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
-		if (connectedAbove && connectedBelow && !connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
+		if (!connectedAbove && !connectedBelow && !connectedLeft && !connectedRight)
+			return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.SINGLE_CLOSED;
+		if (connectedAbove && connectedBelow && !connectedLeft && !connectedRight)
+			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 
 		if (!connectedAbove && connectedBelow) {
-			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
-			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
+			if (connectedLeft && !connectedRight)
+				return isOpen ? ModularCurtainProperty.LEFT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
+			if (!connectedLeft && connectedRight)
+				return isOpen ? ModularCurtainProperty.RIGHT_TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
 			return isOpen ? ModularCurtainProperty.TOP_OPEN : ModularCurtainProperty.TOP_CLOSED;
 		}
 
 		if (connectedAbove && !connectedBelow) {
-			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
-			if (!connectedLeft && connectedRight) return isOpen ? ModularCurtainProperty.RIGHT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
+			if (connectedLeft && !connectedRight)
+				return isOpen ? ModularCurtainProperty.LEFT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
+			if (!connectedLeft && connectedRight)
+				return isOpen ? ModularCurtainProperty.RIGHT_BOTTOM_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.BOTTOM_CLOSED;
 		}
 
 		if (connectedAbove) {
-			if (connectedLeft && !connectedRight) return isOpen ? ModularCurtainProperty.LEFT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
-			if (!connectedLeft) return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
+			if (connectedLeft && !connectedRight)
+				return isOpen ? ModularCurtainProperty.LEFT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
+			if (!connectedLeft)
+				return isOpen ? ModularCurtainProperty.RIGHT_MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 			return isOpen ? ModularCurtainProperty.MIDDLE_OPEN : ModularCurtainProperty.MIDDLE_CLOSED;
 		}
 
@@ -234,14 +241,14 @@ public class CurtainBlock extends HorizontalDirectionalBlock implements SimpleWa
 
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return state.getValue(SHAPE).isOpen()? Shapes.empty() : super.getCollisionShape(state, world, pos, context);
+		return state.getValue(SHAPE).isOpen() ? Shapes.empty() : super.getCollisionShape(state, world, pos, context);
 	}
 
 	@Override
-	protected MapCodec<? extends HorizontalDirectionalBlock> codec() { return CODEC; }
+	protected MapCodec<? extends HorizontalDirectionalBlock> codec() {return CODEC;}
 
 	@Override
-	protected boolean isPathfindable(BlockState state, PathComputationType type) { return false; }
+	protected boolean isPathfindable(BlockState state, PathComputationType type) {return false;}
 
 	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, @Nullable LivingEntity entity, ItemStack itemstack) {

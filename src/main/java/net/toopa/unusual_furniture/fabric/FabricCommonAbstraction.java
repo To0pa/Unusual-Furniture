@@ -1,36 +1,36 @@
 package net.toopa.unusual_furniture.fabric;
 
 //? fabric {
+
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-
-import net.minecraft.client.model.geom.ModelLayerLocation;
-
 import net.toopa.unusual_furniture.CommonAbstraction;
 
-//? < 26.1 {
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.ItemLike;
-
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-//?} else {
-/*import net.minecraft.client.renderer.rendertype.RenderType;
-*///?}
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.loader.api.FabricLoader;
+
+//? <26.1 {
+//?} else {
+//import net.minecraft.client.renderer.rendertype.RenderType;
+//?}
 
 public class FabricCommonAbstraction implements CommonAbstraction {
 

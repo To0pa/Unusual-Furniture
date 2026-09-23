@@ -8,8 +8,6 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
-import net.minecraft.world.level.block.SoundType;
-
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 import net.toopa.unusual_furniture.common.block.BarrierBlock;
 import net.toopa.unusual_furniture.common.block.BauhausPotBlock;
@@ -28,10 +26,9 @@ import net.toopa.unusual_furniture.common.block.CurtainBlock;
 import net.toopa.unusual_furniture.common.block.DecoratedIronBeamBlock;
 import net.toopa.unusual_furniture.common.block.DrawerBlock;
 import net.toopa.unusual_furniture.common.block.FireHydrantBlock;
-import net.toopa.unusual_furniture.common.block.FloorLampSupportBlock;
-import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationBatBlock;
 import net.toopa.unusual_furniture.common.block.FloorLampDecorationVillagerBlock;
+import net.toopa.unusual_furniture.common.block.FloorLampSupportBlock;
 import net.toopa.unusual_furniture.common.block.FudgePotBlock;
 import net.toopa.unusual_furniture.common.block.GraveBlock;
 import net.toopa.unusual_furniture.common.block.GreekPotBlock;
@@ -56,6 +53,7 @@ import net.toopa.unusual_furniture.common.block.SphereLampBlock;
 import net.toopa.unusual_furniture.common.block.StonePotBlock;
 import net.toopa.unusual_furniture.common.block.StoolBlock;
 import net.toopa.unusual_furniture.common.block.TableBlock;
+import net.toopa.unusual_furniture.common.block.TableLampBlock;
 import net.toopa.unusual_furniture.common.block.TallTerracottaPotBlock;
 import net.toopa.unusual_furniture.common.block.ToolboxBlock;
 import net.toopa.unusual_furniture.common.block.TrashBlock;
@@ -81,6 +79,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public final class UFObjects {
@@ -347,7 +346,7 @@ public final class UFObjects {
 	public static final BarrierBlock WOODEN_BARRIER = registerBarrierBlock("wooden_barrier");
 	public static final BlackboardMenuBlock BLACKBOARD_MENU = registerBlackboardMenuBlock("blackboard_menu");
 	public static final WallClockBlock WOODEN_CLOCK = registerWallClockBlock("wooden_clock");
-//	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
+	//	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
 	public static final PlushBlock PIG_PLUSH = registerPlushBlock("pig_plush");
 	public static final PlushBlock COW_PLUSH = registerPlushBlock("cow_plush");
 	public static final CatPlushBlock CAT_PLUSH = registerCatPlushBlock("cat_plush");

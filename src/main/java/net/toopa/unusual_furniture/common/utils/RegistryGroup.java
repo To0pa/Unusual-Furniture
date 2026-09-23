@@ -1,8 +1,5 @@
 package net.toopa.unusual_furniture.common.utils;
 
-import net.minecraft.resources.ResourceLocation;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -12,6 +9,8 @@ import java.util.function.BiConsumer;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+
+import net.minecraft.resources.ResourceLocation;
 
 public class RegistryGroup<T> implements Iterable<Map.Entry<T, ResourceLocation>> {
 

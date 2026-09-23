@@ -4,17 +4,13 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-//? < 26.1 {
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.renderer.RenderType;
-//?} else {
-/*import net.minecraft.client.renderer.rendertype.RenderType;
-*///?}
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -23,6 +19,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
+//? <26.1 {
+//?} else {
+//import net.minecraft.client.renderer.rendertype.RenderType;
+//?}
 //? fabric {
 import net.toopa.unusual_furniture.fabric.FabricCommonAbstraction;
 //?}
@@ -38,8 +38,8 @@ public interface CommonAbstraction {
 	CommonAbstraction INSTANCE = new FabricCommonAbstraction();
 	//?}
 	//? neoforge {
-	/*CommonAbstraction INSTANCE = new NeoCommonAbstraction(new ArrayList<>());
-	 *///?}
+	//CommonAbstraction INSTANCE = new NeoCommonAbstraction(new ArrayList<>());
+	//?}
 
 	boolean isModLoaded(String modid);
 

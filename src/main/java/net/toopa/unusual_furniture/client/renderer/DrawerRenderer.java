@@ -1,5 +1,8 @@
 package net.toopa.unusual_furniture.client.renderer;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.toopa.unusual_furniture.client.model.DrawerModel;
@@ -14,9 +17,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 	private final DrawerModel model;

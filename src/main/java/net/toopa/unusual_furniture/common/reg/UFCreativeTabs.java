@@ -14,11 +14,11 @@ public final class UFCreativeTabs {
 	private UFCreativeTabs() {}
 
 	private static CreativeModeTab.Builder creativeModeTabBuilder() {
-		return  //? fabric {
+		return	//? fabric {
 				CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0);
-		        //?} neoforge {
-		        /*CreativeModeTab.builder();
-		         *///?}
+				//?} neoforge {
+				//CreativeModeTab.builder();
+				//?}
 	}
 
 	public static final ResourceKey<CreativeModeTab> FURNITURE_TAB_KEY = ResourceKey.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), UnusualFurniture.id("01_furniture"));

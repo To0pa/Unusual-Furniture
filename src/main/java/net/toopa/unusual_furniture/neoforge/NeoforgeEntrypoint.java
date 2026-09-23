@@ -8,7 +8,6 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
-import net.toopa.unusual_furniture.CommonAbstraction;
 import net.toopa.unusual_furniture.UFEventHandler;
 import net.toopa.unusual_furniture.UnusualFurniture;
 
@@ -25,7 +24,7 @@ import net.toopa.unusual_furniture.common.reg.*;
 @EventBusSubscriber(modid = net.toopa.unusual_furniture.common.UnusualFurniture.MOD_ID)
 public class NeoforgeEntrypoint {
 
-    public NeoforgeEntrypoint(IEventBus modBus) {
+	public NeoforgeEntrypoint(IEventBus modBus) {
 		NeoCommonAbstraction.EVENT_BUS = modBus;
 		for (var a : NeoCommonAbstraction.instance().lateActions()) {
 			a.accept(modBus);
@@ -34,38 +33,38 @@ public class NeoforgeEntrypoint {
 			UnusualFurnitureClient.initEarly();
 		}
 		NeoCommonAbstraction.instance().lateActions().clear();
-        UnusualFurniture.init();
-    }
+		UnusualFurniture.init();
+	}
 
-    @EventBusSubscriber(modid = UnusualFurniture.MOD_ID, value = Dist.CLIENT)
-    public static class ClientEvents {
-        @SubscribeEvent
-        public static void onClientSetup(final FMLClientSetupEvent event) {
-            event.enqueueWork(UnusualFurnitureClient::init);
-        }
-    }
+	@EventBusSubscriber(modid = UnusualFurniture.MOD_ID, value = Dist.CLIENT)
+	public static class ClientEvents {
+		@SubscribeEvent
+		public static void onClientSetup(final FMLClientSetupEvent event) {
+			event.enqueueWork(UnusualFurnitureClient::init);
+		}
+	}
 
-    @SubscribeEvent
-    static void register(RegisterEvent event) {
-        if (event.getRegistryKey().equals(Registries.BLOCK)) {
-            UFObjects.init();
-        }
-        if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
-            UFBlockEntityTypes.init();
-        }
-        if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
-            UFCreativeTabs.init();
-        }
-        if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
-            UFEntityTypes.init();
-        }
-        if (event.getRegistryKey().equals(Registries.PARTICLE_TYPE)) {
-            UFParticleTypes.init();
-        }
+	@SubscribeEvent
+	static void register(RegisterEvent event) {
+		if (event.getRegistryKey().equals(Registries.BLOCK)) {
+			UFObjects.init();
+		}
+		if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
+			UFBlockEntityTypes.init();
+		}
+		if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
+			UFCreativeTabs.init();
+		}
+		if (event.getRegistryKey().equals(Registries.ENTITY_TYPE)) {
+			UFEntityTypes.init();
+		}
+		if (event.getRegistryKey().equals(Registries.PARTICLE_TYPE)) {
+			UFParticleTypes.init();
+		}
 		if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
 			UFSoundEvents.init();
 		}
-    }
+	}
 
 	@SubscribeEvent
 	static void onUseBlock(PlayerInteractEvent.RightClickBlock event) {

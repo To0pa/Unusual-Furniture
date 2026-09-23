@@ -2,9 +2,6 @@ package net.toopa.unusual_furniture.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-
-import net.minecraft.client.renderer.blockentity.SignRenderer;
-
 import net.toopa.unusual_furniture.common.UnusualFurniture;
 
 import net.minecraft.client.model.Model;

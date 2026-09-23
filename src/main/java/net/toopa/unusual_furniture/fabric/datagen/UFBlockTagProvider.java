@@ -13,7 +13,6 @@ import net.toopa.unusual_furniture.common.reg.UFObjects;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -101,7 +100,7 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(UFObjects.CURTAIN_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.SHELF_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.POT_BLOCKS.stream().filter((entry) ->
-						entry.getValue().getPath().contains("wood"))
+								entry.getValue().getPath().contains("wood"))
 						.map(Map.Entry::getKey).toArray(Block[]::new))
 				.add(UFObjects.TABLE_LAMP_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.CARVED_PLANK_BLOCKS.keys(Block[]::new))
@@ -137,13 +136,6 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.SHELF)
 				.addTag(UFBlockTags.POT)
 				.addTag(UFBlockTags.FLOOR_LAMP_DECORATIONS);
-	}
-
-
-	@SuppressWarnings("deprecation")
-	private ResourceKey<Block> getRes(Block block, HolderLookup.Provider wrapperLookup) {
-		var lookup = wrapperLookup.lookupOrThrow(Registries.BLOCK);
-		return lookup.get(block.builtInRegistryHolder().key()).orElseThrow().key();
 	}
 
 	private static TagKey<Block> createTag(String modId, String name) {

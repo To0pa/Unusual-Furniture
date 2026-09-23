@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 
 public class UnusualFurniture {
 
-    public static final String MOD_ID = "unusual_furniture";
-    public static final Logger LOG = LoggerFactory.getLogger(MOD_ID);
+	public static final String MOD_ID = "unusual_furniture";
+	public static final Logger LOG = LoggerFactory.getLogger(MOD_ID);
 
-    public static void init() {
-        LOG.info("Initializing {} on {}", MOD_ID, CommonAbstraction.INSTANCE.loader());
-    }
+	public static void init() {
+		LOG.info("Initializing {} on {}", MOD_ID, CommonAbstraction.INSTANCE.loader());
+	}
 
 }
