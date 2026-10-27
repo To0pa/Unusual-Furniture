@@ -1,7 +1,7 @@
 package net.toopa.unusual_furniture.client;
 
 import net.toopa.unusual_furniture.CommonAbstraction;
-import net.toopa.unusual_furniture.client.model.ClockModel;
+import net.toopa.unusual_furniture.client.model.WallClockModel;
 import net.toopa.unusual_furniture.client.model.DrawerModel;
 import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
@@ -23,7 +23,7 @@ public class UnusualFurnitureClient {
 
 	public static void initEarly() {
 		CommonAbstraction.INSTANCE.registerLayerDefinition(DrawerModel.LAYER_LOCATION, DrawerModel::createBodyLayer);
-		CommonAbstraction.INSTANCE.registerLayerDefinition(ClockModel.LAYER_LOCATION, ClockModel::createBodyLayer);
+		CommonAbstraction.INSTANCE.registerLayerDefinition(WallClockModel.LAYER_LOCATION, WallClockModel::createBodyLayer);
 		CommonAbstraction.INSTANCE.registerClientParticleType(UFParticleTypes.FURNITURE_SMOKE, FurnitureSmokeParticle.FurnitureSmokeParticleProvider::new);
 	}
 

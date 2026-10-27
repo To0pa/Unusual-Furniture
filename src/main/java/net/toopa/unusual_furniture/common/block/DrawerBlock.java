@@ -7,6 +7,8 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
@@ -38,6 +40,11 @@ public class DrawerBlock extends BaseEntityBlock {
 	public DrawerBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+	}
+
+	public ResourceLocation getDrawerTexture() {
+		ResourceLocation id = BuiltInRegistries.BLOCK.getKey(this);
+		return ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "textures/block/" + id.getPath() + "_be.png");
 	}
 
 	@Override

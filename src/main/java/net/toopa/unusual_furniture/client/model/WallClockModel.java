@@ -16,7 +16,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
-public class ClockModel extends Model {
+public class WallClockModel extends Model {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(UnusualFurniture.id("wall_clock"), "main_layer");
 	public static final ResourceLocation TEXTURE_LOCATION = UnusualFurniture.id("textures/block/animclock.png");
 
@@ -24,7 +24,7 @@ public class ClockModel extends Model {
 	private final ModelPart minute;
 	private final ModelPart hour;
 
-	public ClockModel(ModelPart root) {
+	public WallClockModel(ModelPart root) {
 		super(RenderType::entityCutout);
 		this.main = root.getChild("main");
 		this.minute = this.main.getChild("minute");

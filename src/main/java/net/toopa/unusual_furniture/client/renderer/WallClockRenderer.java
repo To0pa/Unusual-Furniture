@@ -2,7 +2,7 @@ package net.toopa.unusual_furniture.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.toopa.unusual_furniture.client.model.ClockModel;
+import net.toopa.unusual_furniture.client.model.WallClockModel;
 import net.toopa.unusual_furniture.common.block.WallClockBlock;
 import net.toopa.unusual_furniture.common.block.entity.WallClockBlockEntity;
 
@@ -14,10 +14,14 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 
 public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEntity> {
-	private final ClockModel model;
+	private static final long TICKS_PER_DAY = 24000L;
+	private static final long MINUTES_PER_DAY = 24L * 60L;
+	private static final long CLOCK_FACE_OFFSET_TICKS = 6000L;
+
+	private final WallClockModel model;
 
 	public WallClockRenderer(BlockEntityRendererProvider.Context context) {
-		this.model = new ClockModel(context.bakeLayer(ClockModel.LAYER_LOCATION));
+		this.model = new WallClockModel(context.bakeLayer(WallClockModel.LAYER_LOCATION));
 	}
 
 	@Override
@@ -29,11 +33,14 @@ public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEnti
 		poseStack.translate(0.5F, 1.5F, 0.5F);
 		poseStack.scale(-1.0F, -1.0F, 1.0F);
 
-		long dayTime = level.getDayTime() % 24000L;
-		float dayFraction = (dayTime / 24000F + 0.25F) % 1.0F; // noon is 6000
+		long clockTicks = Math.floorMod(level.getDayTime() + CLOCK_FACE_OFFSET_TICKS, TICKS_PER_DAY);
+		int totalMinutes = (int) (clockTicks * MINUTES_PER_DAY / TICKS_PER_DAY);
 
-		float hourAngle = (dayFraction * 2F % 1.0F) * 360F;
-		float minuteAngle = (dayFraction * 24F * 60F % 60F) / 60F * 360F;
+		int minute = totalMinutes % 60;
+		int hour = totalMinutes % (12 * 60);
+
+		float hourAngle = hour * 0.5F;
+		float minuteAngle = minute * 6F;
 
 		this.model.getHour().zRot = hourAngle * Mth.DEG_TO_RAD;
 		this.model.getMinute().zRot = minuteAngle * Mth.DEG_TO_RAD;
@@ -45,7 +52,7 @@ public class WallClockRenderer implements BlockEntityRenderer<WallClockBlockEnti
 			default -> 0;
 		}));
 
-		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(RenderType.entityTranslucent(ClockModel.TEXTURE_LOCATION)), packedLight, packedOverlay);
+		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(RenderType.entityTranslucent(WallClockModel.TEXTURE_LOCATION)), packedLight, packedOverlay);
 		poseStack.popPose();
 	}
 }

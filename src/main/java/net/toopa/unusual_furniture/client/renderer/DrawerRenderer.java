@@ -13,14 +13,12 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.Block;
 
 public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 	private final DrawerModel model;
-	private static final Map<Block, ResourceLocation> TEXTURE_CACHE = new ConcurrentHashMap<>();
+	private static final Map<DrawerBlock, ResourceLocation> TEXTURE_CACHE = new ConcurrentHashMap<>();
 
 	public DrawerRenderer(BlockEntityRendererProvider.Context context) {
 		this.model = new DrawerModel(context.bakeLayer(DrawerModel.LAYER_LOCATION));
@@ -45,23 +43,20 @@ public class DrawerRenderer implements BlockEntityRenderer<DrawerBlockEntity> {
 		this.model.getBottom().z = -10.0F * bottomProgress;
 
 		poseStack.mulPose(Axis.YP.rotationDegrees(switch (blockEntity.getBlockState().getValue(DrawerBlock.FACING)) {
-			case EAST -> 270;
+			case EAST -> 90;
 			case SOUTH -> 180;
-			case WEST -> 90;
+			case WEST -> 270;
 			default -> 0;
 		}));
 
-		ResourceLocation texture = getTexture(blockEntity.getBlockState().getBlock());
+		ResourceLocation texture = getTexture((DrawerBlock) blockEntity.getBlockState().getBlock());
 		this.model.renderToBuffer(poseStack, bufferSource.getBuffer(RenderType.entitySolid(texture)), packedLight, packedOverlay);
 
 		poseStack.popPose();
 	}
 
-	private static ResourceLocation getTexture(Block block) {
-		return TEXTURE_CACHE.computeIfAbsent(block, b -> {
-			ResourceLocation id = BuiltInRegistries.BLOCK.getKey(b);
-			return ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "textures/block/" + id.getPath() + "_be.png");
-		});
+	private static ResourceLocation getTexture(DrawerBlock block) {
+		return TEXTURE_CACHE.computeIfAbsent(block, DrawerBlock::getDrawerTexture);
 	}
 
 	private static float drawerCurve(float t) {

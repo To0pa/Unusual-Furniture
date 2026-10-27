@@ -583,7 +583,6 @@ public final class UFObjects {
 			p -> p.sound(SoundType.WOOD)
 					.strength(1.0F, 10.0F)
 					.noOcclusion());
-	//	public static final FloorLampBlock SPRUCE_FLOOR_LAMP = registerFloorLampBlock("spruce_floor_lamp");
 	public static final PlushBlock PIG_PLUSH = registerPlushBlock("pig_plush",
 			p -> p.sound(SoundType.WOOL)
 					.strength(0.7F, 10.0F)
