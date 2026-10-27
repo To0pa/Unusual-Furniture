@@ -47,7 +47,7 @@ public class WallClockBlock extends HorizontalDirectionalBlock implements Entity
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return this.defaultBlockState()
-				.setValue(FACING, context.getHorizontalDirection().getOpposite());
+				.setValue(FACING, context.getClickedFace());
 	}
 
 	@Override

@@ -15,17 +15,20 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBlock {
 
 	public static final VoxelShape MIDDLE_SHAPE = Shapes.or(
-			Shapes.box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
-			Shapes.box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)
+			box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
+			box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)
 	).optimize();
-
-	public static final VoxelShape ARM_SHAPE =
-			Shapes.box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
-
-	private static final MapCodec<FloorLampDecorationBatBlock> CODEC =
-			simpleCodec(FloorLampDecorationBatBlock::new);
-
+	public static final VoxelShape ARM_SHAPE =box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
 	private static final VoxelShape[][] SHAPES = createShapes();
+	private static final MapCodec<FloorLampDecorationBatBlock> CODEC = simpleCodec(FloorLampDecorationBatBlock::new);
+
+	public FloorLampDecorationBatBlock(Properties properties) {
+		super(properties);
+		registerDefaultState(defaultBlockState()
+				.setValue(FACING, Direction.NORTH)
+				.setValue(NUMBER_OF_ARMS, 0)
+				.setValue(WATERLOGGED, false));
+	}
 
 	private static VoxelShape[][] createShapes() {
 		VoxelShape north0 = Shapes.or(MIDDLE_SHAPE, ARM_SHAPE).optimize();
@@ -65,14 +68,6 @@ public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBloc
 			case EAST -> VoxelShapeUtils.rotateVoxelShape(shape, Direction.Axis.Y, 90);
 			default -> Shapes.block();
 		};
-	}
-
-	public FloorLampDecorationBatBlock(Properties properties) {
-		super(properties);
-		registerDefaultState(defaultBlockState()
-				.setValue(FACING, Direction.NORTH)
-				.setValue(NUMBER_OF_ARMS, 0)
-				.setValue(WATERLOGGED, false));
 	}
 
 	@Override

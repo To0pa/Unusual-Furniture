@@ -371,6 +371,8 @@ public final class UFObjects {
 			}
 		}
 
+		LOOT_TABLE_BLACKLIST.add(FLOOR_LAMP_SUPPORT);
+
 		BLOCKS.forEachEntry((block, id) -> Registry.register(BuiltInRegistries.BLOCK, id, block));
 		ITEM.forEachEntry((item, id) -> Registry.register(BuiltInRegistries.ITEM, id, item));
 	}

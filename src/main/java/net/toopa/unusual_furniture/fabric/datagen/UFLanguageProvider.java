@@ -31,7 +31,7 @@ public class UFLanguageProvider extends FabricLanguageProvider {
 		translationBuilder.add("item_group.unusual_furniture.unusual_furniture_props", "§f\ue800§r - Props");
 		translationBuilder.add("item_group.unusual_furniture.unusual_tab_2", "§f\ue800§r - Building Blocks");
 
-		translationBuilder.add("gui.unusual_furniture.drawer_gui.label_inventory", "Inventory");
+		translationBuilder.add("gui.unusual_furniture.drawer_gui.label_inventory", "Drawer");
 
 		translationBuilder.add("subtitles.squeak", "squeak");
 

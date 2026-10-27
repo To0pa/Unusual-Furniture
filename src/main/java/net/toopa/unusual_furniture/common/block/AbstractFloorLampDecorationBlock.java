@@ -69,7 +69,7 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 		if (!level.isClientSide) {
 			int arms = state.getValue(NUMBER_OF_ARMS);
 			if (canPlaceArms(level, pos, state, arms)) {
-				placeArms(level, pos, state, arms);
+				placeArms(level, pos, state, arms, Block.UPDATE_ALL);
 			}
 		}
 	}
@@ -77,7 +77,7 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 	@Override
 	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.getBlock() != newState.getBlock()) {
-			removeArms(level, pos);
+			removeArms(level, pos, Block.UPDATE_ALL);
 		}
 		super.onRemove(state, level, pos, newState, isMoving);
 	}
@@ -90,17 +90,18 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-		int nextArms = state.getValue(NUMBER_OF_ARMS) + 1;
-		if (nextArms > MAX_NUMBER_OF_ARMS) nextArms = 0;
+		int nextArms = (state.getValue(NUMBER_OF_ARMS) + 1) % (MAX_NUMBER_OF_ARMS + 1);
 
 		if (!level.isClientSide) {
 			if (!canPlaceArms(level, pos, state, nextArms)) {
 				return InteractionResult.FAIL;
 			}
-			removeArms(level, pos);
-			placeArms(level, pos, state, nextArms);
 
-			level.setBlock(pos, state.setValue(NUMBER_OF_ARMS, nextArms), Block.UPDATE_ALL);
+			BlockState newState = state.setValue(NUMBER_OF_ARMS, nextArms);
+
+			level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+			removeArms(level, pos, Block.UPDATE_CLIENTS);
+			placeArms(level, pos, newState, nextArms, Block.UPDATE_CLIENTS);
 		}
 		return InteractionResult.SUCCESS;
 	}
@@ -173,18 +174,15 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 		};
 	}
 
-	private void placeSupport(Level level, BlockPos targetPos, Direction facing, BlockState support) {
+	private void placeSupport(Level level, BlockPos targetPos, Direction facing, BlockState support, int flags) {
 		var blockState = level.getBlockState(targetPos);
 		if (!blockState.canBeReplaced() && !blockState.is(UFObjects.FLOOR_LAMP_SUPPORT)) {
 			return;
 		}
-		level.setBlock(targetPos,
-				support.setValue(HorizontalDirectionalBlock.FACING, facing),
-				Block.UPDATE_ALL
-		);
+		level.setBlock(targetPos, support.setValue(HorizontalDirectionalBlock.FACING, facing), flags);
 	}
 
-	private void placeArms(Level level, BlockPos pos, BlockState state, int arms) {
+	private void placeArms(Level level, BlockPos pos, BlockState state, int arms, int flags) {
 		Direction front = state.getValue(FACING);
 		Direction left = front.getCounterClockWise();
 		Direction right = front.getClockWise();
@@ -194,28 +192,28 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 
 		switch (arms) {
 			case 0: // 1 arm
-				placeSupport(level, pos.relative(front), front, support);
+				placeSupport(level, pos.relative(front), front, support, flags);
 				break;
 
 			case 1: // 2 arms
-				placeSupport(level, pos.relative(left), left, support);
-				placeSupport(level, pos.relative(right), right, support);
+				placeSupport(level, pos.relative(left), left, support, flags);
+				placeSupport(level, pos.relative(right), right, support, flags);
 				break;
 
 			case 2: // 4 arms
-				placeSupport(level, pos.relative(front), front, support);
-				placeSupport(level, pos.relative(back), back, support);
-				placeSupport(level, pos.relative(left), left, support);
-				placeSupport(level, pos.relative(right), right, support);
+				placeSupport(level, pos.relative(front), front, support, flags);
+				placeSupport(level, pos.relative(back), back, support, flags);
+				placeSupport(level, pos.relative(left), left, support, flags);
+				placeSupport(level, pos.relative(right), right, support, flags);
 				break;
 		}
 	}
 
-	private void removeArms(Level level, BlockPos pos) {
+	private void removeArms(Level level, BlockPos pos, int flags) {
 		for (Direction dir : Direction.Plane.HORIZONTAL) {
 			BlockPos target = pos.relative(dir);
 			if (level.getBlockState(target).is(UFObjects.FLOOR_LAMP_SUPPORT)) {
-				level.removeBlock(target, false);
+				level.setBlock(target, level.getFluidState(target).createLegacyBlock(), flags);
 			}
 		}
 	}
