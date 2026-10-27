@@ -2,7 +2,7 @@
   "parent": "unusual_furniture:custom/middle_close",
   "textures": {
     "0": "unusual_furniture:block/brown_curtain",
-    "all": "unusual_furniture:block/curtains",
+    "all": "unusual_furniture:block/curtain",
     "particle": "minecraft:block/brown_wool"
   }
 }

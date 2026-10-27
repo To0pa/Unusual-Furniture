@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:white_dye"
+    },
+    "b": {
+      "item": "minecraft:red_dye"
+    },
+    "c": {
+      "item": "unusual_furniture:screw"
+    },
+    "d": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "aba",
+    "cdc",
+    "d d"
+  ],
+  "result": {
+    "count": 4,
+    "id": "unusual_furniture:warning_barrier"
+  }
+}

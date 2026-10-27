@@ -2,7 +2,7 @@
   "parent": "unusual_furniture:custom/top_open_left",
   "textures": {
     "0": "unusual_furniture:block/red_curtain",
-    "all": "unusual_furniture:block/curtains",
+    "all": "unusual_furniture:block/curtain",
     "particle": "minecraft:block/red_wool"
   }
 }

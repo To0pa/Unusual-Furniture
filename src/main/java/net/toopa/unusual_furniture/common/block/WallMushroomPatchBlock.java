@@ -40,7 +40,7 @@ public class WallMushroomPatchBlock extends AbstractWallBagBlock {
 	public static final IntegerProperty PLANT_TYPE = IntegerProperty.create("plant_type", 0, 3);
 
 	public WallMushroomPatchBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 	}
 
 	@Override

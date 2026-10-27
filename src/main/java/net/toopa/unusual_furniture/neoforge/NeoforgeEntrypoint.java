@@ -16,6 +16,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import net.toopa.unusual_furniture.client.UnusualFurnitureClient;
 import net.toopa.unusual_furniture.common.reg.*;
@@ -64,6 +65,11 @@ public class NeoforgeEntrypoint {
 		if (event.getRegistryKey().equals(Registries.SOUND_EVENT)) {
 			UFSoundEvents.init();
 		}
+	}
+
+	@SubscribeEvent
+	static void onCommonSetup(FMLCommonSetupEvent event) {
+		event.enqueueWork(UFRegistryAliases::addAliases);
 	}
 
 	@SubscribeEvent

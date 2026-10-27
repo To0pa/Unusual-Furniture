@@ -36,7 +36,7 @@ public class DrawerBlock extends BaseEntityBlock {
 	private static final MapCodec<DrawerBlock> CODEC = simpleCodec(DrawerBlock::new);
 
 	public DrawerBlock(Properties properties) {
-		super(properties.noOcclusion());
+		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
 	}
 

@@ -1,5 +1,11 @@
 package net.toopa.unusual_furniture.common.block.entity;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
@@ -30,12 +36,12 @@ public class DrawerBlockEntity extends BaseContainerBlockEntity {
 
 		@Override
 		protected void onOpen(Level level, BlockPos pos, BlockState state) {
-			// play drawer opening sound if desired
+			level.playSound(null, pos, SoundEvents.BARREL_CLOSE, SoundSource.NEUTRAL, 0.5F, 1.3F);
 		}
 
 		@Override
 		protected void onClose(Level level, BlockPos pos, BlockState state) {
-			// play drawer closing sound if desired
+			level.playSound(null, pos, SoundEvents.BARREL_OPEN, SoundSource.NEUTRAL, 0.5F, 1.3F);
 		}
 
 		@Override

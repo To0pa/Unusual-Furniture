@@ -42,6 +42,6 @@ public abstract class AbstractBagBlock extends BushBlock {
 	@Override
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.tropical_plant.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 }

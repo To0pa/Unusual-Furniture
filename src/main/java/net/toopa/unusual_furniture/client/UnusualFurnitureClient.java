@@ -42,7 +42,7 @@ public class UnusualFurnitureClient {
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
 				UFObjects.WOOD_SETS.get("bamboo").chair(),
 				UFObjects.WATER_PLANTS,
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")),
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plant")),
 				UFObjects.POSTER,
 				UFObjects.TRASH
 		);
@@ -61,7 +61,7 @@ public class UnusualFurnitureClient {
 						: GrassColor.getDefaultColor(),
 				UFObjects.TROPICAL_PLANT,
 				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("tropical_plant_wall")),
-				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plants_water")));
+				BuiltInRegistries.BLOCK.get(UnusualFurniture.id("water_plant")));
 		CommonAbstraction.INSTANCE.registerEntityRenderer(UFEntityTypes.SEAT, NoopRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.DRAWER_BLOCK_ENTITY, DrawerRenderer::new);
 		BlockEntityRenderers.register(UFBlockEntityTypes.WALL_CLOCK_BLOCK_ENTITY, WallClockRenderer::new);

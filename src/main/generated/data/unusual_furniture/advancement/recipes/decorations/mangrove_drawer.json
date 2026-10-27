@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_mangrove_log": {
+    "has_mangrove_slab": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:mangrove_log"
+            "items": "minecraft:mangrove_slab"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_stick",
-      "has_mangrove_log"
+      "has_mangrove_slab"
     ]
   ],
   "rewards": {

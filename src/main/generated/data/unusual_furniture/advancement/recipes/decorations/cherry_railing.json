@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_screw": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
-            "items": "unusual_furniture:screw"
+            "items": "minecraft:stick"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_stripped_cherry_wood",
-      "has_screw"
+      "has_stick"
     ]
   ],
   "rewards": {

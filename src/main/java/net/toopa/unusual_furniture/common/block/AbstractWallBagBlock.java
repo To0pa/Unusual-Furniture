@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 public abstract class AbstractWallBagBlock extends HorizontalDirectionalBlock {
 
 	public AbstractWallBagBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 	}
 
 	@Override

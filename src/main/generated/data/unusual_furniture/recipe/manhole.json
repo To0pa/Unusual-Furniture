@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "unusual_furniture:screw"
+    },
+    "b": {
+      "item": "minecraft:iron_trapdoor"
+    }
+  },
+  "pattern": [
+    "aba"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:manhole"
+  }
+}

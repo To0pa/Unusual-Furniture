@@ -51,7 +51,7 @@ public class CeilingLampBlock extends Block implements SimpleWaterloggedBlock {
 
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.oak_ceiling_lamp.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 
 	@Override

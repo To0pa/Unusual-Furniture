@@ -12,6 +12,8 @@ public final class UFItemTags {
 	private UFItemTags() {}
 
 	public static final TagKey<Item> COMMON_WATER_BUCKETS = createTag("buckets/water");
+	public static final TagKey<Item> TROPICAL_PLANTS = createTag("tropical_plants");
+	public static final TagKey<Item> WATER_PLANTS = createTag("water_plants");
 
 	private static TagKey<Item> createTag(String name) {
 		return TagKey.create(Registries.ITEM, UnusualFurniture.id(name));

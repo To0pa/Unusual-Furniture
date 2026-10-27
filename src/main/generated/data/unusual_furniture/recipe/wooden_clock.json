@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "tag": "minecraft:slabs"
+    },
+    "b": {
+      "item": "unusual_furniture:screw"
+    },
+    "c": {
+      "item": "minecraft:clock"
+    }
+  },
+  "pattern": [
+    " a ",
+    "bcb",
+    " a "
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:wooden_clock"
+  }
+}

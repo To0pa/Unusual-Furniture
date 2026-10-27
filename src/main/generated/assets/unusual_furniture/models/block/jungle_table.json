@@ -1,7 +1,7 @@
 {
-  "parent": "unusual_furniture:custom/wodden_table",
+  "parent": "unusual_furniture:custom/wooden_table",
   "textures": {
     "0": "unusual_furniture:block/jungle_table",
-    "particle": "minecraft:block/jungle_planks"
+    "particle": "unusual_furniture:block/carved_jungle"
   }
 }

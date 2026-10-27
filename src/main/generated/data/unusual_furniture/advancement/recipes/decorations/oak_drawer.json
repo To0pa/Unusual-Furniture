@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oak_log": {
+    "has_oak_slab": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:oak_log"
+            "items": "minecraft:oak_slab"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_stick",
-      "has_oak_log"
+      "has_oak_slab"
     ]
   ],
   "rewards": {

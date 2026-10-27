@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:string"
+    },
+    "b": {
+      "item": "minecraft:brick"
+    }
+  },
+  "pattern": [
+    " a ",
+    "b b",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:hanging_pot"
+  }
+}

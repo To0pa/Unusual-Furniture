@@ -23,7 +23,19 @@ public class IronLampBlock extends AbstractLampBlock {
 			box(4.0F, 6.0F, 4.0F, 12.0F, 14.0F, 12.0F),
 			box(3.0F, 14.0F, 3.0F, 13.0F, 16.0F, 13.0F)
 	).optimize();
-	//TODO: Cache shapes
+
+	private static final VoxelShape[] SHAPES = createShapes();
+
+	private static VoxelShape[] createShapes() {
+		return new VoxelShape[] {
+				Shapes.or(SHAPE, FLOOR_SHAPE).optimize(),
+				Shapes.or(SHAPE, BOTTOM_SHAPE).optimize(),
+				Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 180)).optimize(),
+				Shapes.or(SHAPE, WALL_SHAPE).optimize(),
+				Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 90)).optimize(),
+				Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 270)).optimize()
+		};
+	}
 
 	public IronLampBlock(Properties properties) {
 		super(properties);
@@ -31,14 +43,7 @@ public class IronLampBlock extends AbstractLampBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(FACING)) {
-			case DOWN -> Shapes.or(SHAPE, FLOOR_SHAPE);
-			case UP -> Shapes.or(SHAPE, BOTTOM_SHAPE);
-			case NORTH -> Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 180));
-			case SOUTH -> Shapes.or(SHAPE, WALL_SHAPE);
-			case WEST -> Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 90));
-			case EAST -> Shapes.or(SHAPE, VoxelShapeUtils.rotateVoxelShape(WALL_SHAPE, Direction.Axis.Y, 270));
-		};
+		return SHAPES[state.getValue(FACING).ordinal()];
 	}
 
 	@Override

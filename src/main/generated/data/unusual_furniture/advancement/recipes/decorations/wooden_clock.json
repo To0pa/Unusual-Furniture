@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_clock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:clock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_screw": {
+      "conditions": {
+        "items": [
+          {
+            "items": "unusual_furniture:screw"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "unusual_furniture:wooden_clock"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_screw",
+      "has_clock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "unusual_furniture:wooden_clock"
+    ]
+  }
+}

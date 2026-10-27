@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/grave",
   "textures": {
     "1": "unusual_furniture:block/grave_skeleton",
-    "particle": "unusual_furniture:block/grave_skeleton"
+    "particle": "minecraft:block/polished_andesite"
   }
 }

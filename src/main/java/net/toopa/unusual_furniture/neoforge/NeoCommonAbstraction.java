@@ -19,14 +19,17 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.IRegistryExtension;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
@@ -61,7 +64,6 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
 		return !FMLEnvironment.production;
 	}
 
-	//TODO: move to client
 	@Override
 	public <T extends ParticleOptions> void registerClientParticleType(ParticleType<T> type, CommonSpriteParticleRegistration<T> factory) {
 		addLateAction(bus -> {
@@ -83,7 +85,6 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
 		EntityRenderers.register(type, provider);
 	}
 
-	//TODO: move to client
 	@Override
 	public void registerLayerDefinition(ModelLayerLocation modelLayer, CommonTexturedModelDataProvider provider) {
 		addLateAction(bus -> {
@@ -91,6 +92,11 @@ public record NeoCommonAbstraction(List<Consumer<IEventBus>> lateActions) implem
 				e.registerLayerDefinition(modelLayer, provider::createModelData);
 			});
 		});
+	}
+
+	@Override
+	public void addRegistryAlias(Registry<?> registry, ResourceLocation oldId, ResourceLocation newId) {
+		((IRegistryExtension<?>) registry).addAlias(oldId, newId);
 	}
 
 	public void registerItemColors(ItemColor color, ItemLike... items) {

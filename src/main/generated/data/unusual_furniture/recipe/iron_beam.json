@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "unusual_furniture:screw"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "a",
+    "b",
+    "a"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:iron_beam"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "unusual_furniture:screw"
+    },
+    "b": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "c": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "aba",
+    "c c"
+  ],
+  "result": {
+    "count": 4,
+    "id": "unusual_furniture:wooden_barrier"
+  }
+}

@@ -11,11 +11,11 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_screw": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
-            "items": "unusual_furniture:screw"
+            "items": "minecraft:stick"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_crimson_stairs",
-      "has_screw"
+      "has_stick"
     ]
   ],
   "rewards": {

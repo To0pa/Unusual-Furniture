@@ -51,7 +51,7 @@ public class TableLampBlock extends Block {
 	);
 
 	public TableLampBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 		registerDefaultState(defaultBlockState()
 				.setValue(SHAPE, FloorLampProperty.SINGLE));
 	}
@@ -131,6 +131,6 @@ public class TableLampBlock extends Block {
 	@Override
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.spruce_floor_lamp.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 }

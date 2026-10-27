@@ -85,7 +85,7 @@ public abstract class AbstractFloorLampDecorationBlock extends HorizontalDirecti
 	@Override
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.floor_lamp_decoration.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 
 	@Override

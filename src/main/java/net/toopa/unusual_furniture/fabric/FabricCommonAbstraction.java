@@ -13,8 +13,10 @@ import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ItemLike;
@@ -25,6 +27,7 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.event.registry.FabricRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 
 //? <26.1 {
@@ -72,6 +75,11 @@ public class FabricCommonAbstraction implements CommonAbstraction {
 	@Override
 	public void registerLayerDefinition(ModelLayerLocation modelLayer, CommonTexturedModelDataProvider provider) {
 		EntityModelLayerRegistry.registerModelLayer(modelLayer, provider::createModelData);
+	}
+
+	@Override
+	public void addRegistryAlias(Registry<?> registry, ResourceLocation oldId, ResourceLocation newId) {
+		((FabricRegistry) registry).addAlias(oldId, newId);
 	}
 
 	public void registerItemColors(ItemColor color, ItemLike... items) {

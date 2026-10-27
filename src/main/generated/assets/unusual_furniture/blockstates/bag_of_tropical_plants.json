@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "plant_type=0": {
+      "model": "unusual_furniture:block/bag_of_tropical_plants_1_1"
+    },
+    "plant_type=1": {
+      "model": "unusual_furniture:block/bag_of_tropical_plants_2_2"
+    },
+    "plant_type=2": {
+      "model": "unusual_furniture:block/bag_of_tropical_plants_3_3"
+    }
+  }
+}

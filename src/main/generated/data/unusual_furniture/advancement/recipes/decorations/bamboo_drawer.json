@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bamboo_block": {
+    "has_bamboo_slab": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:bamboo_block"
+            "items": "minecraft:bamboo_slab"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_stick",
-      "has_bamboo_block"
+      "has_bamboo_slab"
     ]
   ],
   "rewards": {

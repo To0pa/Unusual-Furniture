@@ -1,5 +1,6 @@
 package net.toopa.unusual_furniture.common.block;
 
+import java.util.List;
 import java.util.Map;
 
 import com.mojang.serialization.MapCodec;
@@ -8,6 +9,10 @@ import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -72,6 +77,12 @@ public class PosterBlock extends DirectionalBlock {
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return SHAPE_MAP.get(state.getValue(FACING));
+	}
+
+	@Override
+	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		super.appendHoverText(itemstack, context, list, flag);
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 
 	@Override

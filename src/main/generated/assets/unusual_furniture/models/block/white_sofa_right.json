@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/sofa_right",
   "textures": {
     "0": "unusual_furniture:block/white_sofa",
-    "particle": "minecraft:block/white_wool"
+    "particle": "unusual_furniture:block/carved_oak"
   }
 }

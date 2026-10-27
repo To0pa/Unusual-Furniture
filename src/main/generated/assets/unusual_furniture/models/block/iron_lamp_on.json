@@ -1,7 +1,0 @@
-{
-  "parent": "unusual_furniture:custom/metal_lamp",
-  "textures": {
-    "0": "unusual_furniture:block/street_lamps",
-    "particle": "unusual_furniture:block/metal_particule"
-  }
-}

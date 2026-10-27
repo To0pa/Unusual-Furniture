@@ -1,0 +1,7 @@
+{
+  "parent": "unusual_furniture:custom/rake",
+  "textures": {
+    "0": "unusual_furniture:block/rake",
+    "particle": "unusual_furniture:block/carved_spruce_top"
+  }
+}

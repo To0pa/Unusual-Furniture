@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/floor_lamp_decoration_bat4",
   "textures": {
     "0": "unusual_furniture:block/floor_lamp_decoration_bat",
-    "particle": "unusual_furniture:block/metal_particule"
+    "particle": "unusual_furniture:block/decorated_iron_beam"
   }
 }

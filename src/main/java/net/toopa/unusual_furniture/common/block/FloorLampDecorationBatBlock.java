@@ -14,14 +14,58 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBlock {
 
-	//TODO: multiblock the arms
-	public static VoxelShape MIDDLE_SHAPE = Shapes.or(
-			box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
-			box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)
+	public static final VoxelShape MIDDLE_SHAPE = Shapes.or(
+			Shapes.box(6.0F, 0.0F, 6.0F, 10.0F, 1.0F, 10.0F),
+			Shapes.box(4.0F, 1.0F, 4.0F, 12.0F, 9.0F, 12.0F)
 	).optimize();
-	public static VoxelShape ARM_SHAPE = box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
-	private static final MapCodec<FloorLampDecorationBatBlock> CODEC = simpleCodec(FloorLampDecorationBatBlock::new);
-	//TODO: Cache shapes
+
+	public static final VoxelShape ARM_SHAPE =
+			Shapes.box(7.0F, 0.0F, -9.0F, 9.0F, 9.0F, 4.0F);
+
+	private static final MapCodec<FloorLampDecorationBatBlock> CODEC =
+			simpleCodec(FloorLampDecorationBatBlock::new);
+
+	private static final VoxelShape[][] SHAPES = createShapes();
+
+	private static VoxelShape[][] createShapes() {
+		VoxelShape north0 = Shapes.or(MIDDLE_SHAPE, ARM_SHAPE).optimize();
+
+		VoxelShape north1 = Shapes.or(
+				MIDDLE_SHAPE,
+				VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 90),
+				VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 270)
+		).optimize();
+
+		VoxelShape north2 = Shapes.or(
+				MIDDLE_SHAPE,
+				ARM_SHAPE,
+				VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 90),
+				VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 180),
+				VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 270)
+		).optimize();
+
+		VoxelShape[][] shapes = new VoxelShape[3][Direction.Plane.HORIZONTAL.stream().toList().size()];
+
+		for (Direction facing : Direction.Plane.HORIZONTAL) {
+			int facingIndex = facing.get2DDataValue();
+
+			shapes[0][facingIndex] = rotateForFacing(north0, facing);
+			shapes[1][facingIndex] = rotateForFacing(north1, facing);
+			shapes[2][facingIndex] = rotateForFacing(north2, facing);
+		}
+
+		return shapes;
+	}
+
+	private static VoxelShape rotateForFacing(VoxelShape shape, Direction facing) {
+		return switch (facing) {
+			case NORTH -> shape;
+			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(shape, Direction.Axis.Y, 180);
+			case WEST -> VoxelShapeUtils.rotateVoxelShape(shape, Direction.Axis.Y, 270);
+			case EAST -> VoxelShapeUtils.rotateVoxelShape(shape, Direction.Axis.Y, 90);
+			default -> Shapes.block();
+		};
+	}
 
 	public FloorLampDecorationBatBlock(Properties properties) {
 		super(properties);
@@ -32,41 +76,18 @@ public class FloorLampDecorationBatBlock extends AbstractFloorLampDecorationBloc
 	}
 
 	@Override
-	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		VoxelShape baseShape;
-
+	protected VoxelShape getShape(
+			BlockState state,
+			BlockGetter level,
+			BlockPos pos,
+			CollisionContext context
+	) {
 		int arms = state.getValue(NUMBER_OF_ARMS);
-
-		if (arms == 0) {
-			baseShape = Shapes.or(
-					MIDDLE_SHAPE,
-					ARM_SHAPE
-			);
-		} else if (arms == 1) {
-			baseShape = Shapes.or(
-					MIDDLE_SHAPE,
-					VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 90),
-					VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 270)
-			);
-		} else if (arms == 2) {
-			baseShape = Shapes.or(
-					MIDDLE_SHAPE,
-					ARM_SHAPE,
-					VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 90),
-					VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 180),
-					VoxelShapeUtils.rotateVoxelShape(ARM_SHAPE, Direction.Axis.Y, 270)
-			);
-		} else {
+		if (arms < 0 || arms >= SHAPES.length) {
 			return Shapes.block();
 		}
 
-		return switch (state.getValue(FACING)) {
-			case NORTH -> baseShape;
-			case SOUTH -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 180);
-			case WEST -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 270);
-			case EAST -> VoxelShapeUtils.rotateVoxelShape(baseShape, Direction.Axis.Y, 90);
-			default -> Shapes.block();
-		};
+		return SHAPES[arms][state.getValue(FACING).get2DDataValue()];
 	}
 
 	@Override

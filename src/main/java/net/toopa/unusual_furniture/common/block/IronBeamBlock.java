@@ -5,7 +5,6 @@ import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -16,7 +15,7 @@ public class IronBeamBlock extends BeamBlock {
 	private static final VoxelShape[] SHAPES = new VoxelShape[3];
 
 	public IronBeamBlock(Properties properties) {
-		super(properties.sound(SoundType.COPPER));
+		super(properties);
 	}
 
 	@Override

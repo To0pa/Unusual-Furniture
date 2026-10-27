@@ -37,7 +37,7 @@ public class MushroomPatchBlock extends AbstractBagBlock {
 	private static final MapCodec<MushroomPatchBlock> CODEC = simpleCodec(MushroomPatchBlock::new);
 
 	public MushroomPatchBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 		this.registerDefaultState(this.defaultBlockState()
 				.setValue(FACING, Direction.NORTH));
 	}

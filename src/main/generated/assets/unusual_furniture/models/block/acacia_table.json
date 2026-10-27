@@ -1,7 +1,7 @@
 {
-  "parent": "unusual_furniture:custom/wodden_table",
+  "parent": "unusual_furniture:custom/wooden_table",
   "textures": {
     "0": "unusual_furniture:block/acacia_table",
-    "particle": "minecraft:block/acacia_planks"
+    "particle": "unusual_furniture:block/carved_acacia"
   }
 }

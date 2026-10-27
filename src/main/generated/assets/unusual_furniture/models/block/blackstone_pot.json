@@ -2,6 +2,6 @@
   "parent": "unusual_furniture:custom/blackstone_pot",
   "textures": {
     "0": "unusual_furniture:block/blackstone_pot",
-    "particle": "unusual_furniture:block/blackstone_pot"
+    "particle": "minecraft:block/gilded_blackstone"
   }
 }

@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -36,7 +35,7 @@ public class TrashBlock extends HorizontalDirectionalBlock {
 	private static final VoxelShape BOTTOM_SHAPE = box(1, 0, 1, 15, 16, 15);
 
 	public TrashBlock(Properties properties) {
-		super(properties.pushReaction(PushReaction.BLOCK));
+		super(properties);
 		this.registerDefaultState(this.stateDefinition.any()
 				.setValue(FACING, Direction.NORTH)
 				.setValue(SHAPE, 0));

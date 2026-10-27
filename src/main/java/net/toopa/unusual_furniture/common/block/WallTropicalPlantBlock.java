@@ -23,7 +23,7 @@ public class WallTropicalPlantBlock extends AbstractWallBagBlock {
 	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createHorizontalShapeMap(DEFAULT_SHAPE);
 
 	public WallTropicalPlantBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 	}
 
 	@Override

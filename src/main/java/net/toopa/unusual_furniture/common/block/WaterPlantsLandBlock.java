@@ -35,7 +35,7 @@ public class WaterPlantsLandBlock extends BushBlock {
 	private static final VoxelShape SHAPE = box(2.0F, 0.0F, 2.0F, 14.0F, 16.0F, 14.0F);
 
 	public WaterPlantsLandBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(PLANT_TYPE, WaterPlantProperty.SINGLE));
 	}
 
@@ -123,6 +123,6 @@ public class WaterPlantsLandBlock extends BushBlock {
 	@Override
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.water_plants.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 }

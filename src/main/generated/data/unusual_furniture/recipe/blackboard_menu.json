@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "unusual_furniture:screw"
+    },
+    "b": {
+      "item": "minecraft:cobbled_deepslate_slab"
+    },
+    "c": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "aba",
+    "cbc",
+    "c c"
+  ],
+  "result": {
+    "count": 1,
+    "id": "unusual_furniture:blackboard_menu"
+  }
+}

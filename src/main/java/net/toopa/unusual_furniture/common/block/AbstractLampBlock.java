@@ -86,7 +86,7 @@ public abstract class AbstractLampBlock extends Block implements SimpleWaterlogg
 	@Override
 	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable("block.unusual_furniture.lamp.description_0"));
+		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
 	}
 
 	@Override

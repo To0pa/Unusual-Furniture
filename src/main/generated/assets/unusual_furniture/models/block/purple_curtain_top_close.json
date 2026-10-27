@@ -2,7 +2,7 @@
   "parent": "unusual_furniture:custom/top_close",
   "textures": {
     "0": "unusual_furniture:block/purple_curtain",
-    "all": "unusual_furniture:block/curtains",
+    "all": "unusual_furniture:block/curtain",
     "particle": "minecraft:block/purple_wool"
   }
 }

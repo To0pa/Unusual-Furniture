@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_screw": {
-      "conditions": {
-        "items": [
-          {
-            "items": "unusual_furniture:screw"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_spruce_stairs": {
       "conditions": {
         "items": [
           {
             "items": "minecraft:spruce_stairs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_spruce_stairs",
-      "has_screw"
+      "has_stick"
     ]
   ],
   "rewards": {

@@ -17,7 +17,7 @@ public class TropicalPlantBlock extends AbstractBagBlock {
 	private static final MapCodec<TropicalPlantBlock> CODEC = simpleCodec(TropicalPlantBlock::new);
 
 	public TropicalPlantBlock(Properties properties) {
-		super(properties.noCollission());
+		super(properties);
 	}
 
 	@Override
