@@ -68,9 +68,9 @@ import net.toopa.unusual_furniture.common.item.BagBlockItem;
 import net.toopa.unusual_furniture.common.item.HangingPotBlockItem;
 import net.toopa.unusual_furniture.common.item.OpenRiserStairBlockItem;
 import net.toopa.unusual_furniture.common.item.WaterBagBlockItem;
-import net.toopa.unusual_furniture.common.utils.DyeSet;
-import net.toopa.unusual_furniture.common.utils.RegistryGroup;
-import net.toopa.unusual_furniture.common.utils.WoodSet;
+import net.toopa.unusual_furniture.common.util.DyeSet;
+import net.toopa.unusual_furniture.common.util.RegistryGroup;
+import net.toopa.unusual_furniture.common.util.WoodSet;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.Registry;

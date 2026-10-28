@@ -39,8 +39,8 @@ import net.toopa.unusual_furniture.common.block.properties.ModularSofaProperty;
 import net.toopa.unusual_furniture.common.block.properties.RailingDirectionProperty;
 import net.toopa.unusual_furniture.common.block.properties.WaterPlantProperty;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
-import net.toopa.unusual_furniture.common.utils.DyeSet;
-import net.toopa.unusual_furniture.common.utils.WoodSet;
+import net.toopa.unusual_furniture.common.util.DyeSet;
+import net.toopa.unusual_furniture.common.util.WoodSet;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;

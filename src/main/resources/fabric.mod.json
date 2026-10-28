@@ -3,13 +3,13 @@
   "id": "unusual_furniture",
   "name": "Unusual Furniture",
   "version": "${version}",
-  "authors": ["to0pa, macuguita"],
+  "authors": ["to0pa", "macuguita"],
   "contact": {
-    "sources": "",
-    "issues": ""
+    "sources": "https://github.com/To0pa/Unusual-Furniture",
+    "issues": "https://github.com/To0pa/Unusual-Furniture/issues"
   },
   "description": "Vanilla styled furniture mod!",
-  "icon": "assets/icon.png",
+  "icon": "assets/unusual_furniture/logo.png",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
@@ -27,6 +27,7 @@
     "unusual_furniture.mixins.json"
   ],
   "depends": {
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "minecraft": "${minecraft}"
   }
 }

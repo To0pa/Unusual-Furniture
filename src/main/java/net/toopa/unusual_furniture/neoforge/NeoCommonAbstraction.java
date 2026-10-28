@@ -1,7 +1,6 @@
 package net.toopa.unusual_furniture.neoforge;
 
 //? neoforge {
-
 /*import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;

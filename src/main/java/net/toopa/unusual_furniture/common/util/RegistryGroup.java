@@ -1,4 +1,4 @@
-package net.toopa.unusual_furniture.common.utils;
+package net.toopa.unusual_furniture.common.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

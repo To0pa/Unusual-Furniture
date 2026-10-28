@@ -6,7 +6,7 @@ import java.util.List;
 import com.mojang.serialization.MapCodec;
 import net.toopa.unusual_furniture.common.block.properties.ModularCurtainProperty;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import net.toopa.unusual_furniture.common.util.VoxelShapeUtils;
 import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;

@@ -6,8 +6,8 @@ license = "MIT"
 modId = "unusual_furniture"
 displayName = "Unusual Furniture"
 version = "${version}"
-displayURL = ""
-logoFile = "assets/icon.png"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/unusual-furniture"
+logoFile = "assets/unusual_furniture/logo.png"
 authors = "to0pa, macuguita"
 description = '''Vanilla styled furniture mod!'''
 

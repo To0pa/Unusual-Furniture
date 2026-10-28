@@ -59,9 +59,9 @@ public final class UFRegistryAliases {
 
 		alias(aliases, "tall_clay_pot", "tall_terracotta_pot");
 		alias(aliases, "vintage_flower_pot", "bauhaus_pot");
-		alias(aliases, "hit_box_guides", "iron_beam");
+		alias(aliases, "hit_box_guides", "floor_lamp_support");
 		alias(aliases, "brown_curtains", "brown_curtain");
-		alias(aliases, "spruce_floor_lamp", "brown_table_lamp");
+		alias(aliases, "spruce_floor_lamp", "white_table_lamp");
 
 		alias(aliases, "tropical_plant", "bag_of_tropical_plants");
 		alias(aliases, "mushroom_patch", "bag_of_mushrooms");
@@ -90,6 +90,8 @@ public final class UFRegistryAliases {
 		// Wall plants are part of their bag item now.
 		alias(aliases, "wall_tropical_plant", "bag_of_tropical_plants");
 		alias(aliases, "wall_mushroom_patch", "bag_of_mushrooms");
+
+		alias(aliases, "hit_box_guides", "iron_beam");
 
 		return Map.copyOf(aliases);
 	}

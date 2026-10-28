@@ -22,8 +22,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import net.toopa.unusual_furniture.common.reg.UFItemTags;
 import net.toopa.unusual_furniture.common.reg.UFObjects;
-import net.toopa.unusual_furniture.common.utils.DyeSet;
-import net.toopa.unusual_furniture.common.utils.WoodSet;
+import net.toopa.unusual_furniture.common.util.DyeSet;
+import net.toopa.unusual_furniture.common.util.WoodSet;
 
 import java.util.concurrent.CompletableFuture;
 

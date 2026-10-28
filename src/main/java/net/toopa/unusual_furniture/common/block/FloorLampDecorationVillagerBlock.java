@@ -1,7 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
 import com.mojang.serialization.MapCodec;
-import net.toopa.unusual_furniture.common.utils.VoxelShapeUtils;
+import net.toopa.unusual_furniture.common.util.VoxelShapeUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

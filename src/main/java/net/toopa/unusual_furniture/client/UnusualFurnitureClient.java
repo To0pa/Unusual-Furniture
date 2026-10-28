@@ -1,8 +1,8 @@
 package net.toopa.unusual_furniture.client;
 
 import net.toopa.unusual_furniture.CommonAbstraction;
-import net.toopa.unusual_furniture.client.model.WallClockModel;
 import net.toopa.unusual_furniture.client.model.DrawerModel;
+import net.toopa.unusual_furniture.client.model.WallClockModel;
 import net.toopa.unusual_furniture.client.particle.FurnitureSmokeParticle;
 import net.toopa.unusual_furniture.client.renderer.DrawerRenderer;
 import net.toopa.unusual_furniture.client.renderer.WallClockRenderer;
