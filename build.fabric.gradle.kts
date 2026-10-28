@@ -8,6 +8,10 @@ plugins {
     id("unusual_furniture.package-info")
 }
 
+val dotenv = rootProject.extra["dotenv"] as? Map<*, *> ?: emptyMap<String, String>()
+fun env(name: String): String? =
+    providers.environmentVariable(name).orNull ?: (dotenv[name] as? String)
+
 val minecraft = stonecutter.current.version
 val mcVersion = stonecutter.current.project.substringBeforeLast('-')
 
@@ -148,7 +152,7 @@ publishMods {
             type.set(SOURCES_JAR)
         }
         projectId = property("publish.modrinth") as String
-        accessToken = env.MODRINTH_API_KEY.orNull()
+        accessToken = env("MODRINTH_API_KEY")
         minecraftVersions.add(property("deps.minecraft").toString())
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
@@ -157,7 +161,7 @@ publishMods {
     curseforge {
         additionalFiles.from(loomx.modSourcesJar.map { it.archiveFile.get() })
         projectId = property("publish.curseforge") as String
-        accessToken = env.CURSEFORGE_API_KEY.orNull()
+        accessToken = env("CURSEFORGE_API_KEY")
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
@@ -180,8 +184,8 @@ publishing {
             url = uri("https://maven.macuguita.com/releases")
 
             credentials {
-                username = env.MAVEN_USERNAME.orNull()
-                password = env.MAVEN_KEY.orNull()
+                username = env("MAVEN_USERNAME")
+                password = env("MAVEN_KEY")
             }
         }
     }
