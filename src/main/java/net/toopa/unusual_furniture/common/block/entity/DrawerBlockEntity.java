@@ -32,12 +32,12 @@ public class DrawerBlockEntity extends BaseContainerBlockEntity {
 
 		@Override
 		protected void onOpen(Level level, BlockPos pos, BlockState state) {
-			level.playSound(null, pos, SoundEvents.BARREL_CLOSE, SoundSource.NEUTRAL, 0.5F, 1.3F);
+			level.playSound(null, pos, SoundEvents.BARREL_OPEN, SoundSource.NEUTRAL, 0.5F, 1.3F);
 		}
 
 		@Override
 		protected void onClose(Level level, BlockPos pos, BlockState state) {
-			level.playSound(null, pos, SoundEvents.BARREL_OPEN, SoundSource.NEUTRAL, 0.5F, 1.3F);
+			level.playSound(null, pos, SoundEvents.BARREL_CLOSE, SoundSource.NEUTRAL, 0.5F, 1.3F);
 		}
 
 		@Override
