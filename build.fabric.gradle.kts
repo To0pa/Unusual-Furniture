@@ -19,7 +19,7 @@ tasks.named<ProcessResources>("processResources") {
     fun prop(name: String) = project.property(name) as String
 
     val props = HashMap<String, String>().apply {
-        this["version"] = prop("mod.version") + "+" + prop("deps.minecraft")
+        this["version"] = prop("mod.version")
         this["minecraft"] = prop("mod.mc_dep_fabric")
         this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
     }
@@ -153,6 +153,7 @@ publishMods {
         }
         projectId = property("publish.modrinth") as String
         accessToken = env("MODRINTH_API_KEY")
+        environment = CLIENT_AND_SERVER
         minecraftVersions.add(property("deps.minecraft").toString())
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
@@ -162,6 +163,8 @@ publishMods {
         additionalFiles.from(loomx.modSourcesJar.map { it.archiveFile.get() })
         projectId = property("publish.curseforge") as String
         accessToken = env("CURSEFORGE_API_KEY")
+        client = true
+        server = true
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")

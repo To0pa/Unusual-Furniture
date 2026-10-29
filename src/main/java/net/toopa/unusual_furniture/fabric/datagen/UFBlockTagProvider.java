@@ -136,6 +136,9 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.SHELF)
 				.addTag(UFBlockTags.POT)
 				.addTag(UFBlockTags.FLOOR_LAMP_DECORATIONS);
+
+		getOrCreateTagBuilder(UFBlockTags.POT_PLANTABLE)
+				.addOptionalTag(BlockTags.FLOWERS);
 	}
 
 	private static TagKey<Block> createTag(String modId, String name) {
