@@ -24,7 +24,14 @@ tasks.named<ProcessResources>("processResources") {
         this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml", "${prop("mod.id")}.mixins.json")) {
+    filesMatching(
+        listOf(
+            "fabric.mod.json",
+            "META-INF/neoforge.mods.toml",
+            "META-INF/mods.toml",
+            "${prop("mod.id")}.mixins.json"
+        )
+    ) {
         expand(props)
     }
 
@@ -49,30 +56,30 @@ jsonlang {
 repositories {
     mavenLocal()
     mavenCentral()
-    val exclusiveRepos: List<Triple<String, String, List<String>>> = listOf(
-        Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
-        Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
-        Triple("Terraformers (Mod Menu)", "https://maven.terraformersmc.com/releases/", listOf("com.terraformersmc", "dev.emi")),
-    )
-
-    exclusiveRepos.forEach { (name, url, groups) ->
-        if (groups.isNotEmpty()) {
-            exclusiveContent {
-                forRepository {
-                    maven {
-                        this.name = name
-                        setUrl(url)
-                    }
-                }
-                filter {
-                    groups.forEach { includeGroupAndSubgroups(it) }
-                }
-            }
-        } else {
-            maven {
-                this.name = name
-                setUrl(url)
-            }
+    exclusiveContent {
+        forRepository { maven("https://api.modrinth.com/maven") }
+        filter { includeGroup("maven.modrinth") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://cursemaven.com") }
+        filter { includeGroup("curse.maven") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://maven.parchmentmc.org") }
+        filter { includeGroupAndSubgroups("org.parchmentmc") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://maven.terraformersmc.com/releases/") }
+        filter {
+            includeGroupAndSubgroups("com.terraformersmc")
+            includeGroupAndSubgroups("dev.emi")
+        }
+    }
+    exclusiveContent {
+        forRepository { maven("https://maven.gegy.dev") }
+        filter {
+            includeGroupAndSubgroups("dev.lambdaurora")
+            includeGroup("io.github.queerbric")
         }
     }
 }
@@ -88,6 +95,14 @@ dependencies {
     if (hasProperty("deps.modmenu")) {
         modLocalRuntime("com.terraformersmc:modmenu:${property("deps.modmenu")}")
     }
+
+    // common optimization mods to test
+    modLocalRuntime("maven.modrinth:sodium:mc1.21.1-0.8.13-fabric")
+    modLocalRuntime("maven.modrinth:ferrite-core:7.0.3-fabric")
+    modLocalRuntime("maven.modrinth:lithium:mc1.21.1-0.15.4-fabric")
+    modLocalRuntime("maven.modrinth:modernfix:5.25.1+mc1.21.1")
+    modLocalRuntime("dev.lambdaurora.lambdynamiclights:lambdynamiclights-runtime:4.8.11+1.21.1")
+    modLocalRuntime("maven.modrinth:scalablelux:0.3.0-alpha.0.7+1.21.1")
 }
 
 configurations.all {

@@ -21,7 +21,14 @@ tasks.named<ProcessResources>("processResources") {
         this["javaVersion"] = if (stonecutter.eval(stonecutter.current.version, ">=26.1")) "JAVA_25" else "JAVA_21"
     }
 
-    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml", "META-INF/mods.toml", "${prop("mod.id")}.mixins.json")) {
+    filesMatching(
+        listOf(
+            "fabric.mod.json",
+            "META-INF/neoforge.mods.toml",
+            "META-INF/mods.toml",
+            "${prop("mod.id")}.mixins.json"
+        )
+    ) {
         expand(props)
     }
 }
@@ -35,30 +42,26 @@ jsonlang {
 }
 
 repositories {
-    val exclusiveRepos: List<Triple<String, String, List<String>>> = listOf(
-        Triple("Modrinth", "https://api.modrinth.com/maven", listOf("maven.modrinth")),
-        Triple("Parchment Mappings", "https://maven.parchmentmc.org", listOf("org.parchmentmc")),
-        Triple("Neoforge", "https://maven.neoforged.net/releases", emptyList()),
-    )
-
-    exclusiveRepos.forEach { (name, url, groups) ->
-        if (groups.isNotEmpty()) {
-            exclusiveContent {
-                forRepository {
-                    maven {
-                        this.name = name
-                        setUrl(url)
-                    }
-                }
-                filter {
-                    groups.forEach { includeGroupAndSubgroups(it) }
-                }
-            }
-        } else {
-            maven {
-                this.name = name
-                setUrl(url)
-            }
+    mavenLocal()
+    mavenCentral()
+    maven("https://maven.neoforged.net/releases")
+    exclusiveContent {
+        forRepository { maven("https://api.modrinth.com/maven") }
+        filter { includeGroup("maven.modrinth") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://cursemaven.com") }
+        filter { includeGroup("curse.maven") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://maven.parchmentmc.org") }
+        filter { includeGroupAndSubgroups("org.parchmentmc") }
+    }
+    exclusiveContent {
+        forRepository { maven("https://maven.gegy.dev") }
+        filter {
+            includeGroupAndSubgroups("dev.lambdaurora")
+            includeGroup("io.github.queerbric")
         }
     }
 }
@@ -100,8 +103,26 @@ neoForge {
     sourceSets["main"].resources.srcDir("src/main/generated")
 }
 
+val mappingsAttribute = Attribute.of("net.minecraft.mappings", String::class.java)
+
 dependencies {
+    attributesSchema {
+        attribute(mappingsAttribute)
+    }
+
     compileOnly("org.jspecify:jspecify:1.0.0")
+
+    // common optimization mods to test
+    localRuntime("maven.modrinth:sodium:mc1.21.1-0.8.13-neoforge")
+    localRuntime("maven.modrinth:ferrite-core:7.0.3-neoforge")
+    localRuntime("maven.modrinth:lithium:mc1.21.1-0.15.4-neoforge")
+    localRuntime("maven.modrinth:modernfix:5.27.27+mc1.21.1")
+    localRuntime("dev.lambdaurora.lambdynamiclights:lambdynamiclights-runtime:4.8.11+1.21.1") {
+        attributes {
+            attribute(mappingsAttribute, "mojmap")
+        }
+    }
+    localRuntime("maven.modrinth:scalablelux:0.3.0-alpha.0.8+1.21.1")
 }
 
 tasks {
