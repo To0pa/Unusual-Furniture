@@ -1,1 +1,1 @@
-- Complete mod rewrite
+- fix server deadlock during spawn chunk generation
