@@ -1,0 +1,100 @@
+{
+  "values": [
+    {
+      "id": "unusual_furniture:oak_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:spruce_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:birch_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:jungle_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:acacia_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:dark_oak_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:mangrove_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cherry_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:bamboo_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:crimson_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:warped_railing",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:oak_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:spruce_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:birch_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:jungle_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:acacia_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:dark_oak_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:mangrove_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cherry_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:bamboo_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:crimson_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:warped_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:iron_beam",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:decorated_iron_beam",
+      "required": false
+    }
+  ]
+}

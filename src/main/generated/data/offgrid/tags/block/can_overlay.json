@@ -1,0 +1,176 @@
+{
+  "values": [
+    {
+      "id": "unusual_furniture:fire_hydrant",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:emergency_fire_hydrant",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:toolbox",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:warning_barrier",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:road_works_barrier",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:danger_barrier",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:wooden_barrier",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:blackboard_menu",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:white_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:light_gray_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:gray_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:black_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:brown_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:red_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:orange_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:yellow_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:lime_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:green_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cyan_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:light_blue_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:blue_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:purple_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:magenta_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:pink_table_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cow_plush",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:pig_plush",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cat_plush",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:broom",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:rake",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:grave_broken",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:grave_skeleton",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:grave_creeper",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:oak_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:spruce_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:birch_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:jungle_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:acacia_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:dark_oak_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:mangrove_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cherry_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:bamboo_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:crimson_ceiling_lamp",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:warped_ceiling_lamp",
+      "required": false
+    }
+  ]
+}

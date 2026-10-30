@@ -1,0 +1,56 @@
+{
+  "values": [
+    {
+      "id": "unusual_furniture:oak_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:spruce_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:birch_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:jungle_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:acacia_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:dark_oak_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:mangrove_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:cherry_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:bamboo_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:crimson_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:warped_shelf",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:wooden_clock",
+      "required": false
+    },
+    {
+      "id": "unusual_furniture:poster",
+      "required": false
+    }
+  ]
+}
