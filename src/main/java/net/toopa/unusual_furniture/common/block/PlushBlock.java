@@ -65,12 +65,6 @@ public class PlushBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack itemstack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
-		super.appendHoverText(itemstack, context, list, flag);
-		list.add(Component.translatable(this.getDescriptionId() + ".description_0"));
-	}
-
-	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		level.playSound(null, pos, UFSoundEvents.SQUEAK, SoundSource.NEUTRAL, 0.2F, 1.0F);
 		if (level instanceof ServerLevel serverLevel) {

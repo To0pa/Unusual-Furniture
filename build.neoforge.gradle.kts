@@ -64,6 +64,10 @@ repositories {
             includeGroup("io.github.queerbric")
         }
     }
+    exclusiveContent {
+        forRepository { maven("https://repo.sleeping.town") }
+        filter { includeGroup("dev.emi") }
+    }
 }
 
 val localRuntime = configurations.create("localRuntime")
@@ -123,6 +127,7 @@ dependencies {
         }
     }
     localRuntime("maven.modrinth:scalablelux:0.3.0-alpha.0.8+1.21.1")
+    localRuntime("dev.emi:emi-neoforge:1.1.24+1.21.1")
 }
 
 tasks {

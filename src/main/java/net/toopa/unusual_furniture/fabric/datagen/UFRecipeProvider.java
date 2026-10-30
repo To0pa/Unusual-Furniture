@@ -483,6 +483,36 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 				.unlockedBy(getHasName(Items.CLOCK), has(Items.CLOCK))
 				.save(exporter);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.PIG_PLUSH)
+				.pattern("aaa")
+				.pattern("aba")
+				.pattern("aaa")
+				.define('a', Items.PINK_WOOL)
+				.define('b', UFObjects.SCREW)
+				.unlockedBy(getHasName(Items.PINK_WOOL), has(Items.PINK_WOOL))
+				.unlockedBy(getHasName(UFObjects.SCREW), has(UFObjects.SCREW))
+				.save(exporter);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.COW_PLUSH)
+				.pattern("aaa")
+				.pattern("aba")
+				.pattern("aaa")
+				.define('a', Items.BROWN_WOOL)
+				.define('b', UFObjects.SCREW)
+				.unlockedBy(getHasName(Items.BROWN_WOOL), has(Items.BROWN_WOOL))
+				.unlockedBy(getHasName(UFObjects.SCREW), has(UFObjects.SCREW))
+				.save(exporter);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.CAT_PLUSH)
+				.pattern("aaa")
+				.pattern("aba")
+				.pattern("aaa")
+				.define('a', Items.LIGHT_GRAY_WOOL)
+				.define('b', UFObjects.SCREW)
+				.unlockedBy(getHasName(Items.LIGHT_GRAY_WOOL), has(Items.LIGHT_GRAY_WOOL))
+				.unlockedBy(getHasName(UFObjects.SCREW), has(UFObjects.SCREW))
+				.save(exporter);
+
 		UFObjects.TABLE_LAMP_BLOCKS.forEachEntry((block, reLo) -> {
 			DyeSet dyeSet = UFObjects.getDyeSet(block);
 			if (dyeSet == null) throw new AssertionError("DyeSet is null");

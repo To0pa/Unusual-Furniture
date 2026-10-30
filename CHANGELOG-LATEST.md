@@ -1,1 +1,2 @@
-- fix server deadlock during spawn chunk generation
+- fix wall clock placement when up or down
+- add recipes for plushes

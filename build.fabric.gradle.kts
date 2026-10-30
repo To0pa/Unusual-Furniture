@@ -70,10 +70,7 @@ repositories {
     }
     exclusiveContent {
         forRepository { maven("https://maven.terraformersmc.com/releases/") }
-        filter {
-            includeGroupAndSubgroups("com.terraformersmc")
-            includeGroupAndSubgroups("dev.emi")
-        }
+        filter { includeGroupAndSubgroups("com.terraformersmc") }
     }
     exclusiveContent {
         forRepository { maven("https://maven.gegy.dev") }
@@ -81,6 +78,10 @@ repositories {
             includeGroupAndSubgroups("dev.lambdaurora")
             includeGroup("io.github.queerbric")
         }
+    }
+    exclusiveContent {
+        forRepository { maven("https://repo.sleeping.town") }
+        filter { includeGroup("dev.emi") }
     }
 }
 
@@ -103,6 +104,7 @@ dependencies {
     modLocalRuntime("maven.modrinth:modernfix:5.25.1+mc1.21.1")
     modLocalRuntime("dev.lambdaurora.lambdynamiclights:lambdynamiclights-runtime:4.8.11+1.21.1")
     modLocalRuntime("maven.modrinth:scalablelux:0.3.0-alpha.0.7+1.21.1")
+    modLocalRuntime("dev.emi:emi-fabric:1.1.24+1.21.1")
 }
 
 configurations.all {
