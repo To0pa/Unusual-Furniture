@@ -3,7 +3,20 @@
   "id": "unusual_furniture",
   "name": "Unusual Furniture",
   "version": "${version}",
-  "authors": ["to0pa", "macuguita"],
+  "authors": [
+    {
+      "name": "to0pa",
+      "contact": {
+        "homepage": "https://to0pa.net/"
+      }
+    },
+    {
+      "name": "macuguita",
+      "contact": {
+        "homepage": "https://macuguita.com"
+      }
+    }
+  ],
   "contact": {
     "sources": "https://github.com/To0pa/Unusual-Furniture",
     "issues": "https://github.com/To0pa/Unusual-Furniture/issues"
@@ -29,5 +42,14 @@
   "depends": {
     "fabric-api": "*",
     "minecraft": "${minecraft}"
+  },
+  "custom": {
+    "modmenu": {
+      "update_checker": true,
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/unusual-furniture",
+        "modmenu.modrinth": "https://modrinth.com/mod/unusual-furniture"
+      }
+    }
   }
 }
