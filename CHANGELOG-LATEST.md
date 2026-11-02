@@ -1,3 +1,3 @@
-- Add compat with offgrid
+- Add compat with offgrid [Modrinth](https://modrinth.com/mod/offgrid) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/offgrid)
 - Add missing screw recipe
 - Add screw to ingredient item group

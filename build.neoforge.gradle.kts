@@ -181,6 +181,7 @@ publishMods {
         environment = CLIENT_AND_SERVER
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
+        optional("offgrid")
     }
 
     curseforge {
@@ -190,6 +191,7 @@ publishMods {
         server = true
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
+        optional("offgrid")
     }
 }
 
