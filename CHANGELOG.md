@@ -1,3 +1,8 @@
+2.0.4
+- Add optional compat with Sable [Modrinth](https://modrinth.com/mod/sable) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/sable) so furniture can be sat on in moving sub-levels
+- Update mod metadata
+- Fix table lamps missing a collision box
+---
 2.0.3
 - Add compat with offgrid [Modrinth](https://modrinth.com/mod/offgrid) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/offgrid)
 - Add missing screw recipe

@@ -43,6 +43,9 @@
     "fabric-api": "*",
     "minecraft": "${minecraft}"
   },
+  "suggests": {
+    "sable": "*"
+  },
   "custom": {
     "modmenu": {
       "update_checker": true,

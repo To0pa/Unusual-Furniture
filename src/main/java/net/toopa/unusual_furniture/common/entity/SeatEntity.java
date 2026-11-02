@@ -1,7 +1,9 @@
 package net.toopa.unusual_furniture.common.entity;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import net.toopa.unusual_furniture.common.block.ISittableBlock;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 import net.toopa.unusual_furniture.common.reg.UFEntityTypes;
@@ -16,6 +18,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -32,9 +35,11 @@ import net.minecraft.world.phys.Vec3;
 @SuppressWarnings("resource")
 public class SeatEntity extends Entity {
 
-	public static final Multimap<ResourceKey<Level>, BlockPos> SITTING_POSITIONS = ArrayListMultimap.create();
+	private static final Map<ResourceKey<Level>, Map<BlockPos, UUID>> SITTING_POSITIONS = new HashMap<>();
 
 	private @Nullable AABB shape;
+	private @Nullable ResourceKey<Level> reservedDimension;
+	private @Nullable BlockPos reservedPos;
 	private boolean canRotate;
 	private int emptyTicks = 0;
 
@@ -69,6 +74,56 @@ public class SeatEntity extends Entity {
 
 	private static AABB copyBox(AABB box) {
 		return new AABB(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
+	}
+
+	public static boolean isSeatOccupied(Level level, BlockPos pos) {
+		Map<BlockPos, UUID> positions = SITTING_POSITIONS.get(level.dimension());
+		if (positions == null) {
+			return false;
+		}
+
+		UUID uuid = positions.get(pos);
+		if (uuid == null) {
+			return false;
+		}
+
+		if (level instanceof ServerLevel serverLevel) {
+			Entity entity = serverLevel.getEntity(uuid);
+			if (entity instanceof SeatEntity seat && !seat.isRemoved()) {
+				return true;
+			}
+		}
+
+		positions.remove(pos, uuid);
+		if (positions.isEmpty()) {
+			SITTING_POSITIONS.remove(level.dimension(), positions);
+		}
+		return false;
+	}
+
+	public static void reserveSeat(Level level, BlockPos pos, SeatEntity seat) {
+		BlockPos immutablePos = pos.immutable();
+		SITTING_POSITIONS.computeIfAbsent(level.dimension(), key -> new HashMap<>())
+				.put(immutablePos, seat.getUUID());
+		seat.reservedDimension = level.dimension();
+		seat.reservedPos = immutablePos;
+	}
+
+	private void releaseSeatPosition() {
+		if (reservedDimension == null || reservedPos == null) {
+			return;
+		}
+
+		Map<BlockPos, UUID> positions = SITTING_POSITIONS.get(reservedDimension);
+		if (positions != null) {
+			positions.remove(reservedPos, getUUID());
+			if (positions.isEmpty()) {
+				SITTING_POSITIONS.remove(reservedDimension, positions);
+			}
+		}
+
+		reservedDimension = null;
+		reservedPos = null;
 	}
 
 	@Override
@@ -153,8 +208,13 @@ public class SeatEntity extends Entity {
 	}
 
 	public void removeSeat() {
-		SITTING_POSITIONS.get(this.level().dimension()).remove(blockPosition());
 		discard();
+	}
+
+	@Override
+	public void remove(Entity.RemovalReason reason) {
+		releaseSeatPosition();
+		super.remove(reason);
 	}
 
 	@Override

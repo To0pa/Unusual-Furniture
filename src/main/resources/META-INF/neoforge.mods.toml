@@ -26,5 +26,12 @@ modId = "minecraft"
 type = "required"
 versionRange = "${minecraft}"
 
+[[dependencies.unusual_furniture]]
+modId = "sable"
+type = "optional"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
 [modproperties.unusual_furniture]
 catalogueImageIcon = "assets/unusual_furniture/logo.png"

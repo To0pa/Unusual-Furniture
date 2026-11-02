@@ -15,11 +15,11 @@ import net.minecraft.world.phys.AABB;
 public interface ISittableBlock {
 
 	default boolean sitOn(Level world, BlockPos pos, Player player, Direction dir) {
-		if (!world.isClientSide && !SeatEntity.SITTING_POSITIONS.get(world.dimension()).contains(pos)) {
+		if (!world.isClientSide && !SeatEntity.isSeatOccupied(world, pos)) {
 			SeatEntity entity = SeatEntity.of(world, pos, dir);
+			SeatEntity.reserveSeat(world, pos, entity);
 			if (world.addFreshEntity(entity)) {
 				player.startRiding(entity);
-				SeatEntity.SITTING_POSITIONS.put(world.dimension(), pos);
 				BlockState state = world.getBlockState(pos);
 				if (state.is(UFBlockTags.CHAIR) || state.is(UFBlockTags.STOOL) || state.is(UFBlockTags.BENCH)) {
 					world.playSound(null, pos, SoundEvents.WOOD_STEP, SoundSource.BLOCKS, 0.6F, 0.5F);
@@ -35,11 +35,11 @@ public interface ISittableBlock {
 	}
 
 	static boolean sitOn(Level world, BlockPos pos, Player player) {
-		if (!world.isClientSide && !SeatEntity.SITTING_POSITIONS.get(world.dimension()).contains(pos)) {
+		if (!world.isClientSide && !SeatEntity.isSeatOccupied(world, pos)) {
 			SeatEntity entity = SeatEntity.of(world, pos, null);
+			SeatEntity.reserveSeat(world, pos, entity);
 			if (world.addFreshEntity(entity)) {
 				player.startRiding(entity);
-				SeatEntity.SITTING_POSITIONS.put(world.dimension(), pos);
 				return true;
 			} else {
 				entity.removeSeat();
