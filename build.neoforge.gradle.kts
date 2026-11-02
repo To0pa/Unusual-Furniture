@@ -182,6 +182,7 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         optional("offgrid")
+        optional("sable")
     }
 
     curseforge {
@@ -192,6 +193,7 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         minecraftVersions.addAll(additionalVersions)
         optional("offgrid")
+        optional("sable")
     }
 }
 

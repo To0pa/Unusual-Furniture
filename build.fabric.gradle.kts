@@ -175,6 +175,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         optional("offgrid")
+        optional("sable")
     }
 
     curseforge {
@@ -187,6 +188,7 @@ publishMods {
         minecraftVersions.addAll(additionalVersions)
         requires("fabric-api")
         optional("offgrid")
+        optional("sable")
     }
 }
 
