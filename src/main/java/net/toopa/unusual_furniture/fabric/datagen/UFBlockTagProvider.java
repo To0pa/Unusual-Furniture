@@ -78,7 +78,7 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(UFObjects.WARNING_BARRIER)
 				.add(UFObjects.ROAD_WORKS_BARRIER)
 				.add(UFObjects.DANGER_BARRIER)
-				.add(UFObjects.DECORATIVE_TOOLBOX)
+				.add(UFObjects.TOOLBOX)
 				.add(UFObjects.IRON_LAMP)
 				.add(UFObjects.SPHERE_LAMP)
 				.add(UFObjects.MANHOLE)
@@ -117,6 +117,26 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.addTag(UFBlockTags.BENCH)
 				.addTag(UFBlockTags.SITTABLE_BLOCKS);
 
+		getOrCreateTagBuilder(createTag("offgrid", "can_blocklog"))
+				.addTag(UFBlockTags.RAILING)
+				.addTag(UFBlockTags.BEAM);
+
+		getOrCreateTagBuilder(createTag("offgrid", "can_overlay"))
+				.add(UFObjects.FIRE_HYDRANT_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.TOOLBOX)
+				.add(UFObjects.BARRIER_BLOCKS.keys(Block[]::new))
+				.addTag(UFBlockTags.TABLE_LAMP)
+				.add(UFObjects.PLUSH_BLOCKS.keys(Block[]::new))
+				.add(UFObjects.BROOM)
+				.add(UFObjects.RAKE)
+				.add(UFObjects.GRAVE_BLOCKS.keys(Block[]::new))
+				.addTag(UFBlockTags.CEILING_LAMP);
+
+		getOrCreateTagBuilder(createTag("offgrid", "facing_attaching"))
+				.addTag(UFBlockTags.SHELF)
+				.add(UFObjects.WOODEN_CLOCK)
+				.add(UFObjects.POSTER);
+
 		getOrCreateTagBuilder(UFBlockTags.SITTABLE_BLOCKS);
 
 		getOrCreateTagBuilder(UFBlockTags.EMITS_DUST_PARTICLES)
@@ -124,7 +144,7 @@ public class UFBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 				.add(UFObjects.FIRE_HYDRANT_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.PLUSH_BLOCKS.keys(Block[]::new))
 				.add(UFObjects.GRAVE_BLOCKS.keys(Block[]::new))
-				.add(UFObjects.DECORATIVE_TOOLBOX)
+				.add(UFObjects.TOOLBOX)
 				.addTag(UFBlockTags.TABLE)
 				.addTag(UFBlockTags.COFFEE_TABLE)
 				.addTag(UFBlockTags.CHAIR)

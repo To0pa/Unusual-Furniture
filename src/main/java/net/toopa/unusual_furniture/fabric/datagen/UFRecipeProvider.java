@@ -36,6 +36,14 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 	@Override
 	public void buildRecipes(RecipeOutput exporter) {
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.SCREW)
+				.pattern("a")
+				.pattern("a")
+				.pattern("a")
+				.define('a', Items.IRON_NUGGET)
+				.unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+				.save(exporter);
+
 		UFObjects.WOODEN_TABLE_BLOCKS.forEachEntry((block, reLo) -> {
 			WoodSet woodSet = UFObjects.getWoodSet(block);
 			if (woodSet == null) throw new AssertionError("WoodSet is null");
@@ -396,7 +404,7 @@ public class UFRecipeProvider extends FabricRecipeProvider {
 				.unlockedBy(getHasName(Items.IRON_TRAPDOOR), has(Items.IRON_TRAPDOOR))
 				.save(exporter);
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.DECORATIVE_TOOLBOX)
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, UFObjects.TOOLBOX)
 				.pattern(" a ")
 				.pattern("bcb")
 				.pattern(" a ")

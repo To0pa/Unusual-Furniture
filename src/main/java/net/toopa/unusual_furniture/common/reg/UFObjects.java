@@ -551,7 +551,7 @@ public final class UFObjects {
 					.noOcclusion()
 					.dynamicShape()
 					.mapColor(MapColor.METAL));
-	public static final ToolboxBlock DECORATIVE_TOOLBOX = registerToolboxBlock("toolbox",
+	public static final ToolboxBlock TOOLBOX = registerToolboxBlock("toolbox",
 			p -> p.sound(SoundType.METAL)
 					.strength(1.0F, 10.0F)
 					.noOcclusion()

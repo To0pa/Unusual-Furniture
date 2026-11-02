@@ -1,6 +1,12 @@
 package net.toopa.unusual_furniture.fabric;
 
 //? fabric {
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+
+import net.minecraft.world.item.CreativeModeTab;
+
+import net.minecraft.world.item.CreativeModeTabs;
+
 import net.toopa.unusual_furniture.UFEventHandler;
 import net.toopa.unusual_furniture.UnusualFurniture;
 import net.toopa.unusual_furniture.common.reg.UFBlockEntityTypes;
@@ -23,6 +29,7 @@ public class FabricEntrypoint implements ModInitializer {
 		initRegistries();
 
 		UseBlockCallback.EVENT.register(UFEventHandler::onBlockClick);
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(UFEventHandler::addToCreativeTab);
 	}
 
 	public static void initRegistries() {

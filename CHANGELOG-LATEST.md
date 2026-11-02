@@ -1,2 +1,3 @@
-- fix wall clock placement when up or down
-- add recipes for plushes
+- Add compat with offgrid
+- Add missing screw recipe
+- Add screw to ingredient item group

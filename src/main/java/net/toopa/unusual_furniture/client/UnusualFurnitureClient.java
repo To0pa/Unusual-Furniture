@@ -49,7 +49,7 @@ public class UnusualFurnitureClient {
 		UFObjects.TABLE_LAMP_BLOCKS.forEachEntry((block, reLo) -> CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(), block));
 		CommonAbstraction.INSTANCE.registerRenderType(RenderType.cutoutMipped(),
 				UFObjects.MANHOLE,
-				UFObjects.DECORATIVE_TOOLBOX,
+				UFObjects.TOOLBOX,
 				UFObjects.PIG_PLUSH,
 				UFObjects.COW_PLUSH,
 				UFObjects.BROOM,

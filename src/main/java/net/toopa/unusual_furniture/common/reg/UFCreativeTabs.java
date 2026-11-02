@@ -41,7 +41,7 @@ public final class UFCreativeTabs {
 				output.accept(UFObjects.TRASH);
 				UFObjects.FIRE_HYDRANT_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 				output.accept(UFObjects.MANHOLE);
-				output.accept(UFObjects.DECORATIVE_TOOLBOX);
+				output.accept(UFObjects.TOOLBOX);
 				UFObjects.BARRIER_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 				output.accept(UFObjects.WOODEN_CLOCK);
 				UFObjects.TABLE_LAMP_ITEMS.forEachEntry((item, reLo) -> output.accept(item));

@@ -5,6 +5,7 @@ package net.toopa.unusual_furniture.neoforge;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
@@ -75,6 +76,11 @@ public class NeoforgeEntrypoint {
 	@SubscribeEvent
 	static void onUseBlock(PlayerInteractEvent.RightClickBlock event) {
 		UFEventHandler.onBlockClick(event.getEntity(), event.getLevel(), event.getHand(), event.getHitVec());
+	}
+
+	@SubscribeEvent
+	static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
+		UFEventHandler.addToCreativeTab(event);
 	}
 
 }

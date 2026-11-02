@@ -357,7 +357,7 @@ public class UFModelProvider extends FabricModelProvider {
 				new TextureMapping().put(SLOT_0, TextureMapping.getBlockTexture(UFObjects.MANHOLE))
 						.put(SLOT_1, UnusualFurniture.id("block/manhole_open"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(UFObjects.MANHOLE)));
-		registerToolbox(blockModelGenerators, UFObjects.DECORATIVE_TOOLBOX,
+		registerToolbox(blockModelGenerators, UFObjects.TOOLBOX,
 				new TextureMapping().put(SLOT_0, UnusualFurniture.id("block/toolbox"))
 						.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.REDSTONE_BLOCK)));
 		registerBarrier(blockModelGenerators, UFObjects.WARNING_BARRIER,
