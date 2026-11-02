@@ -361,7 +361,6 @@ public final class UFObjects {
 			TableLampBlock floorLamp = registerTableLamp(dye.name() + "_table_lamp", dye.wool(),
 					p -> p.sound(SoundType.WOOD)
 							.strength(1.0F, 10.0F)
-							.noCollission()
 							.noOcclusion()
 							.dynamicShape());
 

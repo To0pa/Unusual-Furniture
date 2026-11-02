@@ -57,7 +57,7 @@ public final class UFCreativeTabs {
 			.title(Component.translatable("item_group.unusual_furniture.unusual_tab_2"))
 			.icon(() -> new ItemStack(UFObjects.WOOD_SETS.get("acacia").open_riser_stairs()))
 			.displayItems((itemDisplayParameters, output) -> {
-				UFObjects.DRAWER_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
+				UFObjects.CARVED_PLANK_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 				UFObjects.OPEN_RISER_STAIR_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
 				UFObjects.RAILING_BLOCKS.forEachEntry((item, reLo) -> output.accept(item));
 				UFObjects.WOODEN_BEAM_ITEMS.forEachEntry((item, reLo) -> output.accept(item));
