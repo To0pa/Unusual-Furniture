@@ -40,6 +40,7 @@
     "unusual_furniture.mixins.json"
   ],
   "depends": {
+    "fabricloader": ">=0.20.1",
     "fabric-api": "*",
     "minecraft": "${minecraft}"
   },
