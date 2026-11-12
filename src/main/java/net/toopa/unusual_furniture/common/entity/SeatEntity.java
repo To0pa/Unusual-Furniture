@@ -68,7 +68,7 @@ public class SeatEntity extends Entity {
 			entity.canRotate = true;
 		}
 
-		entity.setPosRaw(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+		entity.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 		return entity;
 	}
 
@@ -275,6 +275,7 @@ public class SeatEntity extends Entity {
 			Block block = SeatEntity.this.level().getBlockState(blockPosition()).getBlock();
 			if (block instanceof ISittableBlock seat) {
 				shape = seat.getSeatSize(SeatEntity.this.level().getBlockState(blockPosition()));
+				SeatEntity.this.setBoundingBox(SeatEntity.this.makeBoundingBox());
 			}
 		}
 

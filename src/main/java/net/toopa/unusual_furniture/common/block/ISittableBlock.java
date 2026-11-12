@@ -1,5 +1,7 @@
 package net.toopa.unusual_furniture.common.block;
 
+import net.minecraft.world.phys.Vec3;
+
 import net.toopa.unusual_furniture.common.entity.SeatEntity;
 import net.toopa.unusual_furniture.common.reg.UFBlockTags;
 
@@ -48,5 +50,7 @@ public interface ISittableBlock {
 		return false;
 	}
 
-	AABB getSeatSize(BlockState state);
+	default AABB getSeatSize(BlockState state) {
+		return new AABB(Vec3.ZERO, new Vec3(1, 1, 1));
+	}
 }

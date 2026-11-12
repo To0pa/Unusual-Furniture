@@ -1,3 +1,1 @@
-- Add optional compat with Sable [Modrinth](https://modrinth.com/mod/sable) | [Curseforge](https://www.curseforge.com/minecraft/mc-mods/sable) so furniture can be sat on in moving sub-levels
-- Update mod metadata
-- Fix table lamps missing a collision box
+- Fixed [#10](https://github.com/To0pa/Unusual-Furniture/issues/10)

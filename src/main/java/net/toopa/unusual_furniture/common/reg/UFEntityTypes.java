@@ -15,6 +15,8 @@ public final class UFEntityTypes {
 	public static final EntityType<SeatEntity> SEAT = Registry.register(BuiltInRegistries.ENTITY_TYPE, UnusualFurniture.id("seat"),
 			EntityType.Builder.<SeatEntity>of(SeatEntity::new, MobCategory.MISC)
 					.sized(1, 1)
+					.eyeHeight(0.5f)
+					.clientTrackingRange(10)
 					.noSave()
 					.fireImmune()
 					.noSummon()
