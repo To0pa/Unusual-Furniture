@@ -32,7 +32,7 @@ public class PosterBlock extends DirectionalBlock {
 	private static final MapCodec<PosterBlock> CODEC = simpleCodec(PosterBlock::new);
 	public static final IntegerProperty POSTER_TYPE = IntegerProperty.create("poster_type", 0, 6);
 	private static final VoxelShape SHAPE = box(0.0F, 0.0F, 15.9, 16.0F, 16.0F, 16.0F);
-	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createFullDirectionalShapeMap(SHAPE);
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createFullDirectionalShapeMap(SHAPE, Direction.DOWN);
 
 	public PosterBlock(Properties properties) {
 		super(properties);
