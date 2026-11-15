@@ -1,3 +1,6 @@
+2.0.6
+- Fixed [#11](https://github.com/To0pa/Unusual-Furniture/issues/11)
+---
 2.0.5
 - Fixed [#10](https://github.com/To0pa/Unusual-Furniture/issues/10)
 ---
