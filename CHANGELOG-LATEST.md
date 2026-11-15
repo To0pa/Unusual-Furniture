@@ -1,1 +1,1 @@
-- Fixed [#11](https://github.com/To0pa/Unusual-Furniture/issues/11)
+- Properly fixed [#11](https://github.com/To0pa/Unusual-Furniture/issues/11)

@@ -32,7 +32,7 @@ public class PosterBlock extends DirectionalBlock {
 	private static final MapCodec<PosterBlock> CODEC = simpleCodec(PosterBlock::new);
 	public static final IntegerProperty POSTER_TYPE = IntegerProperty.create("poster_type", 0, 6);
 	private static final VoxelShape SHAPE = box(0.0F, 0.0F, 15.9, 16.0F, 16.0F, 16.0F);
-	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createFullDirectionalShapeMap(SHAPE, Direction.DOWN);
+	private static final Map<Direction, VoxelShape> SHAPE_MAP = VoxelShapeUtils.createFullDirectionalShapeMap(SHAPE);
 
 	public PosterBlock(Properties properties) {
 		super(properties);
@@ -76,7 +76,9 @@ public class PosterBlock extends DirectionalBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPE_MAP.get(state.getValue(FACING));
+		var facing = state.getValue(FACING);
+		var little_fix = facing.getAxis() == Direction.Axis.Y ? facing.getOpposite() : facing;
+		return SHAPE_MAP.get(little_fix);
 	}
 
 	@Override
